@@ -1,0 +1,125 @@
+.app {
+    &__wrapper {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        flex: 0 1 auto;
+        height: 100%;
+        background-color: rgb(236, 236, 236);
+        z-index: 2;
+        overflow-y: auto;
+    }
+
+    &__header {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 100);
+        min-width: 1024px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 24px 64px 0px 64px;
+        &_grid {
+            display: grid;
+        }
+    }
+
+    &__body {
+        flex: 1 1 auto;
+        height: 100%;
+        background-color: rgb(236, 236, 236);
+        padding-bottom: 20px;
+    }
+    &__title {
+        height: 5rem;
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    &__ribbon {
+        font-size: 17px;
+        font-weight: 500;
+        display: flex;
+    }
+}
+
+.content {
+    &__container {
+        min-height: 100%;
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 24px 64px 0px 64px;
+    }
+
+    &__content-head {
+        background: url(https://upload.wikimedia.org/wikipedia/commons/4/45/F1_logo.svg) 0 0 / auto 100% no-repeat;
+        background-color: rgba(255, 255, 255, 100);
+    }
+
+    &__body {
+        // display: flex;
+        // width: 100%;
+        // flex-direction: column;
+        flex: 1 1 auto;
+        height: 100%;
+        background-color: rgb(236, 236, 236);
+        padding-bottom: 20px;
+        // z-index: 2;
+        // overflow-y: auto;
+    }
+
+    &__button {
+        font-family: Roboto, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 10px;
+        border-bottom: 2px solid rgb(255, 255, 255);
+
+        &.active {
+            font-family: Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            color: rgb(0, 151, 167);
+            padding: 10px;
+            border-bottom: 2px solid rgb(0, 151, 167);
+        }
+    }
+}
+
+@media (max-width: 1600px) {
+    .app {
+        &__content-head {
+            background-image: none;
+            background-color: rgba(255, 255, 255, 100);
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .app {
+        &__content-head {
+            background: none;
+            background-color: rgba(255, 255, 255, 100);
+        }
+
+        &__content-container {
+            flex: 0 1 auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 4px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .app__body {
+        width: 100%;
+    }
+}

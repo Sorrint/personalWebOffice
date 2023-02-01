@@ -1,0 +1,123 @@
+.app__sidenav {
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 255px;
+    height: 100%;
+    flex: 1 0 auto;
+    position: relative;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: rgb(255, 255, 255);
+}
+.app__content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex: 0 1 auto;
+    height: 100%;
+    background-color: rgb(236, 236, 236);
+    z-index: 2;
+    overflow-y: auto;
+}
+.navigation {
+    height: 100%;
+}
+
+.navigation-menu {
+    display: flex;
+    z-index: 1;
+    height: 100%;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    padding: 0;
+    width: 255px;
+    border-right: 1px solid rgb(224, 224, 224);
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+
+    &__item {
+        height: 48px;
+        text-indent: 50px;
+
+        color: #000;
+        fill: rgb(150, 150, 150);
+        &.active {
+            background-color: rgb(227, 242, 244);
+            color: rgb(0, 151, 167);
+            fill: rgb(0, 151, 167);
+        }
+    }
+
+    &__item:last-child {
+        margin: 0;
+    }
+
+    &__link {
+        position: relative;
+        top: 40%;
+        height: 30px;
+        padding: 5px 0 5px 23px;
+        color: inherit;
+    }
+
+    &__top {
+        padding: 8px 0;
+    }
+}
+
+.subscribe {
+    padding: 8px 0;
+    height: 65px;
+    border-top: 1px solid rgb(224, 224, 224);
+}
+
+.navigation-menu__item:hover {
+    background-color: rgb(236, 236, 236);
+    cursor: pointer;
+}
+
+.grow {
+    border-bottom: 1px solid rgb(224, 224, 224);
+    flex: 1 1 auto;
+    height: 100%;
+    margin: 0 0 8px 0;
+}
+.bar-chart {
+    width: 24px;
+    height: 24px;
+    margin: -3px 0 0 15px;
+    align-items: center;
+    border-radius: 4px;
+    display: flex;
+}
+
+@media (max-width: 767px) {
+    body.lock {
+        overflow: hidden;
+    }
+    .wrapper {
+        display: block;
+        position: relative;
+    }
+    .app__sidenav {
+        position: absolute;
+        left: -100%;
+
+        overflow: visible;
+        transition: all 0.3s ease 0s;
+    }
+    .navigation {
+        &__menu {
+            overflow: auto;
+        }
+    }
+    .app__sidenav.visible {
+        display: block;
+        width: 100vw;
+        left: 0px;
+    }
+}
