@@ -1,0 +1,32 @@
+import { FC } from 'react';
+import AppRibbon from '../../../widgets/appRibbon/appRibbon';
+import { INavLinkObject } from '../../../shared/ui/navLink/navLinkTypes';
+import { Outlet } from 'react-router-dom';
+
+const GoodsAcceptance: FC = () => {
+    const navLinks: INavLinkObject = {
+        order: {
+            path: '/goods-acceptance/documents',
+            title: 'Список документов'
+        }
+    };
+
+    return (
+        <>
+            <div className="app__header ">
+                <div className="app__container">
+                    <div className="app__title">Инвентаризация</div>
+                    <div className="app__ribbon">
+                        <AppRibbon navLinks={navLinks} />
+                    </div>
+                </div>
+            </div>
+            <div className="app__body">
+                <div className="content__container">
+                    <Outlet />
+                </div>
+            </div>
+        </>
+    );
+};
+export default GoodsAcceptance;

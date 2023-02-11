@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './style.scss';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App/App';
-import { setupStore } from './entities/goods/model/goodsStore';
 import { Provider } from 'react-redux';
+import { setupStore } from './App/store/storeApp';
 
 const store = setupStore();
 

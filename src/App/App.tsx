@@ -1,5 +1,4 @@
 import { useRoutes } from 'react-router-dom';
-import { useAppDispatch } from '../entities/goods/lib/hooks/redux';
 
 import { Header } from '../widgets/header';
 import { NavBar } from '../widgets/navBar';

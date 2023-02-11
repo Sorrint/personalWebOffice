@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import { read, utils } from 'xlsx';
-import { useAppDispatch } from '../../../entities/goods/lib/hooks/redux';
-import { readGoods } from '../../../entities/goods/model/reducers/GoodsActions';
+import { readGoods } from '../../../entities/goods/model/reducers/GoodsSlice';
+import { useAppDispatch } from '../../../shared/lib/hooks';
 import Table from '../../../shared/ui/table/table';
 import { getGoodsObject, getHeadersObject } from '../libs/modifiedExcelObjects';
 import { docsNavLinks } from './consts/docsNavLinks';
@@ -15,9 +15,12 @@ const Order: FC = () => {
     const [goods, setGoods] = useState();
     const dispatch = useAppDispatch();
 
+    const handleSubmit = (e: React.BaseSyntheticEvent) => {
+        e.preventDefault();
+    };
     const handleChange = async (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
-        dispatch(readGoods(e));
+        // dispatch(readGoods(e));
         // const file = e.target.files[0];
         // const data = await file.arrayBuffer();
         // const wb = read(data, { WTF: true });
@@ -44,7 +47,7 @@ const Order: FC = () => {
     return (
         <>
             <form>
-                <input type="file" onChange={(e) => handleChange(e)} />
+                <input type="file" onChange={(e) => handleChange(e)} onClick={(e) => handleSubmit(e)} />
             </form>
             {goods ? (
                 <div className="app__body">

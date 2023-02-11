@@ -1,4 +1,9 @@
 .app {
+    &__container {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 64px;
+    }
     &__wrapper {
         display: flex;
         width: 100%;
@@ -13,16 +18,19 @@
     &__header {
         width: 100%;
         background-color: rgba(255, 255, 255, 100);
-        min-width: 1024px;
         width: 100%;
-        margin: 0 auto;
-        padding: 24px 64px 0px 64px;
+        padding: 36px 0;
+
         &_grid {
             display: grid;
+            justify-content: center;
+            align-items: center;
         }
     }
 
     &__body {
+        font-size: 20px;
+
         flex: 1 1 auto;
         height: 100%;
         background-color: rgb(236, 236, 236);
@@ -44,10 +52,10 @@
 .content {
     &__container {
         min-height: 100%;
-        max-width: 1280px;
+        max-width: 1024px;
         width: 100%;
         margin: 0 auto;
-        padding: 24px 64px 0px 64px;
+        padding: 24px 64px 20px 64px;
     }
 
     &__content-head {
@@ -75,6 +83,7 @@
         box-sizing: border-box;
         padding: 10px;
         border-bottom: 2px solid rgb(255, 255, 255);
+        color: black;
 
         &.active {
             font-family: Roboto, sans-serif;

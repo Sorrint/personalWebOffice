@@ -1,3 +1,3 @@
 import DocumentsPage from './components/documentsPage';
 
-export { DocumentsPage };
+export default DocumentsPage;
