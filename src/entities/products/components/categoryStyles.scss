@@ -1,0 +1,17 @@
+.category-card {
+    display: flex;
+    margin-top: 16px;
+    font-size: 16px;
+    background-color: #fff;
+    padding: 16px 36px;
+
+    &__title {
+        flex: 1 1 auto;
+    }
+    &__count {
+        flex: 0 1 auto;
+        min-width: 30px;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

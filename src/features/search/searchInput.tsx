@@ -9,12 +9,16 @@ export interface ISearchInputProps<T> {
 
 const SearchInput: FC<ISearchInputProps<void>> = ({ searchFunction }) => {
     const debounceSearch = useDebounce(searchFunction, 1000);
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { target } = e;
         debounceSearch(target.value);
     };
 
-    return <TextField type={'text'} name={'searchText'} inputClass={'searchField'} onChange={handleChange} />;
+    return (
+        <div className="search-field">
+            <TextField type={'text'} name={'searchText'} onChange={handleChange} label={'Поиск'} />
+        </div>
+    );
 };
 
 export default SearchInput;

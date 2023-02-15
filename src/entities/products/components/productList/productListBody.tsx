@@ -6,13 +6,14 @@ interface IProductListBodyProps {
     products: IProduct[];
     selectField: boolean;
     avatar: boolean;
+    count: boolean;
 }
 
-const ProductListBody: FC<IProductListBodyProps> = ({ products, selectField, avatar }) => {
+const ProductListBody: FC<IProductListBodyProps> = ({ products, selectField, avatar, count }) => {
     return (
         <>
             {products.map((item) => (
-                <ProductCard product={item} key={item.id} selectField={selectField} avatar={avatar} />
+                <ProductCard product={item} key={item.id} selectField={selectField} avatar={avatar} count={count} />
             ))}
         </>
     );
