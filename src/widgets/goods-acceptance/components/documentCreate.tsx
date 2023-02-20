@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import PropertiesCard from '../../../entities/inventoryDocs/components/propertiesCard';
+import { CreateNewInventory } from '../../../features/createInventoryDocForm';
 
 const DocumentCreate: FC = () => {
-    return <PropertiesCard />;
+    return <CreateNewInventory />;
 };
 
 export default DocumentCreate;

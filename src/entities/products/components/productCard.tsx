@@ -3,12 +3,13 @@ import { IProduct, IProductStock } from '../model/IProducts';
 import './productStyles.scss';
 interface IProductCardProps {
     product: IProduct;
-    selectField: boolean;
-    avatar: boolean;
-    count: boolean;
+    selectField?: boolean;
+    avatar?: boolean;
+    count?: boolean;
+    onClick?: (product: IProduct) => void;
 }
 
-const ProductCard: FC<IProductCardProps> = ({ product, selectField, avatar, count }) => {
+const ProductCard: FC<IProductCardProps> = ({ product, selectField, avatar, count, onClick }) => {
     const { name, price, stock, type } = product;
     const getProductRest = (stock: IProductStock[] | null) => {
         if (stock) {
@@ -33,8 +34,12 @@ const ProductCard: FC<IProductCardProps> = ({ product, selectField, avatar, coun
         }
     };
 
+    const handleClick = (product: IProduct) => {
+        onClick && onClick(product);
+    };
+
     return (
-        <div className="product-card">
+        <div className="product-card" onClick={() => handleClick(product)}>
             {selectField && <div className="product-card__selectField"></div>}
             {avatar && <div className="product-card__avatar"></div>}
             <div className="product-card__title">{name}</div>

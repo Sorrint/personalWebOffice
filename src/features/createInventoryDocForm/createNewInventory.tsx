@@ -1,26 +1,35 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import Calendar from '../../../shared/ui/calendar/calendar';
-import TextField from '../../../shared/ui/textField/textField';
-import './cardStyles.scss';
 
-const PropertiesCard = () => {
-    // const [data, setData] = useState<string>('');
-    const { register, handleSubmit, control } = useForm({
+import './createForm.scss';
+
+import { inventoryDocsAPI } from '../../entities/inventoryDocs';
+import { countersAPI } from '../../shared/api/countersAPI';
+import TextField from '../../shared/ui/textField';
+import Calendar from '../../shared/ui/calendar';
+
+const CreateNewInventory = () => {
+    const [createDoc] = inventoryDocsAPI.useCreateNewDocumentMutation();
+    const { data } = countersAPI.useGetCounterQuery('docNumber');
+    const { register, handleSubmit, control, setValue } = useForm({
         mode: 'onChange',
         defaultValues: {
             documentNumber: '',
             storeName: 'Сатурн',
-            choosenDate: Date.now(),
-            сomment: ''
+            comment: '',
+            choosenDate: Date.now()
         }
     });
-    const handleChange = () => {
-        // console.log(data);
-    };
 
-    const onSubmit = <T extends FieldValues>(data: T) => {
-        console.log(data);
+    useEffect(() => {
+        if (data) {
+            setValue('documentNumber', data);
+        }
+    }, [data]);
+
+    const onSubmit = async <T extends FieldValues>(data: T) => {
+        const res = await createDoc(data);
+        console.log(res);
     };
     return (
         <>
@@ -34,7 +43,6 @@ const PropertiesCard = () => {
                         <div className="document__date">
                             <Calendar
                                 label="Дата документа"
-                                onChange={handleChange}
                                 wrapperName="calendar__wrapper"
                                 control={control}
                                 name={'choosenDate'}
@@ -49,7 +57,7 @@ const PropertiesCard = () => {
                     <div className="card__title">Комментарий</div>
                     <div className="input__wrapper">
                         <div className="document__comment">
-                            <TextField label="Введите текст" name="сomment" register={register} />
+                            <TextField label="Введите текст" name="comment" register={register} />
                         </div>
                     </div>
                 </div>
@@ -59,4 +67,4 @@ const PropertiesCard = () => {
     );
 };
 
-export default PropertiesCard;
+export default CreateNewInventory;

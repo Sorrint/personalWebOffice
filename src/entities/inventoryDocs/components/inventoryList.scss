@@ -13,15 +13,7 @@
         font-weight: bold;
     }
 
-    &__selectColumn,
-    &__avatarColumn {
-        padding: 0 12px;
-
-        width: 50px;
-        flex: 0 0 auto;
-    }
-    &__priceColumn,
-    &__countColumn {
+    &__priceColumn {
         display: flex;
         width: 100px;
         flex: 0 0 auto;
@@ -33,6 +25,31 @@
         flex: 1 1 auto;
         padding: 0 12px;
     }
+
+    &__total {
+        display: flex;
+        line-height: 24px;
+        min-height: 48px;
+        background-color: #fff;
+        margin-top: 3px;
+        align-items: center;
+        font-weight: bold;
+        justify-content: flex-end;
+        padding: 0 12px;
+    }
+    &__sum {
+        margin-left: 20px;
+    }
+}
+
+.createXLSX {
+    display: block;
+    padding: 5px 15px;
+    background-color: #fff;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px 0;
 }
 
 .product-card {
@@ -44,17 +61,19 @@
     align-items: center;
     cursor: pointer;
     &__price,
-    &__count {
+    &__quantity,
+    &__sum {
         display: flex;
         justify-content: flex-end;
         padding: 0 12px;
         width: 100px;
         flex: 0 0 auto;
     }
-    &__selectField,
-    &__avatar {
+    &__number {
+        display: flex;
+        justify-content: flex-end;
         padding: 0 12px;
-        width: 50px;
+        width: 30px;
         flex: 0 0 auto;
     }
 

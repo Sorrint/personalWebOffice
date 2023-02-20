@@ -1,4 +1,4 @@
-import { IProduct, IProductCategory, IProductQueryTrace } from './../model/IProducts';
+import { IProduct, IProductCategory, IProductQueryTrace } from '../model/IProducts';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 interface IParams {

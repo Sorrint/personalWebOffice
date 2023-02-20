@@ -7,13 +7,21 @@ interface IProductListBodyProps {
     selectField: boolean;
     avatar: boolean;
     count: boolean;
+    onClick?: (product: IProduct) => void;
 }
 
-const ProductListBody: FC<IProductListBodyProps> = ({ products, selectField, avatar, count }) => {
+const ProductListBody: FC<IProductListBodyProps> = ({ products, selectField, avatar, count, onClick }) => {
     return (
         <>
             {products.map((item) => (
-                <ProductCard product={item} key={item.id} selectField={selectField} avatar={avatar} count={count} />
+                <ProductCard
+                    product={item}
+                    key={item.id}
+                    selectField={selectField}
+                    avatar={avatar}
+                    count={count}
+                    onClick={onClick}
+                />
             ))}
         </>
     );
