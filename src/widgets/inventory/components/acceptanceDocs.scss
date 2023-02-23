@@ -1,0 +1,76 @@
+.input-area {
+    display: flex;
+    justify-content: space-between;
+}
+.create-button {
+    background-color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(0, 151, 167);
+    border: 2px solid rgb(0, 151, 167);
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.popup {
+    &__addProduct {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 24px;
+        padding: 30px;
+        width: 50vw;
+        height: 50vh;
+        z-index: 1;
+        background-color: #fff;
+        line-height: 2.5em;
+        text-align: center;
+    }
+    &__title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__counter {
+        border: 1px solid black;
+        font-size: 36px !important;
+        width: 30%;
+        justify-self: center !important;
+        border-radius: 10px;
+    }
+
+    &__card {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        box-sizing: border-box;
+        margin: 10px 0;
+    }
+}
+
+.input-group {
+    justify-content: center;
+}
+
+.submit-button {
+    height: 3em;
+    width: 15em;
+    font-size: 24px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #fff;
+    background-color: #35ba54;
+    border-radius: 10px;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+.product-card:hover {
+    background-color: rgba(0, 151, 167, 0.2);
+}

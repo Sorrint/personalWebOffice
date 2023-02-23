@@ -1,0 +1,21 @@
+.counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+
+    &__input {
+        text-align: center;
+        font-family: sans-serif;
+    }
+}
+
+.counter-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.counter-label {
+    margin-right: 20px;
+}

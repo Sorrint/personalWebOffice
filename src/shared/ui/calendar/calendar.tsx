@@ -8,7 +8,7 @@ import { FieldValues, Controller, Control, Path } from 'react-hook-form';
 registerLocale('ru', ru);
 
 interface ICalendarProps<T extends FieldValues> {
-    onChange: () => void;
+    onChange?: () => void;
     label: string;
     wrapperName: string;
     control: Control<T>;

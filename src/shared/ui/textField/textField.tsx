@@ -41,13 +41,14 @@ interface ITextFieldsProps<T extends FieldValues> {
     value?: string;
     onClick?: (e: React.MouseEvent) => void;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    inputClass?: string;
 }
 
 export default function TextField<T extends FieldValues>(props: ITextFieldsProps<T>) {
-    const { label, name, type, error, register, autoComplete, field, value, onChange, onClick } = props;
+    const { label, name, type, error, register, autoComplete, field, value, onChange, onClick, inputClass } = props;
     const [showPassword, setShowPassword] = useState(false);
     const getInputClasses = () => {
-        return 'input-container__input' + (error ? ' is-invalid' : '');
+        return 'input-container__input' + (error ? ' is-invalid' : '') + (inputClass ? ` ${inputClass}` : '');
     };
     const toggleShowPassword = () => {
         setShowPassword((prevState) => !prevState);

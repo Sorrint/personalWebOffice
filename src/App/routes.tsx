@@ -4,11 +4,9 @@ import DocumentsPage from '../pages/documents';
 import ProductsPage from '../pages/goods';
 import GoodsAcceptancePage from '../pages/acceptance';
 
-import AcceptanceDocs from '../widgets/goods-acceptance';
+import { InventoriesList, InventoryCreate, InventoryEdit } from '../widgets/inventory';
 import { Order, Ordering, Distribution } from '../widgets/documents';
 import GoodsSearchList from '../widgets/goods-search-list';
-import DocumentCreate from '../widgets/goods-acceptance/components/documentCreate';
-import SearchGoods from '../widgets/goods-acceptance/components/searchGoods';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to="./documents" /> },
@@ -24,15 +22,18 @@ const routes: RouteObject[] = [
         ]
     },
     {
-        path: 'goods-acceptance',
+        path: 'inventory-lists',
         element: <GoodsAcceptancePage />,
         children: [
             {
                 path: 'documents',
-                element: <AcceptanceDocs />,
                 children: [
-                    { path: 'create', element: <DocumentCreate /> },
-                    { index: true, element: <SearchGoods /> }
+                    { path: 'create', element: <InventoryCreate /> },
+                    {
+                        path: ':number',
+                        element: <InventoryEdit />
+                    },
+                    { index: true, element: <InventoriesList /> }
                 ]
             },
             { index: true, element: <Navigate to="./documents" /> },
