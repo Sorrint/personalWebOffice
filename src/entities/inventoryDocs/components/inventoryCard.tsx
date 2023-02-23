@@ -1,11 +1,15 @@
-import { Link, useParams } from 'react-router-dom';
+import { FC } from 'react';
+import { useParams } from 'react-router-dom';
 import { inventoryDocsAPI } from '../reducers/inventoryDocsService';
 import InventoryProductList from './inventoryProductsList';
 import { saveToXLSX } from '../../../shared/lib/utils/saveToXLSX';
 import { transformDataForXLSX, transformDate } from '../lib/helpers';
 import { IdataForXLSX, IInventoryProduct } from '../model/types';
+interface IInventoryCard {
+    onClick?: (product: IInventoryProduct) => void;
+}
 
-const InventoryCard = () => {
+const InventoryCard: FC<IInventoryCard> = ({ onClick }) => {
     const { number } = useParams();
     if (number) {
         const { data: inventoryList, isLoading } = inventoryDocsAPI.useLoadDocumentByNumberQuery(number);
@@ -25,14 +29,13 @@ const InventoryCard = () => {
 
             return (
                 <>
-                    <Link to={`addProducts`}>Добавить товар</Link>
                     <button className="createXLSX" onClick={handleClick}>
                         Скачать в формате XLSX
                     </button>
                     <h1>{`Инвентаризация № ${inventoryList.documentNumber} от ${date} магазина ${inventoryList.storeName}`}</h1>
                     {inventoryList && (
                         <div className="products-list">
-                            <InventoryProductList products={inventoryList.products} />
+                            <InventoryProductList products={inventoryList.products} onClick={onClick} />
                             <div className="products-list__total">
                                 <div className="products-list__title">Итого</div>
                                 <div className="products-list__sum">{sum},00 ₽</div>

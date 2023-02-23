@@ -25,10 +25,13 @@ export const productsAPI = createApi({
         loadProducts: build.query<IProduct[], number>({
             query: (limit) => ({ url: `/` })
         }),
-        loadProductBySearch: build.query<ISearchResult, IParams>({
+        loadProductBySearch: build.query<IProduct[], IParams>({
             query: (params) => ({
                 url: `/search?q=${encodeURI(params.q)}&limit=${params.limit}`
-            })
+            }),
+            transformResponse: (response: ISearchResult) => {
+                return response.products;
+            }
         }),
         loadProductsCategories: build.query<IStoreView, IParams>({
             query: (params) => ({

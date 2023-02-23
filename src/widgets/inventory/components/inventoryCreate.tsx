@@ -1,14 +1,11 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-
-import './createForm.scss';
-
-import { inventoryDocsAPI } from '../../entities/inventoryDocs';
-import { countersAPI } from '../../shared/api/countersAPI';
-import TextField from '../../shared/ui/textField';
-import Calendar from '../../shared/ui/calendar';
-
-const CreateNewInventory = () => {
+import { inventoryDocsAPI } from '../../../entities/inventoryDocs';
+import { countersAPI } from '../../../shared/api/countersAPI';
+import Calendar from '../../../shared/ui/calendar';
+import TextField from '../../../shared/ui/textField';
+import './inventoryCreate.scss';
+const InventoryCreate: FC = () => {
     const [createDoc] = inventoryDocsAPI.useCreateNewDocumentMutation();
     const { data } = countersAPI.useGetCounterQuery('docNumber');
     const { register, handleSubmit, control, setValue } = useForm({
@@ -67,4 +64,4 @@ const CreateNewInventory = () => {
     );
 };
 
-export default CreateNewInventory;
+export default InventoryCreate;

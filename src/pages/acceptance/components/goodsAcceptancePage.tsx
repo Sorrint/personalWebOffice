@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 const GoodsAcceptance: FC = () => {
     const navLinks: INavLinkObject = {
         order: {
-            path: '/goods-acceptance/documents',
+            path: '/inventory-lists/documents',
             title: 'Список документов'
         }
     };

@@ -17,7 +17,7 @@ function isClickedOutside(clickedElement: any, targetElement: any) {
 interface ClickOutsideProps {
     children: JSX.Element;
     onClickOutside: () => void;
-    reference: Node;
+    reference: Element | undefined;
 }
 
 export const ClickOutside: FC<ClickOutsideProps> = ({ children, reference, onClickOutside }) => {

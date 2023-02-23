@@ -6,11 +6,11 @@ interface IInventoryProductCardProps {
     onClick?: (product: IInventoryProduct) => void;
 }
 
-const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNumber }) => {
+const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNumber, onClick }) => {
     const { name, price, quantity } = product;
 
     const handleClick = (product: IInventoryProduct) => {
-        // onClick && onClick(product);
+        onClick && onClick(product);
     };
 
     return (
