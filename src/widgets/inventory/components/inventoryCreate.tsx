@@ -1,13 +1,15 @@
 import { FC, useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { inventoryDocsAPI } from '../../../entities/inventoryDocs';
 import { countersAPI } from '../../../shared/api/countersAPI';
 import Calendar from '../../../shared/ui/calendar';
 import TextField from '../../../shared/ui/textField';
 import './inventoryCreate.scss';
 const InventoryCreate: FC = () => {
+    const navigate = useNavigate();
     const [createDoc] = inventoryDocsAPI.useCreateNewDocumentMutation();
-    const { data } = countersAPI.useGetCounterQuery('docNumber');
+    const { data } = countersAPI.useGetCounterQuery('docNumber', { refetchOnMountOrArgChange: true });
     const { register, handleSubmit, control, setValue } = useForm({
         mode: 'onChange',
         defaultValues: {
@@ -26,6 +28,7 @@ const InventoryCreate: FC = () => {
 
     const onSubmit = async <T extends FieldValues>(data: T) => {
         const res = await createDoc(data);
+        navigate(-1);
         console.log(res);
     };
     return (
@@ -59,7 +62,9 @@ const InventoryCreate: FC = () => {
                     </div>
                 </div>
             </form>
-            <button onClick={handleSubmit(onSubmit)}>Отправить</button>
+            <button className="create-button" onClick={handleSubmit(onSubmit)}>
+                Создать
+            </button>
         </>
     );
 };

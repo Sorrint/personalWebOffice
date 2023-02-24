@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { FieldValues, useFieldArray, useForm } from 'react-hook-form';
+import { FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
 import { InventoryCard, inventoryDocsAPI } from '../../../entities/inventoryDocs';
@@ -15,24 +15,20 @@ import SearchInput from '../../../features/search/searchInput';
 import DropdownWindow from '../../../shared/ui/dropdownList/dropdownWindow';
 import './acceptanceDocs.scss';
 
-export type FormValues = {
-    name: string;
-    price: number;
-    quantity: number;
-    id: string;
-};
-
-type buttonText = 'Обновить' | 'Добавить';
+interface IPopupProps {
+    product: IInventoryProduct;
+    popupText: string;
+    buttonText: string;
+    method: 'Delete' | 'Update' | 'Create';
+}
 
 const InventoryEdit: FC = () => {
     const { number } = useParams();
     const docNumber = Number(number);
-    const [product, setProduct] = useState<IProduct | IInventoryProduct | null>(null);
+    const [popupProps, setPopupProps] = useState<IPopupProps>();
     const [updateList, { error: updateError }] = inventoryDocsAPI.useUpdateProductsMutation();
+    const [removeProduct, { error: removeError }] = inventoryDocsAPI.useRemoveInventoryProductMutation();
     const [search, setSearch] = useState<string>('');
-    const { setValue, register, handleSubmit, reset } = useForm<FormValues>({
-        defaultValues: { quantity: 1 }
-    });
 
     //Загрузка данных
     const {
@@ -44,9 +40,8 @@ const InventoryEdit: FC = () => {
     //состояния popup && popover
     const [activePopover, setActivePopover] = useState<boolean>(true);
     const [activePopup, setActivePopup] = useState<boolean>(false);
-
     const [reference, setReference] = useState<any>(null);
-    const [buttonText, setButtonText] = useState<buttonText>('Добавить');
+
     useEffect(() => {
         goods && setActivePopover(goods?.length > 0);
     }, [goods]);
@@ -57,36 +52,39 @@ const InventoryEdit: FC = () => {
 
     if (goodsLoading) return <h1>Идет загрузка</h1>;
 
-    const handleCreate = (product: IProduct) => {
-        setProduct(product);
-        setValue('name', product.name);
-        setButtonText('Добавить');
-        product.price ? setValue('price', product.price / 100) : setValue('price', 0);
-        setActivePopup(true);
-    };
-
-    const handleUpdate = (product: IInventoryProduct) => {
-        setProduct(product);
-        setValue('name', product.name);
-        setButtonText('Обновить');
-        setValue('price', product.price);
-        setValue('quantity', product.quantity);
-        setValue('id', product.id);
-        setActivePopup(true);
+    const showPopup = () => {
+        setActivePopup((prevState) => !prevState);
     };
 
     const showPopover = () => {
         setSearch('');
     };
+    const handleCreate = (product: IProduct) => {
+        const { name, price } = product;
+        const newProduct = { name, price: price && price / 100, quantity: 1, id: undefined };
+        setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
+        setActivePopup(true);
+    };
 
-    const showPopup = () => {
-        setActivePopup((prevState) => !prevState);
+    const handleUpdate = (product: IInventoryProduct) => {
+        setPopupProps({ product, buttonText: 'Обновить', popupText: '', method: 'Update' });
+        setActivePopup(true);
+    };
+
+    const handleDelete = (product: IInventoryProduct) => {
+        setPopupProps({ product, buttonText: 'Удалить', popupText: 'Вы уверены?', method: 'Delete' });
+        setActivePopup(true);
     };
 
     const onSubmit = async (data: FieldValues) => {
-        const product = { product: data };
-        await updateList({ product, docNumber: docNumber }).unwrap();
-        reset();
+        console.log(data);
+        if (popupProps) {
+            const { method, product } = popupProps;
+            method === 'Delete'
+                ? await removeProduct({ id: product.id, docNumber: docNumber }).unwrap()
+                : await updateList({ product: { product: { ...data } }, docNumber: docNumber }).unwrap();
+        }
+
         if (!updateError) showPopup();
     };
     return (
@@ -94,7 +92,7 @@ const InventoryEdit: FC = () => {
             <div className="input-area" ref={setReference}>
                 <SearchInput searchFunction={getGoods} loading={isFetching} />
             </div>
-            <InventoryCard onClick={(product) => handleUpdate(product)} />
+            <InventoryCard onClick={(product) => handleUpdate(product)} onDelete={(product) => handleDelete(product)} />
             {goods && goods?.length !== 0 && (
                 <Popover
                     isOpened={activePopover}
@@ -115,19 +113,7 @@ const InventoryEdit: FC = () => {
                 </Popover>
             )}
             <OverlayingPopup isOpened={activePopup} onClose={showPopup}>
-                <div className="popup__addProduct">
-                    {product && (
-                        <PopupCard
-                            product={product}
-                            register={register}
-                            fields={{ priceName: 'price', quantityName: 'quantity' }}
-                        />
-                    )}
-                    <button className="submit-button" onClick={handleSubmit(onSubmit)}>
-                        {buttonText}
-                    </button>
-                    {updateError && <div className="error-message">Произошла ошибка при отправке данных</div>}
-                </div>
+                {popupProps && <PopupCard {...popupProps} buttonClick={onSubmit} error={updateError} />}
             </OverlayingPopup>
         </>
     );

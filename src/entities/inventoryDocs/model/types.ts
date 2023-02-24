@@ -1,9 +1,9 @@
 // import { IInventoryProduct } from './IInventoryProduct';
 export interface IInventoryProduct {
     name: string;
-    price: number;
+    price: number | null;
     quantity: number;
-    id: string;
+    id: string | undefined;
 }
 
 export interface IInventoryDocs {

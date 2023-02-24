@@ -12,7 +12,9 @@ const InventoriesList: FC = () => {
 
     return (
         <>
-            <Link to={'./create'}>Новый документ</Link>
+            <Link className="create-link" to={'./create'}>
+                Новый документ
+            </Link>
             {isLoading ? <h2>Идет загрузка</h2> : renderDocuments(documents)}
         </>
     );

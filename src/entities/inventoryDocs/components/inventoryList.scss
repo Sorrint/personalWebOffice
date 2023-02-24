@@ -62,13 +62,28 @@
     cursor: pointer;
     &__price,
     &__quantity,
-    &__sum {
+    &__sum,
+    &__remove {
         display: flex;
         justify-content: flex-end;
         padding: 0 12px;
         width: 100px;
         flex: 0 0 auto;
     }
+
+    &__remove {
+        height: 100%;
+        width: 30px;
+        color: red;
+        font-weight: bold;
+        font-size: 24px;
+    }
+    &__remove:hover {
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: white;
+        // text-shadow: 0px 0px 1px white;
+    }
+
     &__number {
         display: flex;
         justify-content: flex-end;
