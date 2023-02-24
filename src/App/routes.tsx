@@ -4,8 +4,9 @@ import DocumentsPage from '../pages/documents';
 import ProductsPage from '../pages/goods';
 import GoodsAcceptancePage from '../pages/acceptance';
 
-import AcceptanceDocs from '../widgets/goods-acceptance';
+import { InventoriesList, InventoryCreate, InventoryEdit } from '../widgets/inventory';
 import { Order, Ordering, Distribution } from '../widgets/documents';
+import GoodsSearchList from '../widgets/goods-search-list';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to="./documents" /> },
@@ -21,10 +22,20 @@ const routes: RouteObject[] = [
         ]
     },
     {
-        path: 'goods-acceptance',
+        path: 'inventory-lists',
         element: <GoodsAcceptancePage />,
         children: [
-            { path: 'documents', element: <AcceptanceDocs /> },
+            {
+                path: 'documents',
+                children: [
+                    { path: 'create', element: <InventoryCreate /> },
+                    {
+                        path: ':number',
+                        element: <InventoryEdit />
+                    },
+                    { index: true, element: <InventoriesList /> }
+                ]
+            },
             { index: true, element: <Navigate to="./documents" /> },
             { path: '*', element: <Navigate to="./documents" /> }
         ]
@@ -33,9 +44,9 @@ const routes: RouteObject[] = [
         path: 'goods',
         element: <ProductsPage />,
         children: [
-            { path: 'documents', element: <AcceptanceDocs /> },
-            { index: true, element: <Navigate to="./documents" /> },
-            { path: '*', element: <Navigate to="./documents" /> }
+            { path: 'categories', element: <GoodsSearchList /> },
+            { index: true, element: <Navigate to="./categories" /> },
+            { path: '*', element: <Navigate to="./categories" /> }
         ]
     },
     { path: '*', element: <Navigate to="./documents" /> }

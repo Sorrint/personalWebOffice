@@ -1,0 +1,14 @@
+.inventory {
+    &__item {
+        display: flex;
+        margin-top: 16px;
+        font-size: 16px;
+        background-color: #fff;
+        padding: 16px 36px;
+        // display: block;
+        // border: 1px solid black;
+        // background-color: #fff;
+        // padding: 10px;
+        // cursor: pointer;
+    }
+}
