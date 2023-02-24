@@ -7,9 +7,10 @@ import { transformDataForXLSX, transformDate } from '../lib/helpers';
 import { IdataForXLSX, IInventoryProduct } from '../model/types';
 interface IInventoryCard {
     onClick?: (product: IInventoryProduct) => void;
+    onDelete?: (product: IInventoryProduct) => void;
 }
 
-const InventoryCard: FC<IInventoryCard> = ({ onClick }) => {
+const InventoryCard: FC<IInventoryCard> = ({ onClick, onDelete }) => {
     const { number } = useParams();
     if (number) {
         const { data: inventoryList, isLoading } = inventoryDocsAPI.useLoadDocumentByNumberQuery(number);
@@ -17,7 +18,8 @@ const InventoryCard: FC<IInventoryCard> = ({ onClick }) => {
         if (isLoading) return <h1>'Идет загрузка..'</h1>;
         if (inventoryList) {
             const sum = inventoryList.products.reduce(
-                (result: number, product: IInventoryProduct) => result + product.quantity * product.price,
+                (result: number, product: IInventoryProduct) =>
+                    product.price ? result + product.quantity * product.price : result,
                 0
             );
             const date = transformDate(inventoryList.choosenDate);
@@ -35,7 +37,11 @@ const InventoryCard: FC<IInventoryCard> = ({ onClick }) => {
                     <h1>{`Инвентаризация № ${inventoryList.documentNumber} от ${date} магазина ${inventoryList.storeName}`}</h1>
                     {inventoryList && (
                         <div className="products-list">
-                            <InventoryProductList products={inventoryList.products} onClick={onClick} />
+                            <InventoryProductList
+                                products={inventoryList.products}
+                                onClick={onClick}
+                                onDelete={onDelete}
+                            />
                             <div className="products-list__total">
                                 <div className="products-list__title">Итого</div>
                                 <div className="products-list__sum">{sum},00 ₽</div>

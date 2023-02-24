@@ -1,0 +1,31 @@
+.tokenAccess {
+    align-self: flex-end;
+}
+
+.tokenFail {
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.fillElement {
+    flex: 1 1 auto;
+}
+
+.token-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 24px;
+    padding: 30px;
+    width: 50vw;
+    height: 50vh;
+    z-index: 1;
+    background-color: #fff;
+    line-height: 2.5em;
+    text-align: center;
+}
+
+.input-container {
+    width: 300px;
+}

@@ -1,21 +1,55 @@
-import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
+import { SerializedError } from '@reduxjs/toolkit';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { FieldValues, useForm } from 'react-hook-form';
 import { IInventoryProduct } from '../../../entities/inventoryDocs/model/types';
-import { IProduct } from '../../../entities/products/model/IProducts';
 import CounterField from '../../../shared/ui/counterField/counterField';
 
 interface IPopupCardProps<T extends FieldValues> {
-    product: IProduct | IInventoryProduct;
-    register: UseFormRegister<T>;
-    fields: { priceName: Path<T>; quantityName: Path<T> };
+    product: IInventoryProduct;
+    buttonClick: (data: FieldValues) => Promise<void>;
+    buttonText: string;
+    error: FetchBaseQueryError | SerializedError | undefined;
+    popupText?: string;
+    method: string;
 }
+export type FormValues = {
+    name: string;
+    price: number | null;
+    quantity: number;
+    id: string | undefined;
+};
 
-export default function PopupCard<T extends FieldValues>({ product, register, fields }: IPopupCardProps<T>) {
-    const { priceName, quantityName } = fields;
+export default function PopupCard<T extends FieldValues>({
+    product,
+    buttonClick,
+    buttonText,
+    error,
+    popupText,
+    method
+}: IPopupCardProps<T>) {
+    const { register, handleSubmit } = useForm<FormValues>({
+        defaultValues: {
+            id: product.id,
+            price: product.price,
+            quantity: product.quantity,
+            name: product.name
+        }
+    });
+    const getButtonClass = () => {
+        return method === 'Delete' ? 'delete-button' : 'submit-button';
+    };
     return (
-        <div className="popup__card">
-            <div className="popup__title">{product.name}</div>
-            <CounterField label="Цена, ₽" name={priceName} register={register} inputClass="popup__counter" />
-            <CounterField label="Количество" name={quantityName} register={register} inputClass="popup__counter" />
+        <div className="popup__addProduct">
+            <div className="popup__card">
+                <div className="popup__title">{product.name}</div>
+                <CounterField label="Цена, ₽" name={'price'} register={register} inputClass="popup__counter" />
+                <CounterField label="Количество" name={'quantity'} register={register} inputClass="popup__counter" />
+            </div>
+            {popupText && <h3>{popupText}</h3>}
+            <button className={getButtonClass()} onClick={handleSubmit(buttonClick)}>
+                {buttonText}
+            </button>
+            {error && <div className="error-message">Произошла ошибка при отправке данных</div>}
         </div>
     );
 }
