@@ -8,14 +8,14 @@ interface IInventoryListItemProps {
     document: IInventoryDocs;
 }
 const InventoryListItem: FC<IInventoryListItemProps> = ({ document }) => {
-    const { documentNumber, storeName, choosenDate } = document;
+    const { documentNumber, storeName, choosenDate, comment } = document;
     const date = transformDate(choosenDate);
     return (
         <>
             <Link
                 to={`${documentNumber}`}
                 className="inventory__item"
-            >{`Инвентаризация № ${documentNumber} от ${date} магазина ${storeName}`}</Link>
+            >{`Инвентаризация № ${documentNumber} от ${date}. ${comment}`}</Link>
         </>
     );
 };

@@ -1,7 +1,9 @@
 import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { IInventoryProduct } from '../../../entities/inventoryDocs/model/types';
+import { useKeyPress } from '../../../shared/lib/hooks/useKeyPress/useKeyPress';
 import CounterField from '../../../shared/ui/counterField/counterField';
 
 interface IPopupCardProps<T extends FieldValues> {
@@ -27,17 +29,27 @@ export default function PopupCard<T extends FieldValues>({
     popupText,
     method
 }: IPopupCardProps<T>) {
-    const { register, handleSubmit } = useForm<FormValues>({
+    const { register, handleSubmit, getValues } = useForm<FormValues>({
         defaultValues: {
             id: product.id,
             price: product.price,
             quantity: product.quantity,
             name: product.name
-        }
+        },
+        mode: 'onChange'
     });
+    const isEnterPressed = useKeyPress('Enter');
+    useEffect(() => {
+        if (isEnterPressed === true) {
+            const values = getValues();
+            console.log(values);
+            // handleSubmit(buttonClick)();
+        }
+    }, [isEnterPressed]);
     const getButtonClass = () => {
         return method === 'Delete' ? 'delete-button' : 'submit-button';
     };
+
     return (
         <div className="popup__addProduct">
             <div className="popup__card">
