@@ -44,7 +44,7 @@ const InventoryCard: FC<IInventoryCard> = ({ onClick, onDelete }) => {
                             />
                             <div className="products-list__total">
                                 <div className="products-list__title">Итого</div>
-                                <div className="products-list__sum">{sum},00 ₽</div>
+                                <div className="products-list__sum">{sum.toFixed(2)} ₽</div>
                             </div>
                         </div>
                     )}

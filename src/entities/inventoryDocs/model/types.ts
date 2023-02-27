@@ -11,7 +11,7 @@ export interface IInventoryDocs {
     documentNumber: number;
     storeName: string;
     choosenDate: Date;
-    сomment: string;
+    comment: string;
     products: IInventoryProduct[];
 }
 

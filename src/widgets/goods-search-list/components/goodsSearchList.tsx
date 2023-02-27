@@ -28,7 +28,7 @@ const GoodsSearchList: FC = () => {
         <>
             <SearchInput searchFunction={getGoods} />
             {categories && <CategoriesList categories={categories} />}
-            {goods && <ProductList products={goods} selectField={false} avatar={false} />}
+            {goods && <ProductList products={goods} selectField={false} avatar={false} displayHeaders={false} />}
         </>
     );
 };

@@ -1,30 +1,3 @@
-// import { FC } from 'react';
-// import { UseFormRegister } from 'react-hook-form';
-// import { Path } from 'react-hook-form/dist/types/path';
-
-// export type InputProps<T, U> = {
-//     name: Path<T>;
-//     type: string;
-//     inputClass: string;
-//     onChange: (arg0: U) => void;
-// };
-
-// const TextField: FC<InputProps<string, React.ChangeEvent<HTMLInputElement>>> = ({
-//     type,
-//     inputClass,
-//     name,
-//     onChange
-// }) => {
-//     return (
-//         <>
-//             <label>Выберите товар</label>
-//             <input type={type} className={inputClass} onChange={onChange} />
-//         </>
-//     );
-// };
-
-// export default TextField;
-
 import { useState } from 'react';
 import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
 import './textField.scss';
@@ -86,42 +59,3 @@ export default function TextField<T extends FieldValues>(props: ITextFieldsProps
         </div>
     );
 }
-// const TextField: FC<ITextFieldsProps<T>> = ({ label, type, name, error, placeholder, register, formName, autoComplete, field, value }) => {
-//     const [showPassword, setShowPassword] = useState(false);
-//     const getInputClasses = () => {
-//         return 'input-container__input' + (error ? ' is-invalid' : '');
-//     };
-
-//     const toggleShowPassword = () => {
-//         setShowPassword((prevState) => !prevState);
-//     };
-
-//     return (
-//         <div className="input-container">
-//             <label className="input-container__label" htmlFor={name}>
-//                 {label}
-//             </label>
-//             <div className="input-group has-validation">
-//                 <input
-//                     type={showPassword ? 'text' : type}
-//                     id={name + ' ' + formName}
-//                     name={name}
-//                     className={getInputClasses()}
-//                     placeholder={placeholder}
-//                     {...register}
-//                     autoComplete={autoComplete}
-//                     {...field}
-//                 />
-
-//                 {type === 'password' && (
-//                     <button className="input-container__password-button" type="button" onClick={toggleShowPassword}>
-//                         <i className="input-container__icon">{icon}</i>
-//                     </button>
-//                 )}
-//             </div>
-//             {error && <div className="invalid-feedback">{error}</div>}
-//         </div>
-//     );
-// };
-
-// export default TextField;

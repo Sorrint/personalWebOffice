@@ -24,8 +24,8 @@ const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNum
             <div className="product-card__number">{itemNumber}</div>
             <div className="product-card__title">{name}</div>
             <div className="product-card__quantity">{quantity}</div>
-            <div className="product-card__price">{price},00 ₽</div>
-            <div className="product-card__sum">{price ? price * quantity : 0},00 ₽</div>
+            <div className="product-card__price">{price?.toFixed(2)} ₽</div>
+            <div className="product-card__sum">{price ? (price * quantity).toFixed(2) : 0} ₽</div>
             <div className="product-card__remove" onClick={(e) => handleDelete(e, product)}>
                 x
             </div>

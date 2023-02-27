@@ -8,6 +8,7 @@ interface IProductListProps {
     selectField?: boolean;
     avatar?: boolean;
     count?: boolean;
+    displayHeaders?: boolean;
     onClick?: (product: IProduct) => void;
 }
 
@@ -16,13 +17,14 @@ const ProductList: FC<IProductListProps> = ({
     selectField = false,
     avatar = false,
     count = true,
+    displayHeaders,
     onClick
 }) => {
     return (
         <>
             {products.length > 0 && (
                 <div className="products-list">
-                    <ProductListHeader selectField={selectField} avatar={avatar} count={count} />
+                    {displayHeaders && <ProductListHeader selectField={selectField} avatar={avatar} count={count} />}
                     <ProductListBody
                         products={products}
                         avatar={avatar}
