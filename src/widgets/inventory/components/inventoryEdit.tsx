@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useRef } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ import { InventoryCard, inventoryDocsAPI } from '../../../entities/inventoryDocs
 import { ProductList, productsAPI } from '../../../entities/products';
 import { IInventoryProduct } from '../../../entities/inventoryDocs/model/types';
 import { IProduct } from '../../../entities/products/model/IProducts';
+import { useKeyPress } from '../../../shared/lib/hooks/useKeyPress/useKeyPress';
 
 import Popover from '../../../features/popover/popover';
 import { OverlayingPopup } from '../../../features/popup';
@@ -40,17 +41,23 @@ const InventoryEdit: FC = () => {
     //состояния popup && popover
     const [activePopover, setActivePopover] = useState<boolean>(true);
     const [activePopup, setActivePopup] = useState<boolean>(false);
-    const [reference, setReference] = useState<any>(null);
-
+    const reference = useRef<HTMLDivElement>(null);
+    const searchInput = useRef<HTMLInputElement>(null);
+    const { isKeyPressed, setIsKeyPressed } = useKeyPress('Escape');
+    useEffect(() => {
+        setIsKeyPressed(false);
+        setActivePopup(false);
+    }, [isKeyPressed]);
     useEffect(() => {
         goods && setActivePopover(goods?.length > 0);
     }, [goods]);
+    useEffect(() => {
+        searchInput && !activePopup && searchInput.current?.focus();
+    }, [activePopup]);
 
     const getGoods = async (value: string) => {
         setSearch(value);
     };
-
-    if (goodsLoading) return <h1>Идет загрузка</h1>;
 
     const showPopup = () => {
         setActivePopup((prevState) => !prevState);
@@ -77,7 +84,6 @@ const InventoryEdit: FC = () => {
     };
 
     const onSubmit = async (data: FieldValues) => {
-        console.log(data);
         if (popupProps) {
             const { method, product } = popupProps;
             method === 'Delete'
@@ -87,17 +93,20 @@ const InventoryEdit: FC = () => {
 
         if (!updateError) showPopup();
     };
+
+    if (goodsLoading) return <h1>Идет загрузка</h1>;
+
     return (
         <>
-            <div className="input-area" ref={setReference}>
-                <SearchInput searchFunction={getGoods} loading={isFetching} />
-            </div>
+            <span className="input-area" ref={reference}>
+                <SearchInput searchFunction={getGoods} loading={isFetching} inputRef={searchInput} />
+            </span>
             <InventoryCard onClick={(product) => handleUpdate(product)} onDelete={(product) => handleDelete(product)} />
-            {goods && goods?.length !== 0 && (
+            {goods && goods?.length !== 0 && reference.current && (
                 <Popover
                     isOpened={activePopover}
                     onClose={showPopover}
-                    reference={reference}
+                    reference={reference.current as HTMLElement}
                     key={'key'}
                     placement={'bottom-start'}
                 >

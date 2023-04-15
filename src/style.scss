@@ -46,3 +46,14 @@ body {
     flex-shrink: 1;
     font-family: sans-serif;
 }
+
+:focus {
+    outline: red solid 1px;
+}
+
+a:focus,
+// li:focus,
+div:focus {
+    display: inline-block;
+    outline: red solid 1px;
+}

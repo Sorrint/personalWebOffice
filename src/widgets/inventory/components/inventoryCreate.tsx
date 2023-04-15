@@ -6,6 +6,7 @@ import { countersAPI } from '../../../shared/api/countersAPI';
 import Calendar from '../../../shared/ui/calendar';
 import TextField from '../../../shared/ui/textField';
 import './inventoryCreate.scss';
+
 const InventoryCreate: FC = () => {
     const navigate = useNavigate();
     const [createDoc] = inventoryDocsAPI.useCreateNewDocumentMutation();
@@ -29,7 +30,6 @@ const InventoryCreate: FC = () => {
     const onSubmit = async <T extends FieldValues>(data: T) => {
         const res = await createDoc(data);
         navigate(-1);
-        console.log(res);
     };
     return (
         <>
@@ -38,7 +38,7 @@ const InventoryCreate: FC = () => {
                     <div className="card__title">Документ</div>
                     <div className="input__wrapper">
                         <div className="document__number">
-                            <TextField label="Номер документа" name="documentNumber" register={register} />
+                            <TextField label="Номер документа" {...register('documentNumber')} />
                         </div>
                         <div className="document__date">
                             <Calendar
@@ -49,7 +49,7 @@ const InventoryCreate: FC = () => {
                             />
                         </div>
                         <div className="document__store">
-                            <TextField label="Магазин" name="storeName" register={register} />
+                            <TextField label="Магазин" {...register('storeName')} />
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@ const InventoryCreate: FC = () => {
                     <div className="card__title">Комментарий</div>
                     <div className="input__wrapper">
                         <div className="document__comment">
-                            <TextField label="Введите текст" name="comment" register={register} />
+                            <TextField label="Введите текст" {...register('comment')} />
                         </div>
                     </div>
                 </div>
