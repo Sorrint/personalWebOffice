@@ -1,7 +1,7 @@
-import { useCallback, useEffect, FC } from 'react';
+import { useCallback, useEffect, FC, ReactNode } from 'react';
 
-function isClickedOutside(clickedElement: any, targetElement: any) {
-    let clickedEl = clickedElement;
+function isClickedOutside(clickedElement: Element, targetElement: Element) {
+    let clickedEl: Node | null = clickedElement;
 
     while (clickedEl) {
         if (clickedEl === targetElement) {
@@ -15,9 +15,9 @@ function isClickedOutside(clickedElement: any, targetElement: any) {
 }
 
 interface ClickOutsideProps {
-    children: JSX.Element;
+    children: ReactNode;
     onClickOutside: () => void;
-    reference: Element | undefined;
+    reference: HTMLElement | undefined;
 }
 
 export const ClickOutside: FC<ClickOutsideProps> = ({ children, reference, onClickOutside }) => {
@@ -27,7 +27,7 @@ export const ClickOutside: FC<ClickOutsideProps> = ({ children, reference, onCli
                 return;
             }
 
-            if (isClickedOutside(reference, event.target)) {
+            if (isClickedOutside(reference, event.target as Element)) {
                 onClickOutside();
             }
         },
@@ -43,5 +43,5 @@ export const ClickOutside: FC<ClickOutsideProps> = ({ children, reference, onCli
         };
     }, [handleOutsideClick]);
 
-    return children;
+    return <>{children}</>;
 };

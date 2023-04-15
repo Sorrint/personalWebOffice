@@ -8,24 +8,26 @@ interface PopoverProps {
     children: React.ReactNode;
     onClose: () => void;
     isOpened: boolean;
-    reference: HTMLDivElement | undefined;
+    reference: HTMLElement | undefined;
     placement: PopperJS.Placement;
 }
 const Popover: FC<PopoverProps> = ({ onClose, reference, placement, children }) => {
     const popperRef = useRef();
     return (
         <>
-            <Portal>
-                <ClickOutside reference={popperRef.current} onClickOutside={onClose}>
-                    <Popper innerRef={popperRef} referenceElement={reference} placement={placement}>
-                        {({ ref, style }) => (
-                            <div ref={ref} style={style} className="popover">
-                                {children}
-                            </div>
-                        )}
-                    </Popper>
-                </ClickOutside>
-            </Portal>
+            {reference && (
+                <Portal>
+                    <ClickOutside reference={popperRef.current} onClickOutside={onClose}>
+                        <Popper innerRef={popperRef} referenceElement={reference} placement={placement}>
+                            {({ ref, style }) => (
+                                <div ref={ref} style={style} className="popover">
+                                    {children}
+                                </div>
+                            )}
+                        </Popper>
+                    </ClickOutside>
+                </Portal>
+            )}
         </>
     );
 };

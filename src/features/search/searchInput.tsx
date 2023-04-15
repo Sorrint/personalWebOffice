@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC, ChangeEvent, ForwardedRef } from 'react';
 
 import TextField from '../../shared/ui/textField/textField';
 import useDebounce from '../../shared/lib/hooks/useDebounce/useDebounce';
@@ -8,18 +8,19 @@ import './searchInput.scss';
 export interface ISearchInputProps<T> {
     searchFunction: (value: string) => T;
     loading?: boolean;
+    inputRef?: ForwardedRef<HTMLInputElement>;
 }
 
-const SearchInput: FC<ISearchInputProps<void>> = ({ searchFunction, loading }) => {
+const SearchInput: FC<ISearchInputProps<void>> = ({ searchFunction, loading, inputRef }) => {
     const debounceSearch = useDebounce(searchFunction, 1000);
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { target } = e;
         debounceSearch(target.value);
     };
 
     return (
         <div className="search-field">
-            <TextField type={'text'} name={'searchText'} onChange={handleChange} label={'Поиск'} />
+            <TextField type={'text'} name={'searchText'} onChange={handleChange} label={'Поиск'} ref={inputRef} />
             {loading && <Loader />}
         </div>
     );

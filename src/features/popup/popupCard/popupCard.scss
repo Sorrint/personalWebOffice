@@ -1,0 +1,8 @@
+.popup__addProduct::focus {
+    outline: red solid 1px;
+}
+
+.submit-button::focus {
+    outline: red solid 1px;
+    color: yellow;
+}

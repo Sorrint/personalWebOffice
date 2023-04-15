@@ -42,7 +42,6 @@
     &__item {
         height: 48px;
         text-indent: 50px;
-
         color: #000;
         fill: rgb(150, 150, 150);
         &.active {
@@ -57,6 +56,9 @@
     }
 
     &__link {
+        width: 100%;
+    }
+    &__text {
         position: relative;
         top: 40%;
         height: 30px;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, forwardRef, ForwardedRef } from 'react';
 import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
 import './textField.scss';
 interface ITextFieldsProps<T extends FieldValues> {
@@ -17,7 +17,10 @@ interface ITextFieldsProps<T extends FieldValues> {
     inputClass?: string;
 }
 
-export default function TextField<T extends FieldValues>(props: ITextFieldsProps<T>) {
+const TextField = forwardRef(function TextField<T extends FieldValues>(
+    props: ITextFieldsProps<T>,
+    ref: ForwardedRef<HTMLInputElement>
+) {
     const { label, name, type, error, register, autoComplete, field, value, onChange, onClick, inputClass } = props;
     const [showPassword, setShowPassword] = useState(false);
     const getInputClasses = () => {
@@ -36,12 +39,12 @@ export default function TextField<T extends FieldValues>(props: ITextFieldsProps
                     name={name}
                     className={getInputClasses()}
                     placeholder={' '}
-                    {...(register && { ...register(name) })}
                     autoComplete={autoComplete}
                     {...field}
                     onChange={onChange}
                     value={value}
                     onClick={onClick}
+                    ref={ref}
                 />
                 <div className="cut"></div>
 
@@ -58,4 +61,6 @@ export default function TextField<T extends FieldValues>(props: ITextFieldsProps
             {error && <div className="invalid-feedback">{error}</div>}
         </div>
     );
-}
+});
+
+export default TextField;

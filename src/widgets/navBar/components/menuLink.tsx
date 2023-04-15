@@ -15,9 +15,9 @@ const MenuLink: FC<MenuLinkProps> = ({ item }) => {
         return name;
     };
     return (
-        <Link to={item.path} key={item.id}>
+        <Link className="navigation-menu__link" to={item.path} key={item.id}>
             <li className={getClassName()} id={item.id}>
-                <span className="navigation-menu__link">{item.text}</span>
+                <span className="navigation-menu__text">{item.text}</span>
                 <div className="bar-chart"> {parse(item.image)}</div>
             </li>
         </Link>

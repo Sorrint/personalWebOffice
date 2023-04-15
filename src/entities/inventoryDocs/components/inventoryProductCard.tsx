@@ -14,7 +14,6 @@ const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNum
         onClick && onClick(product);
     };
     const handleDelete = (e: SyntheticEvent, product: IInventoryProduct) => {
-        // console.log()
         e.stopPropagation();
         onDelete && onDelete(product);
     };
