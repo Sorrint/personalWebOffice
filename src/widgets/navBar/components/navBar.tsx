@@ -1,6 +1,7 @@
+import MenuList from './menuList';
 import { navBar } from '../api/menuItems';
 import { IMenuItems } from '../api/menuItemsTypes';
-import MenuList from './menuList';
+
 const NavBar = () => {
     return (
         <div className="app__sidenav">

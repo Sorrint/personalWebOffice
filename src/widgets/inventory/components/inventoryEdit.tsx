@@ -2,18 +2,17 @@ import { FC, useEffect, useState, useRef } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { InventoryCard, inventoryDocsAPI } from '../../../entities/inventoryDocs';
-import { ProductList, productsAPI } from '../../../entities/products';
-import { IInventoryProduct } from '../../../entities/inventoryDocs/model/types';
-import { IProduct } from '../../../entities/products/model/IProducts';
-import { useKeyPress } from '../../../shared/lib/hooks/useKeyPress/useKeyPress';
+import Popover from 'features/popover/popover';
+import { OverlayingPopup } from 'features/popup';
+import PopupCard from 'features/popup/popupCard/popupCard';
+import SearchInput from 'features/search/searchInput';
+import { InventoryCard, inventoryDocsAPI } from 'entities/inventoryDocs';
+import { ProductList, productsAPI } from 'entities/products';
+import { IInventoryProduct } from 'entities/inventoryDocs/model/types';
+import { IProduct } from 'entities/products/model/IProducts';
+import DropdownWindow from 'shared/ui/dropdownList/dropdownWindow';
+import { useKeyPress } from 'shared/lib/hooks/useKeyPress/useKeyPress';
 
-import Popover from '../../../features/popover/popover';
-import { OverlayingPopup } from '../../../features/popup';
-import PopupCard from '../../../features/popup/popupCard/popupCard';
-import SearchInput from '../../../features/search/searchInput';
-
-import DropdownWindow from '../../../shared/ui/dropdownList/dropdownWindow';
 import './acceptanceDocs.scss';
 
 interface IPopupProps {
@@ -101,7 +100,11 @@ const InventoryEdit: FC = () => {
             <span className="input-area" ref={reference}>
                 <SearchInput searchFunction={getGoods} loading={isFetching} inputRef={searchInput} />
             </span>
-            <InventoryCard onClick={(product) => handleUpdate(product)} onDelete={(product) => handleDelete(product)} />
+            <InventoryCard
+                onClick={(product) => handleUpdate(product)}
+                onDelete={(product) => handleDelete(product)}
+                index={activePopup ? -1 : 0}
+            />
             {goods && goods?.length !== 0 && reference.current && (
                 <Popover
                     isOpened={activePopover}

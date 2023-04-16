@@ -1,10 +1,12 @@
 import { FC, useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { inventoryDocsAPI } from '../../../entities/inventoryDocs';
-import { countersAPI } from '../../../shared/api/countersAPI';
-import Calendar from '../../../shared/ui/calendar';
-import TextField from '../../../shared/ui/textField';
+
+import { inventoryDocsAPI } from 'entities/inventoryDocs';
+import { countersAPI } from 'shared/api/countersAPI';
+import TextField from 'shared/ui/textField';
+import Calendar from 'shared/ui/calendar';
+
 import './inventoryCreate.scss';
 
 const InventoryCreate: FC = () => {

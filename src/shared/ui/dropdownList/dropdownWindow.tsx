@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import './dropdown.scss';
 
 interface IDropdownWindowProps {

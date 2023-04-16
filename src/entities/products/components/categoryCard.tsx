@@ -1,5 +1,7 @@
 import { FC } from 'react';
+
 import { IProductCategory } from '../model/IProducts';
+
 import './categoryStyles.scss';
 
 interface ICategoryCardProps {

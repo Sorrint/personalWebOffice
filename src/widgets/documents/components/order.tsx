@@ -1,12 +1,15 @@
 import { FC, useState, useEffect } from 'react';
-import { read, utils } from 'xlsx';
-import { readGoods } from '../../../entities/goods/model/reducers/GoodsSlice';
-import { useAppDispatch } from '../../../shared/lib/hooks';
-import Table from '../../../shared/ui/table/table';
-import { getGoodsObject, getHeadersObject } from '../libs/modifiedExcelObjects';
-import { docsNavLinks } from './consts/docsNavLinks';
-import { orderHeaders } from './consts/tableHeaders';
+
 import { IDocsNavLink } from './consts/types';
+import { docsNavLinks } from './consts/docsNavLinks';
+
+import { useAppDispatch } from 'shared/lib/hooks';
+import Table from 'shared/ui/table/components/table';
+
+// import { read, utils } from 'xlsx';
+// import { readGoods } from '../../../entities/goods/model/reducers/GoodsSlice';
+// import { getGoodsObject, getHeadersObject } from '../libs/modifiedExcelObjects';
+// import { orderHeaders } from './consts/tableHeaders';
 
 const Order: FC = () => {
     // const dispatch = useAppDispatch();

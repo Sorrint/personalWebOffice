@@ -1,9 +1,10 @@
-import { useState, FC } from 'react';
+import { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import ru from 'date-fns/locale/ru';
-import './calendar.scss';
 import { FieldValues, Controller, Control, Path } from 'react-hook-form';
+import ru from 'date-fns/locale/ru';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import './calendar.scss';
 
 registerLocale('ru', ru);
 

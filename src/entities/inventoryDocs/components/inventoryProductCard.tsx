@@ -1,13 +1,16 @@
 import { FC, SyntheticEvent } from 'react';
+
 import { IInventoryProduct } from '../model/types';
+
 interface IInventoryProductCardProps {
     product: IInventoryProduct;
     itemNumber: number;
     onClick?: (product: IInventoryProduct) => void;
     onDelete?: (product: IInventoryProduct) => void;
+    tabIndex?: number;
 }
 
-const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNumber, onClick, onDelete }) => {
+const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNumber, tabIndex, onClick, onDelete }) => {
     const { name, price, quantity } = product;
 
     const handleClick = (product: IInventoryProduct) => {
@@ -19,7 +22,7 @@ const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNum
     };
 
     return (
-        <div className="product-card" onClick={() => handleClick(product)}>
+        <div className="product-card" onClick={() => handleClick(product)} tabIndex={tabIndex}>
             <div className="product-card__number">{itemNumber}</div>
             <div className="product-card__title">{name}</div>
             <div className="product-card__quantity">{quantity}</div>

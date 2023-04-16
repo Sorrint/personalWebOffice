@@ -1,5 +1,5 @@
-import TableBody from './components/tableBody';
-import TableHeader from './components/tableHeader';
+import TableBody from './tableBody';
+import TableHeader from './tableHeader';
 import './table.scss';
 
 interface ITableProps<T extends Object, U extends Object> {

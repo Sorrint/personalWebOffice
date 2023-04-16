@@ -1,8 +1,9 @@
 import { FC, ChangeEvent, ForwardedRef } from 'react';
 
-import TextField from '../../shared/ui/textField/textField';
-import useDebounce from '../../shared/lib/hooks/useDebounce/useDebounce';
-import Loader from '../../shared/ui/loaders/loader';
+import TextField from 'shared/ui/textField';
+import useDebounce from 'shared/lib/hooks/useDebounce/useDebounce';
+import Loader from 'shared/ui/loaders/loader';
+
 import './searchInput.scss';
 
 export interface ISearchInputProps<T> {

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import parse from 'html-react-parser';
+
 import { IMenuItem } from '../api/menuItemsTypes';
 
 interface MenuLinkProps {

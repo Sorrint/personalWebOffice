@@ -1,7 +1,9 @@
 import { FC } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import { transformDate } from '../lib/helpers/transformDate';
 import { IInventoryDocs } from '../model/types';
+
 import './inventoryDocs.scss';
 
 interface IInventoryListItemProps {

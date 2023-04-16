@@ -1,6 +1,9 @@
 import { FC } from 'react';
+
 import { IProduct, IProductStock } from '../model/IProducts';
+
 import './productStyles.scss';
+
 interface IProductCardProps {
     product: IProduct;
     selectField?: boolean;
