@@ -22,3 +22,25 @@ export interface IdataForXLSX {
     Цена?: number;
     Сумма: number;
 }
+
+interface IInventoryContent {
+    onClick?: (product: IInventoryProduct) => void;
+    onDelete?: (product: IInventoryProduct) => void;
+    index?: number;
+}
+
+export interface IInventoryProductListBodyProps {
+    products: IInventoryProduct[];
+    itemNumber: number;
+    onClick?: (product: IInventoryProduct) => void;
+    onDelete?: (product: IInventoryProduct) => void;
+    tabIndex?: number;
+}
+
+export interface IInventoryProductCardProps {
+    product: IInventoryProduct;
+    itemNumber: number;
+    onClick?: (product: IInventoryProduct) => void;
+    onDelete?: (product: IInventoryProduct) => void;
+    tabIndex?: number;
+}

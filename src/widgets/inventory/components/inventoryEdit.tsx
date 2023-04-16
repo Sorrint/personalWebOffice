@@ -2,16 +2,16 @@ import { FC, useEffect, useState, useRef } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import Popover from 'features/popover/popover';
-import { OverlayingPopup } from 'features/popup';
-import PopupCard from 'features/popup/popupCard/popupCard';
-import SearchInput from 'features/search/searchInput';
-import { InventoryCard, inventoryDocsAPI } from 'entities/inventoryDocs';
+import { OverlayingPopup, PopupCard } from 'features/popup';
+import Popover from 'features/popover';
+import SearchInput from 'features/search';
+
+import { InventoryContent, inventoryDocsAPI } from 'entities/inventoryDocs';
 import { ProductList, productsAPI } from 'entities/products';
 import { IInventoryProduct } from 'entities/inventoryDocs/model/types';
 import { IProduct } from 'entities/products/model/IProducts';
-import DropdownWindow from 'shared/ui/dropdownList/dropdownWindow';
 import { useKeyPress } from 'shared/lib/hooks/useKeyPress/useKeyPress';
+import DropdownList from 'shared/ui/dropdownList';
 
 import './acceptanceDocs.scss';
 
@@ -100,10 +100,10 @@ const InventoryEdit: FC = () => {
             <span className="input-area" ref={reference}>
                 <SearchInput searchFunction={getGoods} loading={isFetching} inputRef={searchInput} />
             </span>
-            <InventoryCard
+            <InventoryContent
                 onClick={(product) => handleUpdate(product)}
                 onDelete={(product) => handleDelete(product)}
-                index={activePopup ? -1 : 0}
+                tabIndex={activePopup ? -1 : 0}
             />
             {goods && goods?.length !== 0 && reference.current && (
                 <Popover
@@ -113,7 +113,7 @@ const InventoryEdit: FC = () => {
                     key={'key'}
                     placement={'bottom-start'}
                 >
-                    <DropdownWindow>
+                    <DropdownList>
                         <ProductList
                             products={goods}
                             selectField={false}
@@ -121,7 +121,7 @@ const InventoryEdit: FC = () => {
                             count={false}
                             onClick={(product) => handleCreate(product)}
                         />
-                    </DropdownWindow>
+                    </DropdownList>
                 </Popover>
             )}
             <OverlayingPopup isOpened={activePopup} onClose={showPopup}>

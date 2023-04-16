@@ -1,15 +1,13 @@
 import { FC } from 'react';
 
-import InventoryProductCard from './inventoryProductCard';
+import InventoryProductCard, { IInventoryProductCardProps } from './inventoryProductCard';
 import { IInventoryProduct } from '../model/types';
 
 import './inventoryList.scss';
+import { IInventoryContent } from './inventoryContent';
 
-interface IInventoryProductListBodyProps {
+export interface IInventoryProductListBodyProps extends IInventoryContent {
     products: IInventoryProduct[];
-    onClick?: (product: IInventoryProduct) => void;
-    onDelete?: (product: IInventoryProduct) => void;
-    tabIndex?: number;
 }
 
 const InventoryProductList: FC<IInventoryProductListBodyProps> = ({ products, tabIndex, onClick, onDelete }) => {
