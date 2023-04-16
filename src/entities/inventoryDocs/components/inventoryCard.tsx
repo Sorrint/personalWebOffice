@@ -1,16 +1,20 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
+
 import { inventoryDocsAPI } from '../reducers/inventoryDocsService';
-import InventoryProductList from './inventoryProductsList';
-import { saveToXLSX } from '../../../shared/lib/utils/saveToXLSX';
 import { transformDataForXLSX, transformDate } from '../lib/helpers';
-import { IdataForXLSX, IInventoryProduct } from '../model/types';
+import { IInventoryProduct, IdataForXLSX } from '../model/types';
+import InventoryProductList from './inventoryProductsList';
+
+import { saveToXLSX } from 'shared/lib/utils/saveToXLSX';
+
 interface IInventoryCard {
     onClick?: (product: IInventoryProduct) => void;
     onDelete?: (product: IInventoryProduct) => void;
+    index?: number;
 }
 
-const InventoryCard: FC<IInventoryCard> = ({ onClick, onDelete }) => {
+const InventoryCard: FC<IInventoryCard> = ({ onClick, onDelete, index }) => {
     const { number } = useParams();
     if (number) {
         const { data: inventoryList, isLoading } = inventoryDocsAPI.useLoadDocumentByNumberQuery(number);
@@ -41,6 +45,7 @@ const InventoryCard: FC<IInventoryCard> = ({ onClick, onDelete }) => {
                                 products={inventoryList.products}
                                 onClick={onClick}
                                 onDelete={onDelete}
+                                tabIndex={index}
                             />
                             <div className="products-list__total">
                                 <div className="products-list__title">Итого</div>

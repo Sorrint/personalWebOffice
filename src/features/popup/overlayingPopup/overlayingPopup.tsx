@@ -1,5 +1,7 @@
 import { FC } from 'react';
-import Portal from '../../../shared/ui/portal/portal';
+
+import Portal from 'shared/ui/portal/portal';
+
 import './overlayingPopup.scss';
 
 interface OverlayingPopupProps {

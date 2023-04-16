@@ -1,8 +1,10 @@
 import { useRef, FC } from 'react';
-import Portal from '../../shared/ui/portal/portal';
-import * as PopperJS from '@popperjs/core';
 import { Popper } from 'react-popper';
+import * as PopperJS from '@popperjs/core';
+
 import { ClickOutside } from '../popup/clickOutside';
+
+import Portal from 'shared/ui/portal/portal';
 
 interface PopoverProps {
     children: React.ReactNode;

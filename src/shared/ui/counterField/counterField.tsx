@@ -1,6 +1,8 @@
+import { MouseEvent, ChangeEvent, KeyboardEvent } from 'react';
 import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
-import { MouseEvent, ChangeEvent, KeyboardEvent, ForwardedRef, RefCallback } from 'react';
+
 import './counterField.scss';
+
 interface ICounterFieldsProps<T extends FieldValues> {
     label: string;
     name: Path<T>;

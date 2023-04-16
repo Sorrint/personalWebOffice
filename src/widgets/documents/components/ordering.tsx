@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { read, utils } from 'xlsx';
+
 import api from '../api/orderingHeaders';
 import { getGoodsObject, getHeadersObject } from '../libs/modifiedExcelObjects';
-import TableHeader from '../../../shared/ui/table/components/tableHeader';
-import TableBody from '../../../shared/ui/table/components/tableBody';
+
+import TableHeader from 'shared/ui/table/components/tableHeader';
+import TableBody from 'shared/ui/table/components/tableBody';
 
 const Ordering = ({ goods, headers }) => {
     const [unsearchedItems, setUnsearchedItems] = useState({});

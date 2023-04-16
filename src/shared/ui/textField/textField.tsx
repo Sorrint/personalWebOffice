@@ -1,6 +1,8 @@
 import { useState, forwardRef, ForwardedRef } from 'react';
 import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
+
 import './textField.scss';
+
 interface ITextFieldsProps<T extends FieldValues> {
     label: string;
     name: Path<T>;

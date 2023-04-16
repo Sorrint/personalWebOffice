@@ -1,9 +1,11 @@
 import { useRoutes } from 'react-router-dom';
 
-import { Header } from '../widgets/header';
-import { NavBar } from '../widgets/navBar';
-import './app.scss';
 import routes from './routes';
+
+import { Header } from 'widgets/header';
+import { NavBar } from 'widgets/navBar';
+
+import './app.scss';
 
 function App() {
     const elements = useRoutes(routes);

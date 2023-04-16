@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import { FC } from 'react';
-import { useAppDispatch } from '../../../shared/lib/hooks';
-import { readGoods } from '../../../entities/goods/model/reducers/GoodsSlice';
-import AppRibbon from '../../../widgets/appRibbon/appRibbon';
-import { INavLinkObject } from '../../../shared/ui/navLink/navLinkTypes';
+
+import AppRibbon from 'widgets/appRibbon/appRibbon';
+import { readGoods } from 'entities/goods/model/reducers/GoodsSlice';
+import { useAppDispatch } from 'shared/lib/hooks';
+import { INavLinkObject } from 'shared/ui/navLink/navLinkTypes';
 
 const DocumentsPage: FC = () => {
     const dispatch = useAppDispatch();

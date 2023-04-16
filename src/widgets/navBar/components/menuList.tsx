@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { IMenuItem } from '../api/menuItemsTypes';
 import MenuItem from './menuItem';
 

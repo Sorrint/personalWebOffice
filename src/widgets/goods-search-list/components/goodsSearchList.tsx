@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
-import { CategoriesList, ProductList, productsAPI } from '../../../entities/products';
-import SearchInput from '../../../features/search/searchInput';
+
+import { CategoriesList, ProductList, productsAPI } from 'entities/products';
+// import SearchInput from '../../../features/search/searchInput';
 
 const GoodsSearchList: FC = () => {
     const [search, setSearch] = useState<string>('');

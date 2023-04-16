@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ITableBodyProps<T, U> {
     headers: U;
     goods: T;

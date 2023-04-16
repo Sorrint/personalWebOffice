@@ -1,7 +1,8 @@
 import { FC } from 'react';
-import AppRibbon from '../../../widgets/appRibbon/appRibbon';
-import { INavLinkObject } from '../../../shared/ui/navLink/navLinkTypes';
 import { Outlet } from 'react-router-dom';
+
+import AppRibbon from 'widgets/appRibbon/appRibbon';
+import { INavLinkObject } from 'shared/ui/navLink/navLinkTypes';
 
 const GoodsAcceptance: FC = () => {
     const navLinks: INavLinkObject = {
