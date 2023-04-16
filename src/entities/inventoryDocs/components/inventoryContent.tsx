@@ -8,13 +8,13 @@ import InventoryProductList from './inventoryProductsList';
 
 import { saveToXLSX } from 'shared/lib/utils/saveToXLSX';
 
-interface IInventoryCard {
+export interface IInventoryContent {
     onClick?: (product: IInventoryProduct) => void;
     onDelete?: (product: IInventoryProduct) => void;
-    index?: number;
+    tabIndex?: number;
 }
 
-const InventoryCard: FC<IInventoryCard> = ({ onClick, onDelete, index }) => {
+const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tabIndex }) => {
     const { number } = useParams();
     if (number) {
         const { data: inventoryList, isLoading } = inventoryDocsAPI.useLoadDocumentByNumberQuery(number);
@@ -45,7 +45,7 @@ const InventoryCard: FC<IInventoryCard> = ({ onClick, onDelete, index }) => {
                                 products={inventoryList.products}
                                 onClick={onClick}
                                 onDelete={onDelete}
-                                tabIndex={index}
+                                tabIndex={tabIndex}
                             />
                             <div className="products-list__total">
                                 <div className="products-list__title">Итого</div>
@@ -60,4 +60,4 @@ const InventoryCard: FC<IInventoryCard> = ({ onClick, onDelete, index }) => {
     return <h1>Ничего не найдено</h1>;
 };
 
-export default InventoryCard;
+export default InventoryContent;

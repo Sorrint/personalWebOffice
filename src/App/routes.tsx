@@ -1,12 +1,12 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 
-import DocumentsPage from '../pages/documents';
-import ProductsPage from '../pages/goods';
-import GoodsAcceptancePage from '../pages/acceptance';
+import DocumentsPage from 'pages/documents';
+import ProductsPage from 'pages/goods';
+import InventoryPage from 'pages/inventory';
 
-import { InventoriesList, InventoryCreate, InventoryEdit } from '../widgets/inventory';
-import { Order, Ordering, Distribution } from '../widgets/documents';
-import GoodsSearchList from '../widgets/goods-search-list';
+import { InventoriesList, InventoryCreate, InventoryEdit } from 'widgets/inventory';
+import { Distribution, Order, Ordering } from 'widgets/documents';
+import GoodsSearchList from 'widgets/goods-search-list';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to="./documents" /> },
@@ -23,7 +23,7 @@ const routes: RouteObject[] = [
     },
     {
         path: 'inventory-lists',
-        element: <GoodsAcceptancePage />,
+        element: <InventoryPage />,
         children: [
             {
                 path: 'documents',

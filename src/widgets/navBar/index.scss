@@ -97,6 +97,12 @@
     display: flex;
 }
 
+.navigation-menu__link:focus {
+    display: inline-block;
+    // outline: 1px solid red;
+    outline: red solid 1px;
+}
+
 @media (max-width: 767px) {
     body.lock {
         overflow: hidden;

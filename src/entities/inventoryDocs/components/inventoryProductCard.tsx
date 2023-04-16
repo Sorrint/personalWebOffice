@@ -1,13 +1,11 @@
 import { FC, SyntheticEvent } from 'react';
 
 import { IInventoryProduct } from '../model/types';
+import { IInventoryContent } from './inventoryContent';
 
-interface IInventoryProductCardProps {
+export interface IInventoryProductCardProps extends IInventoryContent {
     product: IInventoryProduct;
     itemNumber: number;
-    onClick?: (product: IInventoryProduct) => void;
-    onDelete?: (product: IInventoryProduct) => void;
-    tabIndex?: number;
 }
 
 const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNumber, tabIndex, onClick, onDelete }) => {

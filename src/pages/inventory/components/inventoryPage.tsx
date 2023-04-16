@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import AppRibbon from 'widgets/appRibbon/appRibbon';
 import { INavLinkObject } from 'shared/ui/navLink/navLinkTypes';
 
-const GoodsAcceptance: FC = () => {
+const InventoryPage: FC = () => {
     const navLinks: INavLinkObject = {
         order: {
             path: '/inventory-lists/documents',
@@ -30,4 +30,4 @@ const GoodsAcceptance: FC = () => {
         </>
     );
 };
-export default GoodsAcceptance;
+export default InventoryPage;
