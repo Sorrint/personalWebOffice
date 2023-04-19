@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, useRef } from 'react';
+import { FC, useEffect, useState, useRef, KeyboardEvent } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ import { useKeyPress } from 'shared/lib/hooks/useKeyPress/useKeyPress';
 import DropdownList from 'shared/ui/dropdownList';
 
 import './acceptanceDocs.scss';
+import OverlayingPopupWithFocusTrap from 'features/popup/overlayingPopup/overlayingPopupWithFocusTrap';
 
 interface IPopupProps {
     product: IInventoryProduct;
@@ -42,6 +43,7 @@ const InventoryEdit: FC = () => {
     const [activePopup, setActivePopup] = useState<boolean>(false);
     const reference = useRef<HTMLDivElement>(null);
     const searchInput = useRef<HTMLInputElement>(null);
+    const serachResultList = useRef<HTMLDivElement[]>([]);
     const { isKeyPressed, setIsKeyPressed } = useKeyPress('Escape');
     useEffect(() => {
         setIsKeyPressed(false);
@@ -93,12 +95,26 @@ const InventoryEdit: FC = () => {
         if (!updateError) showPopup();
     };
 
+    const handleInputKeydown = (key: KeyboardEvent) => {
+        // console.log('ok');
+
+        if (key.code === 'ArrowDown') {
+            console.log(key);
+            setSearch((key.target as HTMLInputElement).value);
+        }
+    };
+
     if (goodsLoading) return <h1>Идет загрузка</h1>;
 
     return (
         <>
             <span className="input-area" ref={reference}>
-                <SearchInput searchFunction={getGoods} loading={isFetching} inputRef={searchInput} />
+                <SearchInput
+                    searchFunction={getGoods}
+                    loading={isFetching}
+                    inputRef={searchInput}
+                    onKeyDown={handleInputKeydown}
+                />
             </span>
             <InventoryContent
                 onClick={(product) => handleUpdate(product)}
@@ -124,9 +140,9 @@ const InventoryEdit: FC = () => {
                     </DropdownList>
                 </Popover>
             )}
-            <OverlayingPopup isOpened={activePopup} onClose={showPopup}>
+            <OverlayingPopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
                 {popupProps && <PopupCard {...popupProps} buttonClick={onSubmit} error={updateError} />}
-            </OverlayingPopup>
+            </OverlayingPopupWithFocusTrap>
         </>
     );
 };

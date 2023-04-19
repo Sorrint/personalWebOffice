@@ -1,4 +1,4 @@
-import { useState, forwardRef, ForwardedRef } from 'react';
+import { useState, forwardRef, ForwardedRef, KeyboardEvent } from 'react';
 import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
 
 import './textField.scss';
@@ -17,13 +17,14 @@ interface ITextFieldsProps<T extends FieldValues> {
     onClick?: (e: React.MouseEvent) => void;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     inputClass?: string;
+    onKeyDown?: (e: KeyboardEvent) => void;
 }
 
 const TextField = forwardRef(function TextField<T extends FieldValues>(
     props: ITextFieldsProps<T>,
     ref: ForwardedRef<HTMLInputElement>
 ) {
-    const { label, name, type, error, register, autoComplete, field, value, onChange, onClick, inputClass } = props;
+    const { label, name, type, error, autoComplete, field, value, onChange, onClick, inputClass, onKeyDown } = props;
     const [showPassword, setShowPassword] = useState(false);
     const getInputClasses = () => {
         return 'input-container__input' + (error ? ' is-invalid' : '') + (inputClass ? ` ${inputClass}` : '');
@@ -47,6 +48,7 @@ const TextField = forwardRef(function TextField<T extends FieldValues>(
                     value={value}
                     onClick={onClick}
                     ref={ref}
+                    onKeyDown={onKeyDown && ((e) => onKeyDown(e))}
                 />
                 <div className="cut"></div>
 

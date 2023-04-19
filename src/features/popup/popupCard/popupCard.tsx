@@ -5,7 +5,6 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { IInventoryProduct } from '../../../entities/inventoryDocs/model/types';
 import { useKeyPress } from '../../../shared/lib/hooks/useKeyPress/useKeyPress';
 import CounterField from '../../../shared/ui/counterField/counterField';
-import FocusTrap from 'focus-trap-react';
 import './popupCard.scss';
 
 interface IPopupCardProps {
