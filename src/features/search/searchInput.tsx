@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, ForwardedRef } from 'react';
+import { FC, ChangeEvent, ForwardedRef, KeyboardEvent } from 'react';
 
 import TextField from 'shared/ui/textField';
 import useDebounce from 'shared/lib/hooks/useDebounce/useDebounce';
@@ -10,9 +10,10 @@ export interface ISearchInputProps<T> {
     searchFunction: (value: string) => T;
     loading?: boolean;
     inputRef?: ForwardedRef<HTMLInputElement>;
+    onKeyDown?: (e: KeyboardEvent) => void;
 }
 
-const SearchInput: FC<ISearchInputProps<void>> = ({ searchFunction, loading, inputRef }) => {
+const SearchInput: FC<ISearchInputProps<void>> = ({ searchFunction, loading, inputRef, onKeyDown }) => {
     const debounceSearch = useDebounce(searchFunction, 1000);
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { target } = e;
@@ -21,7 +22,14 @@ const SearchInput: FC<ISearchInputProps<void>> = ({ searchFunction, loading, inp
 
     return (
         <div className="search-field">
-            <TextField type={'text'} name={'searchText'} onChange={handleChange} label={'Поиск'} ref={inputRef} />
+            <TextField
+                type={'text'}
+                name={'searchText'}
+                onChange={handleChange}
+                label={'Поиск'}
+                ref={inputRef}
+                onKeyDown={onKeyDown}
+            />
             {loading && <Loader />}
         </div>
     );

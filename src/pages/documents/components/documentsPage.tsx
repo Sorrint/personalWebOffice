@@ -5,6 +5,7 @@ import AppRibbon from 'widgets/appRibbon/appRibbon';
 import { readGoods } from 'entities/goods/model/reducers/GoodsSlice';
 import { useAppDispatch } from 'shared/lib/hooks';
 import { INavLinkObject } from 'shared/ui/navLink/navLinkTypes';
+import { Helmet } from 'react-helmet';
 
 const DocumentsPage: FC = () => {
     const dispatch = useAppDispatch();
@@ -26,8 +27,12 @@ const DocumentsPage: FC = () => {
             title: 'Распаллетовка'
         }
     };
+
     return (
         <>
+            <Helmet>
+                <title>Заказ покупателя</title>
+            </Helmet>
             <div className="app__header">
                 <div className="app__container">
                     <div className="app__title">Заказ покупателя</div>

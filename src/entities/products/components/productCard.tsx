@@ -3,16 +3,21 @@ import { FC } from 'react';
 import { IProduct, IProductStock } from '../model/IProducts';
 
 import './productStyles.scss';
+import { IProductListContentProps } from './productList/productList';
 
-interface IProductCardProps {
+interface IProductCardProps extends IProductListContentProps {
     product: IProduct;
-    selectField?: boolean;
-    avatar?: boolean;
-    count?: boolean;
-    onClick?: (product: IProduct) => void;
 }
 
-const ProductCard: FC<IProductCardProps> = ({ product, selectField, avatar, count, onClick }) => {
+const ProductCard: FC<IProductCardProps> = ({
+    product,
+    selectField,
+    avatar,
+    count,
+    onClick,
+    addProductRef,
+    onCardKeyDown
+}) => {
     const { name, price, stock, type } = product;
     const getProductRest = (stock: IProductStock[] | null) => {
         if (stock) {
@@ -42,7 +47,13 @@ const ProductCard: FC<IProductCardProps> = ({ product, selectField, avatar, coun
     };
 
     return (
-        <div className="product-card" onClick={() => handleClick(product)}>
+        <div
+            className="product-card"
+            onClick={() => handleClick(product)}
+            ref={(r) => r !== null && addProductRef && addProductRef(r)}
+            tabIndex={0}
+            onKeyDown={onCardKeyDown}
+        >
             {selectField && <div className="product-card__selectField"></div>}
             {avatar && <div className="product-card__avatar"></div>}
             <div className="product-card__title">{name}</div>
