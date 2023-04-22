@@ -1,15 +1,21 @@
-import { FC } from 'react';
+import { FC, KeyboardEvent, MutableRefObject } from 'react';
 import { IProduct } from '../../model/IProducts';
 import ProductListBody from './productListBody';
 import ProductListHeader from './productListHeader';
 
-interface IProductListProps {
-    products: IProduct[];
+export interface IProductListContentProps {
     selectField?: boolean;
     avatar?: boolean;
     count?: boolean;
-    displayHeaders?: boolean;
     onClick?: (product: IProduct) => void;
+    addProductRef?: (productRef: HTMLDivElement) => void;
+    listRefs?: MutableRefObject<(HTMLDivElement | null)[]>;
+    onCardKeyDown?: (key: KeyboardEvent) => void;
+}
+
+interface IProductListProps extends IProductListContentProps {
+    products: IProduct[];
+    displayHeaders?: boolean;
 }
 
 const ProductList: FC<IProductListProps> = ({
@@ -18,7 +24,7 @@ const ProductList: FC<IProductListProps> = ({
     avatar = false,
     count = true,
     displayHeaders,
-    onClick
+    ...rest
 }) => {
     return (
         <>
@@ -30,7 +36,7 @@ const ProductList: FC<IProductListProps> = ({
                         avatar={avatar}
                         selectField={selectField}
                         count={count}
-                        onClick={onClick}
+                        {...rest}
                     />
                 </div>
             )}

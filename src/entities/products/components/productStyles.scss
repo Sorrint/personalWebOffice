@@ -63,3 +63,7 @@
         padding: 0 12px;
     }
 }
+
+.product-card::focus {
+    outline: red solid 1px;
+}
