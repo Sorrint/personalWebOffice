@@ -1,10 +1,11 @@
-import { FC, useEffect, useState, useRef, KeyboardEvent, ForwardedRef } from 'react';
+import { FC, useEffect, useState, useRef, KeyboardEvent } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { OverlayingPopup, PopupCard } from 'features/popup';
-import Popover from 'features/popover';
+import { PopupCard } from 'features/popup';
 import SearchInput from 'features/search';
+import { PopoverNew } from 'features/popover';
+import OverlayingPopupWithFocusTrap from 'features/popup/overlayingPopup/overlayingPopupWithFocusTrap';
 
 import { InventoryContent, inventoryDocsAPI } from 'entities/inventoryDocs';
 import { ProductList, productsAPI } from 'entities/products';
@@ -14,7 +15,6 @@ import { useKeyPress } from 'shared/lib/hooks/useKeyPress/useKeyPress';
 import DropdownList from 'shared/ui/dropdownList';
 
 import './acceptanceDocs.scss';
-import OverlayingPopupWithFocusTrap from 'features/popup/overlayingPopup/overlayingPopupWithFocusTrap';
 
 interface IPopupProps {
     product: IInventoryProduct;
@@ -39,43 +39,43 @@ const InventoryEdit: FC = () => {
     } = productsAPI.useLoadProductBySearchQuery({ limit: 1000, q: search });
 
     //состояния popup && popover
-    const [activePopover, setActivePopover] = useState<boolean>(true);
+    const [activePopover, setActivePopover] = useState<boolean>(false);
     const [activePopup, setActivePopup] = useState<boolean>(false);
     const reference = useRef<HTMLDivElement>(null);
     const searchInput = useRef<HTMLInputElement>(null);
-    const searchResultListRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const firstElement = useRef<HTMLDivElement | null>(null);
     const { isKeyPressed, setIsKeyPressed } = useKeyPress('Escape');
     useEffect(() => {
         setIsKeyPressed(false);
         setActivePopup(false);
+        setActivePopover(false);
     }, [isKeyPressed]);
     useEffect(() => {
         goods && setActivePopover(goods?.length > 0);
     }, [goods]);
     useEffect(() => {
         searchInput && !activePopup && searchInput.current?.focus();
-    }, [activePopup]);
+        searchInput && !activePopover && searchInput.current?.focus();
+    }, [activePopup, activePopover]);
 
     const getGoods = async (value: string) => {
+        setActivePopover(false);
         setSearch(value);
-    };
-
-    const addProductToRefList = (productRef: HTMLDivElement) => {
-        searchResultListRefs.current?.push(productRef);
     };
 
     const showPopup = () => {
         setActivePopup((prevState) => !prevState);
     };
 
-    const showPopover = () => {
-        setSearch('');
+    const hidePopover = () => {
+        setActivePopover(false);
     };
 
     const handleCreate = (product: IProduct) => {
         const { name, price } = product;
         const newProduct = { name, price: price && price / 100, quantity: 1, id: undefined };
         setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
+        setActivePopover(false);
         setActivePopup(true);
     };
 
@@ -102,13 +102,20 @@ const InventoryEdit: FC = () => {
 
     const handleInputKeydown = (key: KeyboardEvent) => {
         if (key.code === 'ArrowDown' && activePopover === false) {
-            setSearch((key.target as HTMLInputElement).value);
-            searchResultListRefs.current.length = 0;
+            goods && setActivePopover(true);
         }
-        if (key.code === 'ArrowDown' && activePopover === true && searchResultListRefs) {
+        if (key.code === 'ArrowDown' && activePopover === true && firstElement.current) {
             key.preventDefault();
-            searchResultListRefs.current[0] && searchResultListRefs?.current[0].focus();
+            firstElement.current.focus();
         }
+        if (key.code === 'ArrowUp' && activePopover === true) {
+            key.preventDefault();
+            setActivePopover(false);
+        }
+    };
+
+    const setFirstElement = (el: HTMLDivElement) => {
+        firstElement.current = el;
     };
 
     if (goodsLoading) return <h1>Идет загрузка</h1>;
@@ -128,13 +135,12 @@ const InventoryEdit: FC = () => {
                 onDelete={(product) => handleDelete(product)}
                 tabIndex={activePopup ? -1 : 0}
             />
-            {goods && goods?.length !== 0 && reference.current && (
-                <Popover
-                    isOpened={activePopover}
-                    onClose={showPopover}
-                    reference={reference.current as HTMLElement}
+            {goods && goods?.length !== 0 && reference.current && activePopover && (
+                <PopoverNew
+                    isOpen={activePopover}
+                    onClose={hidePopover}
+                    referenceElement={reference.current as HTMLElement}
                     key={'key'}
-                    placement={'bottom-start'}
                 >
                     <DropdownList>
                         <ProductList
@@ -143,11 +149,11 @@ const InventoryEdit: FC = () => {
                             avatar={false}
                             count={false}
                             onClick={(product) => handleCreate(product)}
-                            addProductRef={addProductToRefList}
-                            listRefs={searchResultListRefs && searchResultListRefs}
+                            setFirstElement={setFirstElement}
+                            parentRef={searchInput}
                         />
                     </DropdownList>
-                </Popover>
+                </PopoverNew>
             )}
             <OverlayingPopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
                 {popupProps && <PopupCard {...popupProps} buttonClick={onSubmit} error={updateError} />}
