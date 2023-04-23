@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, KeyboardEvent } from 'react';
 
 import { IProduct, IProductStock } from '../model/IProducts';
 
@@ -7,6 +7,8 @@ import { IProductListContentProps } from './productList/productList';
 
 interface IProductCardProps extends IProductListContentProps {
     product: IProduct;
+    addProductRef?: (productRef: HTMLDivElement) => void;
+    onCardKeyDown?: (event: KeyboardEvent, onSubmit: (...args: any[]) => void) => void;
 }
 
 const ProductCard: FC<IProductCardProps> = ({
@@ -52,7 +54,7 @@ const ProductCard: FC<IProductCardProps> = ({
             onClick={() => handleClick(product)}
             ref={(r) => r !== null && addProductRef && addProductRef(r)}
             tabIndex={0}
-            onKeyDown={onCardKeyDown}
+            onKeyDown={(e: KeyboardEvent) => onCardKeyDown && onCardKeyDown(e, () => handleClick(product))}
         >
             {selectField && <div className="product-card__selectField"></div>}
             {avatar && <div className="product-card__avatar"></div>}

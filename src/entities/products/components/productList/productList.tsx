@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, MutableRefObject } from 'react';
+import { FC, MutableRefObject } from 'react';
 import { IProduct } from '../../model/IProducts';
 import ProductListBody from './productListBody';
 import ProductListHeader from './productListHeader';
@@ -8,9 +8,8 @@ export interface IProductListContentProps {
     avatar?: boolean;
     count?: boolean;
     onClick?: (product: IProduct) => void;
-    addProductRef?: (productRef: HTMLDivElement) => void;
-    listRefs?: MutableRefObject<(HTMLDivElement | null)[]>;
-    onCardKeyDown?: (key: KeyboardEvent) => void;
+    parentRef?: MutableRefObject<HTMLInputElement | null>;
+    setFirstElement?: (el: HTMLDivElement) => void;
 }
 
 interface IProductListProps extends IProductListContentProps {

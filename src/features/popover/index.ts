@@ -1,2 +1,3 @@
-import Popover from './popover';
-export default Popover;
+import PopoverOld from './popoverOld';
+import PopoverNew from './popoverNew';
+export { PopoverOld, PopoverNew };

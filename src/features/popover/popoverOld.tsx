@@ -13,11 +13,11 @@ interface PopoverProps {
     reference: HTMLElement | undefined;
     placement: PopperJS.Placement;
 }
-const Popover: FC<PopoverProps> = ({ onClose, reference, placement, children }) => {
+const Popover: FC<PopoverProps> = ({ onClose, reference, placement, children, isOpened }) => {
     const popperRef = useRef();
     return (
         <>
-            {reference && (
+            {reference && isOpened && (
                 <Portal>
                     <ClickOutside reference={popperRef.current} onClickOutside={onClose}>
                         <Popper innerRef={popperRef} referenceElement={reference} placement={placement}>
