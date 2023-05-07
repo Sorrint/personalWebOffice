@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Header = () => {
     return (
         <div className="header">
@@ -7,9 +9,9 @@ const Header = () => {
             <div className="header__logo"></div>
             <span className="header__text">Кабинет</span>
             <div className="header__icon"></div>
-            <a href="" className="header__mail">
+            <Link className="header__mail" to={'/profile'}>
                 sorrint@gmail.com
-            </a>
+            </Link>
         </div>
     );
 };

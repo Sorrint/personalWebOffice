@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { CategoriesList, ProductList, productsAPI } from 'entities/products';
 import SearchInput from 'features/search';
@@ -17,6 +17,9 @@ const GoodsSearchList: FC = () => {
     const getGoods = async (value: string) => {
         setSearch(value);
     };
+    useEffect(() => {
+        console.log(categories);
+    }, [categories]);
 
     if (goodsLoading || categoriesLoading) return <h1>Идет загрузка</h1>;
     return (

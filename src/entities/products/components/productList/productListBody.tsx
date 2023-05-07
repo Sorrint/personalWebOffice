@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, useRef, useEffect, MutableRefObject } from 'react';
+import { FC, KeyboardEvent, useRef, useEffect } from 'react';
 import { IProduct } from '../../model/IProducts';
 import ProductCard from '../productCard';
 import { IProductListContentProps } from './productList';
@@ -18,6 +18,7 @@ const ProductListBody: FC<IProductListBodyProps> = ({ products, parentRef, setFi
     useEffect(() => {
         listRefs.current && listRefs.current[0] && setFirstElement && setFirstElement(listRefs.current[0]);
     }, []);
+
     const handleListRefsActions = handleListKeydownEvent(listRefs.current, parentRef ? parentRef : undefined);
 
     return (

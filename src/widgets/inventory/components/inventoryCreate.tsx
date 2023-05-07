@@ -30,7 +30,8 @@ const InventoryCreate: FC = () => {
     }, [data]);
 
     const onSubmit = async <T extends FieldValues>(data: T) => {
-        const res = await createDoc(data);
+        const transformData = { ...data };
+        await createDoc(transformData);
         navigate(-1);
     };
     return (
@@ -40,7 +41,11 @@ const InventoryCreate: FC = () => {
                     <div className="card__title">Документ</div>
                     <div className="input__wrapper">
                         <div className="document__number">
-                            <TextField label="Номер документа" {...register('documentNumber')} />
+                            <TextField
+                                label="Номер документа"
+                                {...register('documentNumber', { pattern: /^[0-9]*$/ })}
+                                type="number"
+                            />
                         </div>
                         <div className="document__date">
                             <Calendar

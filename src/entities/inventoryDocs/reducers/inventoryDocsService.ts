@@ -1,10 +1,11 @@
 import { FieldValues } from 'react-hook-form';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { IInventoryDocs } from '../model/types';
+import { SERVER_URI } from 'app/config/apiConfig';
 
 export const inventoryDocsAPI = createApi({
     reducerPath: 'inventoryDocsAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:3000/inventory-list` }),
+    baseQuery: fetchBaseQuery({ baseUrl: `http://${SERVER_URI}/inventory-list` }),
     tagTypes: ['inventoryList', 'allInventories'],
     endpoints: (build) => ({
         createNewDocument: build.mutation<IInventoryDocs, FieldValues>({
@@ -16,7 +17,7 @@ export const inventoryDocsAPI = createApi({
             providesTags: (result) => ['allInventories']
         }),
         updateProducts: build.mutation<IInventoryDocs, { product: FieldValues; docNumber: number }>({
-            query: ({ product, docNumber }) => ({ url: `update/${docNumber}`, method: 'PATCH', body: product }),
+            query: ({ product, docNumber }) => ({ url: `addProduct/${docNumber}`, method: 'PATCH', body: product }),
             invalidatesTags: (result) => ['inventoryList']
         }),
         loadDocumentByNumber: build.query<IInventoryDocs, string>({

@@ -7,6 +7,7 @@ import InventoryPage from 'pages/inventory';
 import { InventoriesList, InventoryCreate, InventoryEdit } from 'widgets/inventory';
 import { Distribution, Order, Ordering } from 'widgets/documents';
 import GoodsSearchList from 'widgets/goods-search-list';
+import ProfilePage from 'pages/profile/profilePage';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to="./documents" /> },
@@ -48,6 +49,10 @@ const routes: RouteObject[] = [
             { index: true, element: <Navigate to="./categories" /> },
             { path: '*', element: <Navigate to="./categories" /> }
         ]
+    },
+    {
+        path: 'profile',
+        element: <ProfilePage />
     },
     { path: '*', element: <Navigate to="./documents" /> }
 ];

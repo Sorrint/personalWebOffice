@@ -21,11 +21,13 @@ const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tabIndex }
 
         if (isLoading) return <h1>'Идет загрузка..'</h1>;
         if (inventoryList) {
-            const sum = inventoryList.products.reduce(
-                (result: number, product: IInventoryProduct) =>
-                    product.price ? result + product.quantity * product.price : result,
-                0
-            );
+            const sum = inventoryList.products
+                ? inventoryList.products.reduce(
+                      (result: number, product: IInventoryProduct) =>
+                          product.price ? result + product.quantity * product.price : result,
+                      0
+                  )
+                : 0;
             const date = transformDate(inventoryList.choosenDate);
             const handleClick = () => {
                 const dataForXLSX = transformDataForXLSX(inventoryList.products);
@@ -39,7 +41,7 @@ const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tabIndex }
                         Скачать в формате XLSX
                     </button>
                     <h1>{`Инвентаризация № ${inventoryList.documentNumber} от ${date} магазина ${inventoryList.storeName}`}</h1>
-                    {inventoryList && (
+                    {inventoryList.products && (
                         <div className="products-list">
                             <InventoryProductList
                                 products={inventoryList.products}
