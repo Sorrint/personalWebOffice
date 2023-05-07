@@ -23,7 +23,8 @@
             "pages/*": ["pages/*"],
             "shared/*": ["shared/*"],
             "widgets/*": ["widgets/*"]
-        }
+        },
+        "types": ["node", "stripe-v3", "vite/client"]
     },
     "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]

@@ -37,6 +37,7 @@ const DocumentsPage: FC = () => {
                 <div className="app__container">
                     <div className="app__title">Заказ покупателя</div>
                     <form>
+                        <label>База данных </label>
                         <input type="file" onChange={(e) => handleChange(e)} />
                     </form>
 

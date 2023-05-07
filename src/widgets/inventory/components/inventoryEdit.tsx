@@ -94,7 +94,7 @@ const InventoryEdit: FC = () => {
             const { method, product } = popupProps;
             method === 'Delete'
                 ? await removeProduct({ id: product.id, docNumber: docNumber }).unwrap()
-                : await updateList({ product: { product: { ...data } }, docNumber: docNumber }).unwrap();
+                : await updateList({ product: { ...data }, docNumber: docNumber }).unwrap();
         }
 
         if (!updateError) showPopup();
@@ -117,8 +117,6 @@ const InventoryEdit: FC = () => {
     const setFirstElement = (el: HTMLDivElement) => {
         firstElement.current = el;
     };
-
-    if (goodsLoading) return <h1>Идет загрузка</h1>;
 
     return (
         <>

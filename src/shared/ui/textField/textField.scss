@@ -68,3 +68,15 @@
 .input-container__input:not(:placeholder-shown) ~ .cut {
     transform: translateY(8px);
 }
+
+.input-container__input[type="number"]::-webkit-outer-spin-button,
+.input-container__input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; // Yeah, yeah everybody write about it
+}
+
+.input-container__input[type="number"],
+.input-container__input[type="number"]:hover,
+.input-container__input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}

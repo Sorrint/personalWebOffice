@@ -1,3 +1,4 @@
+import { SERVER_URI } from 'app/config/apiConfig';
 import { IProduct, IProductCategory, IProductQueryTrace } from '../model/IProducts';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
@@ -15,7 +16,7 @@ interface ISearchResult {
 export const productsAPI = createApi({
     reducerPath: 'ProductsAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: `http://localhost:3000/dreamkass/products`,
+        baseUrl: `http://${SERVER_URI}/dreamkas/products`,
         prepareHeaders: (headers) => {
             headers.set('authorization', `Bearer ${localStorage.getItem('dreamToken')} `);
             return headers;
@@ -28,7 +29,7 @@ export const productsAPI = createApi({
         }),
         loadProductBySearch: build.query<IProduct[], IParams>({
             query: (params) => ({
-                url: `/search?q=${encodeURI(params.q)}&limit=${params.limit}`
+                url: params.q ? `/search?q=${encodeURI(params.q)}&limit=${params.limit}` : ''
             }),
             transformResponse: (response: ISearchResult) => {
                 return response.products;
