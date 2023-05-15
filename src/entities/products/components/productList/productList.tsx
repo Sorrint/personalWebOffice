@@ -1,5 +1,5 @@
 import { FC, MutableRefObject } from 'react';
-import { IProduct } from '../../model/IProducts';
+import { IProduct } from '../../model/IProduct';
 import ProductListBody from './productListBody';
 import ProductListHeader from './productListHeader';
 

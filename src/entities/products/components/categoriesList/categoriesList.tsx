@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import CategoryCard from '../categoryCard';
-import { IProductCategory } from '../../model/IProducts';
+import { IProductCategory } from '../../model/IProduct';
 
 interface ICategoriesListProps {
     categories: IProductCategory[];

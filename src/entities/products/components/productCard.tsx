@@ -1,6 +1,6 @@
 import { FC, KeyboardEvent } from 'react';
 
-import { IProduct, IProductStock } from '../model/IProducts';
+import { IProduct, IProductStock } from '../model/IProduct';
 
 import './productStyles.scss';
 import { IProductListContentProps } from './productList/productList';

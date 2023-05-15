@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
-import { IHeaderItem } from '../tablleTypes';
+import { FC } from 'react';
+import { IHeaderItem } from '../tableTypes';
 
-interface ITableHeaderProps<T> {
-    headers: T;
+interface ITableHeaderProps {
+    headers: IHeaderItem;
 }
 
-const TableHeader = <T,>({ headers }: ITableHeaderProps<T>) => {
+const TableHeader: FC<ITableHeaderProps> = ({ headers }) => {
     return (
         <>
             <div className="table-from-excel__headers">
-                {Object.values(headers).map((item) => (
-                    <div className="table-from-excel__header" key={item.id}>
-                        <span>{item.text}</span>
+                {Object.entries(headers).map(([key, value]) => (
+                    <div className="table-from-excel__header" key={key}>
+                        <span>{value}</span>
                     </div>
                 ))}
             </div>
