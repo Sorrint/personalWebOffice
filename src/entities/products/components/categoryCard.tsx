@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IProductCategory } from '../model/IProducts';
+import { IProductCategory } from '../model/IProduct';
 
 import './categoryStyles.scss';
 

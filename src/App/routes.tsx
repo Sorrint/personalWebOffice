@@ -1,11 +1,11 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 
 import DocumentsPage from 'pages/documents';
-import ProductsPage from 'pages/goods';
+import ProductsPage from 'pages/products';
 import InventoryPage from 'pages/inventory';
 
-import { InventoriesList, InventoryCreate, InventoryEdit } from 'widgets/inventory';
-import { Distribution, Order, Ordering } from 'widgets/documents';
+import { InventoriesList, InventoryCreate, InventoryEdit } from 'widgets/inventoryPageBody';
+import { Distribution, Order, Ordering } from 'widgets/documentPageBody';
 import GoodsSearchList from 'widgets/goods-search-list';
 import ProfilePage from 'pages/profile/profilePage';
 

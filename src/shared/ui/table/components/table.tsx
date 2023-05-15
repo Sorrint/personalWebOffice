@@ -1,17 +1,21 @@
 import TableBody from './tableBody';
 import TableHeader from './tableHeader';
 import './table.scss';
+import { FC } from 'react';
+import { IHeaderItem, IRecord } from '../tableTypes';
 
-interface ITableProps<T extends Object, U extends Object> {
-    data: T;
-    columns: U;
+interface ITableProps {
+    data: IRecord[];
+    headers: IHeaderItem;
 }
 
-const Table = <T, U>({ data, columns }: ITableProps<T, U>) => {
+const Table: FC<ITableProps> = ({ data, headers }) => {
     return (
         <>
-            <TableHeader<U> headers={columns} />
-            <TableBody<T, U> goods={data} headers={columns} />
+            <div className="table-from-excel">
+                <TableHeader headers={headers} />
+                <TableBody records={data} headers={headers} />
+            </div>
         </>
     );
 };

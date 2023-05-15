@@ -1,5 +1,5 @@
 import { FC, KeyboardEvent, useRef, useEffect } from 'react';
-import { IProduct } from '../../model/IProducts';
+import { IProduct } from '../../model/IProduct';
 import ProductCard from '../productCard';
 import { IProductListContentProps } from './productList';
 import handleListKeydownEvent from 'shared/lib/utils/handleListKeyboardEvents';

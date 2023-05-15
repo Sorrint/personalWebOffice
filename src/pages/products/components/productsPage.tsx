@@ -1,28 +1,19 @@
-import { Outlet } from 'react-router-dom';
 import { FC } from 'react';
+import { Outlet } from 'react-router-dom';
 
-import { useAppDispatch } from 'shared/lib/hooks';
 import { INavLinkObject } from 'shared/ui/navLink/navLinkTypes';
 import { Header } from 'widgets/header';
+import AppLayout from 'shared/layouts/appLayout';
 import { NavBar } from 'widgets/navBar';
-import { AppBody, AppHeader, AppLayout } from 'shared/layouts';
+import AppHeader from 'shared/layouts/appHeader';
+import AppBody from 'shared/layouts/appBody';
 import AppRibbon from 'widgets/appRibbon';
 
-const DocumentsPage: FC = () => {
-    const dispatch = useAppDispatch();
-
+const ProductsPage: FC = () => {
     const navLinks: INavLinkObject = {
         order: {
-            path: '/documents/order',
-            title: 'Заказ'
-        },
-        ordering: {
-            path: '/documents/ordering',
-            title: 'Порядовка'
-        },
-        distribution: {
-            path: '/documents/distribution',
-            title: 'Распаллетовка'
+            path: '/inventory-lists/documents',
+            title: 'Список документов'
         }
     };
 
@@ -32,7 +23,7 @@ const DocumentsPage: FC = () => {
             <AppLayout style="wrapper">
                 <NavBar />
                 <AppLayout style="content">
-                    <AppHeader title="Заказ покупателя">
+                    <AppHeader title="Товары">
                         <AppRibbon navLinks={navLinks} />
                     </AppHeader>
                     <AppBody>
@@ -43,5 +34,4 @@ const DocumentsPage: FC = () => {
         </>
     );
 };
-
-export default DocumentsPage;
+export default ProductsPage;
