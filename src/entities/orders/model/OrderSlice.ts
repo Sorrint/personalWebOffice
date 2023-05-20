@@ -1,11 +1,14 @@
-import { FileOrder } from './IOrder';
-import { createSlice } from '@reduxjs/toolkit';
+import { FileOrder } from './interfaces/IOrder';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 import { read, utils } from 'xlsx';
-import { AppDispatch } from '../../../shared/lib/store/types';
-import { IOrder } from './IOrder';
+// import { AppDispatch, RootState } from '../../../shared/lib/store/types';
+import { IOrder } from './interfaces/IOrder';
+// import { RootState } from '@reduxjs/toolkit/dist/query/core/apiState';
+import { PersistState, RootState } from 'shared/lib/store/types';
 
 interface OrderState {
     entities: IOrder[];
+    currentOrder?: IOrder;
     isLoading: boolean;
     error: string;
 }
@@ -17,7 +20,7 @@ const initialState: OrderState = {
 };
 
 export const OrderSlice = createSlice({
-    name: 'order',
+    name: 'orders',
     initialState,
     reducers: {
         orderRequested: (state) => {
@@ -31,30 +34,22 @@ export const OrderSlice = createSlice({
         orderRequestedFail: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
+        },
+        addOrder: (state, action) => {
+            state.entities.push({
+                ...action.payload
+            });
+        },
+        setCurrentOrder: (state, action) => {
+            state.currentOrder = action.payload;
         }
     }
 });
 
-const { reducer: goodsReducer, actions } = OrderSlice;
-const { orderRequested, orderRequestedSuccess, orderRequestedFail } = actions;
+const { reducer: ordersReducer, actions } = OrderSlice;
+export const { orderRequested, orderRequestedSuccess, orderRequestedFail, addOrder, setCurrentOrder } = actions;
 
-export const readOrder = (e: React.BaseSyntheticEvent) => async (dispatch: AppDispatch) => {
-    dispatch(orderRequested());
-    try {
-        const file = e.target.files[0];
-        const fileBuffer = await file.arrayBuffer();
-        const wb = read(fileBuffer, { WTF: true });
-        const dataBase = utils.sheet_to_json<FileOrder>(wb.Sheets[wb.SheetNames[0]], { header: 'A' });
-        if (dataBase) {
-            const headersRow = dataBase.find((item) => Object.values(item).find((value) => value === 'Продукция'));
-            if (!headersRow) throw new Error('Не подходящий документ');
-            // const headersWithLetters = headersRow && transformHeaders(headersRow);
-            const goodsDB = dataBase.filter((item) => item !== headersRow);
-            // const transformGoodsDB = goodsDB && transformGoods(goodsDB, headersWithLetters);
-            // dispatch(goodsRequestedSuccess(transformGoodsDB));
-        }
-    } catch (error) {
-        dispatch(orderRequestedFail(error));
-    }
-};
-export default goodsReducer;
+export const getOrders = () => (state: PersistState) => state.orders.entities;
+export const getCurrentOrder = () => (state: PersistState) => state.orders.currentOrder;
+
+export default ordersReducer;

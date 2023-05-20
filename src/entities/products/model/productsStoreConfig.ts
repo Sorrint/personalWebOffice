@@ -1,6 +1,7 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query';
 import { SERVER_URI } from 'app/config/apiConfig';
 import { ISearchParams, ISearchResult } from '../model/service';
+import { IOrderProduct } from './interfaces/IOrderProduct';
 
 export const productsStoreConfig = {
     reducerPath: 'ProductsAPI',
@@ -18,6 +19,13 @@ export const productsStoreConfig = {
             transformResponse: (response: ISearchResult) => {
                 return response.products;
             }
+        },
+        checkOrderProducts: {
+            query: (orderProducts: IOrderProduct[]) => ({
+                url: `/checkOrderProducts`,
+                method: 'POST',
+                body: orderProducts
+            })
         }
     }
 };

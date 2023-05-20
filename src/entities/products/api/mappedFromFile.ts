@@ -1,5 +1,5 @@
-import { FileDB } from '../model/IGoods';
-import { IDbHeaders, IGoods } from '../model/IGoods';
+import { FileDB } from '../model/interfaces/IOrderProduct';
+import { IDbHeaders, IGoods } from '../model/interfaces/IOrderProduct';
 import { dbHeaders } from '../model/dataBase';
 
 export function transformHeaders(headersRow: FileDB) {

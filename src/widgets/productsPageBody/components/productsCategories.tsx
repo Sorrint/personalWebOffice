@@ -3,9 +3,9 @@ import { FC, useEffect, useState } from 'react';
 import { CategoriesList, ProductList, productsAPI } from 'entities/products';
 import SearchInput from 'features/search';
 
-const GoodsSearchList: FC = () => {
+const ProductsCategories: FC = () => {
     const [search, setSearch] = useState<string>('');
-    const { data: goods, isLoading: goodsLoading } = productsAPI.useLoadProductBySearchQuery({
+    const { data: products, isLoading: productsLoading } = productsAPI.useLoadProductBySearchQuery({
         limit: 1000,
         q: search
     });
@@ -14,21 +14,21 @@ const GoodsSearchList: FC = () => {
         ? productsAPI.useLoadCategoriesBySearchQuery({ limit: 1000, q: search })
         : productsAPI.useLoadProductsCategoriesQuery({ limit: 1000, q: '' });
 
-    const getGoods = async (value: string) => {
+    const getProducts = async (value: string) => {
         setSearch(value);
     };
     useEffect(() => {
         console.log(categories);
     }, [categories]);
 
-    if (goodsLoading || categoriesLoading) return <h1>Идет загрузка</h1>;
+    if (productsLoading || categoriesLoading) return <h1>Идет загрузка</h1>;
     return (
         <>
-            <SearchInput searchFunction={getGoods} />
+            <SearchInput searchFunction={getProducts} />
             {categories && <CategoriesList categories={categories} />}
-            {goods && <ProductList products={goods} selectField={false} avatar={false} displayHeaders={false} />}
+            {products && <ProductList products={products} selectField={false} avatar={false} displayHeaders={false} />}
         </>
     );
 };
 
-export default GoodsSearchList;
+export default ProductsCategories;

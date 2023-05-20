@@ -1,20 +1,21 @@
-import { IProduct, IProductCategory } from '../model/IProduct';
+import { IDreamkasProduct, IProductCategory } from './interfaces/IDreamkasProduct';
 import { createApi } from '@reduxjs/toolkit/dist/query/react';
 import { IProductListParams, ISearchParams, ISearchResult } from '../model/service';
 import { productsDreamkasConfig } from './productsDreamkasConfig';
+import { IOrderProduct } from './interfaces/IOrderProduct';
 import { productsStoreConfig } from './productsStoreConfig';
 
 const dataBase = localStorage.getItem('dataBase');
 const productConfig = dataBase === 'dreamkasStorage' ? productsDreamkasConfig : productsStoreConfig;
 const { reducerPath, baseQuery, endpoints } = productConfig;
-const { loadProducts, loadProductBySearch } = endpoints;
-
+const { loadProducts } = endpoints;
+console.log(baseQuery);
 export const productsAPI = createApi({
     reducerPath,
     baseQuery,
     endpoints: (build) => ({
-        loadProducts: build.query<IProduct[], IProductListParams | void>(loadProducts),
-        loadProductBySearch: build.query<IProduct[], ISearchParams>(
+        loadProducts: build.query<IDreamkasProduct[], IProductListParams | void>(loadProducts),
+        loadProductBySearch: build.query<IDreamkasProduct[], ISearchParams>(
             productsDreamkasConfig.endpoints.loadProductBySearch
         ),
         loadCategoriesBySearch: build.query<IProductCategory[], ISearchParams>({
@@ -32,6 +33,9 @@ export const productsAPI = createApi({
             transformResponse: (response: ISearchResult) => {
                 return response.categories;
             }
-        })
+        }),
+        checkOrderProducts: build.mutation<IOrderProduct[], IOrderProduct[]>(
+            productsStoreConfig.endpoints.checkOrderProducts
+        )
     })
 });

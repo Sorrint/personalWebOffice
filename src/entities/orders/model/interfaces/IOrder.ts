@@ -1,8 +1,13 @@
+export interface IOrderProduct {
+    number: number;
+    productName: string;
+    count: number;
+    unit: string;
+}
+
 export interface IOrder {
-    name?: string;
-    value?: number;
-    units?: string;
-    category?: string;
+    orderName: string;
+    products: IOrderProduct[];
 }
 
 export interface IOrderHeader {

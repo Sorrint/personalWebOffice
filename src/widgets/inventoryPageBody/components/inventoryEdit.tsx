@@ -10,7 +10,7 @@ import OverlayingPopupWithFocusTrap from 'features/popup/overlayingPopup/overlay
 import { InventoryContent, inventoryDocsAPI } from 'entities/inventoryDocs';
 import { ProductList, productsAPI } from 'entities/products';
 import { IInventoryProduct } from 'entities/inventoryDocs/model/types';
-import { IProduct } from 'entities/products/model/IProduct';
+import { IDreamkasProduct } from 'entities/products/model/interfaces/IDreamkasProduct';
 import { useKeyPress } from 'shared/lib/hooks/useKeyPress/useKeyPress';
 import DropdownList from 'shared/ui/dropdownList';
 
@@ -71,7 +71,7 @@ const InventoryEdit: FC = () => {
         setActivePopover(false);
     };
 
-    const handleCreate = (product: IProduct) => {
+    const handleCreate = (product: IDreamkasProduct) => {
         const { name, price } = product;
         const newProduct = { name, price: price && price / 100, quantity: 1, id: undefined };
         setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
