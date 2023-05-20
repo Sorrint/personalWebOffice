@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { FC } from 'react';
 
-import { useAppDispatch } from 'shared/lib/hooks';
 import { INavLinkObject } from 'shared/ui/navLink/navLinkTypes';
 import { Header } from 'widgets/header';
 import { NavBar } from 'widgets/navBar';
@@ -9,8 +8,6 @@ import { AppBody, AppHeader, AppLayout } from 'shared/layouts';
 import AppRibbon from 'widgets/appRibbon';
 
 const DocumentsPage: FC = () => {
-    const dispatch = useAppDispatch();
-
     const navLinks: INavLinkObject = {
         order: {
             path: '/documents/order',

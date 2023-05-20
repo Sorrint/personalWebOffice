@@ -1,4 +1,6 @@
-export interface IProduct {
+export interface IDreamkasProduct {
+    id: string;
+    name: string;
     department: {
         id: number;
         name: string;
@@ -6,13 +8,11 @@ export interface IProduct {
     };
     departmentId: number;
     family: null | string;
-    id: string;
     image: null | string;
     imageId: null | number;
     isMarked: null | boolean;
     maxPrice: null | number;
     minPrice: null | number;
-    name: string;
     postfix: null;
     price: null | number;
     prices: null | Array<number>;

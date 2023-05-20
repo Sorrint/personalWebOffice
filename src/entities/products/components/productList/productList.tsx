@@ -1,5 +1,5 @@
 import { FC, MutableRefObject } from 'react';
-import { IProduct } from '../../model/IProduct';
+import { IProduct } from '../../model/interfaces/IDreamkasProduct';
 import ProductListBody from './productListBody';
 import ProductListHeader from './productListHeader';
 

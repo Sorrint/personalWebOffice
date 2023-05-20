@@ -6,8 +6,8 @@ import InventoryPage from 'pages/inventory';
 
 import { InventoriesList, InventoryCreate, InventoryEdit } from 'widgets/inventoryPageBody';
 import { Distribution, Order, Ordering } from 'widgets/documentPageBody';
-import GoodsSearchList from 'widgets/goods-search-list';
 import ProfilePage from 'pages/profile/profilePage';
+import ProductsCategories from 'widgets/productsPageBody';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to="./documents" /> },
@@ -42,10 +42,10 @@ const routes: RouteObject[] = [
         ]
     },
     {
-        path: 'goods',
+        path: 'products',
         element: <ProductsPage />,
         children: [
-            { path: 'categories', element: <GoodsSearchList /> },
+            { path: 'categories', element: <ProductsCategories /> },
             { index: true, element: <Navigate to="./categories" /> },
             { path: '*', element: <Navigate to="./categories" /> }
         ]

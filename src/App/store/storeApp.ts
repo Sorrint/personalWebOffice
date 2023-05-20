@@ -4,7 +4,8 @@ import { inventoryDocsAPI } from 'entities/inventoryDocs';
 import { productsAPI } from 'entities/products';
 import { countersAPI } from 'shared/api/countersAPI';
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import goodsReducer from 'entities/orders/model/OrderSlice';
+import ordersReducer from 'entities/orders/model/OrderSlice';
+import productsReducer from 'entities/products/model/productSlice';
 
 const persistConfig = {
     key: 'root',
@@ -13,13 +14,14 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    goods: goodsReducer,
+    orders: ordersReducer,
+    products: productsReducer,
     [productsAPI.reducerPath]: productsAPI.reducer,
     [inventoryDocsAPI.reducerPath]: inventoryDocsAPI.reducer,
     [countersAPI.reducerPath]: countersAPI.reducer
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+export const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const setupStore = () => {
     return configureStore({

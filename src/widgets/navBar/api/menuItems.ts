@@ -33,11 +33,11 @@ const marking = {
     path: '/goods-marking'
 };
 
-const goods = {
-    id: 'goods',
+const products = {
+    id: 'products',
     text: 'Товары',
     image: `<svg id="local_mall" viewBox="0 0 24 24" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm0 10c-2.76 0-5-2.24-5-5h2c0 1.66 1.34 3 3 3s3-1.34 3-3h2c0 2.76-2.24 5-5 5z"></path></svg>`,
-    path: '/goods'
+    path: '/products'
 };
 
 const clients = {
@@ -100,7 +100,7 @@ const question = {
 const menuItemsTop = {
     id: 'navigation-menu__top',
     wrapperClassName: 'navigation-menu__top',
-    items: [reports, stores, documents, acceptance, marking, goods, clients, stocks, loyality, integrations]
+    items: [reports, stores, documents, acceptance, marking, products, clients, stocks, loyality, integrations]
 };
 
 const menuItemsSpecial = {

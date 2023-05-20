@@ -1,8 +1,8 @@
-export interface IGoods {
-    name?: string;
-    value?: number;
-    units?: string;
-    category?: string;
+export interface IOrderProduct {
+    productName: string;
+    number: number;
+    unit: string;
+    count: number;
 }
 
 export interface IDbHeaders {

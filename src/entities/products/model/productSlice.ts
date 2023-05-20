@@ -1,44 +1,64 @@
-// import { createSlice } from '@reduxjs/toolkit';
-// import { read, utils } from 'xlsx';
-// import { AppDispatch } from '../../../shared/lib/store/types';
-// import { IProduct } from '../model/IProducts';
+import { createAction, createSlice } from '@reduxjs/toolkit';
+import { read, utils } from 'xlsx';
+import { IStoreProduct } from './interfaces/IStoreProduct';
+import { AppDispatch, PersistState, RootState } from 'shared/lib/store/types';
+import { createProductDto } from './DTO/createProductDTO';
+import { transformProductName } from '../lib/helpers/transformProductName';
 
-// interface GoodsState {
-//     entities: IProduct[];
-//     isLoading: boolean;
-//     error: string;
-// }
+interface ProductsState {
+    entities: IStoreProduct[];
+    isLoading: boolean;
+    error: string;
+}
 
-// const initialState: GoodsState = {
-//     entities: [],
-//     isLoading: true,
-//     error: ''
-// };
+const initialState: ProductsState = {
+    entities: [],
+    isLoading: true,
+    error: ''
+};
 
-// export const GoodsSlice = createSlice({
-//     name: 'goods',
-//     initialState,
-//     reducers: {
-//         goodsRequested: (state) => {
-//             state.isLoading = true;
-//         },
-//         goodsRequestedSuccess: (state, action) => {
-//             state.isLoading = false;
-//             state.error = '';
-//             state.entities = action.payload;
-//         },
-//         goodsRequestedFail: (state, action) => {
-//             state.isLoading = false;
-//             state.error = action.payload;
-//         }
-//     }
-// });
+export const productsSlice = createSlice({
+    name: 'products',
+    initialState,
+    reducers: {
+        createProduct: (state, action) => {
+            state.entities.push(action.payload);
+        },
+        updateProduct: (state, action) => {}
+    }
+});
 
-// const { reducer: goodsReducer, actions } = GoodsSlice;
-// const { goodsRequested, goodsRequestedSuccess, goodsRequestedFail } = actions;
+const { reducer: productsReducer, actions } = productsSlice;
+const { createProduct, updateProduct } = actions;
+// export const createProduct = (product: ) =>
+const createProductRequested = createAction('products/createProductRequested');
+const createProductFailed = createAction('products/createProductFailed');
 
-// export const readGoods = (e: React.BaseSyntheticEvent) => async (dispatch: AppDispatch) => {
-//     dispatch(goodsRequested());
+export const getProducts = () => (state: PersistState) => state.products.entities;
+
+export const getProductByName = (name: string) => (state: PersistState) =>
+    state.products.entities.find((item) => item.name === name);
+
+export const addProduct =
+    (payload: createProductDto) => async (dispatch: AppDispatch, getState: () => PersistState) => {
+        dispatch(createProductRequested());
+        try {
+            const name = transformProductName(payload.name);
+            const state = getState();
+            const isNameUnique = !state.products.entities.some(
+                (product) => product.name.toLowerCase() === name.toLowerCase()
+            );
+            if (isNameUnique) {
+                dispatch(createProduct({ ...payload, name }));
+            } else {
+                throw new Error('Такой товар уже есть в базе');
+            }
+        } catch (error) {
+            dispatch(createProductFailed());
+        }
+    };
+// export const readproducts = (e: React.BaseSyntheticEvent) => async (dispatch: AppDispatch) => {
+//     dispatch(productsRequested());
 //     try {
 //         const file = e.target.files[0];
 //         const fileBuffer = await file.arrayBuffer();
@@ -48,14 +68,16 @@
 //             const headersRow = dataBase.find((item) => Object.values(item).find((value) => value === 'Продукция'));
 //             if (!headersRow) throw new Error('Не подходящий документ');
 //             const headersWithLetters = headersRow && transformHeaders(headersRow);
-//             const goodsDB = dataBase.filter((item) => item !== headersRow);
-//             const transformGoodsDB = goodsDB && transformGoods(goodsDB, headersWithLetters);
-//             dispatch(goodsRequestedSuccess(transformGoodsDB));
+//             const productsDB = dataBase.filter((item) => item !== headersRow);
+//             const transformproductsDB = productsDB && transformproducts(productsDB, headersWithLetters);
+//             dispatch(productsRequestedSuccess(transformproductsDB));
 //         }
 //     } catch (error) {
-//         dispatch(goodsRequestedFail(error));
+//         dispatch(productsRequestedFail(error));
 //     }
 // };
 
-// export const getGoodsListStatus = () => (state) => state.goods.entities.length > 0;
-// export default goodsReducer;
+export const findProductByName = (name: string) => (state: PersistState) =>
+    state.products.entities.find((product) => product.name.toLowerCase() === transformProductName(name).toLowerCase());
+// export const getproductsListStatus = () => (state) => state.products.entities.length > 0;
+export default productsReducer;

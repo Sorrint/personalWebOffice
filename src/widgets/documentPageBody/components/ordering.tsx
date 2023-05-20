@@ -6,8 +6,49 @@ import { getGoodsObject, getHeadersObject } from '../libs/modifiedExcelObjects';
 
 import TableHeader from 'shared/ui/table/components/tableHeader';
 import TableBody from 'shared/ui/table/components/tableBody';
+import { useAppDispatch } from 'shared/lib/hooks';
+import { addProduct, getProducts } from 'entities/products/model/productSlice';
+import { productTax, productType } from 'entities/products/model/DTO/createProductDTO';
+import { useSelector } from 'react-redux';
+import { getCurrentOrder } from 'entities/orders/model/OrderSlice';
+import { productsAPI } from 'entities/products';
 
 const Ordering = () => {
+    // const order = useSelector(getCurrentOrder());
+    const order = {
+        products: [
+            {
+                number: 1,
+                productName: 'Краска фасадная 7 кг акриловая Капитель',
+                count: 234,
+                unit: 'шт.'
+            },
+            {
+                number: 2,
+                productName: '  Краска    фасадная14кг   акриловая Капитель  ',
+                count: 44,
+                unit: 'шт.'
+            }
+        ]
+    };
+    const [checkOrder] = productsAPI.useCheckOrderProductsMutation();
+    async function fetchOrder() {
+        const result = await checkOrder(order.products);
+        return result;
+    }
+    useEffect(() => {
+        const fetched = fetchOrder();
+        console.log(fetched);
+    }, []);
+    // const products = useSelector(getProducts());
+    // const dispatch = useAppDispatch();
+    // const product = {
+    //     name: 'Новый       товар',
+    //     type: productType.COUNTABLE,
+    //     tax: productTax.NDS_NO_TAX
+    // };
+    // dispatch(addProduct(product));
+
     // const [unsearchedItems, setUnsearchedItems] = useState({});
     // const [extendedGoods, setExtendedGoods] = useState();
     // const [ordering, setOrdering] = useState();

@@ -1,4 +1,4 @@
-import { IProduct, IProductCategory, IProductQueryTrace } from './IProduct';
+import { IDreamkasProduct, IProductCategory, IProductQueryTrace } from './interfaces/IDreamkasProduct';
 
 export interface ISearchParams {
     limit: number;
@@ -7,7 +7,7 @@ export interface ISearchParams {
 
 export interface ISearchResult {
     categories: IProductCategory[];
-    products: IProduct[];
+    products: IDreamkasProduct[];
     _queryTrace: IProductQueryTrace[];
 }
 
