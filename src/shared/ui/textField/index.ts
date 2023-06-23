@@ -1,2 +1,2 @@
-import TextField from './textField';
+import {TextField} from './textField';
 export default TextField;

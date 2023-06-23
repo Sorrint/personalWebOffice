@@ -1,64 +1,62 @@
-import { useState, forwardRef, ForwardedRef, KeyboardEvent } from 'react';
+import { useState, forwardRef, ForwardedRef, KeyboardEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
+import parse from 'html-react-parser';
 
 import './textField.scss';
+import { eyeSvg } from 'shared/lib/svg/eye';
 
-interface ITextFieldsProps<T extends FieldValues> {
-    label: string;
+export interface ITextFieldsProps<T extends FieldValues> {
+    label?: string;
     name: Path<T>;
-    type?: string;
+
+    type?: 'text' | 'number' | 'password' | 'email' | 'tel';
     error?: string;
-    placeholder?: string;
-    register?: UseFormRegister<T>;
     formName?: string;
     autoComplete?: string;
-    field?: T;
-    value?: string;
-    onClick?: (e: React.MouseEvent) => void;
+    variant?: 'standard' | 'outline';
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     inputClass?: string;
     onKeyDown?: (e: KeyboardEvent) => void;
 }
 
-const TextField = forwardRef(function TextField<T extends FieldValues>(
+export const TextField = forwardRef(function TextField<T extends FieldValues>(
     props: ITextFieldsProps<T>,
     ref: ForwardedRef<HTMLInputElement>
 ) {
-    const { label, name, type, error, autoComplete, field, value, onChange, onClick, inputClass, onKeyDown } = props;
+    const { label, name, type, error, autoComplete, onChange, onKeyDown, variant = 'outline' } = props;
     const [showPassword, setShowPassword] = useState(false);
     const getInputClasses = () => {
-        return 'input-container__input' + (error ? ' is-invalid' : '') + (inputClass ? ` ${inputClass}` : '');
+        return `input-container__input input_${variant}` + (error ? ' is-invalid' : '');
     };
     const toggleShowPassword = () => {
         setShowPassword((prevState) => !prevState);
     };
 
     return (
-        <div className="input-container">
+        <div className={'input-container' + (error ? ' is-invalid' : '')}>
             <div className="input-group has-validation">
                 <input
-                    type={showPassword ? 'text' : type}
                     id={name}
-                    name={name}
                     className={getInputClasses()}
                     placeholder={' '}
+                    type={showPassword ? 'text' : type}
+                    name={name}
                     autoComplete={autoComplete}
-                    {...field}
                     onChange={onChange}
-                    value={value}
-                    onClick={onClick}
                     ref={ref}
                     onKeyDown={onKeyDown && ((e) => onKeyDown(e))}
                 />
                 <div className="cut"></div>
 
-                <label className="placeholder" htmlFor={name}>
-                    {label}
-                </label>
+                {label && (
+                    <label className="placeholder" htmlFor={name}>
+                        {label}
+                    </label>
+                )}
 
                 {type === 'password' && (
                     <button className="input-container__password-button" type="button" onClick={toggleShowPassword}>
-                        {/* <i className="input-container__icon">{icon}</i> */}
+                        <i className={`input-container__icon input_${variant}`}>{parse(eyeSvg)}</i>
                     </button>
                 )}
             </div>
@@ -66,5 +64,3 @@ const TextField = forwardRef(function TextField<T extends FieldValues>(
         </div>
     );
 });
-
-export default TextField;

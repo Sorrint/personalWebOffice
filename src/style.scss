@@ -52,8 +52,14 @@ body {
 }
 
 a:focus,
-// li:focus,
 div:focus {
-    // display: inline-block;
     outline: red solid 1px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.is-invalid {
+    color: red;
 }

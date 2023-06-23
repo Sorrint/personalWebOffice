@@ -6,7 +6,7 @@ interface Button {
     children?: ReactNode;
 }
 
-const Button: FC<Button> = ({ onClick, buttonType = 'submit', children }) => {
+export const Button: FC<Button> = ({ onClick, buttonType = 'submit', children }) => {
     const getClassname = (type: string) => (type === 'cancel' ? 'cancel-button' : 'submit-button');
 
     return (
@@ -15,5 +15,3 @@ const Button: FC<Button> = ({ onClick, buttonType = 'submit', children }) => {
         </button>
     );
 };
-
-export default Button;
