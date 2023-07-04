@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import parse from 'html-react-parser';
 
 import { IMenuItem } from '../../model/menuItemsTypes';
 import './menuLink.scss'
@@ -18,7 +17,7 @@ const MenuLink: FC<MenuLinkProps> = ({ item }) => {
         <NavLink className={({isActive})=> getClassName(isActive)} to={item.path} key={item.id}>
             <li className='navigation-menu__item' id={item.id}>
                 <span className="navigation-menu__text">{item.text}</span>
-                <div className="bar-chart"> {parse(item.image)}</div>
+                <div className="bar-chart"> {item.image}</div>
             </li>
         </NavLink>
     );

@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
 import { IMenuItem } from '../../model/menuItemsTypes';
-import MenuLink from '../menuLink/menuLink';
 
 import './menuItem.scss'
+import MenuLink from '../MenuLink/menuLink';
 
 interface MenuItemProps {
     item: IMenuItem;
