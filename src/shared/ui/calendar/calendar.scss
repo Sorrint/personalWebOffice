@@ -1,12 +1,4 @@
 .datepicker {
-    // background-color: #ffffff;
-    // border-radius: 12px;
-    // border-bottom: 1px solid grey;
-    // color: #000000;
-    // font-size: 18px;
-    // height: 50px;
-    // outline: 0;
-    // padding: 4px 20px 0;
     margin-top: 15px;
     display: flex;
     background-color: #ffffff;
@@ -39,14 +31,9 @@
     left: 20px;
     position: absolute;
     top: -5px;
-    // transform: translateY(0);
-    // transition: transform 200ms;
     width: 100px;
-    // color: #65657b;
     font-size: 13.5px;
     color: #808097;
-
-    // color: #ffffff;
 }
 
 .datepicker:focus ~ .placeholder,
@@ -61,11 +48,7 @@
 .datepicker:focus ~ .placeholder {
     color: #808097;
 }
-// .datepicker-container {
-//     height: 50px;
-//     position: relative;
-//     width: 100%;
-// }
+
 
 .cut-short {
     width: 50px;

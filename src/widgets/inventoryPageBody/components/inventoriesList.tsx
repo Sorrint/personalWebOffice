@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { inventoryDocsAPI, InventoryList } from 'entities/inventoryDocs';
 import { IInventoryDocs } from 'entities/inventoryDocs/model/types';
+import { Button } from 'shared/ui/button/button';
 
 const InventoriesList: FC = () => {
     const { data: documents, isLoading } = inventoryDocsAPI.useLoadAllDocumentsQuery();
@@ -12,9 +13,12 @@ const InventoriesList: FC = () => {
 
     return (
         <>
-            <Link className="create-link" to={'./create'}>
-                Новый документ
-            </Link>
+            <Button>
+                <Link className="create-link" to={'./create'}>
+                    Новый документ
+                </Link>
+            </Button>
+    
             {isLoading ? <h2>Идет загрузка</h2> : renderDocuments(documents)}
         </>
     );

@@ -7,22 +7,9 @@
     background-color: #ffffff;
 }
 
-// .input_outline {
-//     margin-top: 15px;
-//     display: flex;
-//     background-color: #ffffff;
-//     border-bottom: 1px solid grey;
-//     color: #000000;
-//     font-size: 18px;
-//     outline: 0;
-//     padding: 4px 20px 0;
-//     justify-content: flex-end;
-//     align-items: flex-end;
-// }
 
 .input-container__input,
 .input-container__icon {
-    // margin-top: 15px;
     display: flex;
     background-color: #ffffff;
     color: #000000;
@@ -49,7 +36,6 @@
 }
 
 .input-group {
-    // display: flex;
     display: grid;
     grid-template-columns: 1fr auto;
     grid-area: input;
@@ -83,7 +69,6 @@
 .input-container__input:focus ~ .placeholder,
 .input-container__input:not(:placeholder-shown) ~ .placeholder {
     transform: translateY(-25px) translateX(10px) scale(0.75);
-    // color: #808097;
 }
 
 .cut-short {

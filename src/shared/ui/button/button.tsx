@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import './buttons.scss';
 interface Button {
-    onClick: (...args: any) => void;
+    onClick?: (...args: any) => void;
     buttonType?: 'submit' | 'cancel';
     children?: ReactNode;
 }

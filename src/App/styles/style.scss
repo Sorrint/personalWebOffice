@@ -1,7 +1,8 @@
 @import "nullstyle";
 @import "variables";
+@import "themes/mainTheme";
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
 
 body {
@@ -11,7 +12,7 @@ body {
     position: relative;
     box-sizing: border-box;
     flex-direction: column;
-    font-family: sans-serif;
+    font-family: var(--font-family-main);
 }
 
 #root {
@@ -20,7 +21,6 @@ body {
     position: relative;
     flex-direction: column;
     flex-shrink: 1;
-    font-family: sans-serif;
 }
 
 :focus {
