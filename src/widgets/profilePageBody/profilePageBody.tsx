@@ -4,7 +4,7 @@ import RadioButton from 'shared/ui/radioButton';
 import { FieldValues, useForm } from 'react-hook-form';
 import { OverlayingPopup } from 'features/popup';
 import TextField from 'shared/ui/textField';
-import Button from 'shared/ui/button/button';
+import {Button} from 'shared/ui/button/button';
 
 interface ProfileSettings {
     dataBase: string;

@@ -28,7 +28,7 @@ export interface stock {
 }
 
 export interface extraData {
-    package: string;
+    collection: string;
     volume: number;
     weight: number;
 }

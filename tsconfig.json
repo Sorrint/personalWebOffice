@@ -24,7 +24,8 @@
             "shared/*": ["shared/*"],
             "widgets/*": ["widgets/*"]
         },
-        "types": ["node", "vite/client"]
+        "types": ["node", "vite/client"],
+        "plugins": [{ "name": "typescript-plugin-css-modules" }]
     },
     "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]

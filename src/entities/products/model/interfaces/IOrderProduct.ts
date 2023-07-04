@@ -1,3 +1,5 @@
+import { IStoreProduct } from './IStoreProduct';
+
 export interface IOrderProduct {
     productName: string;
     number: number;
@@ -13,4 +15,15 @@ export interface IDbHeaders {
 
 export interface FileDB {
     [letter: string]: string;
+}
+
+export interface ICheckProduct {
+    productsExists: IOrderingProduct[];
+    productsNotExists: IOrderProduct[];
+}
+
+export interface IOrderingProduct extends IStoreProduct {
+    unit: string;
+    count: number;
+    orderNumber: number;
 }

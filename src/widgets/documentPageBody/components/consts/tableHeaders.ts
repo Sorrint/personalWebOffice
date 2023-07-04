@@ -30,9 +30,9 @@ const orderingHeaders = {
         id: 'paintWeigth',
         text: 'вес нетто'
     },
-    package: {
-        id: 'package',
-        text: 'Тара'
+    collection: {
+        id: 'collection',
+        text: 'Вид тары'
     },
     unit: {
         id: 'unit',

@@ -10,15 +10,15 @@ import AppRibbon from 'widgets/appRibbon';
 const DocumentsPage: FC = () => {
     const navLinks: INavLinkObject = {
         order: {
-            path: '/documents/order',
+            path: '/office/documents/order',
             title: 'Заказ'
         },
         ordering: {
-            path: '/documents/ordering',
+            path: '/office/documents/ordering',
             title: 'Порядовка'
         },
         distribution: {
-            path: '/documents/distribution',
+            path: '/office/documents/distribution',
             title: 'Распаллетовка'
         }
     };

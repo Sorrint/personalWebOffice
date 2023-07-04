@@ -9,21 +9,23 @@ import { Distribution, Order, Ordering } from 'widgets/documentPageBody';
 import ProfilePage from 'pages/profile/profilePage';
 import ProductsCategories from 'widgets/productsPageBody';
 
+const BaseURL = "office"
+
 const routes: RouteObject[] = [
-    { index: true, element: <Navigate to="./documents" /> },
+    { index: true, element: <Navigate to={`./${BaseURL}/documents`} /> },
     {
-        path: 'documents',
+        path: `${BaseURL}/documents`,
         element: <DocumentsPage />,
         children: [
             { path: 'order', element: <Order /> },
             { path: 'ordering', element: <Ordering /> },
             { path: 'distribution', element: <Distribution /> },
-            { index: true, element: <Navigate to="./order" /> },
-            { path: '*', element: <Navigate to="./order" /> }
+            { index: true, element: <Navigate to={`./order`} /> },
+            { path: '*', element: <Navigate to={`./order`} /> }
         ]
     },
     {
-        path: 'inventory-lists',
+        path: `${BaseURL}/inventory-lists`,
         element: <InventoryPage />,
         children: [
             {
@@ -37,23 +39,23 @@ const routes: RouteObject[] = [
                     { index: true, element: <InventoriesList /> }
                 ]
             },
-            { index: true, element: <Navigate to="./documents" /> },
-            { path: '*', element: <Navigate to="./documents" /> }
+            { index: true, element: <Navigate to={`./documents`} /> },
+            { path: '*', element: <Navigate to={`./documents`} /> }
         ]
     },
     {
-        path: 'products',
+        path: `${BaseURL}/products`,
         element: <ProductsPage />,
         children: [
             { path: 'categories', element: <ProductsCategories /> },
-            { index: true, element: <Navigate to="./categories" /> },
-            { path: '*', element: <Navigate to="./categories" /> }
+            { index: true, element: <Navigate to={`./categories`} /> },
+            { path: '*', element: <Navigate to={`./categories`} /> }
         ]
     },
     {
-        path: 'profile',
+        path: `${BaseURL}/profile`,
         element: <ProfilePage />
     },
-    { path: '*', element: <Navigate to="./documents" /> }
+    { path: '*', element: <Navigate to={`./${BaseURL}/documents`} /> }
 ];
 export default routes;

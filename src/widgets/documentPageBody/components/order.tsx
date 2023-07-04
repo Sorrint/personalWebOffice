@@ -10,14 +10,18 @@ import OrderCard from 'entities/orders/components/orderCard/orderCard';
 import LoadOrderFromFile from 'features/loadOrderFromFile';
 import OrderActions from 'entities/orders/components/orderCard/orderActions';
 import { getCurrentOrder } from 'entities/orders/model/OrderSlice';
+import { AgGridReact } from 'ag-grid-react';
+import { DataGrid } from '@mui/x-data-grid';
+import 'ag-grid-community/styles//ag-grid.css';
+import 'ag-grid-community/styles//ag-theme-alpine.css';
 import SaveOrderToDatabase from 'features/saveOrderToDatabase/saveOrderToDatabase';
-
 const Order: FC = () => {
     const order = useAppSelector(getCurrentOrder());
 
     return (
         <>
             {!order && <LoadOrderFromFile />}
+
             <OrderCard order={order}>
                 <OrderActions>
                     <LoadOrderFromFile />

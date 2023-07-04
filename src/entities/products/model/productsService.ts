@@ -2,14 +2,13 @@ import { IDreamkasProduct, IProductCategory } from './interfaces/IDreamkasProduc
 import { createApi } from '@reduxjs/toolkit/dist/query/react';
 import { IProductListParams, ISearchParams, ISearchResult } from '../model/service';
 import { productsDreamkasConfig } from './productsDreamkasConfig';
-import { IOrderProduct } from './interfaces/IOrderProduct';
+import { ICheckProduct, IOrderProduct } from './interfaces/IOrderProduct';
 import { productsStoreConfig } from './productsStoreConfig';
 
 const dataBase = localStorage.getItem('dataBase');
 const productConfig = dataBase === 'dreamkasStorage' ? productsDreamkasConfig : productsStoreConfig;
 const { reducerPath, baseQuery, endpoints } = productConfig;
 const { loadProducts } = endpoints;
-console.log(baseQuery);
 export const productsAPI = createApi({
     reducerPath,
     baseQuery,
@@ -34,7 +33,7 @@ export const productsAPI = createApi({
                 return response.categories;
             }
         }),
-        checkOrderProducts: build.mutation<IOrderProduct[], IOrderProduct[]>(
+        checkOrderProducts: build.mutation<ICheckProduct, IOrderProduct[]>(
             productsStoreConfig.endpoints.checkOrderProducts
         )
     })

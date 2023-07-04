@@ -22,7 +22,6 @@ const InventoryCreate: FC = () => {
             choosenDate: Date.now()
         }
     });
-
     useEffect(() => {
         if (data) {
             setValue('documentNumber', data);
