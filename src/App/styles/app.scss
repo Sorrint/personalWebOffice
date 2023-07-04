@@ -64,7 +64,6 @@
     }
 
     &__button {
-        font-family: Roboto, sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -74,14 +73,13 @@
         color: black;
 
         &.active {
-            font-family: Roboto, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
-            color: rgb(0, 151, 167);
+            color: var(--primary-color);
             padding: 10px;
-            border-bottom: 2px solid rgb(0, 151, 167);
+            border-bottom: 2px solid var(--primary-color);
         }
     }
 }

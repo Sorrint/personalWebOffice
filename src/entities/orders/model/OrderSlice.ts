@@ -1,9 +1,7 @@
 import { FileOrder } from './interfaces/IOrder';
 import { createAction, createSlice } from '@reduxjs/toolkit';
 import { read, utils } from 'xlsx';
-// import { AppDispatch, RootState } from '../../../shared/lib/store/types';
 import { IOrder } from './interfaces/IOrder';
-// import { RootState } from '@reduxjs/toolkit/dist/query/core/apiState';
 import { PersistState, RootState } from 'shared/lib/store/types';
 
 interface OrderState {

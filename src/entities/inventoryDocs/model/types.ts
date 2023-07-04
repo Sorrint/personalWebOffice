@@ -1,4 +1,3 @@
-// import { IInventoryProduct } from './IInventoryProduct';
 export interface IInventoryProduct {
     name: string;
     price: number | null;

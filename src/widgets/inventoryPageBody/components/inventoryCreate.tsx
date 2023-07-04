@@ -8,6 +8,7 @@ import TextField from 'shared/ui/textField';
 import Calendar from 'shared/ui/calendar';
 
 import './inventoryCreate.scss';
+import { Button } from '../../../shared/ui/button/button';
 
 const InventoryCreate: FC = () => {
     const navigate = useNavigate();
@@ -68,9 +69,9 @@ const InventoryCreate: FC = () => {
                     </div>
                 </div>
             </form>
-            <button className="create-button" onClick={handleSubmit(onSubmit)}>
+            <Button onClick={handleSubmit(onSubmit)}>
                 Создать
-            </button>
+            </Button>
         </>
     );
 };
