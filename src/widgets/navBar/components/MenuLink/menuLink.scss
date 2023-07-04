@@ -1,0 +1,35 @@
+.navigation-menu{
+    &__link{
+        width: 100%;
+        display: block;
+        fill: rgb(150, 150, 150);
+    }
+    
+    &__link.active {
+        background-color: rgb(227, 242, 244);
+        color: rgb(0, 151, 167);
+        fill: rgb(0, 151, 167);
+    }
+
+    &__link:focus {
+    display: inline-block;
+    outline: red solid 1px;
+    }
+
+    &__text {
+        position: relative;
+        top: 40%;
+        height: 30px;
+        padding: 5px 0 5px 23px;
+        color: inherit;
+    }
+}
+
+.bar-chart {
+    width: 24px;
+    height: 24px;
+    margin: -3px 0 0 15px;
+    align-items: center;
+    border-radius: 4px;
+    display: flex;
+}
