@@ -13,105 +13,105 @@ import NewsIcon from 'shared/assets/icons/news.svg';
 import SupportIcon from 'shared/assets/icons/support.svg';
 import QuestionIcon from 'shared/assets/icons/question.svg';
 
+const BaseURL = "/office";
 
-const reports = {
-    id: 'dashboard',
-    text: 'Отчёты',
-    image: ReportsIcon,
-    path: '/office/dashboard'
+export const routesLinks = {
+    reports: {
+        id: 'dashboard',
+        text: 'Отчёты',
+        image: ReportsIcon,
+        path: `${BaseURL}/dashboard`
+    },
+    stores: {
+            id: 'shops',
+            text: 'Магазины',
+            image: ShopsIcon,
+            path: `${BaseURL}/shops`
+    },
+    documents: {
+        id: 'documents',
+        text: 'Заказы',
+        image: DocumentsIcon,
+        path: `${BaseURL}/documents`
+    },
+    acceptance: {
+        id: 'inventory-lists',
+        text: 'Инвентаризация',
+        image: AcceptanceIcon,
+        path: `${BaseURL}/inventory-lists`
+    },
+    marking: {
+        id: 'goods-marking',
+        text: 'Маркировка',
+        image: MarkingIcon,
+        path: `${BaseURL}/goods-marking`
+    },
+    products: {
+        id: 'products',
+        text: 'Товары',
+        image: ProductsIcon,
+        path: `${BaseURL}/products`
+    },
+    clients: {
+        id: 'clients',
+        text: 'Клиенты',
+        image: ClientsIcon,
+        path: `${BaseURL}/clients`
+    },
+    stocks: {
+        id: 'promo',
+        text: 'Акции',
+        image: StocksIcon,
+        path: `${BaseURL}/promo`
+    },
+    loyality: {
+        id: 'loyality',
+        text: 'Лояльность',
+        image: LoyalityIcon,
+        path: `${BaseURL}/loyality`
+    },
+    integrations: {
+        id: 'applications',
+        text: 'Интеграции',
+        image: IntegrationsIcon,
+        path: `${BaseURL}/applications`
+    },
+    scopes: {
+        id: 'paid-options',
+        text: 'Подписки',
+        image: ScopesIcon,
+        wrapperClassName: 'subscribe',
+        path: `${BaseURL}/paid-options`
+    },
+    news: {
+        id: 'news',
+        text: 'Новости',
+        image: NewsIcon,
+        wrapperClassName: 'subscribe grow',
+        path: `${BaseURL}/news`
+    },
+    support: {
+        id: 'support',
+        text: 'Техподдержка',
+        image: SupportIcon,
+        path: `${BaseURL}/support`
+    },
+    question: {
+        id: 'question',
+        text: 'Задать вопрос',
+        image: QuestionIcon,
+        path: `${BaseURL}/question`
+    },
+    profile: {
+        id: 'profile',
+        text: 'Профиль',
+        path: `${BaseURL}/profile`
+    }
 };
 
-const stores = {
-    id: 'shops',
-    text: 'Магазины',
-    image: ShopsIcon,
-    path: '/office/shops'
-};
+const {reports, documents, stores, acceptance, marking, products, 
+        clients, loyality, stocks, integrations,news, scopes, question, support} = routesLinks;
 
-const documents = {
-    id: 'documents',
-    text: 'Заказы',
-    image: DocumentsIcon,
-    path: '/office/documents'
-};
-
-const acceptance = {
-    id: 'inventory-lists',
-    text: 'Инвентаризация',
-    image: AcceptanceIcon,
-    path: '/office/inventory-lists'
-};
-
-const marking = {
-    id: 'goods-marking',
-    text: 'Маркировка',
-    image: MarkingIcon,
-    path: '/office/goods-marking'
-};
-
-const products = {
-    id: 'products',
-    text: 'Товары',
-    image: ProductsIcon,
-    path: '/office/products'
-};
-
-const clients = {
-    id: 'clients',
-    text: 'Клиенты',
-    image: ClientsIcon,
-    path: '/office/clients'
-};
-const stocks = {
-    id: 'promo',
-    text: 'Акции',
-    image: StocksIcon,
-    path: '/office/promo'
-};
-
-const loyality = {
-    id: 'loyality',
-    text: 'Лояльность',
-    image: LoyalityIcon,
-    path: '/office/loyality'
-};
-
-const integrations = {
-    id: 'applications',
-    text: 'Интеграции',
-    image: IntegrationsIcon,
-    path: '/office/applications'
-};
-
-const scopes = {
-    id: 'paid-options',
-    text: 'Подписки',
-    image: ScopesIcon,
-    wrapperClassName: 'subscribe',
-    path: '/office/paid-options'
-};
-
-const news = {
-    id: 'news',
-    text: 'Новости',
-    image: NewsIcon,
-    wrapperClassName: 'subscribe grow',
-    path: '/office/news'
-};
-
-const support = {
-    id: 'support',
-    text: 'Техподдержка',
-    image: SupportIcon,
-    path: '/office/support'
-};
-
-const question = {
-    id: 'question',
-    text: 'Задать вопрос',
-    image: QuestionIcon,
-    path: '/office/question'
-};
 
 const menuItemsTop = {
     id: 'navigation-menu__top',
