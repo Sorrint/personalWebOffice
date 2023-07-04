@@ -1,7 +1,7 @@
 export interface IMenuItem {
     id: string;
     text: string;
-    image: string;
+    image: React.FC<React.SVGProps<SVGElement>>;
     path: string;
     wrapperClassName?: string;
 }
