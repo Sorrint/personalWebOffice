@@ -37,23 +37,6 @@
     display: flex;
     flex-direction: column;
 
-    &__item {
-        height: 48px;
-        text-indent: 50px;
-    }
-
-    &__item:last-child {
-        margin: 0;
-    }
-
-    &__text {
-        position: relative;
-        top: 40%;
-        height: 30px;
-        padding: 5px 0 5px 23px;
-        color: inherit;
-    }
-
     &__top {
         padding: 8px 0;
     }
@@ -76,16 +59,6 @@
     height: 100%;
     margin: 0 0 8px 0;
 }
-.bar-chart {
-    width: 24px;
-    height: 24px;
-    margin: -3px 0 0 15px;
-    align-items: center;
-    border-radius: 4px;
-    display: flex;
-}
-
-
 
 @media (max-width: 767px) {
     body.lock {

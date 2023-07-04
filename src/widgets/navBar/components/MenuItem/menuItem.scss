@@ -1,0 +1,8 @@
+.navigation-menu__item {
+    height: 48px;
+    text-indent: 50px;
+
+    &:last-child {
+        margin: 0;
+    }
+}
