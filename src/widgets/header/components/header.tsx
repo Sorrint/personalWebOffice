@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -9,9 +9,9 @@ const Header = () => {
             <div className="header__logo"></div>
             <span className="header__text">Кабинет</span>
             <div className="header__icon"></div>
-            <Link className="header__mail" to={'/profile'}>
+            <NavLink className="header__mail" to={'/office/profile'}>
                 sorrint@gmail.com
-            </Link>
+            </NavLink>
         </div>
     );
 };
