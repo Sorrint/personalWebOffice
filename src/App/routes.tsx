@@ -8,13 +8,13 @@ import { InventoriesList, InventoryCreate, InventoryEdit } from 'widgets/invento
 import { Distribution, Order, Ordering } from 'widgets/documentPageBody';
 import ProfilePage from 'pages/profile/profilePage';
 import ProductsCategories from 'widgets/productsPageBody';
+import { routesLinks } from '../widgets/navBar/model/menuItems';
 
-const BaseURL = "office"
 
 const routes: RouteObject[] = [
-    { index: true, element: <Navigate to={`./${BaseURL}/documents`} /> },
+    { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },
     {
-        path: `${BaseURL}/documents`,
+        path: `${routesLinks.documents.path}`,
         element: <DocumentsPage />,
         children: [
             { path: 'order', element: <Order /> },
@@ -25,7 +25,7 @@ const routes: RouteObject[] = [
         ]
     },
     {
-        path: `${BaseURL}/inventory-lists`,
+        path: `${routesLinks.acceptance.path}`,
         element: <InventoryPage />,
         children: [
             {
@@ -44,7 +44,7 @@ const routes: RouteObject[] = [
         ]
     },
     {
-        path: `${BaseURL}/products`,
+        path: `${routesLinks.products.path}`,
         element: <ProductsPage />,
         children: [
             { path: 'categories', element: <ProductsCategories /> },
@@ -53,9 +53,9 @@ const routes: RouteObject[] = [
         ]
     },
     {
-        path: `${BaseURL}/profile`,
+        path: `${routesLinks.profile.path}`,
         element: <ProfilePage />
     },
-    { path: '*', element: <Navigate to={`./${BaseURL}/documents`} /> }
+    { path: '*', element: <Navigate to={`.${routesLinks.documents.path}`} /> }
 ];
 export default routes;
