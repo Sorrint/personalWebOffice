@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { IMenuItem } from '../../model/menuItemsTypes';
 
 import './menuItem.scss'
-import MenuLink from '../MenuLink/menuLink';
+import MenuLink from '../menuLink/menuLink';
 
 interface MenuItemProps {
     item: IMenuItem;
