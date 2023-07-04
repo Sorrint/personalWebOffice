@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
+import './header.scss'
 
-const Header = () => {
+export const Header = () => {
     return (
         <div className="header">
             <div className="header__burger">
@@ -15,5 +16,3 @@ const Header = () => {
         </div>
     );
 };
-
-export default Header;

@@ -1,0 +1,41 @@
+@import "nullstyle";
+@import "variables";
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+body {
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+#root {
+    display: flex;
+    height: 100%;
+    position: relative;
+    flex-direction: column;
+    flex-shrink: 1;
+    font-family: sans-serif;
+}
+
+:focus {
+    outline: red solid 1px;
+}
+
+a:focus,
+div:focus {
+    outline: red solid 1px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.is-invalid {
+    color: red;
+}

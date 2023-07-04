@@ -2,7 +2,7 @@ import { useRoutes } from 'react-router-dom';
 
 import routes from './routes';
 
-import './app.scss';
+import './styles/app.scss';
 
 function App() {
     const elements = useRoutes(routes);
