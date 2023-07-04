@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import { IMenuItem } from '../../api/menuItemsTypes';
-import MenuItem from '../MenuItem/menuItem';
+import { IMenuItem } from '../../model/menuItemsTypes';
+import MenuItem from '../menuItem/menuItem';
 
 interface MenuListProps {
     menuItems: Array<IMenuItem>;

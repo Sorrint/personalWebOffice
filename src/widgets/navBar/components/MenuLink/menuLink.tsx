@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import parse from 'html-react-parser';
 
-import { IMenuItem } from '../../api/menuItemsTypes';
+import { IMenuItem } from '../../model/menuItemsTypes';
 import './menuLink.scss'
 
 interface MenuLinkProps {

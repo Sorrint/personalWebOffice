@@ -1,8 +1,9 @@
-import MenuList from './MenuList/menuList';
-import { navBar } from '../api/menuItems';
-import { IMenuItems } from '../api/menuItemsTypes';
+import MenuList from '../menuList/menuList';
+import { navBar } from '../../api/menuItems';
+import { IMenuItems } from '../../model/menuItemsTypes';
 
-const NavBar = () => {
+import './navBar.scss'
+export const NavBar = () => {
     return (
         <div className="app__sidenav">
             <nav className="navigation">
@@ -22,4 +23,3 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;

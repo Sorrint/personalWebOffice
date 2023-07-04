@@ -1,4 +1,1 @@
-import NavBar from './components/navBar';
-import './index.scss';
-
-export { NavBar };
+export { NavBar } from './components/navBar/navBar';
