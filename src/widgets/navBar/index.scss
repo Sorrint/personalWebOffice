@@ -18,7 +18,6 @@
     flex: 0 1 auto;
     height: 100%;
     background-color: rgb(236, 236, 236);
-    // z-index: 2;
     overflow-y: auto;
 }
 .navigation {
@@ -27,7 +26,6 @@
 
 .navigation-menu {
     display: flex;
-    // z-index: 1;
     height: 100%;
 
     font-family: "Roboto", sans-serif;
@@ -42,22 +40,12 @@
     &__item {
         height: 48px;
         text-indent: 50px;
-        color: #000;
-        fill: rgb(150, 150, 150);
-        &.active {
-            background-color: rgb(227, 242, 244);
-            color: rgb(0, 151, 167);
-            fill: rgb(0, 151, 167);
-        }
     }
 
     &__item:last-child {
         margin: 0;
     }
 
-    &__link {
-        width: 100%;
-    }
     &__text {
         position: relative;
         top: 40%;
@@ -97,11 +85,7 @@
     display: flex;
 }
 
-.navigation-menu__link:focus {
-    display: inline-block;
-    // outline: 1px solid red;
-    outline: red solid 1px;
-}
+
 
 @media (max-width: 767px) {
     body.lock {

@@ -1,0 +1,15 @@
+.navigation-menu__link{
+    width: 100%;
+    display: block;
+    fill: rgb(150, 150, 150);
+
+    &.active {
+        background-color: rgb(227, 242, 244);
+        color: rgb(0, 151, 167);
+        fill: rgb(0, 151, 167);
+    }
+
+    &:focus {
+    display: inline-block;
+    outline: red solid 1px;
+}}
