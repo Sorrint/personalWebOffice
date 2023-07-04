@@ -1,4 +1,4 @@
-import MenuList from './menuList';
+import MenuList from './MenuList/menuList';
 import { navBar } from '../api/menuItems';
 import { IMenuItems } from '../api/menuItemsTypes';
 
