@@ -1,11 +1,11 @@
 import { transformProductName } from '@entities/products/lib/helpers/transformProductName';
 import { IOrderProduct } from '@entities/products/model/interfaces/IOrderProduct';
-import { IStoreProduct } from '@entities/products/model/interfaces/IStoreProduct';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import TextField from '@shared/ui/textField';
 
 import './editOrderingProductCard.scss';
+import { EditableContent } from '@shared/ui/editableContent/editableContent';
 
 interface EditOrderingProductCardProps {
     product: IOrderProduct;
@@ -14,7 +14,7 @@ interface EditOrderingProductCardProps {
 const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) => {
     const { count, number, productName: name, unit } = product;
     const productName = transformProductName(name);
-    const { register, handleSubmit, setValue } = useForm({
+    const { register } = useForm({
         mode: 'onChange',
         defaultValues: {
             count,
@@ -27,7 +27,8 @@ const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) 
     return (
         <>
             <div className="ordering__productName">
-                <TextField label="" {...register('productName')} inputClass="inline-input" />
+                <EditableContent/>
+                {/* <TextField label="" {...register('productName')} inputClass="inline-input" /> */}
             </div>
             <div className="ordering__item">
                 <div className="ordering__cell item__number">

@@ -53,7 +53,6 @@ const Ordering = () => {
         resultCheck.productsExists.filter((item): item is IOrderingProductWithExtraData => hasExtraData(item));
 
     const notAllFieldProducts = resultCheck && resultCheck.productsExists.filter((item) => !hasExtraData(item));
-    console.log(orderingProducts);
     return (
         <>
             {isCheckError && <>'Ошибка c подключением</>}

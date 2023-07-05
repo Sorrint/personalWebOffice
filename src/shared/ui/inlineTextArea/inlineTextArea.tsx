@@ -13,7 +13,6 @@ const InlineTextArea = forwardRef(function InlineTextArea<T extends FieldValues>
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data.text);
         setIsEditing(false);
     };
 
