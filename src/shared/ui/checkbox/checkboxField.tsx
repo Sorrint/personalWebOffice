@@ -19,7 +19,7 @@ interface ICheckboxFieldProps<T extends FieldValues> {
     onKeyDown?: (e: KeyboardEvent) => void;
 }
 
-const CheckboxField = forwardRef(function CheckboxField<T extends FieldValues>(
+export const CheckboxField = forwardRef(function CheckboxField<T extends FieldValues>(
     props: ICheckboxFieldProps<T>,
     ref: ForwardedRef<HTMLInputElement>
 ) {
@@ -55,4 +55,3 @@ const CheckboxField = forwardRef(function CheckboxField<T extends FieldValues>(
     );
 });
 
-export default CheckboxField;
