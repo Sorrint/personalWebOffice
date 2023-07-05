@@ -1,12 +1,14 @@
 import ContentEditable from 'react-contenteditable';
-import { useCallback, useEffect, useState } from "react";
+import DOMPurify from 'dompurify';
+import { useCallback, useState } from "react";
 import './editableContent.scss'
 
 export const EditableContent = () => {
 	const [content, setContent] = useState("")
 
 	const onContentChange = useCallback((evt: any) => {
-		setContent(evt.currentTarget.innerHTML)
+		const checked = DOMPurify.sanitize(evt.currentTarget.innerHTML)
+		setContent(checked)
 	}, [])
 
 	return (
