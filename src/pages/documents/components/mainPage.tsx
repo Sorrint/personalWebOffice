@@ -1,5 +1,5 @@
-import { Header } from 'widgets/header';
-import { NavBar } from 'widgets/navBar';
+import { Header } from '@widgets/header';
+import { NavBar } from '@widgets/navBar';
 
 const MainPage = () => {
     return (

@@ -1,12 +1,12 @@
 import { Children, FC, ReactNode } from 'react';
 
-import { getCurrentOrder } from 'entities/orders/model/OrderSlice';
-import { useAppSelector } from 'shared/lib/hooks';
-import { hasComponentName } from 'shared/lib/utils/hasComponentName';
-import { Table } from 'shared/ui/table';
+import { getCurrentOrder } from '@entities/orders/model/OrderSlice';
+import { useAppSelector } from '@shared/lib/hooks';
+import { hasComponentName } from '@shared/lib/utils/hasComponentName';
+import { Table } from '@shared/ui/table';
 
 import './orderCard.scss';
-import { IOrder } from 'entities/orders/model/interfaces/IOrder';
+import { IOrder } from '@entities/orders/model/interfaces/IOrder';
 
 interface IOrderCardProps {
     children?: ReactNode;

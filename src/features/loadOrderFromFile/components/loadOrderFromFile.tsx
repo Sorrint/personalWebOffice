@@ -1,5 +1,5 @@
-import { addOrder, setCurrentOrder } from 'entities/orders/model/OrderSlice';
-import { useAppDispatch } from 'shared/lib/hooks';
+import { addOrder, setCurrentOrder } from '@entities/orders/model/OrderSlice';
+import { useAppDispatch } from '@shared/lib/hooks';
 import { getOrderFromExcel } from '../api/mappers/getOrderFromExcel';
 
 const LoadOrderFromFile = () => {

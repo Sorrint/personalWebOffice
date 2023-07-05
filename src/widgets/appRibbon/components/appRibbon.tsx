@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { INavLinkObject } from 'shared/ui/navLink/navLinkTypes';
+import { INavLinkObject } from '@shared/ui/navLink/navLinkTypes';
 
 import './appRibbon.scss';
 

@@ -1,4 +1,4 @@
-import { productsAPI } from 'entities/products/model/productsService';
+import { productsAPI } from '@entities/products/model/productsService';
 import ProductCard from './components/productCard';
 import ProductList from './components/productList';
 import CategoryCard from './components/categoryCard';

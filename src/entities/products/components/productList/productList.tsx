@@ -1,5 +1,6 @@
+import { IProductCategory, IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
 import { FC, MutableRefObject } from 'react';
-import { IProduct } from '../../model/interfaces/IDreamkasProduct';
+// import { IProduct } from '../../model/interfaces/IDreamkasProduct';
 import ProductListBody from './productListBody';
 import ProductListHeader from './productListHeader';
 
@@ -7,13 +8,13 @@ export interface IProductListContentProps {
     selectField?: boolean;
     avatar?: boolean;
     count?: boolean;
-    onClick?: (product: IProduct) => void;
+    onClick?: (product: IProductCategory) => void;
     parentRef?: MutableRefObject<HTMLInputElement | null>;
     setFirstElement?: (el: HTMLDivElement) => void;
 }
 
 interface IProductListProps extends IProductListContentProps {
-    products: IProduct[];
+    products: IDreamkasProduct[];
     displayHeaders?: boolean;
 }
 

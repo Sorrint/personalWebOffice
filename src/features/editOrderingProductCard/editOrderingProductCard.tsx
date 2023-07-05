@@ -1,9 +1,9 @@
-import { transformProductName } from 'entities/products/lib/helpers/transformProductName';
-import { IOrderProduct } from 'entities/products/model/interfaces/IOrderProduct';
-import { IStoreProduct } from 'entities/products/model/interfaces/IStoreProduct';
+import { transformProductName } from '@entities/products/lib/helpers/transformProductName';
+import { IOrderProduct } from '@entities/products/model/interfaces/IOrderProduct';
+import { IStoreProduct } from '@entities/products/model/interfaces/IStoreProduct';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import TextField from 'shared/ui/textField';
+import TextField from '@shared/ui/textField';
 
 import './editOrderingProductCard.scss';
 

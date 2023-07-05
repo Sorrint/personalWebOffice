@@ -1,12 +1,12 @@
 import { FC, KeyboardEvent } from 'react';
 
-import { IProduct, IProductStock } from '../model/interfaces/IDreamkasProduct';
+import {  IDreamkasProduct, IProductStock } from '../model/interfaces/IDreamkasProduct';
 
 import './productStyles.scss';
 import { IProductListContentProps } from './productList/productList';
 
 interface IProductCardProps extends IProductListContentProps {
-    product: IProduct;
+    product: IDreamkasProduct;
     addProductRef?: (productRef: HTMLDivElement) => void;
     onCardKeyDown?: (event: KeyboardEvent, onSubmit: (...args: any[]) => void) => void;
 }
@@ -44,7 +44,7 @@ const ProductCard: FC<IProductCardProps> = ({
         }
     };
 
-    const handleClick = (product: IProduct) => {
+    const handleClick = (product: IDreamkasProduct) => {
         onClick && onClick(product);
     };
 

@@ -1,6 +1,6 @@
-import { parseSheetData } from 'shared/lib/utils/parseSheetData';
-import { readXLSXTable } from 'shared/lib/utils/readXLSXtable';
-import { replaceObjectKeys } from 'shared/lib/utils/replaceObjectKeys';
+import { parseSheetData } from '@shared/lib/utils/parseSheetData';
+import { readXLSXTable } from '@shared/lib/utils/readXLSXtable';
+import { replaceObjectKeys } from '@shared/lib/utils/replaceObjectKeys';
 
 const headersOrderObject = {
     '№': 'number',

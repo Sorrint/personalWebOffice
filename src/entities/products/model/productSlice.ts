@@ -1,7 +1,6 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
-import { read, utils } from 'xlsx';
 import { IStoreProduct } from './interfaces/IStoreProduct';
-import { AppDispatch, PersistState, RootState } from 'shared/lib/store/types';
+import { AppDispatch, PersistState } from '@shared/lib/store/types';
 import { createProductDto } from './DTO/createProductDTO';
 import { transformProductName } from '../lib/helpers/transformProductName';
 

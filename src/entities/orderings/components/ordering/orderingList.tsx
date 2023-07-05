@@ -1,8 +1,8 @@
-import { IOrderProduct } from 'entities/products/model/interfaces/IOrderProduct';
+import { IOrderProduct } from '@entities/products/model/interfaces/IOrderProduct';
 import { FC } from 'react';
 import OrderingHeader from './orderingHeader';
 import OrderingBody from './orderingBody';
-import { IOrderingProductWithExtraData } from 'widgets/documentPageBody/libs/extraDataTypeGuard';
+import { IOrderingProductWithExtraData } from '@widgets/documentPageBody/libs/extraDataTypeGuard';
 import './orderingStyles.scss';
 
 interface IOrderingListProps {

@@ -6,7 +6,7 @@ import { transformDataForXLSX, transformDate } from '../lib/helpers';
 import { IInventoryProduct, IdataForXLSX } from '../model/types';
 import InventoryProductList from './inventoryProductsList';
 
-import { saveToXLSX } from 'shared/lib/utils/saveToXLSX';
+import { saveToXLSX } from '@shared/lib/utils/saveToXLSX';
 
 export interface IInventoryContent {
     onClick?: (product: IInventoryProduct) => void;

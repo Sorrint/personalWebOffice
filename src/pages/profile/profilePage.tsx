@@ -1,9 +1,9 @@
-import { Header } from 'widgets/header';
+import { Header } from '@widgets/header';
 import './profile.scss';
 
-import { ProfilePageBody } from 'widgets/profilePageBody';
-import { AppBody, AppLayout } from 'shared/layouts';
-import { NavBar } from 'widgets/navBar';
+import { ProfilePageBody } from '@widgets/profilePageBody';
+import { AppBody, AppLayout } from '@shared/layouts';
+import { NavBar } from '@widgets/navBar';
 
 const ProfilePage = () => {
     return (

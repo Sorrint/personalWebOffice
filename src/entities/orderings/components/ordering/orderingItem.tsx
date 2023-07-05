@@ -1,6 +1,6 @@
-import { IOrderProduct } from 'entities/products/model/interfaces/IOrderProduct';
+import { IOrderProduct } from '@entities/products/model/interfaces/IOrderProduct';
 import { FC } from 'react';
-import { IOrderingProductWithExtraData } from 'widgets/documentPageBody/libs/extraDataTypeGuard';
+import { IOrderingProductWithExtraData } from '@widgets/documentPageBody/libs/extraDataTypeGuard';
 
 interface IOrderingItemProps {
     item: IOrderingProductWithExtraData;

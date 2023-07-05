@@ -1,9 +1,9 @@
 import { useState, forwardRef, ForwardedRef, KeyboardEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
-import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
+import { FieldValues, Path } from 'react-hook-form';
 import parse from 'html-react-parser';
 
 import './textField.scss';
-import { eyeSvg } from 'shared/lib/svg/eye';
+import { eyeSvg } from '@shared/lib/svg/eye';
 
 export interface ITextFieldsProps<T extends FieldValues> {
     label?: string;

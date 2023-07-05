@@ -1,5 +1,5 @@
 import { MutationDefinition } from '@reduxjs/toolkit/dist/query';
-import { persistedReducer } from 'app/store/storeApp';
+import { persistedReducer } from '@app/store/storeApp';
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type PersistState = ReturnType<typeof persistedReducer>;

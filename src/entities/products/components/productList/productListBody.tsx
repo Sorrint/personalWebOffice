@@ -1,11 +1,11 @@
-import { FC, KeyboardEvent, useRef, useEffect } from 'react';
-import { IProduct } from '../../model/interfaces/IDreamkasProduct';
+import { FC, useRef, useEffect } from 'react';
 import ProductCard from '../productCard';
 import { IProductListContentProps } from './productList';
-import handleListKeydownEvent from 'shared/lib/utils/handleListKeyboardEvents';
+import handleListKeydownEvent from '@shared/lib/utils/handleListKeyboardEvents';
+import { IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
 
 interface IProductListBodyProps extends IProductListContentProps {
-    products: IProduct[];
+    products: IDreamkasProduct[];
 }
 
 const ProductListBody: FC<IProductListBodyProps> = ({ products, parentRef, setFirstElement, ...rest }) => {
