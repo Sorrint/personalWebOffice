@@ -17,9 +17,6 @@ const ProductsCategories: FC = () => {
     const getProducts = async (value: string) => {
         setSearch(value);
     };
-    useEffect(() => {
-        console.log(categories);
-    }, [categories]);
 
     if (productsLoading || categoriesLoading) return <h1>Идет загрузка</h1>;
     return (

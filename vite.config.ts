@@ -5,12 +5,15 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), svgr({
-        exportAsDefault: true,
-        svgrOptions: {
+    plugins: [
+        react(), 
+        svgr({
+            exportAsDefault: true,
+            svgrOptions: {
             icon: true
-        }
-    }) ],
+            }
+        })
+    ],
     resolve: {
         alias: {
             '@app': path.resolve(__dirname, './src/app'),
@@ -23,12 +26,15 @@ export default defineConfig({
     },
     build: {
         commonjsOptions: {
-            esmExternals: true
-        
-    }},
+            esmExternals: true,
+        },
+    },
     server: {
         host: '0.0.0.0',
         port: 5000
+    },
+    optimizeDeps: {
+        exclude: ['fs', 'path', 'url']
     },
     base: '/office/'
 });
