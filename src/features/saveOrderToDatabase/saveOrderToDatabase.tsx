@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { IOrder } from 'entities/orders/model/interfaces/IOrder';
-import { useAppDispatch } from 'shared/lib/hooks';
-import { addOrder } from 'entities/orders/model/OrderSlice';
-import { Button } from 'shared/ui/button/button';
+import { IOrder } from '@entities/orders/model/interfaces/IOrder';
+import { useAppDispatch } from '@shared/lib/hooks';
+import { addOrder } from '@entities/orders/model/OrderSlice';
+import { Button } from '@shared/ui/button/button';
 
 interface ISaveOrderCardProps {
     order: IOrder | undefined;

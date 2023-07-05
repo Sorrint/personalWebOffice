@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import { IMenuItem } from '../../model/menuItemsTypes';
 import './menuLink.scss'
-import Icon from 'shared/ui/icon/icon';
+import Icon from '@shared/ui/icon/icon';
 
 interface MenuLinkProps {
     item: IMenuItem;

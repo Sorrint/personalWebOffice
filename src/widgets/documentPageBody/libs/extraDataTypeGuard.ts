@@ -1,5 +1,5 @@
-import { IOrderingProduct } from 'entities/products/model/interfaces/IOrderProduct';
-import { IStoreProduct, extraData } from 'entities/products/model/interfaces/IStoreProduct';
+import { IOrderingProduct } from '@entities/products/model/interfaces/IOrderProduct';
+import { extraData } from '@entities/products/model/interfaces/IStoreProduct';
 
 export interface IOrderingProductWithExtraData extends IOrderingProduct {
     extraData: extraData;

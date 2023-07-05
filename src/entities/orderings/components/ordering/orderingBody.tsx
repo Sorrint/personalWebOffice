@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { IStoreProduct } from 'entities/products/model/interfaces/IStoreProduct';
-import List from 'shared/ui/list/list';
-import { IOrderProduct } from 'entities/products/model/interfaces/IOrderProduct';
+import { IStoreProduct } from '@entities/products/model/interfaces/IStoreProduct';
+import List from '@shared/ui/list/list';
+import { IOrderProduct } from '@entities/products/model/interfaces/IOrderProduct';
 import OrderingItem from './orderingItem';
-import { IOrderingProductWithExtraData } from 'widgets/documentPageBody/libs/extraDataTypeGuard';
+import { IOrderingProductWithExtraData } from '@widgets/documentPageBody/libs/extraDataTypeGuard';
 
 interface IOrderingBodyProps {
     products: IOrderingProductWithExtraData[];

@@ -2,17 +2,17 @@ import { FC, useEffect, useState, useRef, KeyboardEvent } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { PopupCard } from 'features/popup';
-import SearchInput from 'features/search';
-import { PopoverNew } from 'features/popover';
-import OverlayingPopupWithFocusTrap from 'features/popup/overlayingPopup/overlayingPopupWithFocusTrap';
+import { PopupCard } from '@features/popup';
+import SearchInput from '@features/search';
+import { PopoverNew } from '@features/popover';
+import OverlayingPopupWithFocusTrap from '@features/popup/overlayingPopup/overlayingPopupWithFocusTrap';
 
-import { InventoryContent, inventoryDocsAPI } from 'entities/inventoryDocs';
-import { ProductList, productsAPI } from 'entities/products';
-import { IInventoryProduct } from 'entities/inventoryDocs/model/types';
-import { IDreamkasProduct } from 'entities/products/model/interfaces/IDreamkasProduct';
-import { useKeyPress } from 'shared/lib/hooks/useKeyPress/useKeyPress';
-import DropdownList from 'shared/ui/dropdownList';
+import { InventoryContent, inventoryDocsAPI } from '@entities/inventoryDocs';
+import { ProductList, productsAPI } from '@entities/products';
+import { IInventoryProduct } from '@entities/inventoryDocs/model/types';
+import { IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
+import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
+import DropdownList from '@shared/ui/dropdownList';
 
 import './acceptanceDocs.scss';
 

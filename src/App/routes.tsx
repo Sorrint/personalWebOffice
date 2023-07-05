@@ -1,14 +1,14 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 
-import DocumentsPage from 'pages/documents';
-import ProductsPage from 'pages/products';
-import InventoryPage from 'pages/inventory';
+import DocumentsPage from '@pages/documents';
+import ProductsPage from '@pages/products';
+import InventoryPage from '@pages/inventory';
 
-import { InventoriesList, InventoryCreate, InventoryEdit } from 'widgets/inventoryPageBody';
-import { Distribution, Order, Ordering } from 'widgets/documentPageBody';
-import ProfilePage from 'pages/profile/profilePage';
-import ProductsCategories from 'widgets/productsPageBody';
-import { routesLinks } from '../widgets/navBar/model/menuItems';
+import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
+import { Distribution, Order, Ordering } from '@widgets/documentPageBody';
+import ProfilePage from '@pages/profile/profilePage';
+import ProductsCategories from '@widgets/productsPageBody';
+import { routesLinks } from '@widgets/navBar/model/menuItems';
 
 
 const routes: RouteObject[] = [

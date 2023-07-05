@@ -1,7 +1,7 @@
 import { FieldValues } from 'react-hook-form';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { IInventoryDocs } from '../model/types';
-import { SERVER_URI } from 'app/config/apiConfig';
+import { SERVER_URI } from '@app/config/apiConfig';
 
 export const inventoryDocsAPI = createApi({
     reducerPath: 'inventoryDocsAPI',

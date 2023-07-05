@@ -2,7 +2,7 @@ import { FileOrder } from './interfaces/IOrder';
 import { createAction, createSlice } from '@reduxjs/toolkit';
 import { read, utils } from 'xlsx';
 import { IOrder } from './interfaces/IOrder';
-import { PersistState, RootState } from 'shared/lib/store/types';
+import { PersistState, RootState } from '@shared/lib/store/types';
 
 interface OrderState {
     entities: IOrder[];

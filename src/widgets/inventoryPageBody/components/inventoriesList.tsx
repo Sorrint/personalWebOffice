@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { inventoryDocsAPI, InventoryList } from 'entities/inventoryDocs';
-import { IInventoryDocs } from 'entities/inventoryDocs/model/types';
-import { Button } from 'shared/ui/button/button';
+import { inventoryDocsAPI, InventoryList } from '@entities/inventoryDocs';
+import { IInventoryDocs } from '@entities/inventoryDocs/model/types';
+import { Button } from '@shared/ui/button/button';
 
 const InventoriesList: FC = () => {
     const { data: documents, isLoading } = inventoryDocsAPI.useLoadAllDocumentsQuery();

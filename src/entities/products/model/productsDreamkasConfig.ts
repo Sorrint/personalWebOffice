@@ -1,5 +1,5 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query';
-import { SERVER_URI } from 'app/config/apiConfig';
+import { SERVER_URI } from '@app/config/apiConfig';
 import { IProductListParams, ISearchParams, ISearchResult } from './service';
 
 export const productsDreamkasConfig = {
