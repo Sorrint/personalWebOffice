@@ -57,7 +57,7 @@ const Ordering = () => {
         <>
             {isCheckError && <>'Ошибка c подключением</>}
             {isChecking && <>'Идет проверка документа'</>}
-            {notAllFieldProducts && notAllFieldProducts.map((item) => <div key={item._id}>{item.name}</div>)}
+            {/* {notAllFieldProducts && notAllFieldProducts.map((item) => <div key={item._id}>{item.name}</div>)} */}
             {resultCheck &&
                 resultCheck.productsNotExists.map((product) => (
                     <EditOrderingProductCard product={product} key={product.number} />

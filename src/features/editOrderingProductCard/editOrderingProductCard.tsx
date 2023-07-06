@@ -1,7 +1,7 @@
 import { transformProductName } from '@entities/products/lib/helpers/transformProductName';
 import { IOrderProduct } from '@entities/products/model/interfaces/IOrderProduct';
-import { FC } from 'react';
-import { useForm } from 'react-hook-form';
+import { FC, useEffect } from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
 import TextField from '@shared/ui/textField';
 
 import './editOrderingProductCard.scss';
@@ -14,7 +14,7 @@ interface EditOrderingProductCardProps {
 const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) => {
     const { count, number, productName: name, unit } = product;
     const productName = transformProductName(name);
-    const { register } = useForm({
+    const methods = useForm({
         mode: 'onChange',
         defaultValues: {
             count,
@@ -24,23 +24,31 @@ const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) 
         }
     });
 
+    const {watch, register} = methods
+
+    useEffect(() => {
+        const subscription = watch((value, { name, type }) => console.log(value, name, type));
+        return () => subscription.unsubscribe();
+      }, [watch]);
+
     return (
         <>
-            <div className="ordering__productName">
-                <EditableContent/>
-                {/* <TextField label="" {...register('productName')} inputClass="inline-input" /> */}
+        <FormProvider {...methods} >
+            <div className="editCard__productName">
+                <EditableContent name='productName'/>
             </div>
-            <div className="ordering__item">
-                <div className="ordering__cell item__number">
-                    <TextField label="" {...register('number')} inputClass="inline-input" />
+            <div className="editCard__item">
+                <div className="editCard__cell item__number">
+                <EditableContent name='number'/>
+            </div>
+                <div className="editCard__cell item__count">
+                <EditableContent name='count'/>
                 </div>
-                <div className="ordering__cell item__count">
-                    <TextField label="" {...register('count')} inputClass="inline-input" type="number" />
-                </div>
-                <div className="ordering__cell item__unit">
-                    <TextField label="" {...register('unit')} inputClass="inline-input" />
+                <div className="editCard__cell item__unit">
+                <EditableContent name='unit'/>
                 </div>
             </div>
+            </FormProvider>
         </>
     );
 };
