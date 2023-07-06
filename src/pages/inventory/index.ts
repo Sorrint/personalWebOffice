@@ -1,2 +1,1 @@
-import InventoryPage from './components/inventoryPage';
-export default InventoryPage;
+export { InventoryPageAsync as InventoryPage } from './components/inventoryPage.async';

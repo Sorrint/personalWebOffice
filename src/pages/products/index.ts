@@ -1,2 +1,1 @@
-import ProductsPage from './components/productsPage';
-export default ProductsPage;
+export { ProductsPageAsync as ProductsPage } from './components/productsPage.async';
