@@ -1,15 +1,14 @@
-import { Navigate, RouteObject } from 'react-router-dom';
+import { Navigate, type RouteObject } from 'react-router-dom';
 
-import DocumentsPage from '@pages/documents';
-import ProductsPage from '@pages/products';
-import InventoryPage from '@pages/inventory';
+import { DocumentsPage } from '@pages/documents';
+import { ProductsPage } from '@pages/products';
+import { InventoryPage } from '@pages/inventory';
+import { ProfilePage } from '@pages/profile';
 
 import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
 import { Distribution, Order, Ordering } from '@widgets/documentPageBody';
-import ProfilePage from '@pages/profile/profilePage';
 import ProductsCategories from '@widgets/productsPageBody';
 import { routesLinks } from '@widgets/navBar/model/menuItems';
-
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },
@@ -20,8 +19,8 @@ const routes: RouteObject[] = [
             { path: 'order', element: <Order /> },
             { path: 'ordering', element: <Ordering /> },
             { path: 'distribution', element: <Distribution /> },
-            { index: true, element: <Navigate to={`./order`} /> },
-            { path: '*', element: <Navigate to={`./order`} /> }
+            { index: true, element: <Navigate to={'./order'} /> },
+            { path: '*', element: <Navigate to={'./order'} /> }
         ]
     },
     {
@@ -39,8 +38,8 @@ const routes: RouteObject[] = [
                     { index: true, element: <InventoriesList /> }
                 ]
             },
-            { index: true, element: <Navigate to={`./documents`} /> },
-            { path: '*', element: <Navigate to={`./documents`} /> }
+            { index: true, element: <Navigate to={'./documents'} /> },
+            { path: '*', element: <Navigate to={'./documents'} /> }
         ]
     },
     {
@@ -48,8 +47,8 @@ const routes: RouteObject[] = [
         element: <ProductsPage />,
         children: [
             { path: 'categories', element: <ProductsCategories /> },
-            { index: true, element: <Navigate to={`./categories`} /> },
-            { path: '*', element: <Navigate to={`./categories`} /> }
+            { index: true, element: <Navigate to={'./categories'} /> },
+            { path: '*', element: <Navigate to={'./categories'} /> }
         ]
     },
     {
