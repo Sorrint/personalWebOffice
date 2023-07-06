@@ -5,6 +5,6 @@ interface IListProps<T> {
     renderItem: (item: T) => ReactNode
 }
 
-export default function List<T> (props: IListProps<T>) {
+export function List<T> (props: IListProps<T>) {
     return <>{props.items.map(props.renderItem)}</>;
 }

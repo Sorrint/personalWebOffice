@@ -7,12 +7,10 @@ interface IconProps {
     className?: string
 }
 
-const Icon: FC<IconProps> = ({ Icon, width = 24, height = 24, className = '' }) => {
+export const Icon: FC<IconProps> = ({ Icon, width = 24, height = 24, className = '' }) => {
     return (<Icon
         width={width}
         height={height}
         className={className}/>
     );
 };
-
-export default Icon;

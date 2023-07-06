@@ -1,1 +1,1 @@
-export {CheckboxField} from './checkboxField';
+export { CheckboxField } from './checkboxField';

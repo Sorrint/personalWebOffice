@@ -12,7 +12,7 @@ import { ProductList, productsAPI } from '@entities/products';
 import { type IInventoryProduct } from '@entities/inventoryDocs/model/types';
 import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
-import DropdownList from '@shared/ui/dropdownList';
+import { DropdownList } from '@shared/ui/dropdownList';
 
 import './acceptanceDocs.scss';
 

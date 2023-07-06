@@ -21,7 +21,7 @@ interface IRadioButtonProps<T extends FieldValues> {
     disabled?: boolean
 }
 
-const RadioButton = forwardRef(function RadioButton<T extends FieldValues> (
+export const RadioButton = forwardRef(function RadioButton<T extends FieldValues> (
     props: IRadioButtonProps<T>,
     ref: ForwardedRef<HTMLInputElement>
 ) {
@@ -69,5 +69,3 @@ const RadioButton = forwardRef(function RadioButton<T extends FieldValues> (
         </div>
     );
 });
-
-export default RadioButton;

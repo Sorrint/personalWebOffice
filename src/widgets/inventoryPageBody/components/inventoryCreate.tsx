@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { inventoryDocsAPI } from '@entities/inventoryDocs';
 import { countersAPI } from '@shared/api/countersAPI';
-import TextField from '@shared/ui/textField';
-import Calendar from '@shared/ui/calendar';
+import { TextField } from '@shared/ui/textField';
+import { Calendar } from '@shared/ui/calendar';
 
 import './inventoryCreate.scss';
 import { Button } from '@shared/ui/button/button';

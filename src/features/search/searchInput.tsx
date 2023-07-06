@@ -1,8 +1,8 @@
 import { type FC, type ChangeEvent, type ForwardedRef, type KeyboardEvent } from 'react';
 
-import TextField from '@shared/ui/textField';
+import { TextField } from '@shared/ui/textField';
 import useDebounce from '@shared/lib/hooks/useDebounce/useDebounce';
-import Loader from '@shared/ui/loaders/loader';
+import { Loader } from '@shared/ui/loaders/loader';
 
 import './searchInput.scss';
 

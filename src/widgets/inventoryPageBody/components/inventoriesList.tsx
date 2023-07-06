@@ -6,7 +6,7 @@ import { type IInventoryDocs } from '@entities/inventoryDocs/model/types';
 import { Button } from '@shared/ui/button/button';
 
 const InventoriesList: FC = () => {
-    const { data: documents, isLoading } = inventoryDocsAPI.useLoadAllDocumentsQuery();
+    const { data: documents, isLoading } = inventoryDocsAPI.useLoadAllDocumentsQuery({});
 
     const renderDocuments = (list: IInventoryDocs[] | undefined) =>
         list ? <InventoryList documents={list} /> : <h2>Документов нет</h2>;

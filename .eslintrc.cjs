@@ -21,6 +21,7 @@ module.exports = {
             }
         }
     ],
+    "ignorePatterns": ['.eslintrc.cjs'],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",

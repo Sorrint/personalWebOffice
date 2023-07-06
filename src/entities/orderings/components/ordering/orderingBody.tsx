@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import List from '@shared/ui/list/list';
+import { List } from '@shared/ui/list/list';
 import OrderingItem from './orderingItem';
 import { type IOrderingProductWithExtraData } from '@widgets/documentPageBody/libs/extraDataTypeGuard';
 

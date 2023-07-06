@@ -4,7 +4,7 @@ export const replaceObjectKeys = (keysObj: ObjectRecord, replaceObj: ObjectRecor
     const newObject: ObjectRecord = {};
     Object.keys(replaceObj).forEach((key) => {
         const value = replaceObj[key];
-        const newKey = keysObj[key] || key;
+        const newKey = keysObj[key] ?? key;
         newObject[newKey] = value;
     });
     return newObject;

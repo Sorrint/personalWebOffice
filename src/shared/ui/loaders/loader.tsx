@@ -1,6 +1,6 @@
 import './loader.scss';
 
-const Loader = () => {
+export const Loader = () => {
     return (
         <div className="lds-ring">
             <div></div>
@@ -10,5 +10,3 @@ const Loader = () => {
         </div>
     );
 };
-
-export default Loader;

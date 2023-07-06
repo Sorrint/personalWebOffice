@@ -2,7 +2,7 @@ import { transformProductName } from '@entities/products/lib/helpers/transformPr
 import { type IOrderProduct } from '@entities/products/model/interfaces/IOrderProduct';
 import { type FC } from 'react';
 import { useForm } from 'react-hook-form';
-import TextField from '@shared/ui/textField';
+import { TextField } from '@shared/ui/textField';
 
 import './editOrderingProductCard.scss';
 import { EditableContent } from '@shared/ui/editableContent/editableContent';

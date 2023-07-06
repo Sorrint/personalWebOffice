@@ -1,10 +1,10 @@
 import './profile.scss';
 import { useState } from 'react';
-import RadioButton from '@shared/ui/radioButton';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { OverlayingPopup } from '@features/popup';
-import TextField from '@shared/ui/textField';
+import { TextField } from '@shared/ui/textField';
 import { Button } from '@shared/ui/button/button';
+import { RadioButton } from '@shared/ui/radioButton';
 
 interface ProfileSettings {
     dataBase: string
@@ -23,19 +23,21 @@ const ProfilePageBody = () => {
     };
 
     const setDreamToken = <T extends FieldValues> (data: T) => {
-        if (data.dreamToken) {
+        const hasDreamtoken: boolean = data.dreamToken ?? false;
+        if (hasDreamtoken) {
             localStorage.setItem('dreamToken', data.dreamToken);
-            setActivePopup(false);
         }
+        setActivePopup(false);
     };
 
     const setDatabase = <T extends FieldValues> (data: T) => {
-        if (data.dataBase) {
+        const hasDataBase: boolean = data.dataBase ?? false;
+        if (hasDataBase) {
             localStorage.setItem('dataBase', data.dataBase);
         }
     };
 
-    const { register, handleSubmit, watch } = useForm<ProfileSettings>({
+    const { register, handleSubmit } = useForm<ProfileSettings>({
         mode: 'onChange',
         defaultValues: {
             dataBase,

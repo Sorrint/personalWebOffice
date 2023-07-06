@@ -20,7 +20,7 @@ interface ICounterFieldsProps<T extends FieldValues> {
     tabIndex?: number
 }
 
-export default function CounterField<T extends FieldValues> (props: ICounterFieldsProps<T>) {
+export function CounterField<T extends FieldValues> (props: ICounterFieldsProps<T>) {
     const {
         label,
         name,

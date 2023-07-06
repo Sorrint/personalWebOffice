@@ -6,7 +6,7 @@ interface IReactElementWithName {
     }
 }
 export function isReactElement (children: ReactNode): children is ReactElement {
-    if (children && typeof children === 'object') {
+    if (children !== null && typeof children === 'object') {
         return 'props' in children;
     } else {
         return false;

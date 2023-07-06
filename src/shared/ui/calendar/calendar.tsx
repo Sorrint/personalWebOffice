@@ -16,7 +16,7 @@ interface ICalendarProps<T extends FieldValues> {
     name: Path<T>
 }
 
-export default function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
+export function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
     const { label, control, name } = props;
     const [startDate, setStartDate] = useState<Date>(new Date());
     return (
@@ -28,8 +28,10 @@ export default function Calendar<T extends FieldValues> (props: ICalendarProps<T
                     <DatePicker
                         selected={startDate}
                         onChange={(e) => {
-                            setStartDate(e!);
-                            field.onChange(e);
+                            if (e !== null) {
+                                setStartDate(e);
+                                field.onChange(e);
+                            }
                         }}
                         dateFormat="P"
                         locale="ru"

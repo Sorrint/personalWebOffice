@@ -5,7 +5,7 @@ interface ITableHeaderProps {
     headers: IHeaderItem
 }
 
-const TableHeader: FC<ITableHeaderProps> = ({ headers }) => {
+export const TableHeader: FC<ITableHeaderProps> = ({ headers }) => {
     return (
         <>
             <div className="table-from-excel__headers">
@@ -18,5 +18,3 @@ const TableHeader: FC<ITableHeaderProps> = ({ headers }) => {
         </>
     );
 };
-
-export default TableHeader;

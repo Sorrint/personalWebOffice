@@ -4,7 +4,7 @@ import { useEffect, type KeyboardEvent, useRef, type ForwardedRef } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form';
 import { type IInventoryProduct } from '@entities/inventoryDocs/model/types';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
-import CounterField from '@shared/ui/counterField/counterField';
+import { CounterField } from '@shared/ui/counterField/counterField';
 import './popupCard.scss';
 
 interface IPopupCardProps {

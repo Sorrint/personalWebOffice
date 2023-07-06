@@ -44,15 +44,12 @@ const Ordering = () => {
     const notAllFieldProducts = resultCheck?.productsExists.filter((item) => !hasExtraData(item));
     return (
         <>
-            {isCheckError && <>'Ошибка c подключением</>}
-            {isChecking && <>'Идет проверка документа'</>}
-            {notAllFieldProducts && notAllFieldProducts.map((item) => <div key={item._id}>{item.name}</div>)}
-            {resultCheck &&
-                resultCheck.productsNotExists.map((product) => (
-                    <EditOrderingProductCard product={product} key={product.number} />
-                ))}
-            {/* {resultCheck &&
-                resultCheck.productsNotExists.map((item) => <div key={item.productName}>{item.productName}</div>)} */}
+            {isCheckError && <>Ошибка c подключением</>}
+            {isChecking && <>&lsquo;Идет проверка документа&lsquo;</>}
+            {notAllFieldProducts?.length && notAllFieldProducts.map((item) => <div key={item._id}>{item.name}</div>)}
+            {resultCheck?.productsNotExists.map((product) => (
+                <EditOrderingProductCard product={product} key={product.number} />
+            ))}
             <div>Порядовка</div>
             {orderingProducts && <OrderingList products={orderingProducts} />}
         </>
