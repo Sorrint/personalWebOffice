@@ -1,25 +1,25 @@
-import { useState, forwardRef, ForwardedRef, KeyboardEvent } from 'react';
-import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
+import { forwardRef, type ForwardedRef, type KeyboardEvent } from 'react';
+import { type UseFormRegister, type FieldValues, type Path } from 'react-hook-form';
 
 import './checkboxField.scss';
 
 interface ICheckboxFieldProps<T extends FieldValues> {
-    label: string;
-    name: Path<T>;
-    error?: string;
-    placeholder?: string;
-    register?: UseFormRegister<T>;
-    formName?: string;
-    autoComplete?: string;
-    field?: T;
-    value?: string;
-    onClick?: (e: React.MouseEvent) => void;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    inputClass?: string;
-    onKeyDown?: (e: KeyboardEvent) => void;
+    label: string
+    name: Path<T>
+    error?: string
+    placeholder?: string
+    register?: UseFormRegister<T>
+    formName?: string
+    autoComplete?: string
+    field?: T
+    value?: string
+    onClick?: (e: React.MouseEvent) => void
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    inputClass?: string
+    onKeyDown?: (e: KeyboardEvent) => void
 }
 
-export const CheckboxField = forwardRef(function CheckboxField<T extends FieldValues>(
+export const CheckboxField = forwardRef(function CheckboxField<T extends FieldValues> (
     props: ICheckboxFieldProps<T>,
     ref: ForwardedRef<HTMLInputElement>
 ) {
@@ -42,7 +42,7 @@ export const CheckboxField = forwardRef(function CheckboxField<T extends FieldVa
                     value={value}
                     onClick={onClick}
                     ref={ref}
-                    onKeyDown={onKeyDown && ((e) => onKeyDown(e))}
+                    onKeyDown={onKeyDown && ((e) => { onKeyDown(e); })}
                 />
                 <div className="cut"></div>
 
@@ -54,4 +54,3 @@ export const CheckboxField = forwardRef(function CheckboxField<T extends FieldVa
         </div>
     );
 });
-

@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 const OrderingHeader = () => {
     return (
         <div className="ordering__headers">

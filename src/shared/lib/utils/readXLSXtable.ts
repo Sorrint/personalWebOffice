@@ -1,8 +1,6 @@
 import { read, utils } from 'xlsx';
 
-export type SheetData = {
-    [key: string]: unknown;
-};
+export type SheetData = Record<string, unknown>;
 
 export const readXLSXTable = async (e: React.BaseSyntheticEvent, sheetName: string): Promise<SheetData[] | string> => {
     e.preventDefault();

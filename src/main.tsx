@@ -10,7 +10,7 @@ import { setupStore } from '@app/store/storeApp';
 import App from '@app/App';
 
 const store = setupStore();
-let persistor = persistStore(store);
+const persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>

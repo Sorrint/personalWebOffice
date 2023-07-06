@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 
-import { IProductCategory } from '../model/interfaces/IDreamkasProduct';
+import { type IProductCategory } from '../model/interfaces/IDreamkasProduct';
 
 import './categoryStyles.scss';
 
 interface ICategoryCardProps {
-    category: IProductCategory;
+    category: IProductCategory
 }
 const CategoryCard: FC<ICategoryCardProps> = ({ category }) => {
     const { name, productCount } = category;

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { type FC, useState } from 'react';
 
 import { CategoriesList, ProductList, productsAPI } from '@entities/products';
 import SearchInput from '@features/search';

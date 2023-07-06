@@ -1,16 +1,16 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { transformDate } from '../lib/helpers/transformDate';
-import { IInventoryDocs } from '../model/types';
+import { type IInventoryDocs } from '../model/types';
 
 import './inventoryDocs.scss';
 
 interface IInventoryListItemProps {
-    document: IInventoryDocs;
+    document: IInventoryDocs
 }
 const InventoryListItem: FC<IInventoryListItemProps> = ({ document }) => {
-    const { documentNumber, storeName, choosenDate, comment } = document;
+    const { documentNumber, choosenDate, comment } = document;
     const date = transformDate(choosenDate);
     return (
         <>

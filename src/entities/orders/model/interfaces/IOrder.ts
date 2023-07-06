@@ -1,21 +1,19 @@
 export interface IOrderProduct {
-    number: number;
-    productName: string;
-    count: number;
-    unit: string;
+    number: number
+    productName: string
+    count: number
+    unit: string
 }
 
 export interface IOrder {
-    orderName: string;
-    products: IOrderProduct[];
+    orderName: string
+    products: IOrderProduct[]
 }
 
 export interface IOrderHeader {
-    id: string;
-    text: string;
-    letter?: string;
+    id: string
+    text: string
+    letter?: string
 }
 
-export interface FileOrder {
-    [letter: string]: string;
-}
+export type FileOrder = Record<string, string>;

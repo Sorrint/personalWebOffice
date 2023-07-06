@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { IMenuItem } from '../../model/menuItemsTypes';
+import { type FC } from 'react';
+import { type IMenuItem } from '../../model/menuItemsTypes';
 
 import MenuItem from '../menuItem/menuItem';
 
 interface MenuListProps {
-    menuItems: IMenuItem[];
+    menuItems: IMenuItem[]
 }
 
 const MenuList: FC<MenuListProps> = ({ menuItems }) => {

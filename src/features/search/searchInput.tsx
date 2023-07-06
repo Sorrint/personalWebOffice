@@ -1,16 +1,16 @@
-import { FC, ChangeEvent, ForwardedRef, KeyboardEvent } from 'react';
+import { type FC, type ChangeEvent, type ForwardedRef, type KeyboardEvent } from 'react';
 
-import TextField from '@shared/ui/textField';
+import { TextField } from '@shared/ui/textField';
 import useDebounce from '@shared/lib/hooks/useDebounce/useDebounce';
-import Loader from '@shared/ui/loaders/loader';
+import { Loader } from '@shared/ui/loaders/loader';
 
 import './searchInput.scss';
 
 export interface ISearchInputProps<T> {
-    searchFunction: (value: string) => T;
-    loading?: boolean;
-    inputRef?: ForwardedRef<HTMLInputElement>;
-    onKeyDown?: (e: KeyboardEvent) => void;
+    searchFunction: (value: string) => T
+    loading?: boolean
+    inputRef?: ForwardedRef<HTMLInputElement>
+    onKeyDown?: (e: KeyboardEvent) => void
 }
 
 const SearchInput: FC<ISearchInputProps<void>> = ({ searchFunction, loading, inputRef, onKeyDown }) => {

@@ -1,19 +1,19 @@
-import { ReactElement, ReactNode } from 'react';
+import { type ReactElement, type ReactNode } from 'react';
 
 interface IReactElementWithName {
     type: {
-        name: string;
-    };
+        name: string
+    }
 }
-export function isReactElement(children: ReactNode): children is ReactElement {
-    if (children && typeof children === 'object') {
+export function isReactElement (children: ReactNode): children is ReactElement {
+    if (children !== null && typeof children === 'object') {
         return 'props' in children;
     } else {
         return false;
     }
 }
 
-export function isComponentWithName(child: any): child is IReactElementWithName {
+export function isComponentWithName (child: any): child is IReactElementWithName {
     return (
         isReactElement(child) &&
         typeof child.type === 'function' &&

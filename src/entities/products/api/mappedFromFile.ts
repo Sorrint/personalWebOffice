@@ -1,11 +1,11 @@
-import { FileDB } from '../model/interfaces/IOrderProduct';
-import { IDbHeaders, IGoods } from '../model/interfaces/IOrderProduct';
+import { type FileDB, type IDbHeaders } from '../model/interfaces/IOrderProduct';
+
 import { dbHeaders } from '../model/dataBase';
 
-export function transformHeaders(headersRow: FileDB) {
+export function transformHeaders (headersRow: FileDB) {
     const modifiedHeaders = dbHeaders.reduce((result: IDbHeaders[], header) => {
         const letter = Object.keys(headersRow).find((key) =>
-            headersRow[key as keyof FileDB] === header.text ? { ...header, letter: key } : ''
+            headersRow[key] === header.text ? { ...header, letter: key } : ''
         );
         letter && result.push({ ...header, letter });
         return result;
@@ -13,10 +13,10 @@ export function transformHeaders(headersRow: FileDB) {
     return modifiedHeaders;
 }
 
-export function transformGoods(dataBase: FileDB[], headers: IDbHeaders[]) {
-    const modifiedGoods = dataBase.reduce((goods: IGoods[], item) => {
-        let result: FileDB = {};
-        Object.keys(item).map((key) => {
+export function transformGoods (dataBase: FileDB[], headers: IDbHeaders[]) {
+    const modifiedGoods = dataBase.reduce((goods: FileDB[], item) => {
+        const result: FileDB = {};
+        Object.keys(item).forEach((key) => {
             const match = headers.find((header) => header.letter === key);
             if (match) {
                 result[match.id] = item[key];

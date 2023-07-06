@@ -1,17 +1,17 @@
-import { useRef, FC } from 'react';
+import { useRef, type FC } from 'react';
 import { Popper } from 'react-popper';
-import * as PopperJS from '@popperjs/core';
+import type * as PopperJS from '@popperjs/core';
 
 import { ClickOutside } from '../popup/clickOutside';
 
-import Portal from '@shared/ui/portal/portal';
+import { Portal } from '@shared/ui/portal/portal';
 
 interface PopoverProps {
-    children: React.ReactNode;
-    onClose: () => void;
-    isOpened: boolean;
-    reference: HTMLElement | undefined;
-    placement: PopperJS.Placement;
+    children: React.ReactNode
+    onClose: () => void
+    isOpened: boolean
+    reference: HTMLElement | undefined
+    placement: PopperJS.Placement
 }
 const Popover: FC<PopoverProps> = ({ onClose, reference, placement, children, isOpened }) => {
     const popperRef = useRef();

@@ -1,18 +1,7 @@
-import { useEffect, useState } from 'react';
-import { read, utils } from 'xlsx';
+import { useEffect } from 'react';
 
-import api from '../api/orderingHeaders';
-import { getGoodsObject, getHeadersObject } from '../libs/modifiedExcelObjects';
-
-import TableHeader from '@shared/ui/table/components/tableHeader';
-import TableBody from '@shared/ui/table/components/tableBody';
-import { useAppDispatch } from '@shared/lib/hooks';
-import { addProduct, getProducts } from '@entities/products/model/productSlice';
-import { productTax, productType } from '@entities/products/model/DTO/createProductDTO';
-import { useSelector } from 'react-redux';
-import { getCurrentOrder } from '@entities/orders/model/OrderSlice';
 import { productsAPI } from '@entities/products';
-import { IOrderingProductWithExtraData, hasExtraData } from '../libs/extraDataTypeGuard';
+import { type IOrderingProductWithExtraData, hasExtraData } from '../libs/extraDataTypeGuard';
 import OrderingList from '@entities/orderings/components/ordering/orderingList';
 import EditOrderingProductCard from '@features/editOrderingProductCard/editOrderingProductCard';
 
@@ -49,21 +38,18 @@ const Ordering = () => {
     }, []);
 
     const orderingProducts =
-        resultCheck &&
-        resultCheck.productsExists.filter((item): item is IOrderingProductWithExtraData => hasExtraData(item));
+        // resultCheck &&
+        resultCheck?.productsExists.filter((item): item is IOrderingProductWithExtraData => hasExtraData(item));
 
-    const notAllFieldProducts = resultCheck && resultCheck.productsExists.filter((item) => !hasExtraData(item));
+    const notAllFieldProducts = resultCheck?.productsExists.filter((item) => !hasExtraData(item));
     return (
         <>
-            {isCheckError && <>'Ошибка c подключением</>}
-            {isChecking && <>'Идет проверка документа'</>}
-            {notAllFieldProducts && notAllFieldProducts.map((item) => <div key={item._id}>{item.name}</div>)}
-            {resultCheck &&
-                resultCheck.productsNotExists.map((product) => (
-                    <EditOrderingProductCard product={product} key={product.number} />
-                ))}
-            {/* {resultCheck &&
-                resultCheck.productsNotExists.map((item) => <div key={item.productName}>{item.productName}</div>)} */}
+            {isCheckError && <>Ошибка c подключением</>}
+            {isChecking && <>&lsquo;Идет проверка документа&lsquo;</>}
+            {notAllFieldProducts?.length && notAllFieldProducts.map((item) => <div key={item._id}>{item.name}</div>)}
+            {resultCheck?.productsNotExists.map((product) => (
+                <EditOrderingProductCard product={product} key={product.number} />
+            ))}
             <div>Порядовка</div>
             {orderingProducts && <OrderingList products={orderingProducts} />}
         </>

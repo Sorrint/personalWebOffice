@@ -1,5 +1,5 @@
-import { FC, useEffect, useState, useRef, KeyboardEvent } from 'react';
-import { FieldValues } from 'react-hook-form';
+import { type FC, useEffect, useState, useRef, type KeyboardEvent } from 'react';
+import { type FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
 import { PopupCard } from '@features/popup';
@@ -9,18 +9,18 @@ import OverlayingPopupWithFocusTrap from '@features/popup/overlayingPopup/overla
 
 import { InventoryContent, inventoryDocsAPI } from '@entities/inventoryDocs';
 import { ProductList, productsAPI } from '@entities/products';
-import { IInventoryProduct } from '@entities/inventoryDocs/model/types';
-import { IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
+import { type IInventoryProduct } from '@entities/inventoryDocs/model/types';
+import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
-import DropdownList from '@shared/ui/dropdownList';
+import { DropdownList } from '@shared/ui/dropdownList';
 
 import './acceptanceDocs.scss';
 
 interface IPopupProps {
-    product: IInventoryProduct;
-    popupText: string;
-    buttonText: string;
-    method: 'Delete' | 'Update' | 'Create';
+    product: IInventoryProduct
+    popupText: string
+    buttonText: string
+    method: 'Delete' | 'Update' | 'Create'
 }
 
 const InventoryEdit: FC = () => {
@@ -28,17 +28,16 @@ const InventoryEdit: FC = () => {
     const docNumber = Number(number);
     const [popupProps, setPopupProps] = useState<IPopupProps>();
     const [updateList, { error: updateError }] = inventoryDocsAPI.useUpdateProductsMutation();
-    const [removeProduct, { error: removeError }] = inventoryDocsAPI.useRemoveInventoryProductMutation();
+    const [removeProduct] = inventoryDocsAPI.useRemoveInventoryProductMutation();
     const [search, setSearch] = useState<string>('');
 
-    //Загрузка данных
+    // Загрузка данных
     const {
         data: goods,
-        isLoading: goodsLoading,
         isFetching
     } = productsAPI.useLoadProductBySearchQuery({ limit: 1000, q: search });
 
-    //состояния popup && popover
+    // состояния popup && popover
     const [activePopover, setActivePopover] = useState<boolean>(false);
     const [activePopup, setActivePopup] = useState<boolean>(false);
     const reference = useRef<HTMLDivElement>(null);
@@ -54,8 +53,8 @@ const InventoryEdit: FC = () => {
         goods && setActivePopover(goods?.length > 0);
     }, [goods]);
     useEffect(() => {
-        searchInput && !activePopup && searchInput.current?.focus();
-        searchInput && !activePopover && searchInput.current?.focus();
+        !activePopup && searchInput.current?.focus();
+        !activePopover && searchInput.current?.focus();
     }, [activePopup, activePopover]);
 
     const getGoods = async (value: string) => {
@@ -93,22 +92,22 @@ const InventoryEdit: FC = () => {
         if (popupProps) {
             const { method, product } = popupProps;
             method === 'Delete'
-                ? await removeProduct({ id: product.id, docNumber: docNumber }).unwrap()
-                : await updateList({ product: { ...data }, docNumber: docNumber }).unwrap();
+                ? await removeProduct({ id: product.id, docNumber }).unwrap()
+                : await updateList({ product: { ...data }, docNumber }).unwrap();
         }
 
         if (!updateError) showPopup();
     };
 
     const handleInputKeydown = (key: KeyboardEvent) => {
-        if (key.code === 'ArrowDown' && activePopover === false) {
+        if (key.code === 'ArrowDown' && !activePopover) {
             goods && setActivePopover(true);
         }
-        if (key.code === 'ArrowDown' && activePopover === true && firstElement.current) {
+        if (key.code === 'ArrowDown' && activePopover && firstElement.current) {
             key.preventDefault();
             firstElement.current.focus();
         }
-        if (key.code === 'ArrowUp' && activePopover === true) {
+        if (key.code === 'ArrowUp' && activePopover) {
             key.preventDefault();
             setActivePopover(false);
         }
@@ -129,8 +128,8 @@ const InventoryEdit: FC = () => {
                 />
             </span>
             <InventoryContent
-                onClick={(product) => handleUpdate(product)}
-                onDelete={(product) => handleDelete(product)}
+                onClick={(product) => { handleUpdate(product); }}
+                onDelete={(product) => { handleDelete(product); }}
                 tabIndex={activePopup ? -1 : 0}
             />
             {goods && goods?.length !== 0 && reference.current && activePopover && (
@@ -146,7 +145,7 @@ const InventoryEdit: FC = () => {
                             selectField={false}
                             avatar={false}
                             count={false}
-                            onClick={(product) => handleCreate(product)}
+                            onClick={(product) => { handleCreate(product); }}
                             setFirstElement={setFirstElement}
                             parentRef={searchInput}
                         />

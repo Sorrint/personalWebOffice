@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 
 interface ProductListHeaderProps {
-    selectField: boolean;
-    avatar: boolean;
-    count: boolean;
+    selectField: boolean
+    avatar: boolean
+    count: boolean
 }
 
 const ProductListHeader: FC<ProductListHeaderProps> = ({ selectField, avatar, count }) => {

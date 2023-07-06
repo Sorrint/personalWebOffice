@@ -1,14 +1,14 @@
 import { transformProductName } from '@entities/products/lib/helpers/transformProductName';
-import { IOrderProduct } from '@entities/products/model/interfaces/IOrderProduct';
-import { FC } from 'react';
+import { type IOrderProduct } from '@entities/products/model/interfaces/IOrderProduct';
+import { type FC } from 'react';
 import { useForm } from 'react-hook-form';
-import TextField from '@shared/ui/textField';
+import { TextField } from '@shared/ui/textField';
 
 import './editOrderingProductCard.scss';
 import { EditableContent } from '@shared/ui/editableContent/editableContent';
 
 interface EditOrderingProductCardProps {
-    product: IOrderProduct;
+    product: IOrderProduct
 }
 
 const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) => {

@@ -1,18 +1,15 @@
-import { FC, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { INavLinkObject } from '@shared/ui/navLink/navLinkTypes';
+import { type INavLinkObject } from '@shared/ui/navLink/navLinkTypes';
 
 import './appRibbon.scss';
 
 interface ILinksProps {
-    navLinks: INavLinkObject;
+    navLinks: INavLinkObject
 }
 
 const AppRibbon: FC<ILinksProps> = ({ navLinks }) => {
-    //  const isGoods = useSelector(getGoodsListStatus());
-
     return (
         <div className="app__ribbon">
             {Object.keys(navLinks).map((link) => (

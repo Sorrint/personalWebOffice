@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { INavLinkObject } from '@shared/ui/navLink/navLinkTypes';
+import { type INavLinkObject } from '@shared/ui/navLink/navLinkTypes';
 import { Header } from '@widgets/header';
 import AppLayout from '@shared/layouts/appLayout';
 import { NavBar } from '@widgets/navBar';

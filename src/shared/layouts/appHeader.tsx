@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
-interface AppHeader {
-    children?: ReactNode;
-    title: string;
+interface AppHeaderProps {
+    children?: ReactNode
+    title: string
 }
 
-const AppHeader = ({ children, title }: AppHeader) => {
+const AppHeader = ({ children, title }: AppHeaderProps) => {
     return (
         <div className="app__header">
             <div className="app__container">

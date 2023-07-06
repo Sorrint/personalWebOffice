@@ -1,15 +1,15 @@
-import TableBody from './tableBody';
-import TableHeader from './tableHeader';
+import { TableBody } from './tableBody';
+import { TableHeader } from './tableHeader';
 import './table.scss';
-import { FC } from 'react';
-import { IHeaderItem, IRecord } from '../tableTypes';
+import { type FC } from 'react';
+import { type IHeaderItem, type IRecord } from '../tableTypes';
 
 interface ITableProps {
-    data: IRecord[];
-    headers: IHeaderItem;
+    data: IRecord[]
+    headers: IHeaderItem
 }
 
-const Table: FC<ITableProps> = ({ data, headers }) => {
+export const Table: FC<ITableProps> = ({ data, headers }) => {
     return (
         <>
             <div className="table-from-excel">
@@ -19,5 +19,3 @@ const Table: FC<ITableProps> = ({ data, headers }) => {
         </>
     );
 };
-
-export default Table;
