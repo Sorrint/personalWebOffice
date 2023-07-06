@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { IHeaderItem, IRecord } from '../tableTypes';
+import { type FC } from 'react';
+import { type IHeaderItem, type IRecord } from '../tableTypes';
 
 interface ITableBodyProps {
-    headers: IHeaderItem;
-    records: IRecord[];
+    headers: IHeaderItem
+    records: IRecord[]
 }
 const TableBody: FC<ITableBodyProps> = ({ records, headers }) => {
     const alignColumnName = (text: string) => {
@@ -15,15 +15,17 @@ const TableBody: FC<ITableBodyProps> = ({ records, headers }) => {
                 {records.map((item, index) => (
                     <div key={index} className="table-from-excel__item">
                         {Object.keys(headers).map((headline: string) =>
-                            item[headline] ? (
-                                <div className={alignColumnName(String(item[headline]))} key={headline}>
-                                    {item[headline]}
-                                </div>
-                            ) : (
-                                <div className={alignColumnName('')} key={headline}>
-                                    {''}
-                                </div>
-                            )
+                            item[headline]
+                                ? (
+                                    <div className={alignColumnName(String(item[headline]))} key={headline}>
+                                        {item[headline]}
+                                    </div>
+                                )
+                                : (
+                                    <div className={alignColumnName('')} key={headline}>
+                                        {''}
+                                    </div>
+                                )
                         )}
                     </div>
                 ))}

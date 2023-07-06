@@ -1,6 +1,6 @@
-import { useCallback, useEffect, FC, ReactNode } from 'react';
+import { useCallback, useEffect, type FC, type ReactNode } from 'react';
 
-function isClickedOutside(clickedElement: Element, targetElement: Element) {
+function isClickedOutside (clickedElement: Element, targetElement: Element) {
     let clickedEl: Node | null = clickedElement;
 
     while (clickedEl) {
@@ -15,15 +15,15 @@ function isClickedOutside(clickedElement: Element, targetElement: Element) {
 }
 
 interface ClickOutsideProps {
-    children: ReactNode;
-    onClickOutside: () => void;
-    reference: HTMLElement | undefined;
+    children: ReactNode
+    onClickOutside: () => void
+    reference: HTMLElement | undefined
 }
 
 export const ClickOutside: FC<ClickOutsideProps> = ({ children, reference, onClickOutside }) => {
     const handleOutsideClick = useCallback(
         (event: MouseEvent) => {
-            if (!reference || !onClickOutside) {
+            if (!reference) {
                 return;
             }
 

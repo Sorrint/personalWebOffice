@@ -1,29 +1,29 @@
-import { SerializedError } from '@reduxjs/toolkit';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { useEffect, KeyboardEvent, useRef, ForwardedRef } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { IInventoryProduct } from '@entities/inventoryDocs/model/types';
+import { type SerializedError } from '@reduxjs/toolkit';
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { useEffect, type KeyboardEvent, useRef, type ForwardedRef } from 'react';
+import { type FieldValues, useForm } from 'react-hook-form';
+import { type IInventoryProduct } from '@entities/inventoryDocs/model/types';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 import CounterField from '@shared/ui/counterField/counterField';
 import './popupCard.scss';
 
 interface IPopupCardProps {
-    product: IInventoryProduct;
-    buttonClick: (data: FieldValues) => Promise<void>;
-    buttonText: string;
-    error: FetchBaseQueryError | SerializedError | undefined;
-    popupText?: string;
-    method: string;
-    wrapperRef?: ForwardedRef<HTMLDivElement>;
+    product: IInventoryProduct
+    buttonClick: (data: FieldValues) => Promise<void>
+    buttonText: string
+    error: FetchBaseQueryError | SerializedError | undefined
+    popupText?: string
+    method: string
+    wrapperRef?: ForwardedRef<HTMLDivElement>
 }
-export type FormValues = {
-    name: string;
-    price: number | null;
-    quantity: number;
-    id: string | undefined;
-};
+export interface FormValues {
+    name: string
+    price: number | null
+    quantity: number
+    id: string | undefined
+}
 
-export default function PopupCard({ product, buttonClick, buttonText, error, popupText, method }: IPopupCardProps) {
+export default function PopupCard ({ product, buttonClick, buttonText, error, popupText, method }: IPopupCardProps) {
     const { register, handleSubmit, setValue } = useForm<FormValues>({
         defaultValues: {
             id: product.id,
@@ -35,7 +35,7 @@ export default function PopupCard({ product, buttonClick, buttonText, error, pop
     });
     const modalWindow = useRef<HTMLInputElement>(null);
 
-    const { isKeyPressed, setIsKeyPressed } = useKeyPress('Enter');
+    const { isKeyPressed } = useKeyPress('Enter');
     const submitRef = useRef<HTMLButtonElement>(null);
     useEffect(() => {
         submitRef.current?.focus();
@@ -49,7 +49,7 @@ export default function PopupCard({ product, buttonClick, buttonText, error, pop
     };
 
     useEffect(() => {
-        modalWindow.current && modalWindow.current.focus();
+        if (modalWindow.current) modalWindow.current.focus();
     }, [modalWindow]);
     const handleKey = (e: KeyboardEvent) => {
         if (e.key === 'Space') {
@@ -62,7 +62,7 @@ export default function PopupCard({ product, buttonClick, buttonText, error, pop
     };
 
     return (
-        <div className="popup__addProduct" onKeyDown={(key) => handleKey(key)} ref={modalWindow}>
+        <div className="popup__addProduct" onKeyDown={(key) => { handleKey(key); }} ref={modalWindow}>
             <form>
                 <div className="popup__card">
                     <div className="popup__title">{product.name}</div>

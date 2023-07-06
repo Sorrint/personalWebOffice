@@ -1,8 +1,8 @@
-import { FC, useState, useEffect, ReactNode } from 'react';
+import { type FC, useState, useEffect, type ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
 interface PortalProps {
-    children: ReactNode;
+    children: ReactNode
 }
 
 const Portal: FC<PortalProps> = ({ children }) => {

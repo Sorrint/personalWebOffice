@@ -1,18 +1,7 @@
-import { useEffect, useState } from 'react';
-import { read, utils } from 'xlsx';
+import { useEffect } from 'react';
 
-import api from '../api/orderingHeaders';
-import { getGoodsObject, getHeadersObject } from '../libs/modifiedExcelObjects';
-
-import TableHeader from '@shared/ui/table/components/tableHeader';
-import TableBody from '@shared/ui/table/components/tableBody';
-import { useAppDispatch } from '@shared/lib/hooks';
-import { addProduct, getProducts } from '@entities/products/model/productSlice';
-import { productTax, productType } from '@entities/products/model/DTO/createProductDTO';
-import { useSelector } from 'react-redux';
-import { getCurrentOrder } from '@entities/orders/model/OrderSlice';
 import { productsAPI } from '@entities/products';
-import { IOrderingProductWithExtraData, hasExtraData } from '../libs/extraDataTypeGuard';
+import { type IOrderingProductWithExtraData, hasExtraData } from '../libs/extraDataTypeGuard';
 import OrderingList from '@entities/orderings/components/ordering/orderingList';
 import EditOrderingProductCard from '@features/editOrderingProductCard/editOrderingProductCard';
 
@@ -49,10 +38,10 @@ const Ordering = () => {
     }, []);
 
     const orderingProducts =
-        resultCheck &&
-        resultCheck.productsExists.filter((item): item is IOrderingProductWithExtraData => hasExtraData(item));
+        // resultCheck &&
+        resultCheck?.productsExists.filter((item): item is IOrderingProductWithExtraData => hasExtraData(item));
 
-    const notAllFieldProducts = resultCheck && resultCheck.productsExists.filter((item) => !hasExtraData(item));
+    const notAllFieldProducts = resultCheck?.productsExists.filter((item) => !hasExtraData(item));
     return (
         <>
             {isCheckError && <>'Ошибка c подключением</>}

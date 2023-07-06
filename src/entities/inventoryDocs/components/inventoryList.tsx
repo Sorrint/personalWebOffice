@@ -1,12 +1,12 @@
-import { FC } from 'react';
+import { type FC } from 'react';
+import { type IInventoryDocs } from '../model/types';
 
-import { IInventoryDocs } from '../model/types';
 import InventoryListItem from './inventoryListItem';
 
 import './inventoryDocs.scss';
 
 interface IInventoryListProps {
-    documents: IInventoryDocs[];
+    documents: IInventoryDocs[]
 }
 
 const InventoryList: FC<IInventoryListProps> = ({ documents }) => {

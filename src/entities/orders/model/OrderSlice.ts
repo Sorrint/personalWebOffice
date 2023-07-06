@@ -1,14 +1,13 @@
-import { FileOrder } from './interfaces/IOrder';
-import { createAction, createSlice } from '@reduxjs/toolkit';
-import { read, utils } from 'xlsx';
-import { IOrder } from './interfaces/IOrder';
-import { PersistState, RootState } from '@shared/lib/store/types';
+import { type IOrder } from './interfaces/IOrder';
+import { createSlice } from '@reduxjs/toolkit';
+
+import { type PersistState } from '@shared/lib/store/types';
 
 interface OrderState {
-    entities: IOrder[];
-    currentOrder?: IOrder;
-    isLoading: boolean;
-    error: string;
+    entities: IOrder[]
+    currentOrder?: IOrder
+    isLoading: boolean
+    error: string
 }
 
 const initialState: OrderState = {

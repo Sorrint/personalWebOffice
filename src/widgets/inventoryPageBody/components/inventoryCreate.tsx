@@ -1,5 +1,5 @@
-import { FC, useEffect } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { type FC, useEffect } from 'react';
+import { type FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { inventoryDocsAPI } from '@entities/inventoryDocs';

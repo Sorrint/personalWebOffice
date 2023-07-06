@@ -1,26 +1,26 @@
-import { MouseEvent, ChangeEvent, KeyboardEvent } from 'react';
-import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
+import { type MouseEvent, type ChangeEvent, type KeyboardEvent } from 'react';
+import { type UseFormRegister, type FieldValues, type Path } from 'react-hook-form';
 
 import './counterField.scss';
 
 interface ICounterFieldsProps<T extends FieldValues> {
-    label: string;
-    name: Path<T>;
-    error?: string;
-    placeholder?: string;
-    register?: UseFormRegister<T>;
-    formName?: string;
-    autoComplete?: string;
-    field?: T;
-    value?: string;
-    onClick?: (e: MouseEvent) => void;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    inputClass?: string;
-    onKeyPress?: (e: KeyboardEvent, name: Path<T>) => void;
-    tabIndex?: number;
+    label: string
+    name: Path<T>
+    error?: string
+    placeholder?: string
+    register?: UseFormRegister<T>
+    formName?: string
+    autoComplete?: string
+    field?: T
+    value?: string
+    onClick?: (e: MouseEvent) => void
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    inputClass?: string
+    onKeyPress?: (e: KeyboardEvent, name: Path<T>) => void
+    tabIndex?: number
 }
 
-export default function CounterField<T extends FieldValues>(props: ICounterFieldsProps<T>) {
+export default function CounterField<T extends FieldValues> (props: ICounterFieldsProps<T>) {
     const {
         label,
         name,
@@ -56,7 +56,7 @@ export default function CounterField<T extends FieldValues>(props: ICounterField
                     value={value}
                     onClick={onClick}
                     type={'number'}
-                    onKeyDown={onKeyPress && ((e) => onKeyPress(e, name))}
+                    onKeyDown={onKeyPress && ((e) => { onKeyPress(e, name); })}
                     tabIndex={tabIndex}
                 />
             </div>

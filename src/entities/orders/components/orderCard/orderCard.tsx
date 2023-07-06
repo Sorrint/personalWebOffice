@@ -1,22 +1,18 @@
-import { Children, FC, ReactNode } from 'react';
+import { Children, type FC, type ReactNode } from 'react';
 
-import { getCurrentOrder } from '@entities/orders/model/OrderSlice';
-import { useAppSelector } from '@shared/lib/hooks';
 import { hasComponentName } from '@shared/lib/utils/hasComponentName';
 import { Table } from '@shared/ui/table';
 
 import './orderCard.scss';
-import { IOrder } from '@entities/orders/model/interfaces/IOrder';
+import { type IOrder } from '@entities/orders/model/interfaces/IOrder';
 
 interface IOrderCardProps {
-    children?: ReactNode;
-    order: IOrder | undefined;
+    children?: ReactNode
+    order: IOrder | undefined
 }
 
 const OrderCard: FC<IOrderCardProps> = ({ children, order }) => {
-    const actions = children
-        ? Children.toArray(children).filter((child) => hasComponentName(child, 'OrderActions'))
-        : null;
+    const actions = children ?? Children.toArray(children).filter((child) => hasComponentName(child, 'OrderActions'));
 
     const tableHeaders = {
         number: '№',
@@ -27,15 +23,17 @@ const OrderCard: FC<IOrderCardProps> = ({ children, order }) => {
 
     return (
         <>
-            {order ? (
-                <>
-                    {actions}
-                    <div className="order__title">{order.orderName}</div>
-                    <Table headers={tableHeaders} data={order.products} />
-                </>
-            ) : (
-                <div className="order__title">Не выбран заказ</div>
-            )}
+            {order
+                ? (
+                    <>
+                        {actions}
+                        <div className="order__title">{order.orderName}</div>
+                        <Table headers={tableHeaders} data={order.products} />
+                    </>
+                )
+                : (
+                    <div className="order__title">Не выбран заказ</div>
+                )}
         </>
     );
 };

@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { IHeaderItem } from '../tableTypes';
+import { type FC } from 'react';
+import { type IHeaderItem } from '../tableTypes';
 
 interface ITableHeaderProps {
-    headers: IHeaderItem;
+    headers: IHeaderItem
 }
 
 const TableHeader: FC<ITableHeaderProps> = ({ headers }) => {

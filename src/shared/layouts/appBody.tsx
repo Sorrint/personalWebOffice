@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
-interface AppBody {
-    children: ReactNode;
+interface AppBodyProps {
+    children: ReactNode
 }
 
-const AppBody = ({ children }: AppBody) => {
+const AppBody = ({ children }: AppBodyProps) => {
     return (
         <div className="app__body">
             <div className="content__container">{children}</div>

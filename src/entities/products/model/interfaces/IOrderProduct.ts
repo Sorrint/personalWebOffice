@@ -1,29 +1,27 @@
-import { IStoreProduct } from './IStoreProduct';
+import { type IStoreProduct } from './IStoreProduct';
 
 export interface IOrderProduct {
-    productName: string;
-    number: number;
-    unit: string;
-    count: number;
+    productName: string
+    number: number
+    unit: string
+    count: number
 }
 
 export interface IDbHeaders {
-    id: string;
-    text: string;
-    letter?: string;
+    id: string
+    text: string
+    letter?: string
 }
 
-export interface FileDB {
-    [letter: string]: string;
-}
+export type FileDB = Record<string, string>;
 
 export interface ICheckProduct {
-    productsExists: IOrderingProduct[];
-    productsNotExists: IOrderProduct[];
+    productsExists: IOrderingProduct[]
+    productsNotExists: IOrderProduct[]
 }
 
 export interface IOrderingProduct extends IStoreProduct {
-    unit: string;
-    count: number;
-    orderNumber: number;
+    unit: string
+    count: number
+    orderNumber: number
 }

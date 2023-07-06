@@ -1,20 +1,20 @@
 import './profile.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import RadioButton from '@shared/ui/radioButton';
-import { FieldValues, useForm } from 'react-hook-form';
+import { type FieldValues, useForm } from 'react-hook-form';
 import { OverlayingPopup } from '@features/popup';
 import TextField from '@shared/ui/textField';
-import {Button} from '@shared/ui/button/button';
+import { Button } from '@shared/ui/button/button';
 
 interface ProfileSettings {
-    dataBase: string;
-    dreamToken: string;
+    dataBase: string
+    dreamToken: string
 }
 
 const ProfilePageBody = () => {
     const [activePopup, setActivePopup] = useState<boolean>(false);
-    const dreamToken = localStorage.getItem('dreamToken') || undefined;
-    const dataBase = localStorage.getItem('dataBase') || 'localStorage';
+    const dreamToken = localStorage.getItem('dreamToken') ?? undefined;
+    const dataBase = localStorage.getItem('dataBase') ?? 'localStorage';
     const handleClick = () => {
         setActivePopup(true);
     };
@@ -22,14 +22,14 @@ const ProfilePageBody = () => {
         setActivePopup((prevState) => !prevState);
     };
 
-    const setDreamToken = <T extends FieldValues>(data: T) => {
+    const setDreamToken = <T extends FieldValues> (data: T) => {
         if (data.dreamToken) {
             localStorage.setItem('dreamToken', data.dreamToken);
             setActivePopup(false);
         }
     };
 
-    const setDatabase = <T extends FieldValues>(data: T) => {
+    const setDatabase = <T extends FieldValues> (data: T) => {
         if (data.dataBase) {
             localStorage.setItem('dataBase', data.dataBase);
         }
@@ -55,26 +55,28 @@ const ProfilePageBody = () => {
                             label="База данных Dreamkass (требуется токен)"
                             {...register('dataBase')}
                             value="dreamkasStorage"
-                            disabled={dreamToken ? false : true}
+                            disabled={!dreamToken}
                         />
                         <RadioButton label="База данных WebOffice" {...register('dataBase')} value="webofficeStorage" />
                     </div>
                     <h2 className="profile__section-header">Токен для работы с Dreamkas</h2>
 
-                    {dreamToken ? (
-                        <>
-                            <div className="tokenAccess">Токен установлен</div>
-                        </>
-                    ) : (
-                        <>
-                            <div className="tokenFailed">
+                    {dreamToken
+                        ? (
+                            <>
+                                <div className="tokenAccess">Токен установлен</div>
+                            </>
+                        )
+                        : (
+                            <>
+                                <div className="tokenFailed">
                                 Токен не установлен{' '}
-                                <Button onClick={handleClick} buttonType="cancel">
+                                    <Button onClick={handleClick} buttonType="cancel">
                                     УСТАНОВИТЬ ТОКЕН
-                                </Button>
-                            </div>
-                        </>
-                    )}
+                                    </Button>
+                                </div>
+                            </>
+                        )}
                 </div>
 
                 <OverlayingPopup isOpened={activePopup} onClose={showPopup}>

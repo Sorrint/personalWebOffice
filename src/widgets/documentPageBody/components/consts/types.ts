@@ -1,5 +1,5 @@
 export interface IDocsNavLink {
-    name: string;
-    path: string;
-    title: string;
+    name: string
+    path: string
+    title: string
 }

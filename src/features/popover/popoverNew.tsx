@@ -1,13 +1,13 @@
-import { FC, useState, ReactNode } from 'react';
+import { type FC, useState, type ReactNode } from 'react';
 import { usePopper } from 'react-popper';
 import { useClickOutside } from '@shared/lib/hooks/useClickOutside';
 import Portal from '@shared/ui/portal/portal';
 
 interface PopoverProps {
-    isOpen: boolean;
-    onClose: () => void;
-    referenceElement: HTMLElement;
-    children: ReactNode;
+    isOpen: boolean
+    onClose: () => void
+    referenceElement: HTMLElement
+    children: ReactNode
 }
 
 const PopoverNew: FC<PopoverProps> = ({ isOpen, onClose, referenceElement, children }) => {

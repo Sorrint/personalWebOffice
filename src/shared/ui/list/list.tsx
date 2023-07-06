@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 interface IListProps<T> {
-    items: T[];
-    renderItem: (item: T) => ReactNode;
+    items: T[]
+    renderItem: (item: T) => ReactNode
 }
 
-export default function List<T>(props: IListProps<T>) {
+export default function List<T> (props: IListProps<T>) {
     return <>{props.items.map(props.renderItem)}</>;
 }

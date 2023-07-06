@@ -1,8 +1,8 @@
-import { FC, ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 
 import './orderActions.scss';
 interface IOrderActionProps {
-    children?: ReactNode;
+    children?: ReactNode
 }
 
 const OrderActions: FC<IOrderActionProps> = ({ children }) => {

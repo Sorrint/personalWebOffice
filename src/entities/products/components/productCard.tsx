@@ -1,14 +1,14 @@
-import { FC, KeyboardEvent } from 'react';
+import { type FC, type KeyboardEvent } from 'react';
 
-import {  IDreamkasProduct, IProductStock } from '../model/interfaces/IDreamkasProduct';
+import { type IDreamkasProduct, type IProductStock } from '../model/interfaces/IDreamkasProduct';
 
 import './productStyles.scss';
-import { IProductListContentProps } from './productList/productList';
+import { type IProductListContentProps } from './productList/productList';
 
-interface IProductCardProps extends IProductListContentProps {
-    product: IDreamkasProduct;
-    addProductRef?: (productRef: HTMLDivElement) => void;
-    onCardKeyDown?: (event: KeyboardEvent, onSubmit: (...args: any[]) => void) => void;
+interface IProductCardProps extends IProductListContentProps<IDreamkasProduct> {
+    product: IDreamkasProduct
+    addProductRef?: (productRef: HTMLDivElement) => void
+    onCardKeyDown?: (event: KeyboardEvent, onSubmit: (...args: any[]) => void) => void
 }
 
 const ProductCard: FC<IProductCardProps> = ({
@@ -40,21 +40,20 @@ const ProductCard: FC<IProductCardProps> = ({
             case 'SCALABLE':
                 return 'кг';
             default:
-                return;
         }
     };
 
     const handleClick = (product: IDreamkasProduct) => {
-        onClick && onClick(product);
+        if (onClick) onClick(product);
     };
 
     return (
         <div
             className="product-card"
-            onClick={() => handleClick(product)}
-            ref={(r) => r !== null && addProductRef && addProductRef(r)}
+            onClick={() => { handleClick(product); }}
+            ref={(r) => { r !== null && addProductRef && addProductRef(r); }}
             tabIndex={0}
-            onKeyDown={(e: KeyboardEvent) => onCardKeyDown && onCardKeyDown(e, () => handleClick(product))}
+            onKeyDown={(e: KeyboardEvent) => { if (onCardKeyDown) onCardKeyDown(e, () => { handleClick(product); }); }}
         >
             {selectField && <div className="product-card__selectField"></div>}
             {avatar && <div className="product-card__avatar"></div>}

@@ -40,15 +40,15 @@ const orderingHeaders = {
     }
 };
 
-const fetchAll = () =>
-    new Promise((resolve) => {
+const fetchAll = async () =>
+    await new Promise((resolve) => {
         window.setTimeout(function () {
             resolve(orderHeaders);
         }, 1000);
     });
 
-const getOrderingHeaders = () =>
-    new Promise((resolve) => {
+const getOrderingHeaders = async () =>
+    await new Promise((resolve) => {
         window.setTimeout(function () {
             resolve(orderingHeaders);
         }, 1000);

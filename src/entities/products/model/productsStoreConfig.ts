@@ -1,7 +1,7 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query';
 import { SERVER_URI } from '@app/config/apiConfig';
-import { ISearchParams, ISearchResult } from '../model/service';
-import { IOrderProduct } from './interfaces/IOrderProduct';
+import { type ISearchParams, type ISearchResult } from '../model/service';
+import { type IOrderProduct } from './interfaces/IOrderProduct';
 
 export const productsStoreConfig = {
     reducerPath: 'ProductsAPI',
@@ -10,7 +10,7 @@ export const productsStoreConfig = {
     }),
     endpoints: {
         loadProducts: {
-            query: () => ({ url: `/` })
+            query: () => ({ url: '/' })
         },
         loadProductBySearch: {
             query: (params: ISearchParams) => ({
@@ -22,7 +22,7 @@ export const productsStoreConfig = {
         },
         checkOrderProducts: {
             query: (orderProducts: IOrderProduct[]) => ({
-                url: `/checkOrderProducts`,
+                url: '/checkOrderProducts',
                 method: 'POST',
                 body: orderProducts
             })

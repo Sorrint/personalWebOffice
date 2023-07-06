@@ -1,11 +1,11 @@
-import { ReactElement, ReactNode } from 'react';
+import { type ReactElement, type ReactNode } from 'react';
 
 interface IReactElementWithName {
     type: {
-        name: string;
-    };
+        name: string
+    }
 }
-export function isReactElement(children: ReactNode): children is ReactElement {
+export function isReactElement (children: ReactNode): children is ReactElement {
     if (children && typeof children === 'object') {
         return 'props' in children;
     } else {
@@ -13,7 +13,7 @@ export function isReactElement(children: ReactNode): children is ReactElement {
     }
 }
 
-export function isComponentWithName(child: any): child is IReactElementWithName {
+export function isComponentWithName (child: any): child is IReactElementWithName {
     return (
         isReactElement(child) &&
         typeof child.type === 'function' &&

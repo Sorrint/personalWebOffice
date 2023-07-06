@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import { IOrder } from '@entities/orders/model/interfaces/IOrder';
+import { type FC } from 'react';
+import { type IOrder } from '@entities/orders/model/interfaces/IOrder';
 import { useAppDispatch } from '@shared/lib/hooks';
 import { addOrder } from '@entities/orders/model/OrderSlice';
 import { Button } from '@shared/ui/button/button';
 
 interface ISaveOrderCardProps {
-    order: IOrder | undefined;
+    order: IOrder | undefined
 }
 
 const SaveOrderToDatabase: FC<ISaveOrderCardProps> = ({ order }) => {
@@ -13,7 +13,7 @@ const SaveOrderToDatabase: FC<ISaveOrderCardProps> = ({ order }) => {
     const handleClick = (order: IOrder) => {
         dispatch(addOrder(order));
     };
-    return <>{order && <Button onClick={() => handleClick(order)}>Сохранить заказ </Button>}</>;
+    return <>{order && <Button onClick={() => { handleClick(order); }}>Сохранить заказ </Button>}</>;
 };
 
 export default SaveOrderToDatabase;
