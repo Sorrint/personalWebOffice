@@ -59,8 +59,6 @@ export const RadioButton = forwardRef(function RadioButton<T extends FieldValues
                     onKeyDown={onKeyDown && ((e) => { onKeyDown(e); })}
                     disabled={disabled}
                 />
-                <div className="cut"></div>
-
                 <label className="radioButton-label" htmlFor={name}>
                     {label}
                 </label>
