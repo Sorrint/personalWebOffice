@@ -1,5 +1,5 @@
 import { Button } from './Button';
-// import './header.css';
+import './header.css';
 
 interface User {
     name: string
