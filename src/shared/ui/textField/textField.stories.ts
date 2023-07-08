@@ -8,7 +8,7 @@ const meta = {
     tags: ['autodocs'],
     component: TextField,
     parameters: {
-        // layout: 'centered'
+        layout: 'centered'
     }
 } satisfies Meta<typeof TextField>;
 
