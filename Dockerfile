@@ -1,11 +1,15 @@
 FROM node:16 as client
 
 WORKDIR /webOffice/client
-COPY . /webOffice/client/
-RUN npm install -g npm@9.5.1
+
+COPY *.json /webOffice/client/
+
+RUN npm install -g npm@9.7.2
 RUN npm install
+COPY . /webOffice/client/
+
 
 EXPOSE 5000
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "build" ]
 
