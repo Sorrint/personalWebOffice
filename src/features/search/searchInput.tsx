@@ -29,8 +29,9 @@ const SearchInput: FC<ISearchInputProps<void>> = ({ searchFunction, loading, inp
                 label={'Поиск'}
                 ref={inputRef}
                 onKeyDown={onKeyDown}
+                variant='standard'
             />
-            {loading && <Loader />}
+            {loading && <div className='search-icon'><Loader /></div>}
         </div>
     );
 };

@@ -1,9 +1,10 @@
 import { useState, forwardRef, type ForwardedRef, type KeyboardEvent } from 'react';
 import { type FieldValues, type Path } from 'react-hook-form';
-import parse from 'html-react-parser';
+import OpenEyeIcon from '@shared/assets/icons/eye-open.svg';
+import SlashedEyeIcon from '@shared/assets/icons/eye-slashed.svg';
+import { Icon } from '../icon';
 
 import './textField.scss';
-import { eyeSvg } from '@shared/lib/svg/eye';
 
 export interface ITextFieldsProps<T extends FieldValues> {
     label?: string
@@ -25,8 +26,9 @@ export const TextField = forwardRef(function TextField<T extends FieldValues> (
 ) {
     const { label, name, type, error, autoComplete, onChange, onKeyDown, variant = 'outline' } = props;
     const [showPassword, setShowPassword] = useState(false);
+
     const getInputClasses = () => {
-        return `input-container__input input_${variant}` + (error ? ' is-invalid' : '');
+        return `input-group input-group_${variant}`;
     };
     const toggleShowPassword = () => {
         setShowPassword((prevState) => !prevState);
@@ -34,10 +36,10 @@ export const TextField = forwardRef(function TextField<T extends FieldValues> (
 
     return (
         <div className={'input-container' + (error ? ' is-invalid' : '')}>
-            <div className="input-group has-validation">
+            <div className={`${getInputClasses()}` + (error ? ' is-invalid' : '')}>
                 <input
                     id={name}
-                    className={getInputClasses()}
+                    className={'input-container__input'}
                     placeholder={' '}
                     type={showPassword ? 'text' : type}
                     name={name}
@@ -46,17 +48,14 @@ export const TextField = forwardRef(function TextField<T extends FieldValues> (
                     ref={ref}
                     onKeyDown={onKeyDown && ((e) => { onKeyDown(e); })}
                 />
-                <div className="cut"></div>
-
                 {label && (
                     <label className="placeholder" htmlFor={name}>
                         {label}
                     </label>
                 )}
-
                 {type === 'password' && (
                     <button className="input-container__password-button" type="button" onClick={toggleShowPassword}>
-                        <i className={`input-container__icon input_${variant}`}>{parse(eyeSvg)}</i>
+                        <Icon Icon={showPassword ? OpenEyeIcon : SlashedEyeIcon} className='eye-icon'/>
                     </button>
                 )}
             </div>
