@@ -21,7 +21,7 @@ module.exports = {
             }
         }
     ],
-    "ignorePatterns": ['.eslintrc.cjs'],
+    "ignorePatterns": ['.eslintrc.cjs', 'vite.config.ts'],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
