@@ -35,35 +35,4 @@
     }
 }
 
-.product-card {
-    display: flex;
-    line-height: 24px;
-    min-height: 48px;
-    background-color: #fff;
-    margin-top: 3px;
-    align-items: center;
-    cursor: pointer;
-    &__price,
-    &__count {
-        display: flex;
-        justify-content: flex-end;
-        padding: 0 12px;
-        width: 100px;
-        flex: 0 0 auto;
-    }
-    &__selectField,
-    &__avatar {
-        padding: 0 12px;
-        width: 50px;
-        flex: 0 0 auto;
-    }
 
-    &__title {
-        flex: 1 1 auto;
-        padding: 0 12px;
-    }
-}
-
-.product-card::focus {
-    outline: red solid 1px;
-}

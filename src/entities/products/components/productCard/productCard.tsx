@@ -1,9 +1,9 @@
 import { type FC, type KeyboardEvent } from 'react';
 
-import { type IDreamkasProduct, type IProductStock } from '../model/interfaces/IDreamkasProduct';
+import { type IDreamkasProduct, type IProductStock } from '../../model/interfaces/IDreamkasProduct';
 
-import './productStyles.scss';
-import { type IProductListContentProps } from './productList/productList';
+import './productCard.scss';
+import { type IProductListContentProps } from '../productList/productList';
 
 interface IProductCardProps extends IProductListContentProps<IDreamkasProduct> {
     product: IDreamkasProduct

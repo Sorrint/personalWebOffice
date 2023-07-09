@@ -39,6 +39,7 @@
 }
 
 .placeholder {
+    font-size: 16px;
     color: #65657b;
     width: 100%;
     line-height: 14px;
@@ -47,6 +48,7 @@
     transform-origin: 0 50%;
     transition: transform 200ms, color 200ms;
     top: 15px;
+    left: 10px;
     transform: translate(0, -30%);
     overflow: hidden;
     white-space: nowrap;

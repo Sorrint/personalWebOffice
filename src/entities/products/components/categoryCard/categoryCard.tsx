@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import { type IProductCategory } from '../model/interfaces/IDreamkasProduct';
+import { type IProductCategory } from '../../model/interfaces/IDreamkasProduct';
 
 import './categoryStyles.scss';
 

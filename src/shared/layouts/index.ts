@@ -1,5 +1,5 @@
-import AppBody from './appBody';
-import AppHeader from './appHeader';
-import AppLayout from './appLayout';
+import AppBody from './appBody/appBody';
+import AppHeader from './appHeader/appHeader';
+import AppLayout from './appLayout/appLayout';
 
 export { AppBody, AppHeader, AppLayout };

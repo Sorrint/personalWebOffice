@@ -1,12 +1,13 @@
 import { type FC } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { inventoryDocsAPI } from '../reducers/inventoryDocsService';
-import { transformDataForXLSX, transformDate } from '../lib/helpers';
-import { type IInventoryProduct, type IdataForXLSX } from '../model/types';
-import InventoryProductList from './inventoryProductsList';
+import { inventoryDocsAPI } from '../../reducers/inventoryDocsService';
+import { transformDataForXLSX, transformDate } from '../../lib/helpers';
+import { type IInventoryProduct, type IdataForXLSX } from '../../model/types';
+import InventoryProductList from '../inventoryProductsList/inventoryProductsList';
 
 import { saveToXLSX } from '@shared/lib/utils/saveToXLSX';
+import './inventoryContent.scss';
 
 export interface IInventoryContent {
     onClick?: (product: IInventoryProduct) => void

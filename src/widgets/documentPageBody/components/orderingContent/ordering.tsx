@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
 import { productsAPI } from '@entities/products';
-import { type IOrderingProductWithExtraData, hasExtraData } from '../libs/extraDataTypeGuard';
+import { type IOrderingProductWithExtraData, hasExtraData } from '../../libs/extraDataTypeGuard';
 import OrderingList from '@entities/orderings/components/ordering/orderingList';
 import EditOrderingProductCard from '@features/editOrderingProductCard/editOrderingProductCard';
-
+import './ordering.scss';
 const Ordering = () => {
     // const order = useSelector(getCurrentOrder());
 
@@ -150,12 +150,9 @@ export default Ordering;
 
 // useEffect(() => {}, [ordering]);
 
-{
-    /* <input type="file" onChange={handleChange} /> */
-}
+/* <input type="file" onChange={handleChange} /> */
 
-{
-    /* {ordering && headers ? (
+/* {ordering && headers ? (
                 <div className="content__body">
                     <div className="content__container">
                         <TableHeader headers={headers} />
@@ -171,4 +168,3 @@ export default Ordering;
             ) : (
                 'Идет обработка данных'
             )} */
-}
