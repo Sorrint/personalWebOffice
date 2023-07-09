@@ -41,16 +41,16 @@ const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tabIndex }
                         Скачать в формате XLSX
                     </button>
                     <h1>{`Инвентаризация № ${inventoryList.documentNumber} от ${date} магазина ${inventoryList.storeName}`}</h1>
-                    <div className="products-list">
+                    <div className="inventory-products-list">
                         <InventoryProductList
                             products={inventoryList.products}
                             onClick={onClick}
                             onDelete={onDelete}
                             tabIndex={tabIndex}
                         />
-                        <div className="products-list__total">
-                            <div className="products-list__title">Итого</div>
-                            <div className="products-list__sum">{sum.toFixed(2)} ₽</div>
+                        <div className="inventory-products-list__total">
+                            <div className="inventory-products-list__title">Итого</div>
+                            <div className="inventory-products-list__sum">{sum.toFixed(2)} ₽</div>
                         </div>
                     </div>
                 </>
