@@ -3,6 +3,8 @@ import { type FC, type MutableRefObject } from 'react';
 import ProductListBody from './productListBody';
 import ProductListHeader from './productListHeader';
 
+import './productList.scss';
+
 export interface IProductListContentProps<T> {
     selectField?: boolean
     avatar?: boolean

@@ -1,5 +1,5 @@
 import { type FC, useRef, useEffect } from 'react';
-import ProductCard from '../productCard';
+import ProductCard from '../productCard/productCard';
 import { type IProductListContentProps } from './productList';
 import handleListKeydownEvent from '@shared/lib/utils/handleListKeyboardEvents';
 import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';

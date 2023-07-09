@@ -1,10 +1,8 @@
 import { type FC } from 'react';
 
-import InventoryProductCard from './inventoryProductCard';
-import { type IInventoryProduct } from '../model/types';
-
-import './inventoryList.scss';
-import { type IInventoryContent } from './inventoryContent';
+import InventoryProductCard from '../inventoryProductCard/inventoryProductCard';
+import { type IInventoryProduct } from '../../model/types';
+import { type IInventoryContent } from '../inventoryContent/inventoryContent';
 
 export interface IInventoryProductListBodyProps extends IInventoryContent {
     products: IInventoryProduct[]

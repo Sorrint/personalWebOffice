@@ -1,8 +1,8 @@
 import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { transformDate } from '../lib/helpers/transformDate';
-import { type IInventoryDocs } from '../model/types';
+import { transformDate } from '../../lib/helpers/transformDate';
+import { type IInventoryDocs } from '../../model/types';
 
 import './inventoryDocs.scss';
 

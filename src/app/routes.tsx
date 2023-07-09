@@ -1,9 +1,9 @@
 import { Navigate, type RouteObject } from 'react-router-dom';
 
-import { DocumentsPage } from '@pages/documents';
-import { ProductsPage } from '@pages/products';
-import { InventoryPage } from '@pages/inventory';
-import { ProfilePage } from '@pages/profile';
+import { DocumentsPage } from '@pages/documentsPage';
+import { ProductsPage } from '@pages/productsPage';
+import { InventoryPage } from '@pages/inventoryPage';
+import { ProfilePage } from '@pages/profilePage';
 
 import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
 import { Distribution, Order, Ordering } from '@widgets/documentPageBody';

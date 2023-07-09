@@ -1,0 +1,25 @@
+.app {
+    &__container {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
+    &__header {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 100);
+        width: 100%;
+        padding: 36px 0;
+
+        &_grid {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__title {
+        height: 5rem;
+        font-size: 36px;
+        font-weight: 500;
+    }
+}

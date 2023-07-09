@@ -3,13 +3,13 @@ import { Outlet } from 'react-router-dom';
 
 import { type INavLinkObject } from '@shared/ui/navLink/navLinkTypes';
 import { Header } from '@widgets/header';
-import AppLayout from '@shared/layouts/appLayout';
+import AppLayout from '@shared/layouts/appLayout/appLayout';
 import { NavBar } from '@widgets/navBar';
-import AppHeader from '@shared/layouts/appHeader';
-import AppBody from '@shared/layouts/appBody';
+import AppHeader from '@shared/layouts/appHeader/appHeader';
+import AppBody from '@shared/layouts/appBody/appBody';
 import AppRibbon from '@widgets/appRibbon';
 
-const ProductsPage: FC = () => {
+const InventoryPage: FC = () => {
     const navLinks: INavLinkObject = {
         order: {
             path: '/inventory-lists/documents',
@@ -23,7 +23,7 @@ const ProductsPage: FC = () => {
             <AppLayout style="wrapper">
                 <NavBar />
                 <AppLayout style="content">
-                    <AppHeader title="Товары">
+                    <AppHeader title="Инвентаризация">
                         <AppRibbon navLinks={navLinks} />
                     </AppHeader>
                     <AppBody>
@@ -34,4 +34,4 @@ const ProductsPage: FC = () => {
         </>
     );
 };
-export default ProductsPage;
+export default InventoryPage;

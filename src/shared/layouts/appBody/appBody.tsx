@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import './appBody.scss';
 
 interface AppBodyProps {
     children: ReactNode
