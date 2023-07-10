@@ -36,7 +36,7 @@ const Ordering = () => {
         productsAPI.useCheckOrderProductsMutation();
 
     useEffect(() => {
-        checkOrder(order.products);
+        checkOrder(order.products).catch(() => { });
     }, []);
 
     const orderingProducts =
