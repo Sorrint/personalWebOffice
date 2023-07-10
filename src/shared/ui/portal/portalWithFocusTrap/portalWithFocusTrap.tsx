@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import { Portal } from '../portal';
+import { Portal } from '../portal/portal';
 import FocusLock from 'react-focus-lock';
 
 interface IDropdownListProps {

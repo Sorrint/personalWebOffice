@@ -1,2 +1,2 @@
 export { PortalWithFocusTrap } from './portalWithFocusTrap/portalWithFocusTrap';
-export { Portal } from './portal';
+export { Portal } from './portal/portal';
