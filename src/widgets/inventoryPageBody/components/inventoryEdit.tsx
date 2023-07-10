@@ -2,9 +2,10 @@ import { type FC, useEffect, useState, useRef, type KeyboardEvent } from 'react'
 import { type FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { PopupCard } from '@features/popup';
-import SearchInput from '@features/search';
+import { SearchInput } from '@shared/ui/searchInput';
+import { DropdownList } from '@shared/ui/dropdownList';
 import { PopoverNew } from '@features/popover';
+import { PopupCard } from '@features/popup';
 import OverlayingPopupWithFocusTrap from '@features/popup/overlayingPopup/overlayingPopupWithFocusTrap';
 
 import { InventoryContent, inventoryDocsAPI } from '@entities/inventoryDocs';
@@ -12,10 +13,9 @@ import { ProductList, productsAPI } from '@entities/products';
 import { type IInventoryProduct } from '@entities/inventoryDocs/model/types';
 import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
-import { DropdownList } from '@shared/ui/dropdownList';
 
 import './acceptanceDocs.scss';
-
+import './inventoryEdit.scss';
 interface IPopupProps {
     product: IInventoryProduct
     popupText: string
@@ -40,7 +40,6 @@ const InventoryEdit: FC = () => {
     // состояния popup && popover
     const [activePopover, setActivePopover] = useState<boolean>(false);
     const [activePopup, setActivePopup] = useState<boolean>(false);
-    const reference = useRef<HTMLDivElement>(null);
     const searchInput = useRef<HTMLInputElement>(null);
     const firstElement = useRef<HTMLDivElement | null>(null);
     const { isKeyPressed, setIsKeyPressed } = useKeyPress('Escape');
@@ -119,39 +118,37 @@ const InventoryEdit: FC = () => {
 
     return (
         <>
-            <span className="input-area" ref={reference}>
-                <SearchInput
-                    searchFunction={getGoods}
-                    loading={isFetching}
-                    inputRef={searchInput}
-                    onKeyDown={handleInputKeydown}
-                />
-            </span>
+            <SearchInput
+                searchFunction={getGoods}
+                loading={isFetching}
+                inputRef={searchInput}
+                onKeyDown={handleInputKeydown}
+            />
             <InventoryContent
                 onClick={(product) => { handleUpdate(product); }}
                 onDelete={(product) => { handleDelete(product); }}
                 tabIndex={activePopup ? -1 : 0}
             />
-            {goods && goods?.length !== 0 && reference.current && activePopover && (
-                <PopoverNew
-                    isOpen={activePopover}
-                    onClose={hidePopover}
-                    referenceElement={reference.current as HTMLElement}
-                    key={'key'}
-                >
-                    <DropdownList>
-                        <ProductList
-                            products={goods}
-                            selectField={false}
-                            avatar={false}
-                            count={false}
-                            onClick={(product) => { handleCreate(product); }}
-                            setFirstElement={setFirstElement}
-                            parentRef={searchInput}
-                        />
-                    </DropdownList>
-                </PopoverNew>
-            )}
+            {/* {goods && goods?.length !== 0 && searchInput.current && activePopover && ( */}
+            <PopoverNew
+                isOpen={activePopover}
+                onClose={hidePopover}
+                referenceElement={searchInput.current as HTMLElement}
+                key={'key'}
+            >
+                <DropdownList className='dropdown-products'>
+                    <ProductList
+                        products={goods}
+                        selectField={false}
+                        avatar={false}
+                        count={false}
+                        onClick={(product) => { handleCreate(product); }}
+                        setFirstElement={setFirstElement}
+                        parentRef={searchInput}
+                    />
+                </DropdownList>
+            </PopoverNew>
+            {/* // )} */}
             <OverlayingPopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
                 {popupProps && <PopupCard {...popupProps} buttonClick={onSubmit} error={updateError} />}
             </OverlayingPopupWithFocusTrap>

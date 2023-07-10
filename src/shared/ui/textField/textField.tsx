@@ -18,13 +18,14 @@ export interface ITextFieldsProps<T extends FieldValues> {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     inputClass?: string
     onKeyDown?: (e: KeyboardEvent) => void
+    onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
 export const TextField = forwardRef(function TextField<T extends FieldValues> (
     props: ITextFieldsProps<T>,
-    ref: ForwardedRef<HTMLInputElement>
+    ref: ForwardedRef<HTMLInputElement | null>
 ) {
-    const { label, name, type, error, autoComplete, onChange, onKeyDown, variant = 'outline' } = props;
+    const { label, name, type, error, autoComplete, onChange, onKeyDown, variant = 'outline', onFocus } = props;
     const [showPassword, setShowPassword] = useState(false);
 
     const getInputClasses = () => {
@@ -47,6 +48,7 @@ export const TextField = forwardRef(function TextField<T extends FieldValues> (
                     onChange={onChange}
                     ref={ref}
                     onKeyDown={onKeyDown && ((e) => { onKeyDown(e); })}
+                    onFocus={onFocus}
                 />
                 {label && (
                     <label className="placeholder" htmlFor={name}>
