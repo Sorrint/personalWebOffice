@@ -1,13 +1,11 @@
 import { type FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { type INavLinkObject } from '@shared/types/navLinkTypes';
 import { Header } from '@widgets/header';
-import AppLayout from '@shared/layouts/appLayout/appLayout';
 import { NavBar } from '@widgets/navBar';
-import AppHeader from '@shared/layouts/appHeader/appHeader';
-import AppBody from '@shared/layouts/appBody/appBody';
 import AppRibbon from '@widgets/appRibbon';
+import { AppBody, AppHeader, AppLayout } from '@shared/layouts';
+import { type INavLinkObject } from '@shared/types/navLinkTypes';
 
 const ProductsPage: FC = () => {
     const navLinks: INavLinkObject = {
