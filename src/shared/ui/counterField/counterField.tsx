@@ -1,4 +1,4 @@
-import { type MouseEvent, type ChangeEvent, type KeyboardEvent } from 'react';
+import { type MouseEvent, type ChangeEvent, type KeyboardEvent, type FocusEvent } from 'react';
 import { type UseFormRegister, type FieldValues, type Path } from 'react-hook-form';
 
 import './counterField.scss';
@@ -18,6 +18,7 @@ interface ICounterFieldsProps<T extends FieldValues> {
     inputClass?: string
     onKeyPress?: (e: KeyboardEvent, name: Path<T>) => void
     tabIndex?: number
+    onFocus?: (e: FocusEvent<HTMLInputElement>) => void
 }
 
 export function CounterField<T extends FieldValues> (props: ICounterFieldsProps<T>) {
@@ -33,7 +34,8 @@ export function CounterField<T extends FieldValues> (props: ICounterFieldsProps<
         onClick,
         inputClass,
         onKeyPress,
-        tabIndex
+        tabIndex,
+        onFocus
     } = props;
     const getInputClasses = () => {
         return 'counter-container__input' + (error ? ' is-invalid' : '') + (inputClass ? ` ${inputClass}` : '');
@@ -58,6 +60,7 @@ export function CounterField<T extends FieldValues> (props: ICounterFieldsProps<
                     type={'number'}
                     onKeyDown={onKeyPress && ((e) => { onKeyPress(e, name); })}
                     tabIndex={tabIndex}
+                    onFocus={onFocus}
                 />
             </div>
             {error && <div className="invalid-feedback">{error}</div>}

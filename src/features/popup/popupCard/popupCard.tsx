@@ -1,6 +1,6 @@
 import { type SerializedError } from '@reduxjs/toolkit';
 import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { useEffect, type KeyboardEvent, useRef, type ForwardedRef } from 'react';
+import { useEffect, type KeyboardEvent, useRef, type ForwardedRef, type FocusEvent } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { type IInventoryProduct } from '@entities/inventoryDocs/model/types';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
@@ -34,7 +34,6 @@ export default function PopupCard ({ product, buttonClick, buttonText, error, po
         mode: 'onChange'
     });
     const modalWindow = useRef<HTMLInputElement>(null);
-
     const { isKeyPressed } = useKeyPress('Enter');
     const submitRef = useRef<HTMLButtonElement>(null);
     useEffect(() => {
@@ -56,6 +55,9 @@ export default function PopupCard ({ product, buttonClick, buttonText, error, po
             // e.preventDefault();
         }
     };
+    const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+        e.target.select();
+    };
 
     const getButtonClass = () => {
         return method === 'Delete' ? 'delete-button' : 'submit-button';
@@ -72,6 +74,7 @@ export default function PopupCard ({ product, buttonClick, buttonText, error, po
                         register={register}
                         inputClass="popup__counter"
                         onKeyPress={keyPressed}
+                        onFocus={handleFocus}
                     />
                     <CounterField
                         label="Количество"
@@ -79,6 +82,7 @@ export default function PopupCard ({ product, buttonClick, buttonText, error, po
                         register={register}
                         inputClass="popup__counter"
                         onKeyPress={keyPressed}
+                        onFocus={handleFocus}
                     />
                 </div>
                 {popupText && <h3>{popupText}</h3>}
