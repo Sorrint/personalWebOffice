@@ -13,7 +13,7 @@ interface ProfileSettings {
     dreamToken: string
 }
 
-const ProfilePageBody = () => {
+export const ProfilePageBody = () => {
     const [activePopup, setActivePopup] = useState<boolean>(false);
     const dreamToken = localStorage.getItem('dreamToken') ?? undefined;
     const dataBase = localStorage.getItem('dataBase') ?? 'localStorage';
@@ -94,5 +94,3 @@ const ProfilePageBody = () => {
         </>
     );
 };
-
-export default ProfilePageBody;
