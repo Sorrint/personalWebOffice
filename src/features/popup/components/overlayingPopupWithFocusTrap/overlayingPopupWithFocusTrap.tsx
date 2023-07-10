@@ -3,7 +3,7 @@ import { type FC } from 'react';
 import { Portal } from '@shared/ui/portal/portal';
 import FocusLock from 'react-focus-lock';
 
-import './overlayingPopup.scss';
+import './overlayingPopupWithFocusTrap.scss';
 
 interface OverlayingPopupWithFocusTrapProps {
     children: React.ReactNode

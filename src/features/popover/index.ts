@@ -1,3 +1,1 @@
-import PopoverOld from './popoverOld';
-import PopoverNew from './popoverNew';
-export { PopoverOld, PopoverNew };
+export { PopoverNew as Popover } from './components/popoverNew/popoverNew';

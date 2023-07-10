@@ -1,7 +1,7 @@
 import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
 import { type FC, type MutableRefObject } from 'react';
-import ProductListBody from './productListBody';
-import ProductListHeader from './productListHeader';
+import { ProductListBody } from './productListBody';
+import { ProductListHeader } from './productListHeader';
 
 import './productList.scss';
 
@@ -19,7 +19,7 @@ interface IProductListProps extends IProductListContentProps<IDreamkasProduct> {
     displayHeaders?: boolean
 }
 
-const ProductList: FC<IProductListProps> = ({
+export const ProductList: FC<IProductListProps> = ({
     products,
     selectField = false,
     avatar = false,
@@ -44,5 +44,3 @@ const ProductList: FC<IProductListProps> = ({
         </>
     );
 };
-
-export default ProductList;

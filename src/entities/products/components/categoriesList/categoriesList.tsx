@@ -7,7 +7,7 @@ interface ICategoriesListProps {
     categories: IProductCategory[]
 }
 
-const CategoriesList: FC<ICategoriesListProps> = ({ categories }) => {
+export const CategoriesList: FC<ICategoriesListProps> = ({ categories }) => {
     return (
         <>
             {categories.map((item) => (
@@ -16,5 +16,3 @@ const CategoriesList: FC<ICategoriesListProps> = ({ categories }) => {
         </>
     );
 };
-
-export default CategoriesList;

@@ -2,9 +2,8 @@ import { type FC, useEffect, useState, useRef, type KeyboardEvent } from 'react'
 import { type FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { OverlayingPopupWithFocusTrap } from '@features/popup/overlayingPopup';
-import { PopoverNew } from '@features/popover';
-import { PopupCard } from '@features/popup';
+import { OverlayingPopupWithFocusTrap, PopupCard } from '@features/popup';
+import { Popover } from '@features/popover';
 import { type IInventoryProduct, InventoryContent, inventoryDocsAPI } from '@entities/inventoryDocs';
 import { type IDreamkasProduct, ProductList, productsAPI } from '@entities/products';
 import { SearchInput } from '@shared/ui/searchInput';
@@ -128,7 +127,7 @@ export const InventoryEdit: FC = () => {
                 tabIndex={activePopup ? -1 : 0}
             />
             {goods && goods?.length !== 0 && searchInput.current && activePopover && (
-                <PopoverNew
+                <Popover
                     isOpen={activePopover}
                     onClose={hidePopover}
                     referenceElement={searchInput.current as HTMLElement}
@@ -146,7 +145,7 @@ export const InventoryEdit: FC = () => {
                             displayHeaders={false}
                         />
                     </DropdownList>
-                </PopoverNew>
+                </Popover>
             )}
             <OverlayingPopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
                 {popupProps && <PopupCard {...popupProps} buttonClick={onSubmit} error={updateError} />}

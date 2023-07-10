@@ -23,7 +23,7 @@ export interface FormValues {
     id: string | undefined
 }
 
-export default function PopupCard ({ product, buttonClick, buttonText, error, popupText, method }: IPopupCardProps) {
+export function PopupCard ({ product, buttonClick, buttonText, error, popupText, method }: IPopupCardProps) {
     const { register, handleSubmit, setValue } = useForm<FormValues>({
         defaultValues: {
             id: product.id,

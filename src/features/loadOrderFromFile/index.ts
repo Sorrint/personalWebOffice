@@ -1,2 +1,1 @@
-import LoadOrderFromFile from './components/loadOrderFromFile';
-export default LoadOrderFromFile;
+export { LoadOrderFromFile } from './components/loadOrderFromFile';

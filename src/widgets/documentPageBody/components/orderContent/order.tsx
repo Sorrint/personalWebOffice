@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import LoadOrderFromFile from '@features/loadOrderFromFile';
+import { LoadOrderFromFile } from '@features/loadOrderFromFile';
 import { SaveOrderToDatabase } from '@features/saveOrderToDatabase';
 import { OrderActions, OrderCard, getCurrentOrder } from '@entities/orders';
 import { useAppSelector } from '@shared/lib/hooks';

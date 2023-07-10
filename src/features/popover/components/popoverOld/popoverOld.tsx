@@ -2,8 +2,7 @@ import { useRef, type FC } from 'react';
 import { Popper } from 'react-popper';
 import type * as PopperJS from '@popperjs/core';
 
-import { ClickOutside } from '../popup/clickOutside';
-
+import { ClickOutside } from '@features/popup';
 import { Portal } from '@shared/ui/portal/portal';
 
 interface PopoverProps {
@@ -13,7 +12,8 @@ interface PopoverProps {
     reference: HTMLElement | undefined
     placement: PopperJS.Placement
 }
-const Popover: FC<PopoverProps> = ({ onClose, reference, placement, children, isOpened }) => {
+
+export const Popover: FC<PopoverProps> = ({ onClose, reference, placement, children, isOpened }) => {
     const popperRef = useRef();
     return (
         <>
@@ -33,5 +33,3 @@ const Popover: FC<PopoverProps> = ({ onClose, reference, placement, children, is
         </>
     );
 };
-
-export default Popover;
