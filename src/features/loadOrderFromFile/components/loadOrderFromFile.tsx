@@ -1,11 +1,12 @@
-import { addOrder, setCurrentOrder } from '@entities/orders/model/OrderSlice';
 import { useAppDispatch } from '@shared/lib/hooks';
+import { setCurrentOrder } from '@entities/orders';
+
 import { getOrderFromExcel } from '../api/mappers/getOrderFromExcel';
 
-const LoadOrderFromFile = () => {
+export const LoadOrderFromFile = () => {
     const dispatch = useAppDispatch();
 
-    const handleChange = async (e: React.BaseSyntheticEvent) => {
+    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
         const order = await getOrderFromExcel(e);
         if (order) {
             const orderName = `Заказ №${1} от ${new Date().toLocaleDateString('ru-RU')}`;
@@ -16,10 +17,8 @@ const LoadOrderFromFile = () => {
     return (
         <>
             <form>
-                <input type="file" onChange={(e) => handleChange(e)} />
+                <input type="file" onChange={handleChange} />
             </form>
         </>
     );
 };
-
-export default LoadOrderFromFile;

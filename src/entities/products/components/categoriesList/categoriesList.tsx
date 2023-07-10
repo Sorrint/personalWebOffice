@@ -1,13 +1,13 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 
-import CategoryCard from '../categoryCard';
-import { IProductCategory } from '../../model/interfaces/IDreamkasProduct';
+import CategoryCard from '../categoryCard/categoryCard';
+import { type IProductCategory } from '../../model/interfaces/IDreamkasProduct';
 
 interface ICategoriesListProps {
-    categories: IProductCategory[];
+    categories: IProductCategory[]
 }
 
-const CategoriesList: FC<ICategoriesListProps> = ({ categories }) => {
+export const CategoriesList: FC<ICategoriesListProps> = ({ categories }) => {
     return (
         <>
             {categories.map((item) => (
@@ -16,5 +16,3 @@ const CategoriesList: FC<ICategoriesListProps> = ({ categories }) => {
         </>
     );
 };
-
-export default CategoriesList;

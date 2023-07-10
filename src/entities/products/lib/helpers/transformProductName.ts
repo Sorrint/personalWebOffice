@@ -1,4 +1,4 @@
-//удаляет лишние пробелы и добавляет пробел перед "кг"
+// удаляет лишние пробелы и добавляет пробел перед "кг"
 export const transformProductName = (name: string): string => {
     return name
         .trim()

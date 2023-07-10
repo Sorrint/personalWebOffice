@@ -16,31 +16,31 @@ export enum productTax {
 }
 
 export interface departmentData {
-    id: string;
-    name: string;
-    tax: productTax;
+    id: string
+    name: string
+    tax: productTax
 }
 
 export interface stock {
-    _id: string;
-    remains: number;
-    date: Date;
+    _id: string
+    remains: number
+    date: Date
 }
 
 export interface extraData {
-    collection: string;
-    volume: number;
-    weight: number;
+    collection: string
+    volume: number
+    weight: number
 }
 
 export interface createProductDto {
-    name: string;
-    type: productType;
-    tax: productTax;
-    quantity?: number;
-    barcodes?: string[];
-    price?: number;
-    department?: departmentData;
-    stock?: stock;
-    extra?: extraData;
+    name: string
+    type: productType
+    tax: productTax
+    quantity?: number
+    barcodes?: string[]
+    price?: number
+    department?: departmentData
+    stock?: stock
+    extra?: extraData
 }

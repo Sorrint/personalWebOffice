@@ -1,7 +1,7 @@
 import ReportsIcon from '@shared/assets/icons/reports.svg';
 import ShopsIcon from '@shared/assets/icons/shops.svg';
 import DocumentsIcon from '@shared/assets/icons/documents.svg';
-import AcceptanceIcon from '@shared/assets/icons/acceptance.svg';
+import InventoryIcon from '@shared/assets/icons/inventory.svg';
 import MarkingIcon from '@shared/assets/icons/marking.svg';
 import ProductsIcon from '@shared/assets/icons/products.svg';
 import ClientsIcon from '@shared/assets/icons/clients.svg';
@@ -13,7 +13,7 @@ import NewsIcon from '@shared/assets/icons/news.svg';
 import SupportIcon from '@shared/assets/icons/support.svg';
 import QuestionIcon from '@shared/assets/icons/question.svg';
 
-const BaseURL = "/office";
+const BaseURL = '/office';
 
 export const routesLinks = {
     reports: {
@@ -23,10 +23,10 @@ export const routesLinks = {
         path: `${BaseURL}/dashboard`
     },
     stores: {
-            id: 'shops',
-            text: 'Магазины',
-            image: ShopsIcon,
-            path: `${BaseURL}/shops`
+        id: 'shops',
+        text: 'Магазины',
+        image: ShopsIcon,
+        path: `${BaseURL}/shops`
     },
     documents: {
         id: 'documents',
@@ -34,10 +34,10 @@ export const routesLinks = {
         image: DocumentsIcon,
         path: `${BaseURL}/documents`
     },
-    acceptance: {
+    inventory: {
         id: 'inventory-lists',
         text: 'Инвентаризация',
-        image: AcceptanceIcon,
+        image: InventoryIcon,
         path: `${BaseURL}/inventory-lists`
     },
     marking: {
@@ -109,14 +109,15 @@ export const routesLinks = {
     }
 };
 
-const {reports, documents, stores, acceptance, marking, products, 
-        clients, loyality, stocks, integrations,news, scopes, question, support} = routesLinks;
-
+const {
+    reports, documents, stores, inventory, marking, products,
+    clients, loyality, stocks, integrations, news, scopes, question, support
+} = routesLinks;
 
 const menuItemsTop = {
     id: 'navigation-menu__top',
     wrapperClassName: 'navigation-menu__top',
-    items: [reports, stores, documents, acceptance, marking, products, clients, stocks, loyality, integrations]
+    items: [reports, stores, documents, inventory, marking, products, clients, stocks, loyality, integrations]
 };
 
 const menuItemsSpecial = {

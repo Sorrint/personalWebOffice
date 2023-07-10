@@ -1,26 +1,27 @@
-import { MouseEvent, ChangeEvent, KeyboardEvent } from 'react';
-import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
+import { type MouseEvent, type ChangeEvent, type KeyboardEvent, type FocusEvent } from 'react';
+import { type UseFormRegister, type FieldValues, type Path } from 'react-hook-form';
 
 import './counterField.scss';
 
 interface ICounterFieldsProps<T extends FieldValues> {
-    label: string;
-    name: Path<T>;
-    error?: string;
-    placeholder?: string;
-    register?: UseFormRegister<T>;
-    formName?: string;
-    autoComplete?: string;
-    field?: T;
-    value?: string;
-    onClick?: (e: MouseEvent) => void;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    inputClass?: string;
-    onKeyPress?: (e: KeyboardEvent, name: Path<T>) => void;
-    tabIndex?: number;
+    label: string
+    name: Path<T>
+    error?: string
+    placeholder?: string
+    register?: UseFormRegister<T>
+    formName?: string
+    autoComplete?: string
+    field?: T
+    value?: string
+    onClick?: (e: MouseEvent) => void
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    inputClass?: string
+    onKeyPress?: (e: KeyboardEvent, name: Path<T>) => void
+    tabIndex?: number
+    onFocus?: (e: FocusEvent<HTMLInputElement>) => void
 }
 
-export default function CounterField<T extends FieldValues>(props: ICounterFieldsProps<T>) {
+export function CounterField<T extends FieldValues> (props: ICounterFieldsProps<T>) {
     const {
         label,
         name,
@@ -33,7 +34,8 @@ export default function CounterField<T extends FieldValues>(props: ICounterField
         onClick,
         inputClass,
         onKeyPress,
-        tabIndex
+        tabIndex,
+        onFocus
     } = props;
     const getInputClasses = () => {
         return 'counter-container__input' + (error ? ' is-invalid' : '') + (inputClass ? ` ${inputClass}` : '');
@@ -56,8 +58,9 @@ export default function CounterField<T extends FieldValues>(props: ICounterField
                     value={value}
                     onClick={onClick}
                     type={'number'}
-                    onKeyDown={onKeyPress && ((e) => onKeyPress(e, name))}
+                    onKeyDown={onKeyPress && ((e) => { onKeyPress(e, name); })}
                     tabIndex={tabIndex}
+                    onFocus={onFocus}
                 />
             </div>
             {error && <div className="invalid-feedback">{error}</div>}

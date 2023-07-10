@@ -36,5 +36,5 @@ export default defineConfig({
     optimizeDeps: {
         exclude: ['fs', 'path', 'url']
     },
-    base: '/office/'
+    base: '/office'
 });

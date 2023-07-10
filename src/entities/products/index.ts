@@ -1,7 +1,8 @@
-import { productsAPI } from '@entities/products/model/productsService';
-import ProductCard from './components/productCard';
-import ProductList from './components/productList';
-import CategoryCard from './components/categoryCard';
-import CategoriesList from './components/categoriesList/categoriesList';
-
-export { ProductCard, ProductList, CategoryCard, CategoriesList, productsAPI };
+export { type IDreamkasProduct } from './model/interfaces/IDreamkasProduct';
+export { productsAPI } from './model/productsService';
+export { ProductCard } from './components/productCard/productCard';
+export { CategoryCard } from './components/categoryCard/categoryCard';
+export { CategoriesList } from './components/categoriesList/categoriesList';
+export { transformProductName } from './lib/helpers/transformProductName';
+export { type IOrderProduct } from './model/interfaces/IOrderProduct';
+export { ProductList } from './components/productList/productList';

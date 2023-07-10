@@ -1,4 +1,4 @@
-import { IDbHeaders } from './interfaces/IOrderProduct';
+import { type IDbHeaders } from './interfaces/IOrderProduct';
 export const dbHeaders: IDbHeaders[] = [
     { id: 'name', text: 'Продукция' },
     { id: 'value', text: 'вес нетто' },

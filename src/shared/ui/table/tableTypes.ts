@@ -1,7 +1,3 @@
-export interface IHeaderItem {
-    [key: string]: any;
-}
+export type IHeaderItem = Record<string, any>;
 
-export interface IRecord {
-    [key: string]: any;
-}
+export type IRecord = Record<string, any>;

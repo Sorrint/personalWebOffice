@@ -13,7 +13,6 @@ export const useKeyPress = (keyTarget: any) => {
     useEffect(() => {
         window.addEventListener('keydown', downHandler);
         window.addEventListener('keyup', upHandler);
-        return;
     }, []);
     return { isKeyPressed, setIsKeyPressed };
 };

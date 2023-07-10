@@ -1,27 +1,27 @@
-import { forwardRef, ForwardedRef, KeyboardEvent } from 'react';
-import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
+import { forwardRef, type ForwardedRef, type KeyboardEvent } from 'react';
+import { type UseFormRegister, type FieldValues, type Path } from 'react-hook-form';
 
 import './radioButton.scss';
 
 interface IRadioButtonProps<T extends FieldValues> {
-    label: string;
-    name: Path<T>;
-    error?: string;
-    placeholder?: string;
-    register?: UseFormRegister<T>;
-    formName?: string;
-    autoComplete?: string;
-    field?: T;
-    value?: string;
-    onClick?: (e: React.MouseEvent) => void;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    inputClass?: string;
-    onKeyDown?: (e: KeyboardEvent) => void;
-    checked?: boolean;
-    disabled?: boolean;
+    label: string
+    name: Path<T>
+    error?: string
+    placeholder?: string
+    register?: UseFormRegister<T>
+    formName?: string
+    autoComplete?: string
+    field?: T
+    value?: string
+    onClick?: (e: React.MouseEvent) => void
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    inputClass?: string
+    onKeyDown?: (e: KeyboardEvent) => void
+    checked?: boolean
+    disabled?: boolean
 }
 
-const RadioButton = forwardRef(function RadioButton<T extends FieldValues>(
+export const RadioButton = forwardRef(function RadioButton<T extends FieldValues> (
     props: IRadioButtonProps<T>,
     ref: ForwardedRef<HTMLInputElement>
 ) {
@@ -56,11 +56,9 @@ const RadioButton = forwardRef(function RadioButton<T extends FieldValues>(
                     value={value}
                     onClick={onClick}
                     ref={ref}
-                    onKeyDown={onKeyDown && ((e) => onKeyDown(e))}
+                    onKeyDown={onKeyDown && ((e) => { onKeyDown(e); })}
                     disabled={disabled}
                 />
-                <div className="cut"></div>
-
                 <label className="radioButton-label" htmlFor={name}>
                     {label}
                 </label>
@@ -69,5 +67,3 @@ const RadioButton = forwardRef(function RadioButton<T extends FieldValues>(
         </div>
     );
 });
-
-export default RadioButton;

@@ -1,12 +1,11 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import './dropdown.scss';
 
 interface IDropdownListProps {
-    children: React.ReactNode;
+    className?: string
+    children: React.ReactNode
 }
-const DropdownList: FC<IDropdownListProps> = ({ children }) => {
-    return <div className="dropdown">{children}</div>;
+export const DropdownList: FC<IDropdownListProps> = ({ children, className }) => {
+    return <div className={`dropdown ${className ?? ''}`}>{children}</div>;
 };
-
-export default DropdownList;

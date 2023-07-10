@@ -1,4 +1,4 @@
-import { SheetData } from './readXLSXtable';
+import { type SheetData } from './readXLSXtable';
 import { replaceObjectKeys } from './replaceObjectKeys';
 export const parseSheetData = (data: SheetData[], startItem: string) => {
     const firstTableRow = data.find((item) => Object.values(item).find((item) => item === startItem));
