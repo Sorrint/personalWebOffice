@@ -1,0 +1,1 @@
+export { OverlayingPopupWithFocusTrap } from './overlayingPopupWithFocusTrap';

@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 
+import { EditOrderingProductCard } from '@features/editOrderingProductCard';
 import { productsAPI } from '@entities/products';
+import { OrderingList } from '@entities/orderings';
+
 import { type IOrderingProductWithExtraData, hasExtraData } from '../../libs/extraDataTypeGuard';
-import OrderingList from '@entities/orderings/components/ordering/orderingList';
-import EditOrderingProductCard from '@features/editOrderingProductCard/editOrderingProductCard';
 import './ordering.scss';
+
 const Ordering = () => {
     // const order = useSelector(getCurrentOrder());
 

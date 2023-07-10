@@ -11,7 +11,7 @@ interface EditOrderingProductCardProps {
     product: IOrderProduct
 }
 
-const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) => {
+export const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) => {
     const { count, number, productName: name, unit } = product;
     const productName = transformProductName(name);
     const { register } = useForm({
@@ -44,5 +44,3 @@ const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) 
         </>
     );
 };
-
-export default EditOrderingProductCard;

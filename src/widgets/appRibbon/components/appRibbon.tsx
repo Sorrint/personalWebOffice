@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { type INavLinkObject } from '@shared/ui/navLink/navLinkTypes';
+import { type INavLinkObject } from '@shared/types/navLinkTypes';
 
 import './appRibbon.scss';
 
