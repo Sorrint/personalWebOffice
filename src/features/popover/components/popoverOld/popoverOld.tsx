@@ -3,7 +3,7 @@ import { Popper } from 'react-popper';
 import type * as PopperJS from '@popperjs/core';
 
 import { ClickOutside } from '@features/popup';
-import { Portal } from '@shared/ui/portal/portal/portal';
+import { Portal } from '@shared/ui/portal';
 
 interface PopoverProps {
     children: React.ReactNode
