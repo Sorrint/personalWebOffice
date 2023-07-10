@@ -1,12 +1,15 @@
 import { type FC } from 'react';
+
+import { type IOrderingProductWithExtraData } from '@widgets/documentPageBody';
 import { List } from '@shared/ui/list/list';
-import OrderingItem from './orderingItem';
-import { type IOrderingProductWithExtraData } from '@widgets/documentPageBody/libs/extraDataTypeGuard';
+
+import { OrderingItem } from '../orderingItem/orderingItem';
+import './orderingBody.scss';
 
 interface IOrderingBodyProps {
     products: IOrderingProductWithExtraData[]
 }
-const OrderingBody: FC<IOrderingBodyProps> = ({ products }) => {
+export const OrderingBody: FC<IOrderingBodyProps> = ({ products }) => {
     return (
         <>
             <List
@@ -20,5 +23,3 @@ const OrderingBody: FC<IOrderingBodyProps> = ({ products }) => {
         </>
     );
 };
-
-export default OrderingBody;

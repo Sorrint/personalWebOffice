@@ -9,7 +9,7 @@ export interface IInventoryProductCardProps extends IInventoryContent {
     itemNumber: number
 }
 
-const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNumber, tabIndex, onClick, onDelete }) => {
+export const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNumber, tabIndex, onClick, onDelete }) => {
     const { name, price, quantity } = product;
 
     const handleClick = (product: IInventoryProduct) => {
@@ -33,5 +33,3 @@ const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNum
         </div>
     );
 };
-
-export default InventoryProductCard;

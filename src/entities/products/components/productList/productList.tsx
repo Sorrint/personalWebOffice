@@ -1,7 +1,7 @@
 import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
 import { type FC, type MutableRefObject } from 'react';
-import { ProductListBody } from './productListBody';
-import { ProductListHeader } from './productListHeader';
+import { ProductListBody } from '../productsListBody/productListBody';
+import { ProductListHeader } from '../productsListHeader/productListHeader';
 
 import './productList.scss';
 

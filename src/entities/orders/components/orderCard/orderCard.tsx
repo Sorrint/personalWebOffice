@@ -1,17 +1,16 @@
 import { Children, type FC, type ReactNode } from 'react';
 
-import { hasComponentName } from '@shared/lib/utils/hasComponentName';
+import { hasComponentName } from '@shared/lib/utils';
 import { Table } from '@shared/ui/table';
 
+import { type IOrder } from '../../model/interfaces/IOrder';
 import './orderCard.scss';
-import { type IOrder } from '@entities/orders/model/interfaces/IOrder';
-
 interface IOrderCardProps {
     children?: ReactNode
     order: IOrder | undefined
 }
 
-const OrderCard: FC<IOrderCardProps> = ({ children, order }) => {
+export const OrderCard: FC<IOrderCardProps> = ({ children, order }) => {
     const actions = children ?? Children.toArray(children).filter((child) => hasComponentName(child, 'OrderActions'));
 
     const tableHeaders = {
@@ -37,5 +36,3 @@ const OrderCard: FC<IOrderCardProps> = ({ children, order }) => {
         </>
     );
 };
-
-export default OrderCard;

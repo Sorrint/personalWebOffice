@@ -9,7 +9,7 @@ import './inventoryDocs.scss';
 interface IInventoryListItemProps {
     document: IInventoryDocs
 }
-const InventoryListItem: FC<IInventoryListItemProps> = ({ document }) => {
+export const InventoryListItem: FC<IInventoryListItemProps> = ({ document }) => {
     const { documentNumber, choosenDate, comment } = document;
     const date = transformDate(choosenDate);
     return (
@@ -21,5 +21,3 @@ const InventoryListItem: FC<IInventoryListItemProps> = ({ document }) => {
         </>
     );
 };
-
-export default InventoryListItem;

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { inventoryDocsAPI } from '../../reducers/inventoryDocsService';
 import { transformDataForXLSX, transformDate } from '../../lib/helpers';
 import { type IInventoryProduct, type IdataForXLSX } from '../../model/types';
-import InventoryProductList from '../inventoryProductsList/inventoryProductsList';
+import { InventoryProductList } from '../inventoryProductsList/inventoryProductsList';
 
 import { saveToXLSX } from '@shared/lib/utils/saveToXLSX';
 import './inventoryContent.scss';
@@ -15,7 +15,7 @@ export interface IInventoryContent {
     tabIndex?: number
 }
 
-const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tabIndex }) => {
+export const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tabIndex }) => {
     const { number } = useParams();
     if (number) {
         const { data: inventoryList, isLoading } = inventoryDocsAPI.useLoadDocumentByNumberQuery(number);
@@ -59,5 +59,3 @@ const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tabIndex }
     }
     return <h1>Ничего не найдено</h1>;
 };
-
-export default InventoryContent;

@@ -1,11 +1,14 @@
 import { type FC } from 'react';
-import { type IOrderingProductWithExtraData } from '@widgets/documentPageBody/libs/extraDataTypeGuard';
+
+import { type IOrderingProductWithExtraData } from '@widgets/documentPageBody';
+
+import './orderingItem.scss';
 
 interface IOrderingItemProps {
     item: IOrderingProductWithExtraData
 }
 
-const OrderingItem: FC<IOrderingItemProps> = ({ item }) => {
+export const OrderingItem: FC<IOrderingItemProps> = ({ item }) => {
     const { count, unit, orderNumber, name } = item;
     return (
         <>
@@ -16,5 +19,3 @@ const OrderingItem: FC<IOrderingItemProps> = ({ item }) => {
         </>
     );
 };
-
-export default OrderingItem;
