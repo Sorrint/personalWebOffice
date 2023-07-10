@@ -13,7 +13,6 @@ import { ProductList, productsAPI } from '@entities/products';
 import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 
-import './acceptanceDocs.scss';
 import './inventoryEdit.scss';
 interface IPopupProps {
     product: IInventoryProduct

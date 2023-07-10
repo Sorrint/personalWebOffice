@@ -24,7 +24,7 @@ const routes: RouteObject[] = [
         ]
     },
     {
-        path: `${routesLinks.acceptance.path}`,
+        path: `${routesLinks.inventory.path}`,
         element: <InventoryPage />,
         children: [
             {
