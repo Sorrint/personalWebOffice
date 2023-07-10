@@ -1,4 +1,6 @@
-const OrderingHeader = () => {
+import './orderingHeader.scss';
+
+export const OrderingHeader = () => {
     return (
         <div className="ordering__headers">
             <div className="ordering__header header__number">№</div>
@@ -8,5 +10,3 @@ const OrderingHeader = () => {
         </div>
     );
 };
-
-export default OrderingHeader;

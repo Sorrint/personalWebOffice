@@ -1,13 +1,13 @@
 import { type FC } from 'react';
 import { type IInventoryDocs } from '../../model/types';
 
-import InventoryListItem from '../inventoryListItem/inventoryListItem';
+import { InventoryListItem } from '../inventoryListItem/inventoryListItem';
 
 interface IInventoryListProps {
     documents: IInventoryDocs[]
 }
 
-const InventoryList: FC<IInventoryListProps> = ({ documents }) => {
+export const InventoryList: FC<IInventoryListProps> = ({ documents }) => {
     return (
         <>
             <h1>Список документов</h1>
@@ -17,5 +17,3 @@ const InventoryList: FC<IInventoryListProps> = ({ documents }) => {
         </>
     );
 };
-
-export default InventoryList;

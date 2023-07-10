@@ -1,4 +1,3 @@
-import { getCurrentOrder, setCurrentOrder } from '@entities/orders/model/OrderSlice';
-import OrderCard from './components/orderCard/orderCard';
-import OrderActions from './components/orderCard/orderActions';
-export { OrderCard, OrderActions, getCurrentOrder, setCurrentOrder };
+export { getCurrentOrder, setCurrentOrder } from '@entities/orders/model/OrderSlice';
+export { OrderCard } from './components/orderCard/orderCard';
+export { OrderActions } from './components/orderActions/orderActions';
