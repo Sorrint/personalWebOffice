@@ -49,7 +49,9 @@ const InventoryEdit: FC = () => {
         setActivePopover(false);
     }, [isKeyPressed]);
     useEffect(() => {
-        goods && setActivePopover(goods?.length > 0);
+        if (goods) {
+            goods.length === 1 ? handleCreate(goods[0]) : setActivePopover(goods?.length > 0);
+        }
     }, [goods]);
     useEffect(() => {
         !activePopup && searchInput.current?.focus();
@@ -72,8 +74,8 @@ const InventoryEdit: FC = () => {
     const handleCreate = (product: IDreamkasProduct) => {
         const { name, price } = product;
         const newProduct = { name, price: price && price / 100, quantity: 1, id: undefined };
-        setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
         setActivePopover(false);
+        setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
         setActivePopup(true);
     };
 
@@ -145,6 +147,7 @@ const InventoryEdit: FC = () => {
                             onClick={(product) => { handleCreate(product); }}
                             setFirstElement={setFirstElement}
                             parentRef={searchInput}
+                            displayHeaders={false}
                         />
                     </DropdownList>
                 </PopoverNew>
