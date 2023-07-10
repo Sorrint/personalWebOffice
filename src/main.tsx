@@ -12,7 +12,6 @@ import App from '@app/App';
 const store = setupStore();
 const persistor = persistStore(store);
 
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

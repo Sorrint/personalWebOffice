@@ -11,7 +11,7 @@ interface OverlayingPopupWithFocusTrapProps {
     isOpened: boolean
 }
 
-const OverlayingPopupWithFocusTrap: FC<OverlayingPopupWithFocusTrapProps> = ({ children, onClose, isOpened }) => {
+export const OverlayingPopupWithFocusTrap: FC<OverlayingPopupWithFocusTrapProps> = ({ children, onClose, isOpened }) => {
     if (!isOpened) {
         return null;
     }
@@ -27,5 +27,3 @@ const OverlayingPopupWithFocusTrap: FC<OverlayingPopupWithFocusTrapProps> = ({ c
         </Portal>
     );
 };
-
-export default OverlayingPopupWithFocusTrap;

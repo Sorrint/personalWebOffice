@@ -1,20 +1,16 @@
 import { type FC } from 'react';
 
-import { useAppSelector } from '@shared/lib/hooks';
-import OrderCard from '@entities/orders/components/orderCard/orderCard';
 import LoadOrderFromFile from '@features/loadOrderFromFile';
-import OrderActions from '@entities/orders/components/orderCard/orderActions';
-import { getCurrentOrder } from '@entities/orders/model/OrderSlice';
-import 'ag-grid-community/styles//ag-grid.css';
-import 'ag-grid-community/styles//ag-theme-alpine.css';
-import SaveOrderToDatabase from '@features/saveOrderToDatabase/saveOrderToDatabase';
+import { SaveOrderToDatabase } from '@features/saveOrderToDatabase';
+import { OrderActions, OrderCard, getCurrentOrder } from '@entities/orders';
+import { useAppSelector } from '@shared/lib/hooks';
+
 const Order: FC = () => {
     const order = useAppSelector(getCurrentOrder());
 
     return (
         <>
             {!order && <LoadOrderFromFile />}
-
             <OrderCard order={order}>
                 <OrderActions>
                     <LoadOrderFromFile />

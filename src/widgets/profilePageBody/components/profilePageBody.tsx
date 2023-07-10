@@ -1,10 +1,12 @@
-import './profile.scss';
 import { useState } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
+
 import { OverlayingPopup } from '@features/popup';
 import { TextField } from '@shared/ui/textField';
 import { Button } from '@shared/ui/button/button';
 import { RadioButton } from '@shared/ui/radioButton';
+
+import './profile.scss';
 
 interface ProfileSettings {
     dataBase: string

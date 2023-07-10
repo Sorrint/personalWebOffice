@@ -2,16 +2,14 @@ import { type FC, useEffect, useState, useRef, type KeyboardEvent } from 'react'
 import { type FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { SearchInput } from '@shared/ui/searchInput';
-import { DropdownList } from '@shared/ui/dropdownList';
+import { OverlayingPopupWithFocusTrap } from '@features/popup/overlayingPopup';
 import { PopoverNew } from '@features/popover';
 import { PopupCard } from '@features/popup';
-import OverlayingPopupWithFocusTrap from '@features/popup/overlayingPopup/overlayingPopupWithFocusTrap';
-
 import { type IInventoryProduct, InventoryContent, inventoryDocsAPI } from '@entities/inventoryDocs';
-import { ProductList, productsAPI } from '@entities/products';
-import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
-import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
+import { type IDreamkasProduct, ProductList, productsAPI } from '@entities/products';
+import { SearchInput } from '@shared/ui/searchInput';
+import { DropdownList } from '@shared/ui/dropdownList';
+import { useKeyPress } from '@shared/lib/hooks';
 
 import './inventoryEdit.scss';
 interface IPopupProps {

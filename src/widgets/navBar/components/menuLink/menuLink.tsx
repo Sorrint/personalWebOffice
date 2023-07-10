@@ -1,9 +1,10 @@
 import { type FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { Icon } from '@shared/ui/icon';
+
 import { type IMenuItem } from '../../model/menuItemsTypes';
 import './menuLink.scss';
-import { Icon } from '@shared/ui/icon/icon';
 
 interface MenuLinkProps {
     item: IMenuItem
