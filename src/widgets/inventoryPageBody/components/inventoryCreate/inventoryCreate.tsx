@@ -2,15 +2,15 @@ import { type FC, useEffect } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { inventoryDocsAPI } from '@entities/inventoryDocs';
 import { countersAPI } from '@shared/api/countersAPI';
-import { TextField } from '@shared/ui/textField';
+import { inventoryDocsAPI } from '@entities/inventoryDocs';
+import { Button } from '@shared/ui/button/button';
 import { Calendar } from '@shared/ui/calendar';
+import { TextField } from '@shared/ui/textField';
 
 import './inventoryCreate.scss';
-import { Button } from '@shared/ui/button/button';
 
-const InventoryCreate: FC = () => {
+export const InventoryCreate: FC = () => {
     const navigate = useNavigate();
     const [createDoc] = inventoryDocsAPI.useCreateNewDocumentMutation();
     const { data } = countersAPI.useGetCounterQuery('docNumber', { refetchOnMountOrArgChange: true });
@@ -75,5 +75,3 @@ const InventoryCreate: FC = () => {
         </>
     );
 };
-
-export default InventoryCreate;

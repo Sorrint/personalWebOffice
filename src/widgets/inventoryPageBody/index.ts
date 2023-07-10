@@ -1,6 +1,4 @@
-import AcceptanceDocs from './components/acceptanceDocs';
-import InventoryCreate from './components/inventoryCreate';
-import InventoryEdit from './components/inventoryEdit';
-import InventoriesList from './components/inventoriesList';
-
-export { AcceptanceDocs, InventoryCreate, InventoryEdit, InventoriesList };
+export { AcceptanceDocs } from './components/acceptanceDocs/acceptanceDocs';
+export { InventoryCreate } from './components/inventoryCreate/inventoryCreate';
+export { InventoryEdit } from './components/inventoryEdit/inventoryEdit';
+export { InventoriesList } from './components/inventoriesList/inventoriesList';

@@ -3,12 +3,10 @@ import { Outlet } from 'react-router-dom';
 
 import './acceptanceDocs.scss';
 
-const GoodsSearchList: FC = () => {
+export const AcceptanceDocs: FC = () => {
     return (
         <>
             <Outlet />
         </>
     );
 };
-
-export default GoodsSearchList;

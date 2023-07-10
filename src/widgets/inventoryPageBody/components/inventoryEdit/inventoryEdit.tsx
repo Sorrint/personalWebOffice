@@ -8,9 +8,8 @@ import { PopoverNew } from '@features/popover';
 import { PopupCard } from '@features/popup';
 import OverlayingPopupWithFocusTrap from '@features/popup/overlayingPopup/overlayingPopupWithFocusTrap';
 
-import { InventoryContent, inventoryDocsAPI } from '@entities/inventoryDocs';
+import { type IInventoryProduct, InventoryContent, inventoryDocsAPI } from '@entities/inventoryDocs';
 import { ProductList, productsAPI } from '@entities/products';
-import { type IInventoryProduct } from '@entities/inventoryDocs/model/types';
 import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 
@@ -23,7 +22,7 @@ interface IPopupProps {
     method: 'Delete' | 'Update' | 'Create'
 }
 
-const InventoryEdit: FC = () => {
+export const InventoryEdit: FC = () => {
     const { number } = useParams();
     const docNumber = Number(number);
     const [popupProps, setPopupProps] = useState<IPopupProps>();
@@ -158,5 +157,3 @@ const InventoryEdit: FC = () => {
         </>
     );
 };
-
-export default InventoryEdit;

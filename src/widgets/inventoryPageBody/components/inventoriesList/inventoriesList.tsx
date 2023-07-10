@@ -1,11 +1,10 @@
 import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { inventoryDocsAPI, InventoryList } from '@entities/inventoryDocs';
-import { type IInventoryDocs } from '@entities/inventoryDocs/model/types';
-import { Button } from '@shared/ui/button/button';
+import { type IInventoryDocs, inventoryDocsAPI, InventoryList } from '@entities/inventoryDocs';
+import { Button } from '@shared/ui/button';
 
-const InventoriesList: FC = () => {
+export const InventoriesList: FC = () => {
     const { data: documents, isLoading } = inventoryDocsAPI.useLoadAllDocumentsQuery({});
 
     const renderDocuments = (list: IInventoryDocs[] | undefined) =>
@@ -23,5 +22,3 @@ const InventoriesList: FC = () => {
         </>
     );
 };
-
-export default InventoriesList;
