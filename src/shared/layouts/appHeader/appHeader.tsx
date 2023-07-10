@@ -6,7 +6,7 @@ interface AppHeaderProps {
     title: string
 }
 
-const AppHeader = ({ children, title }: AppHeaderProps) => {
+export const AppHeader = ({ children, title }: AppHeaderProps) => {
     return (
         <div className="app__header">
             <div className="app__container">
@@ -16,5 +16,3 @@ const AppHeader = ({ children, title }: AppHeaderProps) => {
         </div>
     );
 };
-
-export default AppHeader;

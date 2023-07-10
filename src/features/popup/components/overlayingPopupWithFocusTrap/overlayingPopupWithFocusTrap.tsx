@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import { Portal } from '@shared/ui/portal/portal';
+import { Portal } from '@shared/ui/portal/portal/portal';
 import FocusLock from 'react-focus-lock';
 
 import './overlayingPopupWithFocusTrap.scss';

@@ -6,8 +6,6 @@ interface LayoutProps {
     style?: 'wrapper' | 'content'
 }
 
-const AppLayout = ({ children, style }: LayoutProps) => {
+export const AppLayout = ({ children, style }: LayoutProps) => {
     return <div className={`app__${style ?? 'wrapper'}`}>{children}</div>;
 };
-
-export default AppLayout;
