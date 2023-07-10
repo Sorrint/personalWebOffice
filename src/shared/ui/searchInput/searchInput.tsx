@@ -35,7 +35,6 @@ export const SearchInput: FC<ISearchInputProps<void>> = ({ searchFunction, loadi
                 variant='standard'
                 onFocus={handleFocus}
             />
-            <div className='search-icon'><Loader /></div>
             {loading && <div className='search-icon'><Loader /></div>}
         </div>
     );

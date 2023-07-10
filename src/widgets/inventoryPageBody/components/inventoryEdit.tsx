@@ -129,26 +129,26 @@ const InventoryEdit: FC = () => {
                 onDelete={(product) => { handleDelete(product); }}
                 tabIndex={activePopup ? -1 : 0}
             />
-            {/* {goods && goods?.length !== 0 && searchInput.current && activePopover && ( */}
-            <PopoverNew
-                isOpen={activePopover}
-                onClose={hidePopover}
-                referenceElement={searchInput.current as HTMLElement}
-                key={'key'}
-            >
-                <DropdownList className='dropdown-products'>
-                    <ProductList
-                        products={goods}
-                        selectField={false}
-                        avatar={false}
-                        count={false}
-                        onClick={(product) => { handleCreate(product); }}
-                        setFirstElement={setFirstElement}
-                        parentRef={searchInput}
-                    />
-                </DropdownList>
-            </PopoverNew>
-            {/* // )} */}
+            {goods && goods?.length !== 0 && searchInput.current && activePopover && (
+                <PopoverNew
+                    isOpen={activePopover}
+                    onClose={hidePopover}
+                    referenceElement={searchInput.current as HTMLElement}
+                    key={'key'}
+                >
+                    <DropdownList className='dropdown-products'>
+                        <ProductList
+                            products={goods}
+                            selectField={false}
+                            avatar={false}
+                            count={false}
+                            onClick={(product) => { handleCreate(product); }}
+                            setFirstElement={setFirstElement}
+                            parentRef={searchInput}
+                        />
+                    </DropdownList>
+                </PopoverNew>
+            )}
             <OverlayingPopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
                 {popupProps && <PopupCard {...popupProps} buttonClick={onSubmit} error={updateError} />}
             </OverlayingPopupWithFocusTrap>
