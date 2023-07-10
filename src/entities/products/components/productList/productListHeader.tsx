@@ -6,7 +6,7 @@ interface ProductListHeaderProps {
     count: boolean
 }
 
-const ProductListHeader: FC<ProductListHeaderProps> = ({ selectField, avatar, count }) => {
+export const ProductListHeader: FC<ProductListHeaderProps> = ({ selectField, avatar, count }) => {
     return (
         <>
             <div className="products-list__header">
@@ -19,5 +19,3 @@ const ProductListHeader: FC<ProductListHeaderProps> = ({ selectField, avatar, co
         </>
     );
 };
-
-export default ProductListHeader;

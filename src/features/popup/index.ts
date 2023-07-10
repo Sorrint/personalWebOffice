@@ -1,5 +1,4 @@
-import OverlayingPopup from './overlayingPopup/overlayingPopup';
-import PopupCard from './popupCard/popupCard';
-import { ClickOutside } from './clickOutside';
-
-export { OverlayingPopup, PopupCard, ClickOutside };
+export { OverlayingPopup } from './components/overlayingPopup/overlayingPopup';
+export { OverlayingPopupWithFocusTrap } from './components/overlayingPopupWithFocusTrap/overlayingPopupWithFocusTrap';
+export { PopupCard } from './components/popupCard/popupCard';
+export { ClickOutside } from './helpers/clickOutside';

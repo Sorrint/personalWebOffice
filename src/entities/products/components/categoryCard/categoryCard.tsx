@@ -7,7 +7,7 @@ import './categoryStyles.scss';
 interface ICategoryCardProps {
     category: IProductCategory
 }
-const CategoryCard: FC<ICategoryCardProps> = ({ category }) => {
+export const CategoryCard: FC<ICategoryCardProps> = ({ category }) => {
     const { name, productCount } = category;
     return (
         <div className="category-card">

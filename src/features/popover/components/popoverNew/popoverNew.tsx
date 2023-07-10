@@ -10,7 +10,7 @@ interface PopoverProps {
     children: ReactNode
 }
 
-const PopoverNew: FC<PopoverProps> = ({ isOpen, onClose, referenceElement, children }) => {
+export const PopoverNew: FC<PopoverProps> = ({ isOpen, onClose, referenceElement, children }) => {
     const [popperElement, setPopperElement] = useState<any>();
 
     const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -31,5 +31,3 @@ const PopoverNew: FC<PopoverProps> = ({ isOpen, onClose, referenceElement, child
         </Portal>
     );
 };
-
-export default PopoverNew;

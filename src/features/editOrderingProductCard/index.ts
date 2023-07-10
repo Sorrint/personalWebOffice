@@ -1,1 +1,1 @@
-export { EditOrderingProductCard } from './editOrderingProductCard';
+export { EditOrderingProductCard } from './components/editOrderingProductCard';

@@ -8,7 +8,7 @@ interface IProductListBodyProps extends IProductListContentProps<IDreamkasProduc
     products: IDreamkasProduct[]
 }
 
-const ProductListBody: FC<IProductListBodyProps> = ({ products, parentRef, setFirstElement, ...rest }) => {
+export const ProductListBody: FC<IProductListBodyProps> = ({ products, parentRef, setFirstElement, ...rest }) => {
     const listRefs = useRef<Array<HTMLDivElement | null>>([]);
 
     const addProductToRefList = (productRef: HTMLDivElement) => {
@@ -35,5 +35,3 @@ const ProductListBody: FC<IProductListBodyProps> = ({ products, parentRef, setFi
         </>
     );
 };
-
-export default ProductListBody;

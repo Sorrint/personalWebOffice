@@ -10,7 +10,7 @@ interface OverlayingPopupProps {
     isOpened: boolean
 }
 
-const OverlayingPopup: FC<OverlayingPopupProps> = ({ children, onClose, isOpened }) => {
+export const OverlayingPopup: FC<OverlayingPopupProps> = ({ children, onClose, isOpened }) => {
     if (!isOpened) {
         return null;
     }
@@ -24,5 +24,3 @@ const OverlayingPopup: FC<OverlayingPopupProps> = ({ children, onClose, isOpened
         </Portal>
     );
 };
-
-export default OverlayingPopup;

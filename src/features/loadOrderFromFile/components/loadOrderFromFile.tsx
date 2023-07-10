@@ -1,8 +1,9 @@
-import { setCurrentOrder } from '@entities/orders/model/OrderSlice';
 import { useAppDispatch } from '@shared/lib/hooks';
+import { setCurrentOrder } from '@entities/orders';
+
 import { getOrderFromExcel } from '../api/mappers/getOrderFromExcel';
 
-const LoadOrderFromFile = () => {
+export const LoadOrderFromFile = () => {
     const dispatch = useAppDispatch();
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
@@ -21,5 +22,3 @@ const LoadOrderFromFile = () => {
         </>
     );
 };
-
-export default LoadOrderFromFile;

@@ -11,7 +11,7 @@ interface IProductCardProps extends IProductListContentProps<IDreamkasProduct> {
     onCardKeyDown?: (event: KeyboardEvent, onSubmit: (...args: any[]) => void) => void
 }
 
-const ProductCard: FC<IProductCardProps> = ({
+export const ProductCard: FC<IProductCardProps> = ({
     product,
     selectField,
     avatar,
