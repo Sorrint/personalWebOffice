@@ -9,29 +9,29 @@ import productsReducer from '@entities/products/model/productSlice';
 import { type ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 
 const persistConfig = {
-  key: 'root',
-  storage,
-  blacklist: [productsAPI.reducerPath, inventoryDocsAPI.reducerPath, countersAPI.reducerPath]
+    key: 'root',
+    storage,
+    blacklist: [productsAPI.reducerPath, inventoryDocsAPI.reducerPath, countersAPI.reducerPath]
 };
 
 const rootReducer = combineReducers({
-  orders: ordersReducer,
-  products: productsReducer,
-  [productsAPI.reducerPath]: productsAPI.reducer,
-  [inventoryDocsAPI.reducerPath]: inventoryDocsAPI.reducer,
-  [countersAPI.reducerPath]: countersAPI.reducer
+    orders: ordersReducer,
+    products: productsReducer,
+    [productsAPI.reducerPath]: productsAPI.reducer,
+    [inventoryDocsAPI.reducerPath]: inventoryDocsAPI.reducer,
+    [countersAPI.reducerPath]: countersAPI.reducer
 });
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const setupStore = (): ToolkitStore => {
-  return configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-        }
-      }).concat(productsAPI.middleware, inventoryDocsAPI.middleware, countersAPI.middleware)
-  });
+    return configureStore({
+        reducer: persistedReducer,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                serializableCheck: {
+                    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+                }
+            }).concat(productsAPI.middleware, inventoryDocsAPI.middleware, countersAPI.middleware)
+    });
 };
