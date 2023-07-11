@@ -9,13 +9,29 @@
     height: 100%;
 }
 
+
+
 .editCard {
-    &__productName {
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    border: 3px solid var(--primary-color);
+    border-radius: 10px;
+    background-color: #fff;
+    &__cell {
         width: 100%;
-        text-align: left !important;
+    }
+    &__title {
+        padding: 20px;
+        font-size: var(--font-size-header-2);
+        font-weight: 500;
+        line-height: 1.5;
+        color: #fff;
+        background-color:var(--primary-color);
+    }
+
+    &__properties {
+        padding: 15px;
     }
 }

@@ -1,46 +1,25 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { EditOrderingProductCard } from '@features/editOrderingProductCard';
 import { productsAPI } from '@entities/products';
+import { getCurrentOrder } from '@entities/orders';
 import { OrderingList } from '@entities/orderings';
 
-import { type IOrderingProductWithExtraData, hasExtraData } from '../../libs/extraDataTypeGuard';
+import { hasExtraData, type IOrderingProductWithExtraData } from '../../libs/extraDataTypeGuard';
 import './ordering.scss';
 
 const Ordering = () => {
-    // const order = useSelector(getCurrentOrder());
+    const order = useSelector(getCurrentOrder());
 
-    const order = {
-        products: [
-            {
-                number: 1,
-                productName: 'Краска фасадная 7 кг акриловая Капитель',
-                count: 234,
-                unit: 'шт.'
-            },
-            {
-                number: 2,
-                productName: '  Краска    фасадная14кг   акриловая Капитель  ',
-                count: 44,
-                unit: 'шт.'
-            },
-            {
-                number: 3,
-                productName: 'Краска для печей и каминов 1 кг акриловая Капитель Иркутск',
-                count: 5,
-                unit: 'шт.'
-            }
-        ]
-    };
     const [checkOrder, { data: resultCheck, isLoading: isChecking, isError: isCheckError }] =
         productsAPI.useCheckOrderProductsMutation();
 
     useEffect(() => {
-        checkOrder(order.products).catch(() => { });
-    }, []);
+        if (order) checkOrder(order.products).catch(() => { });
+    }, [order]);
 
     const orderingProducts =
-        // resultCheck &&
         resultCheck?.productsExists.filter((item): item is IOrderingProductWithExtraData => hasExtraData(item));
 
     const notAllFieldProducts = resultCheck?.productsExists.filter((item) => !hasExtraData(item));
@@ -49,11 +28,11 @@ const Ordering = () => {
             {isCheckError && <>Ошибка c подключением</>}
             {isChecking && <>&lsquo;Идет проверка документа&lsquo;</>}
             {notAllFieldProducts?.length && notAllFieldProducts.map((item) => <div key={item._id}>{item.name}</div>)}
+            <div>Порядовка</div>
+            {orderingProducts && <OrderingList products={orderingProducts} />}
             {resultCheck?.productsNotExists.map((product) => (
                 <EditOrderingProductCard product={product} key={product.number} />
             ))}
-            <div>Порядовка</div>
-            {orderingProducts && <OrderingList products={orderingProducts} />}
         </>
     );
 };

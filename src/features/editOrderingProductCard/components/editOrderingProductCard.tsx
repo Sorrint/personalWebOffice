@@ -1,10 +1,11 @@
-import { FormProvider, useForm } from 'react-hook-form';
+import { type Path, useForm } from 'react-hook-form';
 import { useEffect, type FC } from 'react';
 
 import { type IOrderProduct, transformProductName } from '@entities/products';
-import { EditableContent } from '@shared/ui/editableContent';
 
 import './editOrderingProductCard.scss';
+import { EditProductProperty } from '@entities/products/components/editProductProperty/editProductProperty';
+import { TextField } from '@shared/ui/textField';
 
 interface EditOrderingProductCardProps {
     product: IOrderProduct
@@ -23,31 +24,29 @@ export const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ prod
         }
     });
 
-    const { watch } = methods;
+    const { watch, register } = methods;
 
     useEffect(() => {
         const subscription = watch((value, { name, type }) => { console.log(value, name, type); });
         return () => { subscription.unsubscribe(); };
     }, [watch]);
 
+    const renderFieldProps = (fieldName: Path<IOrderProduct>) => {
+        const textFieldType = typeof product[fieldName] === 'number' ? 'number' : 'text';
+        return <TextField {...register(fieldName) } className= {`editCard__cell editItem__${fieldName}`} type={textFieldType}/>;
+    };
+
     return (
         <>
-            <FormProvider {...methods} >
-                <div className="editCard__productName">
-                    <EditableContent name='productName'/>
+            <div className="editCard">
+                <h2 className='editCard__title'>{productName}</h2>
+                <div className='editCard__properties'>
+                    <EditProductProperty propertyName='№ в документе' renderEditField={() => renderFieldProps('number')}/>
+                    <EditProductProperty propertyName='Наименование' renderEditField={() => renderFieldProps('productName')}/>
+                    <EditProductProperty propertyName='Количество' renderEditField={() => renderFieldProps('count')}/>
+                    <EditProductProperty propertyName='Ед.' renderEditField={() => renderFieldProps('unit')}/>
                 </div>
-                <div className="editCard__item">
-                    <div className="editCard__cell item__number">
-                        <EditableContent name='number'/>
-                    </div>
-                    <div className="editCard__cell item__count">
-                        <EditableContent name='count'/>
-                    </div>
-                    <div className="editCard__cell item__unit">
-                        <EditableContent name='unit'/>
-                    </div>
-                </div>
-            </FormProvider>
+            </div>
         </>
     );
 };
