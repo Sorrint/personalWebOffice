@@ -5,7 +5,7 @@ import { type IProductListParams, type ISearchParams, type ISearchResult } from 
 export const productsDreamkasConfig = {
     reducerPath: 'ProductsDreamkasAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: `http://${SERVER_URI}/dreamkas/products`,
+        baseUrl: `${SERVER_URI}/dreamkas/products`,
         prepareHeaders: (headers) => {
             headers.set('authorization', `Bearer ${localStorage.getItem('dreamToken') ?? ''} `);
             return headers;

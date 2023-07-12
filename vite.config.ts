@@ -36,5 +36,8 @@ export default defineConfig({
     optimizeDeps: {
         exclude: ['fs', 'path', 'url']
     },
+    define: {
+        __SERVER_URI__: JSON.stringify('http://localhost:3000/officeApi')
+    },
     base: '/office'
 });

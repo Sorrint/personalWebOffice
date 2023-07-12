@@ -1,3 +1,4 @@
+export type { ProductsState } from './model/types/products';
 export { type IDreamkasProduct } from './model/interfaces/IDreamkasProduct';
 export { productsAPI } from './model/productsService';
 export { ProductCard } from './components/productCard/productCard';

@@ -6,7 +6,7 @@ import { type IOrderProduct } from './interfaces/IOrderProduct';
 export const productsStoreConfig = {
     reducerPath: 'ProductsAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: `http://${SERVER_URI}/products`
+        baseUrl: `${SERVER_URI}/products`
     }),
     endpoints: {
         loadProducts: {

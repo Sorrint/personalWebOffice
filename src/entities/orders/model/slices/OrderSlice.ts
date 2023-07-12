@@ -1,14 +1,5 @@
-import { type IOrder } from './interfaces/IOrder';
+import { type OrderState } from '../types/IOrder';
 import { createSlice } from '@reduxjs/toolkit';
-
-import { type PersistState } from '@shared/lib/store/types';
-
-interface OrderState {
-    entities: IOrder[]
-    currentOrder?: IOrder
-    isLoading: boolean
-    error: string
-}
 
 const initialState: OrderState = {
     entities: [],
@@ -43,10 +34,13 @@ export const OrderSlice = createSlice({
     }
 });
 
-const { reducer: ordersReducer, actions } = OrderSlice;
-export const { orderRequested, orderRequestedSuccess, orderRequestedFail, addOrder, setCurrentOrder } = actions;
+export const { reducer: orderReducer } = OrderSlice;
+export const { actions: orderActions } = OrderSlice;
 
-export const getOrders = () => (state: PersistState) => state.orders.entities;
-export const getCurrentOrder = () => (state: PersistState) => state.orders.currentOrder;
+// const { reducer: ordersReducer, actions } = OrderSlice;
+// export const { orderRequested, orderRequestedSuccess, orderRequestedFail, addOrder, setCurrentOrder } = actions;
 
-export default ordersReducer;
+// export const getOrders = () => (state: PersistState) => state.orders.entities;
+// export const getCurrentOrder = () => (state: PersistState) => state.orders.currentOrder;
+
+// export default ordersReducer;
