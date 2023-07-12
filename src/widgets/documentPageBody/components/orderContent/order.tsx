@@ -4,7 +4,10 @@ import { type FC } from 'react';
 const Order: FC = () => {
     return (
         <>
-            <OrderCardWithControls/>
+            <div>
+                <OrderCardWithControls/>
+            </div>
+
         </>
     );
 };

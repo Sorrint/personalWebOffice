@@ -13,15 +13,24 @@ export function createReducerManager (initialReducers: ReducersMapObject<StoreSc
         getMountedReducers: () => mountedReducers,
 
         reduce: (state: StoreSchema, action: AnyAction) => {
+            // if (keysToRemove.length > 0) {
+            //     state = { ...state };
+            //     for (const key of keysToRemove) {
+            //         // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+            //         delete state[key];
+            //     }
+            //     keysToRemove = [];
+            // }
+
+            // return combinedReducer(state, action);
             if (keysToRemove.length > 0) {
                 state = { ...state };
-                for (const key of keysToRemove) {
+                keysToRemove.forEach((key) => {
                     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                     delete state[key];
-                }
+                });
                 keysToRemove = [];
             }
-
             return combinedReducer(state, action);
         },
 
@@ -31,6 +40,7 @@ export function createReducerManager (initialReducers: ReducersMapObject<StoreSc
             }
             reducers[key] = reducer;
             mountedReducers[key] = true;
+
             combinedReducer = combineReducers(reducers);
         },
 
@@ -40,8 +50,8 @@ export function createReducerManager (initialReducers: ReducersMapObject<StoreSc
             }
             // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
             delete reducers[key];
-
             keysToRemove.push(key);
+            mountedReducers[key] = false;
 
             combinedReducer = combineReducers(reducers);
         }

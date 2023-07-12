@@ -9,8 +9,8 @@ import { type IDreamkasProduct, ProductList, productsAPI } from '@entities/produ
 import { SearchInput } from '@shared/ui/searchInput';
 import { DropdownList } from '@shared/ui/dropdownList';
 import { useKeyPress } from '@shared/lib/hooks';
-
 import './inventoryEdit.scss';
+
 interface IPopupProps {
     product: IInventoryProduct
     popupText: string

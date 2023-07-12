@@ -36,11 +36,3 @@ export const OrderSlice = createSlice({
 
 export const { reducer: orderReducer } = OrderSlice;
 export const { actions: orderActions } = OrderSlice;
-
-// const { reducer: ordersReducer, actions } = OrderSlice;
-// export const { orderRequested, orderRequestedSuccess, orderRequestedFail, addOrder, setCurrentOrder } = actions;
-
-// export const getOrders = () => (state: PersistState) => state.orders.entities;
-// export const getCurrentOrder = () => (state: PersistState) => state.orders.currentOrder;
-
-// export default ordersReducer;

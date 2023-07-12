@@ -1,4 +1,5 @@
-export { orderActions } from './model/slices/OrderSlice';
+export type { ReducersList } from './../../shared/lib/components/AsyncReduxComponent/AsyncReduxComponent';
+export { orderActions, orderReducer } from './model/slices/OrderSlice';
 
 export { getCurrentOrder } from './model/selectors/getCurrentOrderSelector/getCurrentOrderSelector';
 
