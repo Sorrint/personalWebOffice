@@ -1,6 +1,5 @@
 import storage from 'redux-persist/lib/storage';
 import { type ReducersMapObject, configureStore, type CombinedState } from '@reduxjs/toolkit';
-import { productsAPI } from '@entities/products';
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { createReducerManager } from './reducerManager';
 import { type StoreWithReducerManager, type StoreSchema } from './storeSchema';
@@ -11,12 +10,11 @@ export function createStore (initialState: StoreSchema, asyncReducers: ReducersM
     const persistConfig = {
         key: 'root',
         storage,
-        blacklist: [productsAPI.reducerPath, rtkApi.reducerPath]
+        blacklist: [rtkApi.reducerPath]
     };
 
     const rootReducer = {
         ...asyncReducers,
-        [productsAPI.reducerPath]: productsAPI.reducer,
         [rtkApi.reducerPath]: rtkApi.reducer
     };
 
@@ -26,13 +24,12 @@ export function createStore (initialState: StoreSchema, asyncReducers: ReducersM
     const store: StoreWithReducerManager = configureStore({
         reducer: persistedReducer,
         preloadedState: initialState,
-        // @ts-expect-error Ошибка уйдет после рефактора productsApi
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({
                 serializableCheck: {
                     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
                 }
-            }).concat(productsAPI.middleware, rtkApi.middleware)
+            }).concat(rtkApi.middleware)
     });
 
     store.reducerManager = reducerManager;

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { OverlayingPopupWithFocusTrap, PopupCard } from '@features/popup';
 import { Popover } from '@features/popover';
 import { type IInventoryProduct, InventoryContent, useUpdateProducts, useRemoveInventoryProduct } from '@entities/inventoryDocs';
-import { type IDreamkasProduct, ProductList, productsAPI } from '@entities/products';
+import { type IDreamkasProduct, ProductList, useLoadProductsBySearch } from '@entities/products';
 import { SearchInput } from '@shared/ui/searchInput';
 import { DropdownList } from '@shared/ui/dropdownList';
 import { useKeyPress } from '@shared/lib/hooks';
@@ -30,7 +30,7 @@ export const InventoryEdit: FC = () => {
     const {
         data: goods,
         isFetching
-    } = productsAPI.useLoadProductBySearchQuery({ limit: 1000, q: search });
+    } = useLoadProductsBySearch({ limit: 1000, q: search });
 
     // состояния popup && popover
     const [activePopover, setActivePopover] = useState<boolean>(false);

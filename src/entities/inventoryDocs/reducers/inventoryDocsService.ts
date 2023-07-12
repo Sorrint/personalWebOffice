@@ -2,22 +2,29 @@ import { type FieldValues } from 'react-hook-form';
 import { type IInventoryDocs } from '../model/types';
 import { rtkApi } from '@shared/api/rtkApi';
 
+const baseInventoryUri = 'inventory-list';
+
 const inventoryDocsApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         createNewDocument: build.mutation<IInventoryDocs, FieldValues>({
-            query: (document) => ({ url: 'inventory-list/create', method: 'POST', body: document })
+            query: (document) =>
+                ({ url: `${baseInventoryUri}/create`, method: 'POST', body: document })
         }),
         loadAllDocuments: build.query<IInventoryDocs[], Record<string, unknown>>({
-            query: () => ({ url: 'inventory-list/', method: 'GET' })
+            query: () =>
+                ({ url: `${baseInventoryUri}`, method: 'GET' })
         }),
         updateProducts: build.mutation<IInventoryDocs, { product: FieldValues, docNumber: number }>({
-            query: ({ product, docNumber }) => ({ url: `inventory-list/addProduct/${docNumber}`, method: 'PATCH', body: product })
+            query: ({ product, docNumber }) =>
+                ({ url: `${baseInventoryUri}/addProduct/${docNumber}`, method: 'PATCH', body: product })
         }),
         loadDocumentByNumber: build.query<IInventoryDocs, string>({
-            query: (docNumber) => ({ url: `inventory-list/${docNumber}`, method: 'GET' })
+            query: (docNumber) =>
+                ({ url: `${baseInventoryUri}/${docNumber}`, method: 'GET' })
         }),
         removeInventoryProduct: build.mutation<IInventoryDocs, { id: string | undefined, docNumber: number }>({
-            query: ({ id, docNumber }) => ({ url: `inventory-list/deleteProduct/${docNumber}`, method: 'DELETE', body: { id } })
+            query: ({ id, docNumber }) =>
+                ({ url: `${baseInventoryUri}/deleteProduct/${docNumber}`, method: 'DELETE', body: { id } })
         })
     })
 });
