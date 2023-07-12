@@ -1,5 +1,5 @@
 import { combineReducers, type AnyAction, type Reducer, type ReducersMapObject } from '@reduxjs/toolkit';
-import { type StoreSchemaKey, type ReducerManager, type StoreSchema } from './storeSchema';
+import { type StoreSchemaKey, type ReducerManager, type StoreSchema, type MountedReducers } from './storeSchema';
 
 export function createReducerManager (initialReducers: ReducersMapObject<StoreSchema>): ReducerManager {
     const reducers = { ...initialReducers };
@@ -7,9 +7,11 @@ export function createReducerManager (initialReducers: ReducersMapObject<StoreSc
     let combinedReducer = combineReducers(reducers);
 
     let keysToRemove: StoreSchemaKey[] = [];
-
+    const mountedReducers: MountedReducers = {};
     return {
         getReducerMap: () => reducers,
+        getMountedReducers: () => mountedReducers,
+
         reduce: (state: StoreSchema, action: AnyAction) => {
             if (keysToRemove.length > 0) {
                 state = { ...state };
@@ -28,6 +30,7 @@ export function createReducerManager (initialReducers: ReducersMapObject<StoreSc
                 return;
             }
             reducers[key] = reducer;
+            mountedReducers[key] = true;
             combinedReducer = combineReducers(reducers);
         },
 
@@ -42,5 +45,6 @@ export function createReducerManager (initialReducers: ReducersMapObject<StoreSc
 
             combinedReducer = combineReducers(reducers);
         }
+
     };
-}
+};
