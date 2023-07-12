@@ -16,4 +16,11 @@ export interface IOrderHeader {
     letter?: string
 }
 
+export interface OrderState {
+    entities: IOrder[]
+    currentOrder?: IOrder
+    isLoading: boolean
+    error: string
+}
+
 export type FileOrder = Record<string, string>;

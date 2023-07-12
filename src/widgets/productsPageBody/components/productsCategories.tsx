@@ -1,18 +1,18 @@
 import { type FC, useState } from 'react';
 
-import { CategoriesList, ProductList, productsAPI } from '@entities/products';
+import { CategoriesList, ProductList, useLoadCategoriesBySearch, useLoadProductsBySearch, useLoadProductsCategories } from '@entities/products';
 import { SearchInput } from '@shared/ui/searchInput';
 
 const ProductsCategories: FC = () => {
     const [search, setSearch] = useState<string>('');
-    const { data: products, isLoading: productsLoading } = productsAPI.useLoadProductBySearchQuery({
+    const { data: products, isLoading: productsLoading } = useLoadProductsBySearch({
         limit: 1000,
         q: search
     });
 
     const { data: categories, isLoading: categoriesLoading } = search
-        ? productsAPI.useLoadCategoriesBySearchQuery({ limit: 1000, q: search })
-        : productsAPI.useLoadProductsCategoriesQuery({ limit: 1000, q: '' });
+        ? useLoadCategoriesBySearch({ limit: 1000, q: search })
+        : useLoadProductsCategories({ limit: 1000, q: '' });
 
     const getProducts = async (value: string) => {
         setSearch(value);

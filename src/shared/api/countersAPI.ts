@@ -1,16 +1,15 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { SERVER_URI } from '@app/config/apiConfig';
+import { rtkApi } from './rtkApi';
 
-export const countersAPI = createApi({
-    reducerPath: 'countersAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: `http://${SERVER_URI}/counters` }),
-    tagTypes: ['counter'],
+const countersApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         getCounter: build.query<string, string>({
             query: (name) => ({
-                url: `/${name}`,
+                url: `counters/${name}`,
                 method: 'GET'
             })
         })
     })
+
 });
+
+export const useGetCounter = countersApi.useGetCounterQuery;

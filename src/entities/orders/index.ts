@@ -1,3 +1,8 @@
-export { getCurrentOrder, setCurrentOrder } from '@entities/orders/model/OrderSlice';
+export type { ReducersList } from './../../shared/lib/components/AsyncReduxComponent/AsyncReduxComponent';
+export { orderActions, orderReducer } from './model/slices/OrderSlice';
+
+export { getCurrentOrder } from './model/selectors/getCurrentOrderSelector/getCurrentOrderSelector';
+
+export type { OrderState } from './model/types/IOrder';
 export { OrderCard } from './components/orderCard/orderCard';
-export { OrderActions } from './components/orderActions/orderActions';
+export { OrderControls } from './components/orderControls/orderControls';

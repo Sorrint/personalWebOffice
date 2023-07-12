@@ -1,4 +1,4 @@
-import { type persistedReducer } from '@app/store/storeApp';
+import { type persistedReducer } from '@app/providers/storeProvider/config/store/storeApp';
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type PersistState = ReturnType<typeof persistedReducer>;

@@ -1,14 +1,8 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
-import { type IStoreProduct } from './interfaces/IStoreProduct';
 import { type AppDispatch, type PersistState } from '@shared/lib/store/types';
 import { type createProductDto } from './DTO/createProductDTO';
 import { transformProductName } from '../lib/helpers/transformProductName';
-
-interface ProductsState {
-    entities: IStoreProduct[]
-    isLoading: boolean
-    error: string
-}
+import { type ProductsState } from './types/products';
 
 const initialState: ProductsState = {
     entities: [],
@@ -29,7 +23,6 @@ export const productsSlice = createSlice({
 
 const { reducer: productsReducer, actions } = productsSlice;
 const { createProduct } = actions;
-// export const createProduct = (product: ) =>
 const createProductRequested = createAction('products/createProductRequested');
 const createProductFailed = createAction('products/createProductFailed');
 
