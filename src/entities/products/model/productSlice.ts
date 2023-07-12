@@ -23,7 +23,6 @@ export const productsSlice = createSlice({
 
 const { reducer: productsReducer, actions } = productsSlice;
 const { createProduct } = actions;
-// export const createProduct = (product: ) =>
 const createProductRequested = createAction('products/createProductRequested');
 const createProductFailed = createAction('products/createProductFailed');
 

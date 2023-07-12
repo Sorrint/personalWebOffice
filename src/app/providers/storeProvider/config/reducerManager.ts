@@ -13,24 +13,15 @@ export function createReducerManager (initialReducers: ReducersMapObject<StoreSc
         getMountedReducers: () => mountedReducers,
 
         reduce: (state: StoreSchema, action: AnyAction) => {
-            // if (keysToRemove.length > 0) {
-            //     state = { ...state };
-            //     for (const key of keysToRemove) {
-            //         // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-            //         delete state[key];
-            //     }
-            //     keysToRemove = [];
-            // }
-
-            // return combinedReducer(state, action);
             if (keysToRemove.length > 0) {
                 state = { ...state };
-                keysToRemove.forEach((key) => {
+                for (const key of keysToRemove) {
                     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                     delete state[key];
-                });
+                }
                 keysToRemove = [];
             }
+
             return combinedReducer(state, action);
         },
 
