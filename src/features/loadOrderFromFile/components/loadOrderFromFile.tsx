@@ -1,11 +1,11 @@
 import { useAppDispatch } from '@shared/lib/hooks';
-import { setCurrentOrder } from '@entities/orders';
 
 import { getOrderFromExcel } from '../api/mappers/getOrderFromExcel';
+import { orderActions } from '@entities/orders';
 
 export const LoadOrderFromFile = () => {
     const dispatch = useAppDispatch();
-
+    const { setCurrentOrder } = orderActions;
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
         const order = await getOrderFromExcel(e);
         if (order) {

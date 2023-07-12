@@ -3,7 +3,7 @@ import { Children, type FC, type ReactNode } from 'react';
 import { hasComponentName } from '@shared/lib/utils';
 import { Table } from '@shared/ui/table';
 
-import { type IOrder } from '../../model/interfaces/IOrder';
+import { type IOrder } from '../../model/types/IOrder';
 import './orderCard.scss';
 interface IOrderCardProps {
     children?: ReactNode

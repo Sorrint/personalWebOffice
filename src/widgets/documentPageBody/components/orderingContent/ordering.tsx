@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { EditOrderingProductCard } from '@features/editOrderingProductCard';
-import { productsAPI } from '@entities/products';
+import { useCheckOrderProducts } from '@entities/products';
 import { OrderingList } from '@entities/orderings';
 
 import { type IOrderingProductWithExtraData, hasExtraData } from '../../libs/extraDataTypeGuard';
@@ -33,7 +33,7 @@ const Ordering = () => {
         ]
     };
     const [checkOrder, { data: resultCheck, isLoading: isChecking, isError: isCheckError }] =
-        productsAPI.useCheckOrderProductsMutation();
+        useCheckOrderProducts();
 
     useEffect(() => {
         checkOrder(order.products);
