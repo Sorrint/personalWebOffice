@@ -1,23 +1,15 @@
 import { forwardRef, type ForwardedRef, type KeyboardEvent } from 'react';
-import { type UseFormRegister, type FieldValues, type Path } from 'react-hook-form';
+import { type FieldValues, type Path } from 'react-hook-form';
 
 import './radioButton.scss';
 
 interface IRadioButtonProps<T extends FieldValues> {
     label: string
     name: Path<T>
-    error?: string
-    placeholder?: string
-    register?: UseFormRegister<T>
-    formName?: string
-    autoComplete?: string
-    field?: T
     value?: string
-    onClick?: (e: React.MouseEvent) => void
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     inputClass?: string
     onKeyDown?: (e: KeyboardEvent) => void
-    checked?: boolean
     disabled?: boolean
 }
 
@@ -28,42 +20,28 @@ export const RadioButton = forwardRef(function RadioButton<T extends FieldValues
     const {
         label,
         name,
-        error,
-        autoComplete,
-        field,
         value,
         onChange,
-        onClick,
         inputClass,
         onKeyDown,
         disabled = false
     } = props;
-    const getInputClasses = () => {
-        return 'radioButton-container__input' + (error ? ' is-invalid' : '') + (inputClass ? ` ${inputClass}` : '');
-    };
 
     return (
-        <div className="radioButton-container">
-            <div className="radioButton-group has-validation">
-                <input
-                    type={'radio'}
-                    id={name}
-                    name={name}
-                    className={getInputClasses()}
-                    autoComplete={autoComplete}
-                    {...field}
-                    onChange={onChange}
-                    value={value}
-                    onClick={onClick}
-                    ref={ref}
-                    onKeyDown={onKeyDown && ((e) => { onKeyDown(e); })}
-                    disabled={disabled}
-                />
-                <label className="radioButton-label" htmlFor={name}>
-                    {label}
-                </label>
-            </div>
-            {error && <div className="invalid-feedback">{error}</div>}
-        </div>
+        <label className={`radioButton__label ${inputClass ?? ''} ${disabled ? 'disabled' : ''}`}>
+            <input
+                type={'radio'}
+                id={name}
+                name={name}
+                className={'radioButton__input'}
+                onChange={onChange}
+                value={value}
+                ref={ref}
+                onKeyDown={onKeyDown && ((e) => { onKeyDown(e); })}
+                disabled={disabled}
+            />
+            <div className='radioButton__icon'/>
+            {label}
+        </label>
     );
 });
