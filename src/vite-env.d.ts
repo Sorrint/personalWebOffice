@@ -10,3 +10,9 @@ declare module '*.svg' {
 interface ImportMetaEnv {
     readonly VITE_SERVER_URI: string
 }
+
+declare const __SERVER_URI__: string;
+
+type OptionalRecord<K extends keyof any, T> = {
+    [P in K]?: T;
+};

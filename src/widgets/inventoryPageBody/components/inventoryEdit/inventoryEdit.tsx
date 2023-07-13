@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom';
 
 import { OverlayingPopupWithFocusTrap, PopupCard } from '@features/popup';
 import { Popover } from '@features/popover';
-import { type IInventoryProduct, InventoryContent, inventoryDocsAPI } from '@entities/inventoryDocs';
-import { type IDreamkasProduct, ProductList, productsAPI } from '@entities/products';
+import { type IInventoryProduct, InventoryContent, useUpdateProducts, useRemoveInventoryProduct } from '@entities/inventoryDocs';
+import { type IDreamkasProduct, ProductList, useLoadProductsBySearch } from '@entities/products';
 import { SearchInput } from '@shared/ui/searchInput';
 import { DropdownList } from '@shared/ui/dropdownList';
 import { useKeyPress } from '@shared/lib/hooks';
-
 import './inventoryEdit.scss';
+
 interface IPopupProps {
     product: IInventoryProduct
     popupText: string
@@ -22,15 +22,15 @@ export const InventoryEdit: FC = () => {
     const { number } = useParams();
     const docNumber = Number(number);
     const [popupProps, setPopupProps] = useState<IPopupProps>();
-    const [updateList, { error: updateError }] = inventoryDocsAPI.useUpdateProductsMutation();
-    const [removeProduct] = inventoryDocsAPI.useRemoveInventoryProductMutation();
+    const [updateList, { error: updateError }] = useUpdateProducts();
+    const [removeProduct] = useRemoveInventoryProduct();
     const [search, setSearch] = useState<string>('');
 
     // Загрузка данных
     const {
         data: goods,
         isFetching
-    } = productsAPI.useLoadProductBySearchQuery({ limit: 1000, q: search });
+    } = useLoadProductsBySearch({ limit: 1000, q: search });
 
     // состояния popup && popover
     const [activePopover, setActivePopover] = useState<boolean>(false);

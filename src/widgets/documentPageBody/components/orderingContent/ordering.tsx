@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { EditOrderingProductCard } from '@features/editOrderingProductCard';
-import { productsAPI } from '@entities/products';
-import { getCurrentOrder } from '@entities/orders';
+import { useCheckOrderProducts } from '@entities/products';
 import { OrderingList } from '@entities/orderings';
 
 import { hasExtraData, type IOrderingProductWithExtraData } from '../../libs/extraDataTypeGuard';
@@ -13,7 +12,7 @@ const Ordering = () => {
     const order = useSelector(getCurrentOrder());
 
     const [checkOrder, { data: resultCheck, isLoading: isChecking, isError: isCheckError }] =
-        productsAPI.useCheckOrderProductsMutation();
+        useCheckOrderProducts();
 
     useEffect(() => {
         if (order) checkOrder(order.products).catch(() => { });

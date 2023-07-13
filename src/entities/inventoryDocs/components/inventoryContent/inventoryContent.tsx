@@ -1,13 +1,13 @@
 import { type FC } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { inventoryDocsAPI } from '../../reducers/inventoryDocsService';
 import { transformDataForXLSX, transformDate } from '../../lib/helpers';
 import { type IInventoryProduct, type IdataForXLSX } from '../../model/types';
 import { InventoryProductList } from '../inventoryProductsList/inventoryProductsList';
 
 import { saveToXLSX } from '@shared/lib/utils/saveToXLSX';
 import './inventoryContent.scss';
+import { useLoadDocumentByNumber } from '../../reducers/inventoryDocsService';
 
 export interface IInventoryContent {
     onClick?: (product: IInventoryProduct) => void
@@ -18,7 +18,7 @@ export interface IInventoryContent {
 export const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tabIndex }) => {
     const { number } = useParams();
     if (number) {
-        const { data: inventoryList, isLoading } = inventoryDocsAPI.useLoadDocumentByNumberQuery(number);
+        const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
 
         if (isLoading) return <h1>{'Идет загрузка..'}</h1>;
         if (inventoryList != null) {

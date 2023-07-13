@@ -6,6 +6,12 @@ import { NavBar } from '@widgets/navBar';
 import AppRibbon from '@widgets/appRibbon';
 import { AppBody, AppHeader, AppLayout } from '@shared/layouts';
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
+import { type ReducersList, orderReducer } from '@entities/orders';
+import { AsyncReduxComponent } from '@shared/lib/components';
+
+const reducers: ReducersList = {
+    orders: orderReducer
+};
 
 const DocumentsPage: FC = () => {
     const navLinks: INavLinkObject = {
@@ -32,9 +38,11 @@ const DocumentsPage: FC = () => {
                     <AppHeader title="Заказ покупателя">
                         <AppRibbon navLinks={navLinks} />
                     </AppHeader>
-                    <AppBody>
-                        <Outlet />
-                    </AppBody>
+                    <AsyncReduxComponent reducersList={reducers} >
+                        <AppBody>
+                            <Outlet />
+                        </AppBody>
+                    </AsyncReduxComponent>
                 </AppLayout>
             </AppLayout>
         </>

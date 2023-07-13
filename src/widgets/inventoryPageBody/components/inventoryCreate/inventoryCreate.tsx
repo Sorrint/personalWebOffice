@@ -2,18 +2,18 @@ import { type FC, useEffect } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { inventoryDocsAPI } from '@entities/inventoryDocs';
-import { countersAPI } from '@shared/api/countersAPI';
 import { Button } from '@shared/ui/button/button';
 import { Calendar } from '@shared/ui/calendar';
 import { TextField } from '@shared/ui/textField';
+import { useGetCounter } from '@shared/api/countersAPI';
+import { useCreateNewDocument } from '@entities/inventoryDocs';
 
 import './inventoryCreate.scss';
 
 export const InventoryCreate: FC = () => {
     const navigate = useNavigate();
-    const [createDoc] = inventoryDocsAPI.useCreateNewDocumentMutation();
-    const { data } = countersAPI.useGetCounterQuery('docNumber', { refetchOnMountOrArgChange: true });
+    const [createDoc] = useCreateNewDocument();
+    const { data } = useGetCounter('docNumber', { refetchOnMountOrArgChange: true });
     const { register, handleSubmit, control, setValue } = useForm({
         mode: 'onChange',
         defaultValues: {

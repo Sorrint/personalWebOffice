@@ -1,32 +1,40 @@
 import { type FieldValues } from 'react-hook-form';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { type IInventoryDocs } from '../model/types';
-import { SERVER_URI } from '@app/config/apiConfig';
+import { rtkApi } from '@shared/api/rtkApi';
 
-export const inventoryDocsAPI = createApi({
-    reducerPath: 'inventoryDocsAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: `http://${SERVER_URI}/inventory-list` }),
-    tagTypes: ['inventoryList', 'allInventories'],
+const baseInventoryUri = 'inventory-list';
+
+const inventoryDocsApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         createNewDocument: build.mutation<IInventoryDocs, FieldValues>({
-            query: (document) => ({ url: '/create', method: 'POST', body: document }),
-            invalidatesTags: (result) => ['allInventories']
+            query: (document) =>
+                ({ url: `${baseInventoryUri}/create`, method: 'POST', body: document })
         }),
         loadAllDocuments: build.query<IInventoryDocs[], Record<string, unknown>>({
-            query: () => ({ url: '/', method: 'GET' }),
-            providesTags: (result) => ['allInventories']
+            query: () =>
+                ({ url: `${baseInventoryUri}`, method: 'GET' })
         }),
         updateProducts: build.mutation<IInventoryDocs, { product: FieldValues, docNumber: number }>({
-            query: ({ product, docNumber }) => ({ url: `addProduct/${docNumber}`, method: 'PATCH', body: product }),
-            invalidatesTags: (result) => ['inventoryList']
+            query: ({ product, docNumber }) =>
+                ({ url: `${baseInventoryUri}/addProduct/${docNumber}`, method: 'PATCH', body: product })
         }),
         loadDocumentByNumber: build.query<IInventoryDocs, string>({
-            query: (docNumber) => ({ url: `${docNumber}`, method: 'GET' }),
-            providesTags: (result) => ['inventoryList']
+            query: (docNumber) =>
+                ({ url: `${baseInventoryUri}/${docNumber}`, method: 'GET' })
         }),
         removeInventoryProduct: build.mutation<IInventoryDocs, { id: string | undefined, docNumber: number }>({
-            query: ({ id, docNumber }) => ({ url: `deleteProduct/${docNumber}`, method: 'DELETE', body: { id } }),
-            invalidatesTags: (result) => ['inventoryList']
+            query: ({ id, docNumber }) =>
+                ({ url: `${baseInventoryUri}/deleteProduct/${docNumber}`, method: 'DELETE', body: { id } })
         })
     })
 });
+
+export const useCreateNewDocument = inventoryDocsApi.useCreateNewDocumentMutation;
+
+export const useLoadAllDocuments = inventoryDocsApi.useLoadAllDocumentsQuery;
+
+export const useLoadDocumentByNumber = inventoryDocsApi.useLoadDocumentByNumberQuery;
+
+export const useRemoveInventoryProduct = inventoryDocsApi.useRemoveInventoryProductMutation;
+
+export const useUpdateProducts = inventoryDocsApi.useUpdateProductsMutation;
