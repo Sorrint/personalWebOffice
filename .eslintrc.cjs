@@ -36,7 +36,12 @@ module.exports = {
         "indent": [2, 4, {"SwitchCase": 1}],
         "@typescript-eslint/indent": [2,4, {"SwitchCase": 1}],
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/strict-boolean-expressions": [2, {allowNullableString: true, allowNullableNumber: true, allowNullableBoolean: true}],
+        "@typescript-eslint/strict-boolean-expressions": [2, {
+            allowNullableString: true, 
+            allowNullableNumber: true, 
+            allowNullableBoolean: true, 
+            allowAny: true
+        }],
         "@typescript-eslint/no-misused-promises": [
             "error",
             {

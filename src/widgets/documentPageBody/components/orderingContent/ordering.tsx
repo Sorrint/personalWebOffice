@@ -7,6 +7,7 @@ import { OrderingList } from '@entities/orderings';
 
 import { hasExtraData, type IOrderingProductWithExtraData } from '../../libs/extraDataTypeGuard';
 import './ordering.scss';
+import { getCurrentOrder } from '@entities/orders';
 
 const Ordering = () => {
     const order = useSelector(getCurrentOrder());
