@@ -5,10 +5,7 @@ export const rtkApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: __SERVER_URI__,
         prepareHeaders: (headers) => {
-            const dataBase = localStorage.getItem('dataBase') ?? '';
-            if (dataBase === 'dreamkasStorage') {
-                headers.set('authorization', `Bearer ${localStorage.getItem('dreamToken') ?? ''} `);
-            }
+            headers.set('authorization', `Bearer ${localStorage.getItem('dreamToken') ?? ''} `);
             return headers;
         }
     }),
