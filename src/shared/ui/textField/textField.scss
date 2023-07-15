@@ -6,6 +6,7 @@
     height: 60px;
 }
 
+
 .input-group {
     display: flex;
     width: 100%;
@@ -19,6 +20,14 @@
     &_outline {
         border: none;
         border-bottom: 1px solid grey;
+    }
+
+    &_normal {
+        width: 240px;
+    }
+
+    &_full {
+        width: 100%;
     }
 }
 

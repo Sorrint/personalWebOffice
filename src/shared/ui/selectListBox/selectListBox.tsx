@@ -15,7 +15,9 @@ export const SelectListBox = () => {
 
     return (
         <Listbox value={selectedPerson} onChange={setSelectedPerson} as={'div'} className='selectList'>
-            <Listbox.Button as={Button}>{selectedPerson.name}</Listbox.Button>
+            <Listbox.Button as={Button} >
+                {selectedPerson.name}
+            </Listbox.Button>
             <Listbox.Options>
                 {people.map((person) => (
                     <Listbox.Option

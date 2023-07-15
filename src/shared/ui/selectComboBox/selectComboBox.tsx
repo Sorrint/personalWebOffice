@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, type ForwardedRef, forwardRef } from 'react';
 import { Combobox } from '@headlessui/react';
 import './selectComboBox.scss';
-import { TextField } from '../textField';
+import  { type FieldValues, type Path } from 'react-hook-form';
 const people = [
     'Durward Reynolds',
     'Kenton Towne',
@@ -10,9 +10,19 @@ const people = [
     'Katelyn Rohan'
 ];
 
-export const SelectComboBox = () => {
+interface SelectComboBoxProps<T> {
+    defaultValue?: string
+    options?: string[]
+    onChange?: (value: string) => void
+    name: Path<T>
+}
+
+export const SelectComboBox = forwardRef(function SelectComboBox<T extends FieldValues>(props: SelectComboBoxProps<T>, ref: ForwardedRef<HTMLDivElement>) {
+
+    const {defaultValue, options, onChange, name, } = props;
     const [selectedPerson, setSelectedPerson] = useState(people[0]);
     const [query, setQuery] = useState('');
+
 
     const filteredPeople =
     query === ''
@@ -22,8 +32,9 @@ export const SelectComboBox = () => {
         });
 
     return (
-        <Combobox value={selectedPerson} onChange={setSelectedPerson} as='div' className={'combobox'}>
-            <Combobox.Input as={TextField} name="gosha" onChange={(event) => { setQuery(event.target.value); }} />
+                
+        <Combobox as='div' value={selectedPerson} onChange={onChange} ref={ref}>
+            <Combobox.Input onChange={(event) => setQuery(event.target.value)} />
             <Combobox.Options as='div' className={'combobox__options'}>
                 {filteredPeople.map((person) => (
                     <Combobox.Option key={person} value={person}>
@@ -33,4 +44,4 @@ export const SelectComboBox = () => {
             </Combobox.Options>
         </Combobox>
     );
-};
+});

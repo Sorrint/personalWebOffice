@@ -1,7 +1,12 @@
 .combobox {
-    width: 100%;
+    width: 200px;
     &__options {
         width: 100%;
         border: 1px solid var(--primary-color);
+        padding: 10px 5px;
+    }
+
+    &__input {
+        margin-bottom: 10px;
     }
 }
