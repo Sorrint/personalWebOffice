@@ -1,0 +1,7 @@
+.combobox {
+    width: 100%;
+    &__options {
+        width: 100%;
+        border: 1px solid var(--primary-color);
+    }
+}
