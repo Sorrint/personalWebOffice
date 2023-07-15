@@ -5,7 +5,10 @@ import '@app/styles/style.scss';
 
 const meta: Meta<typeof SelectListBox> = {
     title: 'module/selectField',
-    component: SelectListBox
+    component: SelectListBox,
+    parameters: {
+        layout: 'centered'
+    }
 };
 export default meta;
 type Story = StoryObj<typeof SelectListBox>;

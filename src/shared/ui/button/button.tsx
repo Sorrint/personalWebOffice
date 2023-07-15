@@ -6,10 +6,11 @@ interface ButtonProps {
     onClick?: (...args: any) => void
     buttonType?: 'submit' | 'cancel' | 'dropdown'
     children?: ReactNode
+    className?: string
 }
 
-export const Button: FC<ButtonProps> = ({ onClick, buttonType = 'submit', children }) => {
-    const getClassname = (type: string) => (`${type}-button`);
+export const Button: FC<ButtonProps> = ({ onClick, buttonType = 'submit', children, className }) => {
+    const getClassname = (type: string) => (`${type}-button ${ className ?? ''}`);
 
     return (
         <button className={getClassname(buttonType)} onClick={onClick}>

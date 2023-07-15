@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { Listbox } from '@headlessui/react';
 import './selectListBox.scss';
 import { Button } from '../button';
@@ -15,17 +15,21 @@ export const SelectListBox = () => {
 
     return (
         <Listbox value={selectedPerson} onChange={setSelectedPerson} as={'div'} className='selectList'>
-            <Listbox.Button as={Button} >
+            <Listbox.Button as={Button} buttonType='dropdown' className={'selectList__button'}>
                 {selectedPerson.name}
             </Listbox.Button>
-            <Listbox.Options>
+            <Listbox.Options className={'selectList__options'}>
                 {people.map((person) => (
-                    <Listbox.Option
-                        key={person.id}
-                        value={person}
-                        disabled={person.unavailable}
-                    >
-                        {person.name}
+                    <Listbox.Option key={person.id} value={person} as={Fragment}>
+                        {({ active, selected }) => (
+                            <li
+                                className={`selectList__option${
+                                    selected ? ' selectList__option_selected' : ''
+                                }`}
+                            >
+                                {person.name}
+                            </li>
+                        )}
                     </Listbox.Option>
                 ))}
             </Listbox.Options>

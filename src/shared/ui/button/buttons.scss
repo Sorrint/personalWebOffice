@@ -35,22 +35,19 @@
 }
 
 .dropdown-button {
+    display: flex;
+    align-items: center;
     position: relative;
-    min-height: 40px;
-    min-width: 88px;
     line-height: 40px;
     text-align-last: left;
-    height: 3em;
-    width: 15em;
     font-size: 14px;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.8);
     background-color: #fff;
-    padding-left: 15px;
+    padding: 10px 20px;
 
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     border-radius: 8px;
-    margin: 10px;
     
     & svg {
       position: absolute;
