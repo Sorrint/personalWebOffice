@@ -1,7 +1,7 @@
 import { OrderCardWithControls } from '@features/orderCardWithControls';
 import { type FC } from 'react';
 
-const Order: FC = () => {
+export const Order: FC = () => {
     return (
         <>
             <div>
@@ -12,4 +12,3 @@ const Order: FC = () => {
     );
 };
 
-export default Order;

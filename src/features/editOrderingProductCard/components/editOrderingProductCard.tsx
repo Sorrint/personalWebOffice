@@ -1,14 +1,15 @@
 import { type Path, useForm } from 'react-hook-form';
 import { useEffect, type FC } from 'react';
 
-import { type IOrderProduct, transformProductName } from '@entities/products';
+import {  transformProductName } from '@entities/products';
 
 import './editOrderingProductCard.scss';
 import { EditProductProperty } from '@entities/products/components/editProductProperty/editProductProperty';
 import { TextField } from '@shared/ui/textField';
+import type { IStoreProduct } from '@entities/products/model/types/IStoreProduct';
 
 interface EditOrderingProductCardProps {
-    product: IOrderProduct
+    product:  IStoreProduct[]
 }
 
 export const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) => {

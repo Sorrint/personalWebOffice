@@ -10,7 +10,8 @@ export function createStore (initialState: StoreSchema, asyncReducers: ReducersM
     const persistConfig = {
         key: 'root',
         storage,
-        blacklist: [rtkApi.reducerPath]
+        blacklist: [rtkApi.reducerPath],
+        whitelist: ['persist']
     };
 
     const rootReducer = {

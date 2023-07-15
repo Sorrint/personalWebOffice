@@ -1,5 +1,4 @@
-import Distribution from './components/distributionContent/distribution';
-import Order from './components/orderContent/order';
-import Ordering from './components/orderingContent/ordering';
-export type { IOrderingProductWithExtraData } from './libs/extraDataTypeGuard';
-export { Order, Ordering, Distribution };
+export { Ordering } from './components/orderingContent/ordering';
+export { Order } from './components/orderContent/order';
+export { Distribution } from './components/distributionContent/distribution';
+export { EditOrderingProducts } from './components/orderingContent/editOrderingProducts/editOrderingProducts';

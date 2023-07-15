@@ -8,11 +8,11 @@ interface SaveCurrentOrderProps {
     order: IOrder
 }
 
-export const SaveCurrentOrder = createAsyncThunk<SaveCurrentOrderProps, null, ThunkConfig<string>>('orders/saveOrder', async (order, thunkApi) => {
+export const saveCurrentOrder = createAsyncThunk<SaveCurrentOrderProps, IOrder, ThunkConfig<string>>('orders/saveOrder', async (order, thunkApi) => {
     const { dispatch, rejectWithValue } = thunkApi;
 
     try {
-        const response = await axios.post(`${__SERVER_URI__}/documents/order/create`, order);
+        const response = await axios.post(`${__SERVER_URI__}/documents/orders/create`, order);
         if (!response.data) {
             throw new Error();
         }

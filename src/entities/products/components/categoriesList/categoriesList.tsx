@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 
 import CategoryCard from '../categoryCard/categoryCard';
-import { type IProductCategory } from '../../model/interfaces/IDreamkasProduct';
+import { type IProductCategory } from '../../model/types/IDreamkasProduct';
 
 interface ICategoriesListProps {
     categories: IProductCategory[]

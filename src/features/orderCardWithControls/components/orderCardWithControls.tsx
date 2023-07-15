@@ -7,7 +7,6 @@ import { OrderCard, OrderControls, getCurrentOrder } from '@entities/orders';
 
 export const OrderCardWithControls: FC = () => {
     const order = useSelector(getCurrentOrder());
-
     return (
         <>
             {!order && <LoadOrderFromFile />}

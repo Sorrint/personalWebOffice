@@ -1,5 +1,5 @@
 import { type ISearchParams, type ISearchResult } from './service';
-import { type IOrderProduct } from './interfaces/IOrderProduct';
+import { type IStoreProduct } from './types/IStoreProduct';
 const baseStoreUri = 'products';
 
 export const productsStoreEndpoints = {
@@ -15,10 +15,10 @@ export const productsStoreEndpoints = {
         }
     },
     checkOrderProducts: {
-        query: (orderProducts: IOrderProduct[]) => ({
+        query: (orderProducts: IStoreProduct[]) => ({
             url: `${baseStoreUri}/checkOrderProducts`,
             method: 'POST',
-            body: orderProducts
-        })
-    }
+            body: orderProducts, 
+        }), 
+    },
 };

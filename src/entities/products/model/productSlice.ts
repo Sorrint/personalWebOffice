@@ -1,55 +1,55 @@
-import { createAction, createSlice } from '@reduxjs/toolkit';
-import { type AppDispatch, type PersistState } from '@shared/lib/store/types';
-import { type createProductDto } from './DTO/createProductDTO';
-import { transformProductName } from '../lib/helpers/transformProductName';
-import { type ProductsState } from './types/products';
+// import { createAction, createSlice } from '@reduxjs/toolkit';
+// import { type AppDispatch, type PersistState } from '@shared/lib/store/types';
+// import { type createProductDto } from './DTO/createProductDTO';
+// import { transformProductName } from '../lib/helpers/transformProductName';
+// import { type ProductsState } from './types/productsState';
 
-const initialState: ProductsState = {
-    entities: [],
-    isLoading: true,
-    error: ''
-};
+// const initialState: ProductsState = {
+//     entities: [],
+//     isLoading: true,
+//     error: ''
+// };
 
-export const productsSlice = createSlice({
-    name: 'products',
-    initialState,
-    reducers: {
-        createProduct: (state, action) => {
-            state.entities.push(action.payload);
-        },
-        updateProduct: (state, action) => {}
-    }
-});
+// export const productsSlice = createSlice({
+//     name: 'products',
+//     initialState,
+//     reducers: {
+//         createProduct: (state, action) => {
+//             state.entities.push(action.payload);
+//         },
+//         updateProduct: (state, action) => {}
+//     }
+// });
 
-const { reducer: productsReducer, actions } = productsSlice;
-const { createProduct } = actions;
-const createProductRequested = createAction('products/createProductRequested');
-const createProductFailed = createAction('products/createProductFailed');
+// const { reducer: productsReducer, actions } = productsSlice;
+// const { createProduct } = actions;
+// const createProductRequested = createAction('products/createProductRequested');
+// const createProductFailed = createAction('products/createProductFailed');
 
-export const getProducts = () => (state: PersistState) => state.products.entities;
+// export const getProducts = () => (state: PersistState) => state.products.entities;
 
-export const getProductByName = (name: string) => (state: PersistState) =>
-    state.products.entities.find((item) => item.name === name);
+// export const getProductByName = (name: string) => (state: PersistState) =>
+//     state.products.entities.find((item) => item.name === name);
 
-export const addProduct =
-    (payload: createProductDto) => async (dispatch: AppDispatch, getState: () => PersistState) => {
-        dispatch(createProductRequested());
-        try {
-            const name = transformProductName(payload.name);
-            const state = getState();
-            const isNameUnique = !state.products.entities.some(
-                (product) => product.name.toLowerCase() === name.toLowerCase()
-            );
-            if (isNameUnique) {
-                dispatch(createProduct({ ...payload, name }));
-            } else {
-                throw new Error('Такой товар уже есть в базе');
-            }
-        } catch (error) {
-            dispatch(createProductFailed());
-        }
-    };
-// export const readproducts = (e: React.BaseSyntheticEvent) => async (dispatch: AppDispatch) => {
+// export const addProduct =
+//     (payload: createProductDto) => async (dispatch: AppDispatch, getState: () => PersistState) => {
+//         dispatch(createProductRequested());
+//         try {
+//             const name = transformProductName(payload.name);
+//             const state = getState();
+//             const isNameUnique = !state.products.entities.some(
+//                 (product) => product.name.toLowerCase() === name.toLowerCase()
+//             );
+//             if (isNameUnique) {
+//                 dispatch(createProduct({ ...payload, name }));
+//             } else {
+//                 throw new Error('Такой товар уже есть в базе');
+//             }
+//         } catch (error) {
+//             dispatch(createProductFailed());
+//         }
+//     };
+// // export const readproducts = (e: React.BaseSyntheticEvent) => async (dispatch: AppDispatch) => {
 //     dispatch(productsRequested());
 //     try {
 //         const file = e.target.files[0];
@@ -69,7 +69,7 @@ export const addProduct =
 //     }
 // };
 
-export const findProductByName = (name: string) => (state: PersistState) =>
-    state.products.entities.find((product) => product.name.toLowerCase() === transformProductName(name).toLowerCase());
-// export const getproductsListStatus = () => (state) => state.products.entities.length > 0;
-export default productsReducer;
+// export const findProductByName = (name: string) => (state: PersistState) =>
+//     state.products.entities.find((product) => product.name.toLowerCase() === transformProductName(name).toLowerCase());
+// // export const getproductsListStatus = () => (state) => state.products.entities.length > 0;
+// export default productsReducer;

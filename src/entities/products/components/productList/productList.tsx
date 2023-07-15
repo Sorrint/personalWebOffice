@@ -1,4 +1,4 @@
-import { type IDreamkasProduct } from '@entities/products/model/interfaces/IDreamkasProduct';
+import { type IDreamkasProduct } from '@entities/products/model/types/IDreamkasProduct';
 import { type FC, type MutableRefObject } from 'react';
 import { ProductListBody } from '../productsListBody/productListBody';
 import { ProductListHeader } from '../productsListHeader/productListHeader';

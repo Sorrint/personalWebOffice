@@ -1,4 +1,4 @@
-import { type IStoreProduct } from '../interfaces/IStoreProduct';
+import { type IStoreProduct } from './IStoreProduct';
 
 export interface ProductsState {
     entities: IStoreProduct[]

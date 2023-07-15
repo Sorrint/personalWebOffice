@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@shared/lib/hooks';
+import { orderActions } from '@entities/orders';
 
 import { getOrderFromExcel } from '../api/mappers/getOrderFromExcel';
-import { orderActions } from '@entities/orders';
 
 export const LoadOrderFromFile = () => {
     const dispatch = useAppDispatch();
@@ -10,7 +10,9 @@ export const LoadOrderFromFile = () => {
         const order = await getOrderFromExcel(e);
         if (order) {
             const orderName = `Заказ №${1} от ${new Date().toLocaleDateString('ru-RU')}`;
-            dispatch(setCurrentOrder({ orderName, products: [...order] }));
+            const newOrder = { orderName, products: [...order] };
+            dispatch(setCurrentOrder(newOrder));
+            if (localStorage.getItem('dataBase') === 'localStorage') localStorage.setItem('currentOrder', JSON.stringify(newOrder));
         }
     };
 

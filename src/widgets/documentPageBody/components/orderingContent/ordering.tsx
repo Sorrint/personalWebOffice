@@ -1,26 +1,26 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { EditOrderingProductCard } from '@features/editOrderingProductCard';
 import { useCheckOrderProducts } from '@entities/products';
 import { OrderingList } from '@entities/orderings';
 
-import { hasExtraData, type IOrderingProductWithExtraData } from '../../libs/extraDataTypeGuard';
+import  { type IStoreProductWithExtraData, hasExtraData} from '../../libs/extraDataTypeGuard';
 import './ordering.scss';
 import { getCurrentOrder } from '@entities/orders';
+import { NavLink } from 'react-router-dom';
 
-const Ordering = () => {
+export const Ordering = () => {
     const order = useSelector(getCurrentOrder());
-
+    
     const [checkOrder, { data: resultCheck, isLoading: isChecking, isError: isCheckError }] =
         useCheckOrderProducts();
 
     useEffect(() => {
-        if (order) checkOrder(order.products).catch(() => { });
+        if (order) checkOrder(order.products);
     }, [order]);
 
     const orderingProducts =
-        resultCheck?.productsExists.filter((item): item is IOrderingProductWithExtraData => hasExtraData(item));
+        resultCheck?.productsExists.filter((item): item is IStoreProductWithExtraData => hasExtraData(item));
 
     const notAllFieldProducts = resultCheck?.productsExists.filter((item) => !hasExtraData(item));
     return (
@@ -30,14 +30,18 @@ const Ordering = () => {
             {notAllFieldProducts?.length && notAllFieldProducts.map((item) => <div key={item._id}>{item.name}</div>)}
             <div>Порядовка</div>
             {orderingProducts && <OrderingList products={orderingProducts} />}
-            {resultCheck?.productsNotExists.map((product) => (
-                <EditOrderingProductCard product={product} key={product.number} />
-            ))}
+            {resultCheck &&        <NavLink to={"/office/documents/editOrderingProducts"}>
+            Перейти к списку
+            </NavLink>}
+
         </>
     );
 };
 
-export default Ordering;
+{/* {resultCheck?.productsNotExists.map((product) => (
+                <EditOrderingProductCard product={product} key={product.number} />
+            ))} */}
+
 // const {productsExists} = resultCheck
 // async function fetchOrder() {
 //     const result = await checkOrder(order.products);
