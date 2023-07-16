@@ -7,26 +7,24 @@
         margin-bottom: 8px;
     }
     &__options {
+        z-index: 1000;
         width: 100%;
         position: absolute;
-        // border: 1px solid grey;
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
         border-radius: 8px;
         overflow: hidden;
+        background-color: #fff;
     }
     &__option {
         padding: 8px 10px;
-        &:hover, 
-        &:focus {
+
+        &_active {
             background-color:var(--primary-active-color);
-            cursor: pointer;
         }
+
         &_selected {
             background-color:var(--primary-color);
             color: #fff;
-            &:hover {
-                background-color:var(--primary-color);
-            }
         }
     }
 }

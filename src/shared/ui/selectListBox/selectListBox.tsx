@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react';
+import { useState, Fragment} from 'react';
 import { Listbox } from '@headlessui/react';
 import './selectListBox.scss';
 import { Button } from '../button';
@@ -10,24 +10,39 @@ const people = [
     { id: 5, name: 'Katelyn Rohan', unavailable: false }
 ];
 
-export const SelectListBox = () => {
-    const [selectedPerson, setSelectedPerson] = useState(people[0]);
+// interface ListBoxItem {
+//     id?: string
+//     value: string
+//     disabled?: boolean
+// }
+
+// interface SelectListBoxProps<T extends FieldValues> {
+//     options: ListBoxItem[]
+//     selected: string
+//     onChange?: (selected: string) => void
+//     name?: Path<T>
+//     setValue?: UseFormSetValue<FieldValues>
+// }
+
+export const SelectListBox = () =>  {
+    const [currentItem, setCurrentItem] = useState(people[0]);
+
 
     return (
-        <Listbox value={selectedPerson} onChange={setSelectedPerson} as={'div'} className='selectList'>
+        <Listbox onChange={setCurrentItem} value={currentItem} as='div' className='selectList'>
             <Listbox.Button as={Button} buttonType='dropdown' className={'selectList__button'}>
-                {selectedPerson.name}
+                {currentItem.name}
             </Listbox.Button>
             <Listbox.Options className={'selectList__options'}>
-                {people.map((person) => (
-                    <Listbox.Option key={person.id} value={person} as={Fragment}>
+                {people.map((option) => (
+                    <Listbox.Option key={option.name} value={option} as={Fragment} >
                         {({ active, selected }) => (
                             <li
                                 className={`selectList__option${
-                                    selected ? ' selectList__option_selected' : ''
-                                }`}
+                                    active ? ' selectList__option_active' : ''
+                                }${selected ? ' selectList__option_selected' : ''}`}
                             >
-                                {person.name}
+                                {option.name}
                             </li>
                         )}
                     </Listbox.Option>

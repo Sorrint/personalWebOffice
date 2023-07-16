@@ -6,6 +6,7 @@ import  { type IProductStock, type extraData } from '@entities/products/model/ty
 import { TextField } from '@shared/ui/textField';
 
 import './editProductCard.scss';
+import { ProductCollectionList } from '../productCollectionList/productCollectionList';
 export interface IStoreProduct {
     _id?: string
     name: string
@@ -30,41 +31,37 @@ interface EditProductCardProps {
 }
 
 export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
-    product.extraData = product.extraData ??  {collection: '5 кг', volume: 5.7, weight: 5};
-    
+    product.quantity = product.quantity ?? 1000;
     const { name} = product;
     const methods = useForm({
         mode: 'onChange'
     });
 
-    const { watch, register, setValue } = methods;
+    const { watch, register } = methods;
 
     useEffect(() => {
         const subscription = watch((value, { name, type }) => { console.log(value, name, type); });
         return () => { subscription.unsubscribe(); };
     }, [watch]);
 
-    const renderTextFieldProps = (fieldName: keyof IStoreProduct) => {
-        const textFieldType = typeof product[fieldName] === 'number' ? 'number' : 'text';
-        setValue(fieldName, product[fieldName]);
-        return  <TextField {...register(fieldName) } className= {`editCard__cell editItem__${fieldName}`} type={textFieldType}/>;
+    const renderTextFieldProps = (fieldName: keyof IStoreProduct, textFieldType: 'number' | 'text') => {
+        return  <TextField {...register(fieldName, {value: product[fieldName], valueAsNumber: textFieldType==='number'})} className= {`editCard__cell editItem__${fieldName}`} type={textFieldType}/>;
     };
 
-    const renderExtraDataProps = (fieldName: keyof extraData) => {
-        const extraDataField = product.extraData?.[fieldName];
-        const textFieldType = typeof extraDataField === 'number' ? 'number' : 'text';
-        setValue(`extraData.${fieldName}`, extraDataField);
-        return <TextField {...register(`extraData.${fieldName}`) } className= {`editCard__cell editItem__${fieldName}`} type={textFieldType}/>;
-    };
+    // const renderExtraDataProps = (fieldName: keyof extraData) => {
+    //     const extraDataField = product.extraData?.[fieldName];
+    //     setValue(`extraData.${fieldName}`, extraDataField);
+    //     return <SelectListBox options={collectionOptions2} {...register('collection')} selected={collectionOptions2[0].value} setValue={setValue}/>;
+    // };
 
     return (
         <>
             <div className="editCard">
                 <h2 className='editCard__title'>{name}</h2>
                 <div className='editCard__properties'>
-                    <EditProductProperty propertyName='Наименование' renderEditField={() => renderTextFieldProps('name')}/>
-
-
+                    <EditProductProperty propertyName='Наименование' renderEditField={() => renderTextFieldProps('name', 'text')}/>
+                    <EditProductProperty propertyName='Единица товара' renderEditField={() => renderTextFieldProps('quantity', 'number')}/>
+                    <EditProductProperty propertyName='Коллекция' renderEditField={() => <ProductCollectionList/>}/>
                 </div>
             </div>
         </>
