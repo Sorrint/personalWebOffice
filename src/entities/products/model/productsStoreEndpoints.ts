@@ -2,6 +2,7 @@ import { type ISearchParams, type ISearchResult } from './service';
 import { type IStoreProduct } from './types/IStoreProduct';
 const baseStoreUri = 'products';
 
+
 export const productsStoreEndpoints = {
     loadProducts: {
         query: () => ({ url: `${baseStoreUri}/` })
@@ -21,4 +22,11 @@ export const productsStoreEndpoints = {
             body: orderProducts, 
         }), 
     },
+    createProduct: {
+        query: (product: IStoreProduct) => ({
+            url: `${baseStoreUri}/createProduct`,
+            method: 'POST',
+            body: product
+        })
+    }
 };

@@ -1,18 +1,11 @@
-import { useState, Fragment} from 'react';
+import { Fragment, useMemo } from 'react';
 import { Listbox } from '@headlessui/react';
 import './selectListBox.scss';
 import { Button } from '../button';
-import type { RefCallBack } from 'react-hook-form';
-const people = [
-    { id: 1, name: 'Durward Reynolds', unavailable: false },
-    { id: 2, name: 'Kenton Towne', unavailable: false },
-    { id: 3, name: 'Therese Wunsch', unavailable: false },
-    { id: 4, name: 'Benedict Kessler', unavailable: true },
-    { id: 5, name: 'Katelyn Rohan', unavailable: false }
-];
 
-interface ListBoxItem {
-    id: string | number
+
+export interface ListBoxItem {
+    id?: string | number
     value: string
     disabled?: boolean
 }
@@ -21,17 +14,17 @@ interface SelectListBoxProps<T extends ListBoxItem> {
     options: T[]
     selected: T
     onChange?: (selected: T) => void
-    name?: string
-    ref?: RefCallBack
 }
 
 export const SelectListBox = <T extends ListBoxItem>(props: SelectListBoxProps<T>) =>  {
-    const {options, selected, onChange, name, ref} = props;
-    console.log(selected);
+    const {options, selected, onChange} = props;
+    const selectedItem = useMemo(() => {
+        return options?.find((option) => option.value === selected.value);
+    }, [options, selected]);
     return (
-        <Listbox onChange={onChange} value={selected} name={name} as='div' className='selectList' ref={ref}>
+        <Listbox onChange={onChange} value={selectedItem} as='div' className='selectList' >
             <Listbox.Button as={Button} buttonType='dropdown' className={'selectList__button'}>
-                {selected.value}
+                {selectedItem?.value}
             </Listbox.Button>
             <Listbox.Options className={'selectList__options'}>
                 {options.map((option) => (

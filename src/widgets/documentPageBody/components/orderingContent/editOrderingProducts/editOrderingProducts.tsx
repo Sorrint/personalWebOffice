@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { EditProductCard } from "@entities/products/components/editProductCard/editProductCard";
 
 import './editOrderingProducts.scss';
+import type { IStoreProduct } from '@entities/products/model/types/IStoreProduct';
 
 export const EditOrderingProducts = () => {
     // const order = useSelector(getCurrentOrder());
@@ -22,25 +23,23 @@ export const EditOrderingProducts = () => {
 
     //     return {name, type: 'COUNTABLE'};
     // });
-    const products = [
+    const products: IStoreProduct[] = [
         {
-            count: 234,
-            number: 1,
-            productName:"Грунт БЕТОН-КОНТАКТ с индикатором 12 кг ПРОФИ акриловый Капитель",
+            type: 'SCALABLE',
+            name:"Грунт БЕТОН-КОНТАКТ с индикатором 12 кг ПРОФИ акриловый Капитель",
             unit:"шт"
         }, 
         {
-            count: 203,
-            number: 2,
-            productName: "Грунт БЕТОН-КОНТАКТ с индикатором 6 кг ПРОФИ акриловый Капитель",
-            unit: "шт"
+            name: "Грунт БЕТОН-КОНТАКТ с индикатором 6 кг ПРОФИ акриловый Капитель",
+            unit: "шт",
+            type: 'COUNTABLE'
         }
     ];
 
     const notFoundProducts = products.map((product) => {
-        const name = transformProductName(product.productName);
+        const name = transformProductName(product.name);
     
-        return {name, type: 'COUNTABLE'};
+        return {...product, name};
     });
 
     return <div className='editProductsCardsList'>Список товаров

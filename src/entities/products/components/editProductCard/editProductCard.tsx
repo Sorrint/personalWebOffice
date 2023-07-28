@@ -2,16 +2,33 @@ import { useForm } from 'react-hook-form';
 import { useEffect, type FC } from 'react';
 
 import { EditProductProperty } from '@entities/products/components/editProductProperty/editProductProperty';
-import type { IStoreProduct} from '@entities/products/model/types/IStoreProduct';
+import type { IStoreProduct, ProductType, extraData} from '@entities/products/model/types/IStoreProduct';
 import { TextField } from '@shared/ui/textField';
 
 import './editProductCard.scss';
+import type { ICollection} from '../productCollectionList/productCollectionList';
 import { ProductCollectionList } from '../productCollectionList/productCollectionList';
+import { ProductTypeList } from '../productTypeList/productType';
+import { ProductUnitList } from '../productUnitList/productUnitList';
+import { useAppDispatch } from '@shared/lib/hooks';
+import { useCreateProduct } from '@entities/products/model/productsService';
+import { Button } from '@shared/ui/button';
 interface EditProductCardProps {
     product:  IStoreProduct
 }
 
+const extraDataDefault: extraData ={ 
+    collection: {id:'1', value:'2,5 3 кг низ'},
+    volume: 2000,
+    weight: 0
+};
+
 export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
+    
+    
+    const [createProduct, { data: createdProduct, isLoading, isError: isCreateError }] =
+        useCreateProduct();
+
     product.quantity = product.quantity ?? 1000;
     const { name} = product;
     const methods = useForm({
@@ -19,8 +36,8 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
         mode: 'onChange'
     });
 
-    const { watch, register } = methods;
-
+    const { watch, register, setValue, handleSubmit } = methods;
+  
     useEffect(() => {
         const subscription = watch((value, { name, type }) => { console.log(value, name, type); });
         return () => { subscription.unsubscribe(); };
@@ -32,15 +49,48 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
             className= {`editCard__cell editItem__${fieldName}`} type={textFieldType}/>;
     };
 
+    const handleSetCollection = (selected: ICollection ) => {
+        setValue('extraData.collection', selected);
+    };
+
+    const handleSetType = (selected: ProductType) => {
+        setValue('type', selected);
+    };
+
+    const handleSetUnit = (selected: string) => {
+        setValue('unit', selected);
+    };
+
+
+    const parseWeight = parseFloat(product.name.replace(/\D/g, ''));
+    const weight = isNaN(parseWeight) ? 0 : parseWeight;
+    if (!product.extraData) product.extraData = {...extraDataDefault};
+    if (product.extraData && !product.extraData.weight) {
+        product.extraData = {...product.extraData, weight: weight};
+    }
+    const collecion = watch('extraData.collection');
+    const productType = watch('type');
+    const unit = watch('unit');
+
+    const handleCreate = (product: IStoreProduct) => {
+        createProduct({...product, tax: 'NDS_NO_TAX'});
+    };
+
     return (
         <>
             <div className="editCard">
                 <h2 className='editCard__title'>{name}</h2>
                 <div className='editCard__properties'>
                     <EditProductProperty propertyName='Наименование' renderEditField={() => renderTextFieldProps( 'name', 'text')}/>
-                    <EditProductProperty propertyName='Единица товара' renderEditField={() => renderTextFieldProps('quantity', 'number')}/>
-                    <EditProductProperty propertyName='Коллекция' renderEditField={() => <ProductCollectionList {...register('extraData.collection')}/>}/>
+                    <EditProductProperty propertyName='Вес товара' renderEditField={() => renderTextFieldProps('extraData.weight', 'number')}/>
+                    <EditProductProperty propertyName='Ед. изм.' renderEditField={() => <ProductUnitList onChange={handleSetUnit}
+                        selected={unit}/>}/>
+                    <EditProductProperty propertyName='Упаковка' renderEditField={() => <ProductCollectionList onChange={handleSetCollection} 
+                        selected={collecion}/>}/>
+                    <EditProductProperty propertyName='Тип товара' renderEditField={() => <ProductTypeList onChange={handleSetType} 
+                        selected={productType}/>}/>
                 </div>
+                <Button onClick={handleSubmit(handleCreate)}>Создать товар</Button>
             </div>
         </>
     );

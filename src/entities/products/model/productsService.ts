@@ -32,7 +32,10 @@ const productsAPI = rtkApi.injectEndpoints({
         }),
         checkOrderProducts: build.mutation<ICheckStoreProduct, IStoreProduct[]>(
             productsStoreEndpoints.checkOrderProducts
-        ), 
+        ),
+        createProduct: build.mutation<IStoreProduct, IStoreProduct>(
+            productsStoreEndpoints.createProduct
+        )
     })
 });
 
@@ -41,3 +44,5 @@ export const useLoadProductsBySearch = productsAPI.useLoadProductBySearchQuery;
 export const useLoadCategoriesBySearch = productsAPI.useLoadCategoriesBySearchQuery;
 export const useLoadProductsCategories = productsAPI.useLoadProductsCategoriesQuery;
 export const useCheckOrderProducts = productsAPI.useCheckOrderProductsMutation;
+export const useCreateProduct = productsAPI.useCreateProductMutation;
+
