@@ -16,7 +16,7 @@ export const AsyncReduxComponent: FC<AsyncReduxComponentProps> = (props) => {
     const { children, reducersList, removeAfterUnmount = true } = props;
     const store = useStore() as StoreWithReducerManager;
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         if (store.reducerManager?.getMountedReducers()) {
             const mountedReducers = store.reducerManager.getMountedReducers();
@@ -31,7 +31,7 @@ export const AsyncReduxComponent: FC<AsyncReduxComponentProps> = (props) => {
 
             return () => {
                 if (removeAfterUnmount) {
-                    Object.entries(reducersList).forEach(([name, reducer]) => {
+                    Object.keys(reducersList).forEach((name) => {
                         store.reducerManager?.remove(name as StoreSchemaKey);
                         dispatch({ type: '@@REMOVE orders reducer' });
                     });
@@ -42,3 +42,5 @@ export const AsyncReduxComponent: FC<AsyncReduxComponentProps> = (props) => {
 
     return <>{children}</>;
 };
+
+// const isPersist = localStorage.getItem('dataBase') === 'localStorage';

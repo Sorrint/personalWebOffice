@@ -1,5 +1,6 @@
 import { forwardRef, type ForwardedRef, type KeyboardEvent } from 'react';
-import { type UseFormRegister, type FieldValues, type Path } from 'react-hook-form';
+import type {  UseFormRegisterReturn } from 'react-hook-form';
+import {  type FieldValues, type Path } from 'react-hook-form';
 
 import './checkboxField.scss';
 
@@ -8,7 +9,7 @@ interface ICheckboxFieldProps<T extends FieldValues> {
     name: Path<T>
     error?: string
     placeholder?: string
-    register?: UseFormRegister<T>
+    register?: UseFormRegisterReturn<string>
     formName?: string
     autoComplete?: string
     field?: T

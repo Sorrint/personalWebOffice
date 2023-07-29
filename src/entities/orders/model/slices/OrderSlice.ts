@@ -1,10 +1,12 @@
+import { saveCurrentOrder } from '../services/saveCurrentOrder/saveCurrentOrder';
 import { type OrderState } from '../types/IOrder';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: OrderState = {
     entities: [],
     isLoading: true,
-    error: ''
+    error: '',
+    currentOrder: localStorage.getItem('dataBase') === 'localStorage' ? JSON.parse(localStorage.getItem('currentOrder')?? '')  : ''
 };
 
 export const OrderSlice = createSlice({
@@ -31,6 +33,20 @@ export const OrderSlice = createSlice({
         setCurrentOrder: (state, action) => {
             state.currentOrder = action.payload;
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(saveCurrentOrder.pending, (state) => {
+                state.error = '';
+                state.isLoading = true;
+            })
+            .addCase(saveCurrentOrder.fulfilled, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(saveCurrentOrder.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            });
     }
 });
 

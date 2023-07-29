@@ -1,12 +1,16 @@
+import type { IOrderProduct } from "@entities/orders/model/types/IOrder";
+import type { ICollection } from "@entities/products/components/productCollectionList/productCollectionList";
+
+export type ProductType = 'SCALABLE' | 'COUNTABLE'
 export interface extraData {
-    collection: string
+    collection: ICollection
     volume: number
     weight: number
 }
 export interface IStoreProduct {
-    _id: string
+    _id?: string
     name: string
-    type: string
+    type: ProductType
     quantity?: number
     department?: {
         id: number
@@ -22,3 +26,9 @@ export interface IStoreProduct {
 }
 
 export type IProductStock = [number, string, string, string, string];
+
+
+export interface ICheckStoreProduct {
+    productsExists: IStoreProduct[]
+    productsNotExists: IOrderProduct[]
+}

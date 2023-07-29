@@ -1,47 +1,26 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import { EditOrderingProductCard } from '@features/editOrderingProductCard';
 import { useCheckOrderProducts } from '@entities/products';
 import { OrderingList } from '@entities/orderings';
 
-import { type IOrderingProductWithExtraData, hasExtraData } from '../../libs/extraDataTypeGuard';
+import  { type IStoreProductWithExtraData, hasExtraData} from '../../libs/extraDataTypeGuard';
 import './ordering.scss';
+import { getCurrentOrder } from '@entities/orders';
+import { NavLink } from 'react-router-dom';
 
-const Ordering = () => {
-    // const order = useSelector(getCurrentOrder());
-
-    const order = {
-        products: [
-            {
-                number: 1,
-                productName: 'Краска фасадная 7 кг акриловая Капитель',
-                count: 234,
-                unit: 'шт.'
-            },
-            {
-                number: 2,
-                productName: '  Краска    фасадная14кг   акриловая Капитель  ',
-                count: 44,
-                unit: 'шт.'
-            },
-            {
-                number: 3,
-                productName: 'Краска для печей и каминов 1 кг акриловая Капитель Иркутск',
-                count: 5,
-                unit: 'шт.'
-            }
-        ]
-    };
+export const Ordering = () => {
+    const order = useSelector(getCurrentOrder());
+    
     const [checkOrder, { data: resultCheck, isLoading: isChecking, isError: isCheckError }] =
         useCheckOrderProducts();
 
     useEffect(() => {
-        checkOrder(order.products);
-    }, []);
+        if (order) checkOrder(order.products);
+    }, [order]);
 
     const orderingProducts =
-        // resultCheck &&
-        resultCheck?.productsExists.filter((item): item is IOrderingProductWithExtraData => hasExtraData(item));
+        resultCheck?.productsExists.filter((item): item is IStoreProductWithExtraData => hasExtraData(item));
 
     const notAllFieldProducts = resultCheck?.productsExists.filter((item) => !hasExtraData(item));
     return (
@@ -49,16 +28,20 @@ const Ordering = () => {
             {isCheckError && <>Ошибка c подключением</>}
             {isChecking && <>&lsquo;Идет проверка документа&lsquo;</>}
             {notAllFieldProducts?.length && notAllFieldProducts.map((item) => <div key={item._id}>{item.name}</div>)}
-            {resultCheck?.productsNotExists.map((product) => (
-                <EditOrderingProductCard product={product} key={product.number} />
-            ))}
             <div>Порядовка</div>
             {orderingProducts && <OrderingList products={orderingProducts} />}
+            {resultCheck &&        <NavLink to={"/office/documents/editOrderingProducts"}>
+            Перейти к списку
+            </NavLink>}
+
         </>
     );
 };
 
-export default Ordering;
+{/* {resultCheck?.productsNotExists.map((product) => (
+                <EditOrderingProductCard product={product} key={product.number} />
+            ))} */}
+
 // const {productsExists} = resultCheck
 // async function fetchOrder() {
 //     const result = await checkOrder(order.products);

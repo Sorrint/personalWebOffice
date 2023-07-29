@@ -10,7 +10,7 @@ export default defineConfig({
         svgr({
             exportAsDefault: true,
             svgrOptions: {
-            icon: true
+                icon: true
             }
         })
     ],

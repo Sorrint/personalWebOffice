@@ -16,9 +16,11 @@ export const StoreProvider = (props: StoreProviderProps) => {
     const store = createStore(initialState, asyncReducers);
     const persistor = persistStore(store);
 
-    return <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            {children}
-        </PersistGate>
-    </Provider>;
+    return (
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                {children}
+            </PersistGate>
+        </Provider>
+    );
 };

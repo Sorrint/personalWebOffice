@@ -48,4 +48,4 @@ export function createReducerManager (initialReducers: ReducersMapObject<StoreSc
         }
 
     };
-};
+}

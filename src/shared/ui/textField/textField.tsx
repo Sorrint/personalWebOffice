@@ -6,11 +6,11 @@ import { Icon } from '../icon';
 
 import './textField.scss';
 
+export type ITextFieldType = 'text' | 'number' | 'password' | 'email' | 'tel'
 export interface ITextFieldsProps<T extends FieldValues> {
     label?: string
     name: Path<T>
-
-    type?: 'text' | 'number' | 'password' | 'email' | 'tel'
+    type?: ITextFieldType
     error?: string
     formName?: string
     autoComplete?: string
@@ -19,24 +19,26 @@ export interface ITextFieldsProps<T extends FieldValues> {
     inputClass?: string
     onKeyDown?: (e: KeyboardEvent) => void
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+    className?: string
+    size?: 'normal' | 'full'
 }
 
 export const TextField = forwardRef(function TextField<T extends FieldValues> (
     props: ITextFieldsProps<T>,
     ref: ForwardedRef<HTMLInputElement | null>
 ) {
-    const { label, name, type, error, autoComplete, onChange, onKeyDown, variant = 'outline', onFocus } = props;
+    const { label, name, type, error, autoComplete, onChange, onKeyDown, variant = 'outline', onFocus, className, size = 'normal' } = props;
     const [showPassword, setShowPassword] = useState(false);
 
     const getInputClasses = () => {
-        return `input-group input-group_${variant}`;
+        return `input-group input-group_${variant} `;
     };
     const toggleShowPassword = () => {
         setShowPassword((prevState) => !prevState);
     };
 
     return (
-        <div className={'input-container' + (error ? ' is-invalid' : '')}>
+        <div className={'input-container' + (error ? ' is-invalid' : '') +(`input-group_${size}`) + (` ${className ?? ''}`)}>
             <div className={`${getInputClasses()}` + (error ? ' is-invalid' : '')}>
                 <input
                     id={name}

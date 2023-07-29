@@ -13,6 +13,7 @@ body {
     box-sizing: border-box;
     flex-direction: column;
     font-family: var(--font-family-main);
+    font-size: var(--font-size-main);
 }
 
 #root {
@@ -23,14 +24,14 @@ body {
     flex-shrink: 1;
 }
 
-:focus {
-    outline: red solid 1px;
-}
+// :focus {
+//     outline: red solid 1px;
+// }
 
-a:focus,
-div:focus {
-    outline: red solid 1px;
-}
+// a:focus,
+// div:focus {
+//     outline: red solid 1px;
+// }
 
 input:focus {
     outline: none;

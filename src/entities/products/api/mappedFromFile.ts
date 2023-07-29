@@ -1,6 +1,5 @@
-import { type FileDB, type IDbHeaders } from '../model/interfaces/IOrderProduct';
-
-import { dbHeaders } from '../model/dataBase';
+import  { type IDbHeaders, dbHeaders} from '../model/dataBase';
+export type FileDB = Record<string, string>;
 
 export function transformHeaders (headersRow: FileDB) {
     const modifiedHeaders = dbHeaders.reduce((result: IDbHeaders[], header) => {

@@ -21,6 +21,7 @@ export interface IDreamkasProduct {
     tax: string
     type: string
     unit: string
+    quantity: number;
 }
 
 export interface IProductCategory {

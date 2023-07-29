@@ -1,3 +1,5 @@
+import { type IStoreProduct } from "@entities/products/model/types/IStoreProduct";
+
 export interface IOrderProduct {
     number: number
     productName: string
@@ -7,7 +9,7 @@ export interface IOrderProduct {
 
 export interface IOrder {
     orderName: string
-    products: IOrderProduct[]
+    products: IStoreProduct[]
 }
 
 export interface IOrderHeader {
@@ -20,7 +22,7 @@ export interface OrderState {
     entities: IOrder[]
     currentOrder?: IOrder
     isLoading: boolean
-    error: string
+    error: string | undefined
 }
 
 export type FileOrder = Record<string, string>;

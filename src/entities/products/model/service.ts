@@ -1,4 +1,4 @@
-import { type IDreamkasProduct, type IProductCategory, type IProductQueryTrace } from './interfaces/IDreamkasProduct';
+import { type IDreamkasProduct, type IProductCategory, type IProductQueryTrace } from './types/IDreamkasProduct';
 
 export interface ISearchParams {
     limit: number

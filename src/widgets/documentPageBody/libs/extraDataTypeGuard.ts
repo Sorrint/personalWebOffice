@@ -1,11 +1,10 @@
-import { type IOrderingProduct } from '@entities/products/model/interfaces/IOrderProduct';
-import { type extraData } from '@entities/products/model/interfaces/IStoreProduct';
+import { type extraData, type IStoreProduct } from '@entities/products/model/types/IStoreProduct';
 
-export interface IOrderingProductWithExtraData extends IOrderingProduct {
+export interface IStoreProductWithExtraData extends IStoreProduct {
     extraData: extraData
 }
 
-export function hasExtraData (product: IOrderingProduct): product is IOrderingProductWithExtraData {
+export function hasExtraData (product: IStoreProduct): product is IStoreProductWithExtraData {
     return (
         product.extraData !== undefined &&
         product.extraData !== null &&
@@ -15,7 +14,7 @@ export function hasExtraData (product: IOrderingProduct): product is IOrderingPr
     );
 }
 
-export function getProductType (product: IOrderingProduct): IOrderingProduct | IOrderingProductWithExtraData {
+export function getProductType (product: IStoreProduct): IStoreProduct | IStoreProductWithExtraData {
     if (hasExtraData(product)) {
         return product;
     } else {
