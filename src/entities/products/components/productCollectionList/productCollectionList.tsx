@@ -1,5 +1,4 @@
 import { SelectListBox } from "@shared/ui/selectListBox/selectListBox";
-import { useState} from "react";
 
 interface IProductCollectionListProps {
     onChange?: (e: ICollection)=> void 

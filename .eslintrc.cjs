@@ -30,6 +30,7 @@ module.exports = {
         }],
         // '@typescript-eslint/semi': 'off',
         'indent': [2, 4, {'SwitchCase': 1}],
+        '@typescript-eslint/ban-ts-comment': 0
         // '@typescript-eslint/indent': [2,4, {'SwitchCase': 1}],
         // '@typescript-eslint/explicit-function-return-type': 'off',
         // '@typescript-eslint/strict-boolean-expressions': [2, {

@@ -12,6 +12,7 @@ import ScopesIcon from '@shared/assets/icons/scopes.svg';
 import NewsIcon from '@shared/assets/icons/news.svg';
 import SupportIcon from '@shared/assets/icons/support.svg';
 import QuestionIcon from '@shared/assets/icons/question.svg';
+import PackageBoxIcon from '@shared/assets/icons/package-box.svg';
 
 const BaseURL = '/office';
 
@@ -42,8 +43,8 @@ export const routesLinks = {
     },
     marking: {
         id: 'goods-marking',
-        text: 'Маркировка',
-        image: MarkingIcon,
+        text: 'Упаковка',
+        image: PackageBoxIcon,
         path: `${BaseURL}/goods-marking`
     },
     products: {
