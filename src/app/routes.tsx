@@ -9,6 +9,8 @@ import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/invent
 import { Distribution, EditOrderingProducts, Order, Ordering } from '@widgets/documentPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 import { routesLinks } from '@widgets/navBar/model/menuItems';
+import { PackagesPage } from '@pages/packagesPage';
+import { CreatePackageForm } from '@features/createPackageForm/components/createPackageForm';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },
@@ -50,6 +52,15 @@ const routes: RouteObject[] = [
             { path: 'categories', element: <ProductsCategories /> },
             { index: true, element: <Navigate to={'./categories'} /> },
             { path: '*', element: <Navigate to={'./categories'} /> }
+        ]
+    },
+    {
+        path: `${routesLinks.packages.path}`,
+        element: <PackagesPage/>,
+        children: [
+            { path: 'create', element: <CreatePackageForm/>},
+            { index: true, element: <Navigate to={'./create'} /> },
+            { path: '*', element: <Navigate to={'./create'} /> }
         ]
     },
     {

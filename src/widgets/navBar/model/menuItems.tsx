@@ -2,7 +2,6 @@ import ReportsIcon from '@shared/assets/icons/reports.svg';
 import ShopsIcon from '@shared/assets/icons/shops.svg';
 import DocumentsIcon from '@shared/assets/icons/documents.svg';
 import InventoryIcon from '@shared/assets/icons/inventory.svg';
-import MarkingIcon from '@shared/assets/icons/marking.svg';
 import ProductsIcon from '@shared/assets/icons/products.svg';
 import ClientsIcon from '@shared/assets/icons/clients.svg';
 import StocksIcon from '@shared/assets/icons/stocks.svg';
@@ -41,11 +40,11 @@ export const routesLinks = {
         image: InventoryIcon,
         path: `${BaseURL}/inventory-lists`
     },
-    marking: {
-        id: 'goods-marking',
+    packages: {
+        id: 'packages',
         text: 'Упаковка',
         image: PackageBoxIcon,
-        path: `${BaseURL}/goods-marking`
+        path: `${BaseURL}/packages`
     },
     products: {
         id: 'products',
@@ -111,14 +110,14 @@ export const routesLinks = {
 };
 
 const {
-    reports, documents, stores, inventory, marking, products,
+    reports, documents, stores, inventory, packages, products,
     clients, loyality, stocks, integrations, news, scopes, question, support
 } = routesLinks;
 
 const menuItemsTop = {
     id: 'navigation-menu__top',
     wrapperClassName: 'navigation-menu__top',
-    items: [reports, stores, documents, inventory, marking, products, clients, stocks, loyality, integrations]
+    items: [reports, stores, documents, inventory, packages, products, clients, stocks, loyality, integrations]
 };
 
 const menuItemsSpecial = {

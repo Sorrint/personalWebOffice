@@ -1,1 +1,2 @@
-export { IPackage } from './model/packageTypes';
+export { packagesApi } from './api/packagesApi';
+export { type IPackage } from './model/packageTypes';
