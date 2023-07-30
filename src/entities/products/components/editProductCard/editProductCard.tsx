@@ -28,7 +28,7 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
 
     product.quantity = product.quantity ?? 1000;
     const { name } = product;
-    const methods = useForm({
+    const methods = useForm<IStoreProduct>({
         defaultValues: product,
         mode: 'onChange'
     });
