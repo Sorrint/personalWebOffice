@@ -24,13 +24,11 @@ const extraDataDefault: extraData ={
 
 export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
     
-    
-    const [createProduct] =
-        useCreateProduct();
+    const [createProduct] = useCreateProduct();
 
     product.quantity = product.quantity ?? 1000;
     const { name } = product;
-    const methods = useForm({
+    const methods = useForm<IStoreProduct>({
         defaultValues: product,
         mode: 'onChange'
     });
