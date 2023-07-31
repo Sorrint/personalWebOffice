@@ -10,7 +10,7 @@ import { Distribution, EditOrderingProducts, Order, Ordering } from '@widgets/do
 import ProductsCategories from '@widgets/productsPageBody';
 import { routesLinks } from '@widgets/navBar/model/menuItems';
 import { PackagesPage } from '@pages/packagesPage';
-import { CreatePackageForm } from '@features/createPackageForm/components/createPackageForm';
+import { EditPackageForm } from '@features/editPackageForm/components/editPackageForm';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },
@@ -58,7 +58,7 @@ const routes: RouteObject[] = [
         path: `${routesLinks.packages.path}`,
         element: <PackagesPage/>,
         children: [
-            { path: 'create', element: <CreatePackageForm/>},
+            { path: 'create', element: <EditPackageForm />},
             { index: true, element: <Navigate to={'./create'} /> },
             { path: '*', element: <Navigate to={'./create'} /> }
         ]

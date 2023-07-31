@@ -1,6 +1,6 @@
 export interface IPackage {
-    id?: string
-    collection?: string
+    _id?: string
+    category?: string
     volume?: number
     weight?: number
     name: string

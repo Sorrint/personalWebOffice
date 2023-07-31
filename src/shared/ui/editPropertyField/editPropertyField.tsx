@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import './editProductProperty.scss';
+import './editProperty.scss';
 
 interface EditPropertyFieldProps {
     propertyName: string

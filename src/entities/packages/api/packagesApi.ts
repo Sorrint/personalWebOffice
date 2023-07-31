@@ -1,5 +1,5 @@
 import { rtkApi } from "@shared/api/rtkApi";
-import type { IPackage } from "../model/packageTypes";
+import type { IPackage } from "../model/packagesTypes";
 
 export const packagesApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
@@ -17,3 +17,5 @@ export const packagesApi = rtkApi.injectEndpoints({
         })
     })
 });
+
+export const useCreateNewPackage = packagesApi.useCreatePackageMutation;
