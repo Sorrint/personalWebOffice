@@ -1,13 +1,10 @@
 import { type IOrderProduct } from "@entities/orders/model/types/IOrder";
 
-
-
 export type ProductType = 'SCALABLE' | 'COUNTABLE'
 export interface extraData {
     package?: string
     weight: number
 }
-
 
 export interface IUnitOption {
     content: string
