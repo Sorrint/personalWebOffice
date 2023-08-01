@@ -7,6 +7,7 @@ import './editPackageForm.scss';
 import { Button } from "@shared/ui/button";
 import { useCreateNewPackage } from "@entities/packages/api/packagesApi";
 import { TextField } from "@shared/ui/textField";
+import { PackageSelect } from "@entities/packages/components";
 
 interface EditPackageFormProps {
     packageBox?: IPackage
@@ -25,33 +26,36 @@ export const EditPackageForm: FC<EditPackageFormProps> = ({packageBox}) => {
     };
 
     return (
-        <div className="editPackageCard">
-            <EditPropertyField 
-                propertyName="Наименование" 
-                renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'name', register, textFieldType: 'text' })}
-                className="packageProperty"
-            />
-            <EditPropertyField 
-                propertyName="Категория" 
-                renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'category', register, textFieldType: 'text' })}
-                className="packageProperty"
-            />
-            <EditPropertyField 
-                propertyName="Объем" 
-                renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'volume', register, textFieldType: 'number' })}
-                className="packageProperty"
-            />
-            <EditPropertyField 
-                propertyName="Вес (в граммах)" 
-                renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'weight', register, textFieldType: 'number' })}
-                className="packageProperty"
-            />
-            <EditPropertyField 
-                propertyName="Цвет" 
-                renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'color', register, textFieldType: 'text' })}
-                className="packageProperty"
-            />
-            <Button className='packageSubmit' onClick={handleSubmit(editPackage)}>Добавить упаковку</Button>
-        </div>
+        <>
+            <PackageSelect />
+            <div className="editPackageCard">
+                <EditPropertyField 
+                    propertyName="Наименование" 
+                    renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'name', register, textFieldType: 'text' })}
+                    className="packageProperty"
+                />
+                <EditPropertyField 
+                    propertyName="Категория" 
+                    renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'category', register, textFieldType: 'text' })}
+                    className="packageProperty"
+                />
+                <EditPropertyField 
+                    propertyName="Объем" 
+                    renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'volume', register, textFieldType: 'number' })}
+                    className="packageProperty"
+                />
+                <EditPropertyField 
+                    propertyName="Вес (в граммах)" 
+                    renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'weight', register, textFieldType: 'number' })}
+                    className="packageProperty"
+                />
+                <EditPropertyField 
+                    propertyName="Цвет" 
+                    renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'color', register, textFieldType: 'text' })}
+                    className="packageProperty"
+                />
+                <Button className='packageSubmit' onClick={handleSubmit(editPackage)}>Добавить упаковку</Button>
+            </div>
+        </>
     );
 };

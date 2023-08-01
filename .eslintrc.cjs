@@ -26,7 +26,8 @@ module.exports = {
     'rules': {
         'semi': [2, 'always'],
         "@typescript-eslint/consistent-type-imports": ["error", {
-            "prefer": "type-imports"
+            prefer: 'type-imports',
+            fixStyle: 'inline-type-imports'
         }],
         // '@typescript-eslint/semi': 'off',
         'indent': [2, 4, {'SwitchCase': 1}],

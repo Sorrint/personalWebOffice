@@ -1,30 +1,25 @@
+import { type IUnitOption } from "@entities/products/model/types/IStoreProduct";
 import { SelectListBox } from "@shared/ui/selectListBox/selectListBox";
 
 interface ProductUnitListProps {
-    selected?: string
-    onChange?: (e: string)=> void
-}
-interface IUnitOption {
-    value: string
-    id: number
-    type: 'scalable' | 'countable'
-    base: number
+    id?: string
+    onChange?: (e: IUnitOption)=> void
 }
 
-export const ProductUnitList = ({selected, onChange}: ProductUnitListProps) => {
+export const ProductUnitList = ({id, onChange}: ProductUnitListProps) => {
 
     const options: IUnitOption[] = [
-        {id: 1, type: 'scalable', value: 'г', base: 1},
-        {id: 2, type: 'scalable', value: 'кг', base: 1000},
-        {id: 3, type: 'countable', value: 'шт', base: 1000}
+        {_id: '1', type: 'SCALABLE', content: 'г', base: 1},
+        {_id: '2', type: 'SCALABLE', content: 'кг', base: 1000},
+        {_id: '3', type: 'COUNTABLE', content: 'шт', base: 1000}
     ];
 
-    const currentUnitType = options.filter((option) => option.type==='scalable');
-    const currentUnit = currentUnitType?.find((unit)=> unit?.value === selected) ?? currentUnitType[0];
+    const currentUnitType = options.filter((option) => option.type==='SCALABLE');
 
-    const handleChange = (selected: IUnitOption) =>  {
-        onChange?.(selected.value);
+    const handleChange = (value: string) =>  {
+        const chooseOption = options.find((option)=> option._id === value);
+        chooseOption && onChange?.(chooseOption);
     };
 
-    return <SelectListBox options={currentUnitType} selected={currentUnit} onChange={handleChange}/>;
+    return <SelectListBox options={currentUnitType} value={id ?? ''} defaultValue="Выберите ед. изм." onChange={handleChange}/>;
 };

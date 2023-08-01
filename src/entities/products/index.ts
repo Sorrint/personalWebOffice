@@ -1,4 +1,5 @@
-export type { ProductsState } from './model/types/productsState';
+export { type IUnitOption } from './model/types/IStoreProduct';
+export  { type ProductsState } from './model/types/productsState';
 export { type IDreamkasProduct } from './model/types/IDreamkasProduct';
 export { ProductCard } from './components/productCard/productCard';
 export { CategoryCard } from './components/categoryCard/categoryCard';
