@@ -1,9 +1,13 @@
 import { rtkApi } from "@shared/api/rtkApi";
 import type { IPackage } from "../model/packagesTypes";
 
-export const packagesApi = rtkApi.injectEndpoints({
+export interface IPackageWithId extends IPackage {
+    _id: string
+}
+
+const packagesApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
-        getPackages: build.query<IPackage[], null> ({
+        getPackages: build.query<IPackageWithId[], void> ({
             query: () => ({
                 url: '/packages'
             })
@@ -19,3 +23,4 @@ export const packagesApi = rtkApi.injectEndpoints({
 });
 
 export const useCreateNewPackage = packagesApi.useCreatePackageMutation;
+export const useGetPackages = packagesApi.useGetPackagesQuery;

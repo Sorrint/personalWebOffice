@@ -27,11 +27,11 @@ export const EditOrderingProducts = () => {
         {
             type: 'SCALABLE',
             name:"Грунт БЕТОН-КОНТАКТ с индикатором 12 кг ПРОФИ акриловый Капитель",
-            unit:"шт"
+            // unit:"шт"
         }, 
         {
             name: "Грунт БЕТОН-КОНТАКТ с индикатором 6 кг ПРОФИ акриловый Капитель",
-            unit: "шт",
+            // unit: "шт",
             type: 'COUNTABLE'
         }
     ];

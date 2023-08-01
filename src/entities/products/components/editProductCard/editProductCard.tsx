@@ -1,24 +1,23 @@
-import type { Path, PathValue} from 'react-hook-form';
+import  { type Path, type PathValue} from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useEffect, type FC } from 'react';
 
 import { EditProductProperty } from '@entities/products/components/editProductProperty/editProductProperty';
-import type { IStoreProduct, extraData} from '@entities/products/model/types/IStoreProduct';
+import  { type IStoreProduct, type extraData} from '@entities/products/model/types/IStoreProduct';
 import { TextField } from '@shared/ui/textField';
 
 import './editProductCard.scss';
-import { ProductCollectionList } from '../productCollectionList/productCollectionList';
-import { ProductTypeList } from '../productTypeList/productTypeList';
-import { ProductUnitList } from '../productUnitList/productUnitList';
+
 import { useCreateProduct } from '@entities/products/model/productsService';
 import { Button } from '@shared/ui/button';
+import { PackageSelect } from '@entities/packages/components';
+import { ProductUnitList } from '../productUnitList/productUnitList';
 interface EditProductCardProps {
     product:  IStoreProduct
 }
 
 const extraDataDefault: extraData ={ 
-    collection: {id:'1', value:'2,5 3 кг низ'},
-    volume: 2000,
+    // volume: 2000,
     weight: 0
 };
 
@@ -27,6 +26,8 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
     const [createProduct] = useCreateProduct();
 
     product.quantity = product.quantity ?? 1000;
+    product.unit = product.unit ?? {_id: '1', type: 'SCALABLE', content: 'г', base: 1};
+
     const { name } = product;
     const methods = useForm<IStoreProduct>({
         defaultValues: product,
@@ -47,10 +48,10 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
     };
 
     const handleSet = <T extends Path<IStoreProduct>> (key: T, value: PathValue<IStoreProduct, T>) => {
+        // console.log(value);
         //@ts-ignore-next-line
         setValue(key, value);
     };
-
 
     const parseWeight = parseFloat(product.name.replace(/\D/g, ''));
     const weight = isNaN(parseWeight) ? 0 : parseWeight;
@@ -59,8 +60,8 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
         product.extraData = {...product.extraData, weight: weight};
     }
 
-    const collecion = watch('extraData.collection');
-    const productType = watch('type');
+    const container = watch('extraData.package');
+    // const productType = watch('type');
     const unit = watch('unit');
 
     const handleCreate = (product: IStoreProduct) => {
@@ -73,13 +74,15 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
                 <h2 className='editCard__title'>{name}</h2>
                 <div className='editCard__properties'>
                     <EditProductProperty propertyName='Наименование' renderEditField={() => renderTextFieldProps( 'name', 'text')}/>
+                    <EditProductProperty propertyName='Наименование' renderEditField={() => renderTextFieldProps( 'quantity', 'number')}/>
+
                     <EditProductProperty propertyName='Вес товара' renderEditField={() => renderTextFieldProps('extraData.weight', 'number')}/>
                     <EditProductProperty propertyName='Ед. изм.' renderEditField={() => <ProductUnitList onChange={(value) => handleSet('unit', value)}
-                        selected={unit}/>}/>
-                    <EditProductProperty propertyName='Упаковка' renderEditField={() => <ProductCollectionList onChange={(value) => handleSet('extraData.collection', value)} 
-                        selected={collecion}/>}/>
-                    <EditProductProperty propertyName='Тип товара' renderEditField={() => <ProductTypeList onChange={(value)=>handleSet('type', value)} 
-                        selected={productType}/>}/>
+                        id={unit?._id}/>}/>
+                    <EditProductProperty propertyName='Упаковка' renderEditField={() => <PackageSelect onChange={(value) => handleSet('extraData.package', value)} 
+                        id={container} content='category'/>}/>
+                    {/* <EditProductProperty propertyName='Тип товара' renderEditField={() => <ProductTypeList onChange={(value)=>handleSet('type', value)}  */}
+                    {/* selected={productType}/>}/> */}
                 </div>
                 <Button onClick={handleSubmit(handleCreate)}>Создать товар</Button>
             </div>
