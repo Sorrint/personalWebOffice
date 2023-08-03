@@ -7,6 +7,7 @@ export const OrderingHeader = () => {
             <div className="ordering__header header__productName">Товары (работы, услуги)</div>
             <div className="ordering__header header__count">Количество</div>
             <div className="ordering__header header__unit">Ед.</div>
+            <div className="ordering__header header__rows">Ряды</div>
         </div>
     );
 };

@@ -1,7 +1,6 @@
 import { SelectListBox } from '@shared/ui/selectListBox/selectListBox';
 import { useGetPackages } from '../../api/packagesApi';
 import './packageSelect.scss';
-import  { type IPackage } from '@entities/packages/model/packagesTypes';
 import { useCallback } from 'react';
 interface PackageSelectProps {
     classname?: string

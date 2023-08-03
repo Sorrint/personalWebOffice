@@ -26,8 +26,8 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
     const [createProduct] = useCreateProduct();
 
     product.quantity = product.quantity ?? 1000;
-    product.unit = product.unit ?? {_id: '1', type: 'SCALABLE', content: 'г', base: 1};
-
+    product.type = product.type ?? 'COUNTABLE';
+    
     const { name } = product;
     const methods = useForm<IStoreProduct>({
         defaultValues: product,
@@ -65,7 +65,8 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
     const unit = watch('unit');
 
     const handleCreate = (product: IStoreProduct) => {
-        createProduct({...product, tax: 'NDS_NO_TAX'});
+        // const extraData: extraData = {...product.extraData, weight: pro}
+        createProduct({...product, tax: 'NDS_NO_TAX' });
     };
 
     return (
@@ -74,7 +75,7 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
                 <h2 className='editCard__title'>{name}</h2>
                 <div className='editCard__properties'>
                     <EditProductProperty propertyName='Наименование' renderEditField={() => renderTextFieldProps( 'name', 'text')}/>
-                    <EditProductProperty propertyName='Наименование' renderEditField={() => renderTextFieldProps( 'quantity', 'number')}/>
+                    <EditProductProperty propertyName='Количество товара' renderEditField={() => renderTextFieldProps( 'quantity', 'number')}/>
 
                     <EditProductProperty propertyName='Вес товара' renderEditField={() => renderTextFieldProps('extraData.weight', 'number')}/>
                     <EditProductProperty propertyName='Ед. изм.' renderEditField={() => <ProductUnitList onChange={(value) => handleSet('unit', value)}
