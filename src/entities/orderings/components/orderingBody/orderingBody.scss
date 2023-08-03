@@ -1,4 +1,4 @@
-$order-columns: minmax(50px, 1fr) minmax(450px, 9fr) minmax(100px, 2fr) minmax(50px, 1fr);
+$order-columns: minmax(50px, 1fr) minmax(450px, 9fr) minmax(100px, 2fr) minmax(50px, 1fr) minmax(120px, 2fr);
 
 .ordering {
     &__item {
@@ -7,5 +7,12 @@ $order-columns: minmax(50px, 1fr) minmax(450px, 9fr) minmax(100px, 2fr) minmax(5
         grid-template-columns: $order-columns;
         align-items: self-start;
         text-align: left;
+        cursor: pointer;
+    }
+
+    &__resultRow {
+        font-weight: bold;
+        text-align: center;
+        cursor: default;
     }
 }

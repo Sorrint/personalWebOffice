@@ -1,7 +1,8 @@
-$order-columns: minmax(50px, 1fr) minmax(450px, 9fr) minmax(100px, 2fr) minmax(50px, 1fr);
+$order-columns: minmax(50px, 1fr) minmax(450px, 9fr) minmax(100px, 2fr) minmax(50px, 1fr) minmax(50px, 2fr);
 $order-border: 1px solid grey;
 
 .ordering {
+    cursor: default;
     &__headers {
         display: grid;
         grid-template-columns: $order-columns;

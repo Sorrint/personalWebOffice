@@ -1,6 +1,8 @@
+import { type IOrderingProduct } from "@entities/orderings";
 import { type IOrderProduct } from "@entities/orders/model/types/IOrder";
 
 export type ProductType = 'SCALABLE' | 'COUNTABLE'
+
 export interface extraData {
     package?: string
     weight: number
@@ -12,10 +14,11 @@ export interface IUnitOption {
     type: ProductType
     base: number
 }
+
 export interface IStoreProduct {
     _id?: string
     name: string
-    type: ProductType
+    type?: ProductType
     quantity?: number
     department?: {
         id: number
@@ -32,8 +35,7 @@ export interface IStoreProduct {
 
 export type IProductStock = [number, string, string, string, string];
 
-
 export interface ICheckStoreProduct {
-    productsExists: IStoreProduct[]
+    productsExists: IOrderingProduct[]
     productsNotExists: IOrderProduct[]
 }

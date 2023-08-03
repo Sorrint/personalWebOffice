@@ -1,7 +1,7 @@
 import { type IStoreProduct } from "@entities/products/model/types/IStoreProduct";
 
 export interface IOrderProduct {
-    number: number
+    orderNumber: number
     productName: string
     count: number
     unit: string
