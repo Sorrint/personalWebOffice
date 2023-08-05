@@ -1,16 +1,16 @@
 import { Navigate, type RouteObject } from 'react-router-dom';
 
 import { DocumentsPage } from '@pages/documentsPage';
-import { ProductsPage } from '@pages/productsPage';
 import { InventoryPage } from '@pages/inventoryPage';
+import { PackagesPage } from '@pages/packagesPage';
+import { ProductsPage } from '@pages/productsPage';
 import { ProfilePage } from '@pages/profilePage';
 
 import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
 import { Distribution, EditOrderingProducts, Order, Ordering } from '@widgets/documentPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 import { routesLinks } from '@widgets/navBar/model/menuItems';
-import { PackagesPage } from '@pages/packagesPage';
-import { EditPackageForm } from '@features/editPackageForm/components/editPackageForm';
+import { EditPackageForm } from '@features/editPackageForm';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },

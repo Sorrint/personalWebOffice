@@ -1,5 +1,5 @@
 import { type IUnitOption } from "@entities/products/model/types/IStoreProduct";
-import { SelectListBox } from "@shared/ui/selectListBox/selectListBox";
+import { SelectListBox } from "@shared/ui/selectListBox";
 
 interface ProductUnitListProps {
     id?: string

@@ -6,8 +6,7 @@ import { useForm } from "react-hook-form";
 import './editPackageForm.scss';
 import { Button } from "@shared/ui/button";
 import { useCreateNewPackage } from "@entities/packages/api/packagesApi";
-import { TextField } from "@shared/ui/textField";
-import { PackageSelect } from "@entities/packages/components";
+import { PackageSelect } from "@entities/packages";
 
 interface EditPackageFormProps {
     packageBox?: IPackage
