@@ -7,19 +7,20 @@ import './editOrderingProductCard.scss';
 import { EditProductProperty } from '@entities/products/components/editProductProperty/editProductProperty';
 import { TextField } from '@shared/ui/textField';
 import type { IStoreProduct } from '@entities/products/model/types/IStoreProduct';
+import { type IOrderingProduct } from '@entities/orderings';
+import { IOrderProduct } from '@entities/orders/model/types/IOrder';
 
 interface EditOrderingProductCardProps {
-    product:  IStoreProduct[]
+    product:  IOrderingProduct
 }
 
 export const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ product }) => {
-    const { count, number, productName: name, unit } = product;
+    const { count, productName: name, unit } = product;
     const productName = transformProductName(name);
     const methods = useForm({
         mode: 'onChange',
         defaultValues: {
             count,
-            number,
             productName,
             unit
         }
@@ -32,7 +33,7 @@ export const EditOrderingProductCard: FC<EditOrderingProductCardProps> = ({ prod
         return () => { subscription.unsubscribe(); };
     }, [watch]);
 
-    const renderFieldProps = (fieldName: Path<IOrderProduct>) => {
+    const renderFieldProps = (fieldName: Path<IOrderingProduct>) => {
         const textFieldType = typeof product[fieldName] === 'number' ? 'number' : 'text';
         return <TextField {...register(fieldName) } className= {`editCard__cell editItem__${fieldName}`} type={textFieldType}/>;
     };

@@ -1,6 +1,6 @@
 import  { type Path, type PathValue} from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useEffect, type FC } from 'react';
+import { useEffect } from 'react';
 
 import { EditProductProperty } from '@entities/products/components/editProductProperty/editProductProperty';
 import  { type IStoreProduct, type extraData} from '@entities/products/model/types/IStoreProduct';
@@ -12,8 +12,9 @@ import { useCreateProduct } from '@entities/products/model/productsService';
 import { Button } from '@shared/ui/button';
 import { PackageSelect } from '@entities/packages/components';
 import { ProductUnitList } from '../productUnitList/productUnitList';
-interface EditProductCardProps {
-    product:  IStoreProduct
+import { parseWeightKg } from '../../lib/helpers/parseWeightKg/parseWeightKg';
+interface EditProductCardProps <T extends IStoreProduct>{
+    product: T
 }
 
 const extraDataDefault: extraData ={ 
@@ -21,8 +22,8 @@ const extraDataDefault: extraData ={
     weight: 0
 };
 
-export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
-    
+export const EditProductCard = <T extends IStoreProduct>({ product }:EditProductCardProps<T>) => {
+
     const [createProduct] = useCreateProduct();
 
     product.quantity = product.quantity ?? 1000;
@@ -48,24 +49,20 @@ export const EditProductCard: FC<EditProductCardProps> = ({ product }) => {
     };
 
     const handleSet = <T extends Path<IStoreProduct>> (key: T, value: PathValue<IStoreProduct, T>) => {
-        // console.log(value);
         //@ts-ignore-next-line
         setValue(key, value);
     };
 
-    const parseWeight = parseFloat(product.name.replace(/\D/g, ''));
-    const weight = isNaN(parseWeight) ? 0 : parseWeight;
+    const weight = parseWeightKg(product.name);
     if (!product.extraData) product.extraData = {...extraDataDefault};
     if (product.extraData && !product.extraData.weight) {
         product.extraData = {...product.extraData, weight: weight};
     }
 
     const container = watch('extraData.package');
-    // const productType = watch('type');
     const unit = watch('unit');
 
     const handleCreate = (product: IStoreProduct) => {
-        // const extraData: extraData = {...product.extraData, weight: pro}
         createProduct({...product, tax: 'NDS_NO_TAX' });
     };
 
