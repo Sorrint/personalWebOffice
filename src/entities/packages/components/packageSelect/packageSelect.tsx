@@ -1,4 +1,4 @@
-import { SelectListBox } from '@shared/ui/selectListBox/selectListBox';
+import { SelectListBox } from '@shared/ui/selectListBox';
 import { useGetPackages } from '../../api/packagesApi';
 import './packageSelect.scss';
 import { useCallback } from 'react';

@@ -1,4 +1,4 @@
-import { SelectListBox } from "@shared/ui/selectListBox/selectListBox";
+import { SelectListBox } from "@shared/ui/selectListBox";
 
 type ProductType = 'COUNTABLE' | 'SCALABLE'
 

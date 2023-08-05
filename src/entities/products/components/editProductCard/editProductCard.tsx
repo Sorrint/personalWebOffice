@@ -10,7 +10,7 @@ import './editProductCard.scss';
 
 import { useCreateProduct } from '@entities/products/model/productsService';
 import { Button } from '@shared/ui/button';
-import { PackageSelect } from '@entities/packages/components';
+import { PackageSelect } from '@entities/packages';
 import { ProductUnitList } from '../productUnitList/productUnitList';
 import { parseWeightKg } from '../../lib/helpers/parseWeightKg/parseWeightKg';
 interface EditProductCardProps <T extends IStoreProduct>{
