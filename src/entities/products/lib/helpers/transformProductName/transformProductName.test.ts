@@ -11,3 +11,4 @@ describe('transformProductName', ()=> {
         expect(transformProductName('Краска акриловая2,5 кг')).toBe('Краска акриловая 2,5 кг');
     });
 });
+

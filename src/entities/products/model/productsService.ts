@@ -23,7 +23,7 @@ const productsAPI = rtkApi.injectEndpoints({
             }
         }),
         loadProductsCategories: build.query<IProductCategory[], ISearchParams>({
-            query: (params) => ({
+            query: () => ({
                 url: '/dreamkas/products/categories'
             }),
             transformResponse: (response: ISearchResult) => {

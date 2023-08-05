@@ -1,10 +1,10 @@
-import { type IStoreProduct } from "@entities/products/model/types/IStoreProduct";
+import { type IUnitOption, type IStoreProduct } from "@entities/products/model/types/IStoreProduct";
 
 export interface IOrderProduct {
     orderNumber: number
     productName: string
     count: number
-    unit: string
+    unit: IUnitOption
 }
 
 export interface IOrder {
