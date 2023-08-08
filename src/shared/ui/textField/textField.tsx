@@ -1,4 +1,4 @@
-import { useState, forwardRef, type ForwardedRef, type KeyboardEvent } from 'react';
+import { useState, forwardRef, type ForwardedRef, type KeyboardEvent, memo } from 'react';
 import { type FieldValues, type Path } from 'react-hook-form';
 import OpenEyeIcon from '@shared/assets/icons/eye-open.svg';
 import SlashedEyeIcon from '@shared/assets/icons/eye-slashed.svg';
@@ -23,7 +23,7 @@ export interface ITextFieldsProps<T extends FieldValues> {
     size?: 'normal' | 'full'
 }
 
-export const TextField = forwardRef(function TextField<T extends FieldValues> (
+export const TextField = memo(forwardRef(function TextField<T extends FieldValues> (
     props: ITextFieldsProps<T>,
     ref: ForwardedRef<HTMLInputElement | null>
 ) {
@@ -66,4 +66,4 @@ export const TextField = forwardRef(function TextField<T extends FieldValues> (
             {error && <div className="invalid-feedback">{error}</div>}
         </div>
     );
-});
+}));

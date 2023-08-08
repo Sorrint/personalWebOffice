@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState, useRef, type KeyboardEvent } from 'react';
+import { memo, useEffect, useState, useRef, type KeyboardEvent, useCallback } from 'react';
 import { type FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ interface IPopupProps {
     method: 'Delete' | 'Update' | 'Create'
 }
 
-export const InventoryEdit: FC = () => {
+export const InventoryEdit = memo(() => {
     const { number } = useParams();
     const docNumber = Number(number);
     const [popupProps, setPopupProps] = useState<IPopupProps>();
@@ -66,23 +66,23 @@ export const InventoryEdit: FC = () => {
         setActivePopover(false);
     };
 
-    const handleCreate = (product: IDreamkasProduct) => {
+    const handleCreate = useCallback((product: IDreamkasProduct) => {
         const { name, price } = product;
         const newProduct = { name, price: price && price / 100, quantity: 1, id: undefined };
         setActivePopover(false);
         setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
         setActivePopup(true);
-    };
+    },[]);
 
-    const handleUpdate = (product: IInventoryProduct) => {
+    const handleUpdate = useCallback((product: IInventoryProduct) => {
         setPopupProps({ product, buttonText: 'Обновить', popupText: '', method: 'Update' });
         setActivePopup(true);
-    };
+    },[]);
 
-    const handleDelete = (product: IInventoryProduct) => {
+    const handleDelete = useCallback((product: IInventoryProduct) => {
         setPopupProps({ product, buttonText: 'Удалить', popupText: 'Вы уверены?', method: 'Delete' });
         setActivePopup(true);
-    };
+    },[]);
 
     const onSubmit = async (data: FieldValues) => {
         if (popupProps) {
@@ -122,8 +122,8 @@ export const InventoryEdit: FC = () => {
                 onKeyDown={handleInputKeydown}
             />
             <InventoryContent
-                onClick={(product) => { handleUpdate(product); }}
-                onDelete={(product) => { handleDelete(product); }}
+                onClick={handleUpdate}
+                onDelete={handleDelete}
                 tabIndex={activePopup ? -1 : 0}
             />
             {goods && goods?.length !== 0 && searchInput.current && activePopover && (
@@ -152,4 +152,4 @@ export const InventoryEdit: FC = () => {
             </OverlayingPopupWithFocusTrap>
         </>
     );
-};
+});

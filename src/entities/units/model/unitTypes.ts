@@ -1,11 +1,9 @@
-export enum UnitTypes {
-    COUNTABLE = 'штучный',
-    SCALABLE = 'мерный'   
-}
+import { type UnitTypes } from "@entities/units/components/unitTypeSelect/unitTypeSelect";
+
 
 export interface IUnit {
     _id?: string
-    type: UnitTypes
+    type: UnitTypes[]
     base: number
     description: string
 }

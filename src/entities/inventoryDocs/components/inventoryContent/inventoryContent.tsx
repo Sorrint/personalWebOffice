@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { memo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { transformDataForXLSX, transformDate } from '../../lib/helpers';
@@ -9,13 +9,13 @@ import { saveToXLSX } from '@shared/lib/utils/saveToXLSX';
 import './inventoryContent.scss';
 import { useLoadDocumentByNumber } from '../../reducers/inventoryDocsService';
 
-export interface IInventoryContent {
+export interface InventoryContentProps {
     onClick?: (product: IInventoryProduct) => void
     onDelete?: (product: IInventoryProduct) => void
     tabIndex?: number
 }
 
-export const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tabIndex }) => {
+export const InventoryContent = memo(({ onClick, onDelete, tabIndex }: InventoryContentProps) => {
     const { number } = useParams();
     if (number) {
         const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
@@ -25,9 +25,7 @@ export const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tab
             const sum = inventoryList.products?.reduce(
                 (result: number, product: IInventoryProduct) =>
                     product.price ? result + product.quantity * product.price : result,
-                0
-            )
-               ;
+                0);
             const date = transformDate(inventoryList.choosenDate);
             const handleClick = () => {
                 const dataForXLSX = transformDataForXLSX(inventoryList.products);
@@ -58,4 +56,4 @@ export const InventoryContent: FC<IInventoryContent> = ({ onClick, onDelete, tab
         }
     }
     return <h1>Ничего не найдено</h1>;
-};
+});

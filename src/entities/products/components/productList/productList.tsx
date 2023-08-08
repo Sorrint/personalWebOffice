@@ -1,5 +1,5 @@
 import { type IDreamkasProduct } from '@entities/products/model/types/IDreamkasProduct';
-import { type FC, type MutableRefObject } from 'react';
+import { memo, type MutableRefObject } from 'react';
 import { ProductListBody } from '../productsListBody/productListBody';
 import { ProductListHeader } from '../productsListHeader/productListHeader';
 
@@ -14,19 +14,19 @@ export interface IProductListContentProps<T> {
     setFirstElement?: (el: HTMLDivElement) => void
 }
 
-interface IProductListProps extends IProductListContentProps<IDreamkasProduct> {
+interface ProductListProps extends IProductListContentProps<IDreamkasProduct> {
     products: IDreamkasProduct[]
     displayHeaders?: boolean
 }
 
-export const ProductList: FC<IProductListProps> = ({
+export const ProductList  = memo(({
     products,
     selectField = false,
     avatar = false,
     count = true,
     displayHeaders,
     ...rest
-}) => {
+}: ProductListProps) => {
     return (
         <>
             {products.length > 0 && (
@@ -43,4 +43,4 @@ export const ProductList: FC<IProductListProps> = ({
             )}
         </>
     );
-};
+});

@@ -2,7 +2,7 @@ import { transformProductName, useCheckOrderProducts } from '@entities/products'
 import { useSelector } from "react-redux";
 import { getCurrentOrder } from "@entities/orders";
 import { useEffect } from "react";
-import { EditProductCard } from "@entities/products/components/editProductCard/editProductCard";
+import { EditProductCard } from "@features/editProductCard/editProductCard";
 
 import './editOrderingProducts.scss';
 

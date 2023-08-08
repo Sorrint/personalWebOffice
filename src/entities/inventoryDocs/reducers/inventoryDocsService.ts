@@ -4,7 +4,7 @@ import { rtkApi } from '@shared/api/rtkApi';
 
 const baseInventoryUri = 'inventory-list';
 
-const inventoryDocsApi = rtkApi.injectEndpoints({
+const inventoryDocsApi = rtkApi.enhanceEndpoints({addTagTypes: ['inventoryContent']}).injectEndpoints({
     endpoints: (build) => ({
         createNewDocument: build.mutation<IInventoryDocs, FieldValues>({
             query: (document) =>
@@ -16,15 +16,18 @@ const inventoryDocsApi = rtkApi.injectEndpoints({
         }),
         updateProducts: build.mutation<IInventoryDocs, { product: FieldValues, docNumber: number }>({
             query: ({ product, docNumber }) =>
-                ({ url: `${baseInventoryUri}/addProduct/${docNumber}`, method: 'PATCH', body: product })
+                ({ url: `${baseInventoryUri}/addProduct/${docNumber}`, method: 'PATCH', body: product }),
+            invalidatesTags: ['inventoryContent']
         }),
         loadDocumentByNumber: build.query<IInventoryDocs, string>({
             query: (docNumber) =>
-                ({ url: `${baseInventoryUri}/${docNumber}`, method: 'GET' })
+                ({ url: `${baseInventoryUri}/${docNumber}`, method: 'GET' }),
+            providesTags: () => ['inventoryContent']
         }),
         removeInventoryProduct: build.mutation<IInventoryDocs, { id: string | undefined, docNumber: number }>({
             query: ({ id, docNumber }) =>
-                ({ url: `${baseInventoryUri}/deleteProduct/${docNumber}`, method: 'DELETE', body: { id } })
+                ({ url: `${baseInventoryUri}/deleteProduct/${docNumber}`, method: 'DELETE', body: { id } }),
+            invalidatesTags: ['inventoryContent']
         })
     })
 });
