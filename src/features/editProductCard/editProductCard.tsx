@@ -11,14 +11,15 @@ import './editProductCard.scss';
 import { useCreateProduct } from '@entities/products/model/productsService';
 import { Button } from '@shared/ui/button';
 import { PackageSelect } from '@entities/packages';
-import { ProductUnitList } from '../productUnitList/productUnitList';
-import { parseWeightKg } from '../../lib/helpers/parseWeightKg/parseWeightKg';
+import { parseWeightKg } from '../../entities/products/lib/helpers/parseWeightKg/parseWeightKg';
+import { UnitSelect, UnitTypeSelect } from '@entities/units';
+import { UnitTypes } from '@entities/units/components/unitTypeSelect/unitTypeSelect';
+
 interface EditProductCardProps <T extends IStoreProduct>{
     product: T
 }
 
 const extraDataDefault: extraData ={ 
-    // volume: 2000,
     weight: 0
 };
 
@@ -26,15 +27,14 @@ export const EditProductCard = <T extends IStoreProduct>({ product }:EditProduct
 
     const [createProduct] = useCreateProduct();
 
-    product.quantity = product.quantity ?? 1000;
-    product.type = product.type ?? 'COUNTABLE';
-    
     const { name } = product;
     const methods = useForm<IStoreProduct>({
         defaultValues: product,
         mode: 'onChange'
     });
 
+    product.type = product.type ?? UnitTypes.COUNTABLE;
+    
     const { watch, register, setValue, handleSubmit } = methods;
   
     useEffect(() => {
@@ -61,9 +61,12 @@ export const EditProductCard = <T extends IStoreProduct>({ product }:EditProduct
 
     const container = watch('extraData.package');
     const unit = watch('unit');
+    const type = watch('type') ;
+    const weightUnit = watch('extraData.weightUnit');
+
 
     const handleCreate = (product: IStoreProduct) => {
-        createProduct({...product, tax: 'NDS_NO_TAX' });
+        createProduct({...product, tax: 'NDS_NO_TAX'});
     };
 
     return (
@@ -72,15 +75,11 @@ export const EditProductCard = <T extends IStoreProduct>({ product }:EditProduct
                 <h2 className='editCard__title'>{name}</h2>
                 <div className='editCard__properties'>
                     <EditProductProperty propertyName='Наименование' renderEditField={() => renderTextFieldProps( 'name', 'text')}/>
-                    <EditProductProperty propertyName='Количество товара' renderEditField={() => renderTextFieldProps( 'quantity', 'number')}/>
-
-                    <EditProductProperty propertyName='Вес товара' renderEditField={() => renderTextFieldProps('extraData.weight', 'number')}/>
-                    <EditProductProperty propertyName='Ед. изм.' renderEditField={() => <ProductUnitList onChange={(value) => handleSet('unit', value)}
-                        id={unit?._id}/>}/>
-                    <EditProductProperty propertyName='Упаковка' renderEditField={() => <PackageSelect onChange={(value) => handleSet('extraData.package', value)} 
-                        id={container} content='category'/>}/>
-                    {/* <EditProductProperty propertyName='Тип товара' renderEditField={() => <ProductTypeList onChange={(value)=>handleSet('type', value)}  */}
-                    {/* selected={productType}/>}/> */}
+                    {type !== UnitTypes.COUNTABLE && <EditProductProperty propertyName='Ед.изм.товара' renderEditField={() => <UnitSelect onChange={(value) => handleSet('unit', value)} type={type} id={unit}/>}/>}
+                    <EditProductProperty propertyName='Тип товара' renderEditField={() => <UnitTypeSelect onChange={(value) => handleSet('type', value)} type={type} />}/>
+                    <EditProductProperty propertyName='Вес нетто товара' renderEditField={() => renderTextFieldProps('extraData.weight', 'number')}/>
+                    <EditProductProperty propertyName='Ед. изм. веса' renderEditField={() => <UnitSelect onChange={(value) => handleSet('extraData.weightUnit', value)} type={UnitTypes.WEIGHTABLE} id={weightUnit}/>}/>
+                    <EditProductProperty propertyName='Упаковка' renderEditField={() => <PackageSelect onChange={(value) => handleSet('extraData.package', value)} id={container} content='category'/>}/>
                 </div>
                 <Button onClick={handleSubmit(handleCreate)}>Создать товар</Button>
             </div>

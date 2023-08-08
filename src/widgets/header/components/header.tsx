@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom';
 
 import './header.scss';
+import { memo } from 'react';
 
-export const Header = () => {
+export const Header = memo(() => {
     return (
         <div className="header">
             <div className="header__burger">
@@ -16,4 +17,4 @@ export const Header = () => {
             </NavLink>
         </div>
     );
-};
+});

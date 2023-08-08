@@ -1,11 +1,13 @@
 import { type IOrderingProduct } from "@entities/orderings";
 import { type IOrderProduct } from "@entities/orders/model/types/IOrder";
+import { type UnitTypes } from "@entities/units/components/unitTypeSelect/unitTypeSelect";
 
 export type ProductType = 'SCALABLE' | 'COUNTABLE'
 
 export interface extraData {
     package?: string
-    weight: number
+    weight?: number
+    weightUnit?: string
 }
 
 export interface IUnitOption {
@@ -18,7 +20,7 @@ export interface IUnitOption {
 export interface IStoreProduct {
     _id?: string
     name: string
-    type?: ProductType
+    type?: UnitTypes
     quantity?: number
     department?: {
         id: number
@@ -29,7 +31,7 @@ export interface IStoreProduct {
     price?: null | number
     stock?: null | IProductStock[]
     tax?: string
-    unit?: IUnitOption
+    unit?: string
     extraData?: extraData
 }
 

@@ -1,15 +1,15 @@
-import { type FC, type SyntheticEvent } from 'react';
+import { memo, type SyntheticEvent } from 'react';
 
 import { type IInventoryProduct } from '../../model/types';
-import { type IInventoryContent } from '../inventoryContent/inventoryContent';
+import { type InventoryContentProps} from '../inventoryContent/inventoryContent';
 
 import './inventoryProductCard.scss';
-export interface IInventoryProductCardProps extends IInventoryContent {
+export interface InventoryProductCardProps extends InventoryContentProps {
     product: IInventoryProduct
     itemNumber: number
 }
 
-export const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, itemNumber, tabIndex, onClick, onDelete }) => {
+export const InventoryProductCard = memo(({ product, itemNumber, tabIndex, onClick, onDelete }: InventoryProductCardProps) => {
     const { name, price, quantity } = product;
 
     const handleClick = (product: IInventoryProduct) => {
@@ -32,4 +32,4 @@ export const InventoryProductCard: FC<IInventoryProductCardProps> = ({ product, 
             </div>
         </div>
     );
-};
+});

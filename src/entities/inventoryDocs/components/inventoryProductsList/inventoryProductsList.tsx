@@ -1,14 +1,13 @@
-import { type FC } from 'react';
-
+import {memo} from 'react';
 import { InventoryProductCard } from '../inventoryProductCard/inventoryProductCard';
 import { type IInventoryProduct } from '../../model/types';
-import { type IInventoryContent } from '../inventoryContent/inventoryContent';
+import { type InventoryContentProps } from '../inventoryContent/inventoryContent';
 
-export interface IInventoryProductListBodyProps extends IInventoryContent {
+export interface InventoryProductListBodyProps extends InventoryContentProps {
     products: IInventoryProduct[]
 }
 
-export const InventoryProductList: FC<IInventoryProductListBodyProps> = ({ products, tabIndex, onClick, onDelete }) => {
+export const InventoryProductList = memo(({ products, tabIndex, onClick, onDelete }: InventoryProductListBodyProps) => {
     return (
         <>
             {products.map((item, index) => (
@@ -23,4 +22,4 @@ export const InventoryProductList: FC<IInventoryProductListBodyProps> = ({ produ
             ))}
         </>
     );
-};
+});

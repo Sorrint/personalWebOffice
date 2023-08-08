@@ -29,27 +29,10 @@ module.exports = {
             prefer: 'type-imports',
             fixStyle: 'inline-type-imports'
         }],
-        // '@typescript-eslint/semi': 'off',
         'indent': [2, 4, {'SwitchCase': 1}],
-        '@typescript-eslint/ban-ts-comment': 0
-        // '@typescript-eslint/indent': [2,4, {'SwitchCase': 1}],
-        // '@typescript-eslint/explicit-function-return-type': 'off',
-        // '@typescript-eslint/strict-boolean-expressions': [2, {
-        //   allowNullableString: true, 
-        //   allowNullableNumber: true, 
-        //   allowNullableBoolean: true, 
-        //   allowAny: true
-        // }],
-        // '@typescript-eslint/no-misused-promises': [
-        //   'error',
-        //   {
-        //     'checksVoidReturn': {
-        //       'arguments': false,
-        //       'attributes': false
-        //     }
-        //   }
-        // ],
-        // 'n/no-callback-literal': 'off'
+        '@typescript-eslint/ban-ts-comment': 0,   
+        "react/display-name": 0,
+        "react/prop-types": 0
     }
 };
 
