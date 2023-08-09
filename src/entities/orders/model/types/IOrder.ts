@@ -8,6 +8,7 @@ export interface IOrderProduct {
 }
 
 export interface IOrder {
+    _id?: string
     orderName: string
     products: IStoreProduct[]
 }

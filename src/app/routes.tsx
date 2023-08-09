@@ -11,6 +11,7 @@ import { Distribution, EditOrderingProducts, Order, Ordering } from '@widgets/do
 import ProductsCategories from '@widgets/productsPageBody';
 import { routesLinks } from '@widgets/navBar/model/menuItems';
 import { EditPackageForm } from '@features/editPackageForm';
+import { OrdersList } from '@entities/orders';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },
@@ -18,12 +19,15 @@ const routes: RouteObject[] = [
         path: `${routesLinks.documents.path}`,
         element: <DocumentsPage />,
         children: [
-            { path: 'order', element: <Order /> },
+            { path: 'orders',  children: [
+                {path: ':id', element: <Order />},
+                {index: true, element: <OrdersList/>}
+            ] },
             { path: 'ordering', element: <Ordering /> },
             { path: 'editOrderingProducts', element: <EditOrderingProducts /> },
             { path: 'distribution', element: <Distribution /> },
-            { index: true, element: <Navigate to={'./order'} /> },
-            { path: '*', element: <Navigate to={'./order'} /> }
+            { index: true, element: <Navigate to={'./orders'} /> },
+            { path: '*', element: <Navigate to={'./orders'} /> }
         ]
     },
     {
