@@ -1,3 +1,4 @@
+import { loadOrdersList } from '../services/loadOrdersList/loadOrdersList';
 import { saveCurrentOrder } from '../services/saveCurrentOrder/saveCurrentOrder';
 import { type OrderState } from '../types/IOrder';
 import { createSlice } from '@reduxjs/toolkit';
@@ -44,6 +45,18 @@ export const OrderSlice = createSlice({
                 state.isLoading = false;
             })
             .addCase(saveCurrentOrder.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(loadOrdersList.pending, (state) => {
+                state.error = '';
+                state.isLoading = true;
+            })
+            .addCase(loadOrdersList.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.entities = action.payload;   
+            })
+            .addCase(loadOrdersList.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

@@ -1,13 +1,11 @@
 import { OrderCardWithControls } from '@features/orderCardWithControls';
-import { type FC } from 'react';
 
-export const Order: FC = () => {
+export const Order = () => {
     return (
         <>
             <div>
                 <OrderCardWithControls/>
             </div>
-
         </>
     );
 };

@@ -1,3 +1,3 @@
-import { type PersistState } from '@shared/lib/store/types';
+import { type StoreSchema } from '@app/providers/storeProvider/config/storeSchema';
 
-export const getOrders = () => (state: PersistState) => state.orders.entities;
+export const getOrders = (state: StoreSchema) => state.orders?.entities;
