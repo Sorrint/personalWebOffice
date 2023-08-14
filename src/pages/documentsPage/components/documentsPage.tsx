@@ -3,7 +3,7 @@ import { type FC } from 'react';
 
 import { Header } from '@widgets/header';
 import { NavBar } from '@widgets/navBar';
-import AppRibbon from '@widgets/appRibbon';
+import { AppRibbon } from '@widgets/appRibbon';
 import { AppBody, AppHeader, AppLayout } from '@shared/layouts';
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
 import { type ReducersList, orderReducer } from '@entities/orders';
@@ -16,16 +16,16 @@ const reducers: ReducersList = {
 const DocumentsPage: FC = () => {
     const navLinks: INavLinkObject = {
         order: {
-            path: '/office/documents/order',
-            title: 'Заказ'
+            path: '/office/documents/orders',
+            title: 'Заказы'
         },
         ordering: {
-            path: '/office/documents/ordering',
-            title: 'Порядовка'
+            path: '/office/documents/orderings',
+            title: 'Порядовки'
         },
         distribution: {
-            path: '/office/documents/distribution',
-            title: 'Распаллетовка'
+            path: '/office/documents/distributions',
+            title: 'Распаллетовки'
         }
     };
 
@@ -35,7 +35,7 @@ const DocumentsPage: FC = () => {
             <AppLayout style="wrapper">
                 <NavBar />
                 <AppLayout style="content">
-                    <AppHeader title="Заказ покупателя">
+                    <AppHeader title="Документы">
                         <AppRibbon navLinks={navLinks} />
                     </AppHeader>
                     <AsyncReduxComponent reducersList={reducers} >

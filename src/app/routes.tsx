@@ -7,11 +7,10 @@ import { ProductsPage } from '@pages/productsPage';
 import { ProfilePage } from '@pages/profilePage';
 
 import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
-import { Distribution, EditOrderingProducts, Order, Ordering } from '@widgets/documentPageBody';
+import { Distribution, EditOrderingProducts, Order, Ordering, OrdersCatalog } from '@widgets/documentPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 import { routesLinks } from '@widgets/navBar/model/menuItems';
 import { EditPackageForm } from '@features/editPackageForm';
-import { OrdersList } from '@entities/orders';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },
@@ -20,12 +19,15 @@ const routes: RouteObject[] = [
         element: <DocumentsPage />,
         children: [
             { path: 'orders',  children: [
-                {path: ':id', element: <Order />},
-                {index: true, element: <OrdersList/>}
+                {path: ':_id', element: <Order />},
+                {index: true, element: <OrdersCatalog />}
             ] },
-            { path: 'ordering', element: <Ordering /> },
+            { path: 'orderings', children: [
+                {path: 'create',element: <Ordering />},
+                {index: true, element: <Ordering/>}
+            ] },
             { path: 'editOrderingProducts', element: <EditOrderingProducts /> },
-            { path: 'distribution', element: <Distribution /> },
+            { path: 'distributions', element: <Distribution /> },
             { index: true, element: <Navigate to={'./orders'} /> },
             { path: '*', element: <Navigate to={'./orders'} /> }
         ]

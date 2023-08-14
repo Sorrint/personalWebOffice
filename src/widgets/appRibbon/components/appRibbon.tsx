@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
 
@@ -9,17 +9,20 @@ interface ILinksProps {
     navLinks: INavLinkObject
 }
 
-const AppRibbon: FC<ILinksProps> = ({ navLinks }) => {
+export const AppRibbon: FC<ILinksProps> = ({ navLinks }) => {
+
+    const getMenuItemClass = ({ isActive }: {isActive: boolean}): string => 
+        isActive ? 'content__button active': 'content__button';
+      
     return (
         <div className="app__ribbon">
             {Object.keys(navLinks).map((link) => (
-                <Link to={navLinks[link].path} key={link}>
+                <NavLink to={navLinks[link].path} key={link} className={getMenuItemClass}>
                     <div className="content__button">{navLinks[link].title}</div>
-                </Link>
+                </NavLink>
             ))}
             <div className="fillElement"></div>
         </div>
     );
 };
 
-export default AppRibbon;

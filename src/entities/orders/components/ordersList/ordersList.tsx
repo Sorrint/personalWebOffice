@@ -1,19 +1,12 @@
-import { getOrders } from "@entities/orders";
-import { loadOrdersList } from "@entities/orders/model/services/loadOrdersList/loadOrdersList";
-import { useAppDispatch, useAppSelector } from "@shared/lib/hooks";
-import {  useEffect } from 'react';
 import { OrdersListItem } from "../ordersListItem/ordersListItem";
+import { type IOrder } from "@entities/orders/model/types/IOrder";
 
+interface OrderListProps {
+    orders: IOrder[]
+}
 
-export const OrdersList = () => {
+export const OrdersList = ({orders}: OrderListProps) => {
     
-    const dispatch = useAppDispatch();
-    const orders = useAppSelector(getOrders);
-
-    useEffect(()=> {
-        dispatch(loadOrdersList());
-    }, []);
-
     return <>
         {orders 
             ? orders.map((order)=> <OrdersListItem key={order.orderName} order={order}/>) 
