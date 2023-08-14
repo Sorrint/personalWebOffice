@@ -1,17 +1,28 @@
-import { useEffect } from 'react';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import {useEffect} from 'react';
 
+import { type IOrderingContent } from '@entities/orderings/model/types/ordering';
 import { type IOrderingProduct, OrderingList } from '@entities/orderings';
+import { getCurrentOrder, loadOrderById } from '@entities/orders';
 import { useCheckOrderProducts } from '@entities/products';
 import { useGetPackages } from '@entities/packages';
-import { getCurrentOrder } from '@entities/orders';
+import { useAppDispatch } from '@shared/lib/hooks';
 
 import { hasExtraData } from '../../libs/extraDataTypeGuard';
 import './ordering.scss';
-import { type IOrderingContent } from '@entities/orderings/model/types/ordering';
 
 export const Ordering = () => {
+
+    const [queryParams] = useSearchParams();
+    const orderId = queryParams.get('orderId');
+
+    const dispatch = useAppDispatch();
+    
+    useEffect(()=> {
+        orderId && dispatch(loadOrderById(orderId));
+    }, [orderId]);
+    
     const order = useSelector(getCurrentOrder());
     const { data: packages } = useGetPackages();
     
@@ -34,7 +45,6 @@ export const Ordering = () => {
         return result;
     },
     []);
-    // const ordering: IOrdering = {orderName: 'Заказ №1', content: content ?? []};
 
     return (
         <>
@@ -46,7 +56,6 @@ export const Ordering = () => {
             {resultCheck && <NavLink to={"/office/documents/editOrderingProducts"}>
             Перейти к списку
             </NavLink>}
-
         </>
     );
 };

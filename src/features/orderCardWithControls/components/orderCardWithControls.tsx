@@ -1,20 +1,22 @@
 import { useSelector } from 'react-redux';
 
 import { LoadOrderFromFile } from '@features/loadOrderFromFile';
-import { SaveOrderToDatabase } from '@features/saveOrderToDatabase';
-import { OrderCard, OrderControls, getCurrentOrder } from '@entities/orders';
+import { OrderCard, getCurrentOrder } from '@entities/orders';
+import { NavLink } from 'react-router-dom';
 
 export const OrderCardWithControls = () => {
     const order = useSelector(getCurrentOrder());
+    
     return (
         <>
             {!order && <LoadOrderFromFile />}
-            {order && <OrderCard order={order}>
-                <OrderControls>
-                    <LoadOrderFromFile />
-                    <SaveOrderToDatabase order={order} />
-                </OrderControls>
-            </OrderCard>}
+            {order?.ordering 
+                ?         
+                <NavLink to={`../../orderings/${order.ordering}`}>Перейти к порядовке</NavLink> 
+                : 
+                <NavLink to={`../../orderings/create?orderId=${order?._id}`}>Создать порядовку</NavLink>
+            }
+            {order && <OrderCard order={order}/>}
         </>
     );
 };
