@@ -18,7 +18,6 @@ export const Ordering = () => {
     const orderId = queryParams.get('orderId');
 
     const dispatch = useAppDispatch();
-    
     useEffect(()=> {
         orderId && dispatch(loadOrderById(orderId));
     }, [orderId]);
@@ -52,8 +51,8 @@ export const Ordering = () => {
             {isChecking && <>&lsquo;Идет проверка документа&lsquo;</>}
 
             <div>Порядовка</div>
-            {content && (<OrderingList ordering={{orderName: 'Заказ №1', content: content}}/>)}
-            {resultCheck && <NavLink to={"/office/documents/editOrderingProducts"}>
+            {content && (<OrderingList ordering={{orderName: order?.orderName || '', content: content}}/>)}
+            {resultCheck && orderId && <NavLink to={`../editOrderingProducts?orderId=${orderId}`}>
             Перейти к списку
             </NavLink>}
         </>
