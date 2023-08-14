@@ -11,6 +11,8 @@ export interface IOrder {
     _id?: string
     orderName: string
     products: IStoreProduct[]
+    ordering?: string
+    distribution?: string
 }
 
 export interface IOrderHeader {

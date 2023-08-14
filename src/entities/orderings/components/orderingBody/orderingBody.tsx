@@ -9,7 +9,7 @@ interface IOrderingBodyProps {
 }
 export const OrderingBody  = (props: IOrderingBodyProps) => {
     const {content} = props;
-    console.log(content);
+
     return (
         <>
             {content && content.map((item, index)=> (

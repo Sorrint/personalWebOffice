@@ -1,4 +1,4 @@
-import { Children, type FC, type ReactNode } from 'react';
+import { Children, type ReactNode } from 'react';
 
 import { hasComponentName } from '@shared/lib/utils';
 import { Table } from '@shared/ui/table';
@@ -7,10 +7,12 @@ import { type IOrder } from '../../model/types/IOrder';
 import './orderCard.scss';
 interface IOrderCardProps {
     children?: ReactNode
-    order: IOrder | undefined
+    order?: IOrder
 }
 
-export const OrderCard: FC<IOrderCardProps> = ({ children, order }) => {
+export const OrderCard = ({ children, order }: IOrderCardProps) => {
+    
+    if (!order) return null;
     const actions = children ?? Children.toArray(children).filter((child) => hasComponentName(child, 'OrderActions'));
 
     const tableHeaders = {
@@ -22,17 +24,12 @@ export const OrderCard: FC<IOrderCardProps> = ({ children, order }) => {
 
     return (
         <>
-            {order
-                ? (
-                    <>
-                        {actions}
-                        <div className="order__title">{order.orderName}</div>
-                        <Table headers={tableHeaders} data={order.products} />
-                    </>
-                )
-                : (
-                    <div className="order__title">Не выбран заказ</div>
-                )}
+            {order && 
+                 (<>
+                     {actions}
+                     <div className="order__title">{order.orderName}</div>
+                     <Table headers={tableHeaders} data={order.products} />
+                 </>)}
         </>
     );
 };
