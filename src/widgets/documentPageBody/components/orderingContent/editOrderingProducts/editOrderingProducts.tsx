@@ -1,14 +1,24 @@
 import { transformProductName, useCheckOrderProducts } from '@entities/products';
 import { useSelector } from "react-redux";
-import { getCurrentOrder } from "@entities/orders";
 import { useEffect } from "react";
+
+import { getCurrentOrder, loadOrderById } from "@entities/orders";
 import { EditProductCard } from "@features/editProductCard/editProductCard";
+import { useAppDispatch } from '@shared/lib/hooks';
 
 import './editOrderingProducts.scss';
+import { useSearchParams } from 'react-router-dom';
 
 export const EditOrderingProducts = () => {
-    const order = useSelector(getCurrentOrder());
+    const [queryParams] = useSearchParams();
+    const orderId = queryParams.get('orderId');
+
+    const dispatch = useAppDispatch();
+    useEffect(()=> {
+        orderId && dispatch(loadOrderById(orderId));
+    }, [orderId]);
     
+    const order = useSelector(getCurrentOrder());
     const [checkOrder, { data: resultCheck }] =
         useCheckOrderProducts();
 

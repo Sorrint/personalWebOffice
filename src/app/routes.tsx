@@ -24,9 +24,9 @@ const routes: RouteObject[] = [
             ] },
             { path: 'orderings', children: [
                 {path: 'create',element: <Ordering />},
-                {index: true, element: <Ordering/>}
+                {path: 'editOrderingProducts', element: <EditOrderingProducts /> },
+                {index: true, element: <Ordering/>},
             ] },
-            { path: 'editOrderingProducts', element: <EditOrderingProducts /> },
             { path: 'distributions', element: <Distribution /> },
             { index: true, element: <Navigate to={'./orders'} /> },
             { path: '*', element: <Navigate to={'./orders'} /> }
