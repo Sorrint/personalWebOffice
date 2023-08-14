@@ -1,3 +1,4 @@
+import { loadOrderById } from '../services/loadOrderById/loadOrderById';
 import { loadOrdersList } from '../services/loadOrdersList/loadOrdersList';
 import { saveCurrentOrder } from '../services/saveCurrentOrder/saveCurrentOrder';
 import { type OrderState } from '../types/IOrder';
@@ -57,6 +58,18 @@ export const OrderSlice = createSlice({
                 state.entities = action.payload;   
             })
             .addCase(loadOrdersList.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(loadOrderById.pending, (state) => {
+                state.error = '';
+                state.isLoading = true;
+            })
+            .addCase(loadOrderById.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.currentOrder = action.payload;   
+            })
+            .addCase(loadOrderById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

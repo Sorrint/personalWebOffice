@@ -30,7 +30,7 @@ export const routesLinks = {
     },
     documents: {
         id: 'documents',
-        text: 'Заказы',
+        text: 'Документы',
         image: DocumentsIcon,
         path: `${BaseURL}/documents`
     },

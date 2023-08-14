@@ -75,8 +75,16 @@ export const EditProductCard = <T extends IStoreProduct>({ product }:EditProduct
                 <h2 className='editCard__title'>{name}</h2>
                 <div className='editCard__properties'>
                     <EditProductProperty propertyName='Наименование' renderEditField={() => renderTextFieldProps( 'name', 'text')}/>
-                    {type !== UnitTypes.COUNTABLE && <EditProductProperty propertyName='Ед.изм.товара' renderEditField={() => <UnitSelect onChange={(value) => handleSet('unit', value)} type={type} id={unit}/>}/>}
-                    <EditProductProperty propertyName='Тип товара' renderEditField={() => <UnitTypeSelect onChange={(value) => handleSet('type', value)} type={type} />}/>
+                    {type !== UnitTypes.COUNTABLE && 
+                        <EditProductProperty 
+                            propertyName='Ед.изм.товара' 
+                            renderEditField={() => <UnitSelect onChange={(value) => handleSet('unit', value)} 
+                                type={type} 
+                                id={unit}/>}/>}
+                    <EditProductProperty 
+                        propertyName='Тип товара' 
+                        renderEditField={() => <UnitTypeSelect onChange={(value) => handleSet('type', value)} 
+                            type={type} />}/>
                     <EditProductProperty propertyName='Вес нетто товара' renderEditField={() => renderTextFieldProps('extraData.weight', 'number')}/>
                     <EditProductProperty propertyName='Ед. изм. веса' renderEditField={() => <UnitSelect onChange={(value) => handleSet('extraData.weightUnit', value)} type={UnitTypes.WEIGHTABLE} id={weightUnit}/>}/>
                     <EditProductProperty propertyName='Упаковка' renderEditField={() => <PackageSelect onChange={(value) => handleSet('extraData.package', value)} id={container} content='category'/>}/>

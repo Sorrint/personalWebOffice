@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import { Header } from '@widgets/header';
 import { NavBar } from '@widgets/navBar';
-import AppRibbon from '@widgets/appRibbon';
+import { AppRibbon } from '@widgets/appRibbon';
 import { AppBody, AppHeader, AppLayout } from '@shared/layouts';
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
 
