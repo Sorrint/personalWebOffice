@@ -1,7 +1,7 @@
 import { SelectListBox } from '@shared/ui/selectListBox';
 import { useGetPackages } from '../../api/packagesApi';
 import './packageSelect.scss';
-import { useCallback } from 'react';
+import { useCallback, memo, useMemo } from 'react';
 interface PackageSelectProps {
     classname?: string
     id?: string
@@ -9,12 +9,12 @@ interface PackageSelectProps {
     content?: 'category' | 'name'
 }
 
-export const PackageSelect = (props: PackageSelectProps) => {
+export const PackageSelect = memo((props: PackageSelectProps) => {
     const { id, onChange, content = 'name' } = props;
     
     const { data: packages } = useGetPackages();
 
-    const options = packages?.map((pack)=> ({...pack, content: pack[content]}));
+    const options = useMemo(()=>packages?.map((pack)=> ({...pack, content: pack[content]})),[packages]);
     
     const onChangeHandler = useCallback(
         (id: string) => {
@@ -24,4 +24,4 @@ export const PackageSelect = (props: PackageSelectProps) => {
     );
 
     return <>{packages && (<SelectListBox value={id ?? ''} options={options} defaultValue='Выберите упаковку' onChange={onChangeHandler}/>)}</>;
-};
+});

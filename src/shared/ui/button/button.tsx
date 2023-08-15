@@ -1,5 +1,4 @@
-import type { ChangeEvent, ForwardedRef } from 'react';
-import { forwardRef, type FC, type ReactNode } from 'react';
+import { forwardRef, memo, type ReactNode, type ChangeEvent, type ForwardedRef } from 'react';
 import './buttons.scss';
 import { Icon } from '../icon';
 import Arrows_icon from '@shared/assets/icons/arrows-up-down.svg';
@@ -14,7 +13,7 @@ interface ButtonProps {
 
 }
 
-export const Button = forwardRef(function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
+export const Button = memo(forwardRef(function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     const { onClick, buttonType = 'submit', children, className,  onKeyDown, name, onChange} = props;
     const getClassname = (type: string) => (`${type}-button ${ className ?? ''}`);
 
@@ -24,4 +23,4 @@ export const Button = forwardRef(function Button(props: ButtonProps, ref: Forwar
             {buttonType == 'dropdown'&& <Icon Icon={Arrows_icon}/>}
         </button>
     );
-});
+}));
