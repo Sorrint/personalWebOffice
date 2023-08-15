@@ -1,4 +1,4 @@
-import { type ReactNode, Fragment, useMemo } from 'react';
+import { type ReactNode, Fragment, useMemo, memo } from 'react';
 import { Listbox } from '@headlessui/react';
 import './selectListBox.scss';
 import { Button } from '../button';
@@ -16,7 +16,7 @@ interface SelectListBoxProps<T extends string> {
     value?: T
 }
 
-export const SelectListBox = <T extends string> (props: SelectListBoxProps<T>) => {
+export const SelectListBox = memo(<T extends string> (props: SelectListBoxProps<T>) => {
     const { options, onChange, defaultValue, value } = props;
     
     const selectedItem = useMemo(() => {
@@ -59,4 +59,4 @@ export const SelectListBox = <T extends string> (props: SelectListBoxProps<T>) =
             </Listbox.Options>
         </Listbox>
     );
-};
+});

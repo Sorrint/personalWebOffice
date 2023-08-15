@@ -10,6 +10,8 @@ import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/invent
 import { Distribution, EditOrderingProducts, Order, Ordering, OrdersCatalog } from '@widgets/documentPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 import { routesLinks } from '@widgets/navBar/model/menuItems';
+
+import { EditPackageCategory } from '@features/editPackageCategory';
 import { EditPackageForm } from '@features/editPackageForm';
 
 const routes: RouteObject[] = [
@@ -65,6 +67,7 @@ const routes: RouteObject[] = [
         element: <PackagesPage/>,
         children: [
             { path: 'create', element: <EditPackageForm />},
+            { path: 'category/create', element: <EditPackageCategory />},
             { index: true, element: <Navigate to={'./create'} /> },
             { path: '*', element: <Navigate to={'./create'} /> }
         ]
