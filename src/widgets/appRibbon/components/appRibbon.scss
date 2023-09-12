@@ -4,26 +4,6 @@
     display: flex;
 }
 
-.content__button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 10px;
-    border-bottom: 2px solid rgb(255, 255, 255);
-    color: black;
-
-    &.active {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        color: var(--primary-color);
-        padding: 10px;
-        border-bottom: 2px solid var(--primary-color);
-    }
-}
-
 .tokenAccess {
     align-self: flex-end;
 }
