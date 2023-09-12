@@ -3,9 +3,10 @@ import { type IProductListParams, type ISearchParams, type ISearchResult } from 
 const baseDreamkasProductsUri = 'dreamkas/products';
 export const productsDreamkasEndpoints = {
     loadProducts: {
-        query: (params: IProductListParams) => ({
-            url: params.limit ? `${baseDreamkasProductsUri}?limit=${params.limit}&offset=${params.offset ?? 0}` : `${baseDreamkasProductsUri}/`
-        })
+        query: (params: IProductListParams) => 
+            ({url: params.limit 
+                ? `${baseDreamkasProductsUri}?limit=${params.limit}&offset=${params.offset ?? 0}` 
+                : `${baseDreamkasProductsUri}/`})
     },
     loadProductBySearch: {
         query: (params: ISearchParams) => ({

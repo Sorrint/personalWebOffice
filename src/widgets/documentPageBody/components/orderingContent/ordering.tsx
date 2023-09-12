@@ -6,7 +6,7 @@ import { type IOrderingContent } from '@entities/orderings/model/types/ordering'
 import { type IOrderingProduct, OrderingList } from '@entities/orderings';
 import { getCurrentOrder, loadOrderById } from '@entities/orders';
 import { useCheckOrderProducts } from '@entities/products';
-import { useGetPackages } from '@entities/packages';
+import { useGetPackageCategories, useGetPackages } from '@entities/packages';
 import { useAppDispatch } from '@shared/lib/hooks';
 
 import { hasExtraData } from '../../libs/extraDataTypeGuard';
@@ -24,6 +24,7 @@ export const Ordering = () => {
     
     const order = useSelector(getCurrentOrder());
     const { data: packages } = useGetPackages();
+    const { data: packageCategories } = useGetPackageCategories();
     
     const [checkOrder, { data: resultCheck, isLoading: isChecking, isError: isCheckError }] =
         useCheckOrderProducts();
@@ -32,18 +33,23 @@ export const Ordering = () => {
         if (order) checkOrder(order.products);
     }, [order]);
 
-    const orderingProducts =
-        resultCheck?.productsExists.filter((item): item is IOrderingProduct => hasExtraData(item));
+    const orderingProducts = resultCheck?.productsExists.filter((item): item is IOrderingProduct => hasExtraData(item));
 
-    const content = packages?.reduce((result: IOrderingContent[], pack) => {
-        const filteredProducts = orderingProducts?.filter((product)=> product.extraData?.package === pack._id);
+    const content = packageCategories?.reduce((result: IOrderingContent[], category)=> {
+        const filteredProducts = orderingProducts?.filter((product)=> product.extraData?.package === category.packageId);
         if (filteredProducts && filteredProducts?.length) {
             const count = filteredProducts.reduce((sum, product)=> (sum + product.count), 0);
-            result.push({package: pack._id, products: filteredProducts, summary: {sum: count}});
+            result.push({
+                package: category._id, 
+                products: filteredProducts, 
+                summary: {
+                    sum: count, 
+                    countInRow: category.countOfPackages, 
+                    rows: category.countOfPackages ? `${Math.floor(count/category.countOfPackages)}` : ''
+                }});
         }
         return result;
-    },
-    []);
+    }, []);
 
     return (
         <>

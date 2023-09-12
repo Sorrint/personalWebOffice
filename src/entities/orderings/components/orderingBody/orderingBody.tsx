@@ -24,10 +24,10 @@ export const OrderingBody  = (props: IOrderingBodyProps) => {
                     />
                     <div className="ordering__item ordering__resultRow">
                         <div className="ordering__cell item__number"/>
-                        <div className="ordering__cell item__countInRow">{item.countInRow ?? 'В ряду 11 шт.'}</div>
+                        <div className="ordering__cell item__countInRow">{item.summary?.countInRow ? `В ряду ${item.summary?.countInRow} шт.` : ''}</div>
                         <div className="ordering__cell item__summaryCount">{item.summary?.sum}</div>
                         <div className="ordering__cell item__unit"/>
-                        <div className="ordering__cell item__summaryRows">{'1 ряд = 40 шт'}</div>
+                        <div className="ordering__cell item__summaryRows">{item.summary?.rows && item.summary.countInRow ? `${item.summary.rows} рядов = ${item.summary.rows * item.summary.countInRow} шт.` : ''}</div>
                     </div>
                 </div>
             ))}
