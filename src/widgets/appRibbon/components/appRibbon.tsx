@@ -8,7 +8,7 @@ interface AppRibbonProps {
 }
 
 export const AppRibbon = ({ navLinks }: AppRibbonProps) => {
-    const tabs = Object.keys(navLinks).map(link => ({contentTab: navLinks[link].title}));
+    const tabs = Object.keys(navLinks).map(link => ({contentTab: navLinks[link].title, to: navLinks[link].path}));
     return (
         <div className="app__ribbon">
             <Tabs list={tabs}></Tabs>

@@ -3,12 +3,13 @@
         max-width: 1024px;
         margin: 0 auto;
     }
-
+    
     &__header {
         width: 100%;
         background-color: rgba(255, 255, 255, 100);
         width: 100%;
         padding: 36px 0;
+        position: relative;
 
         &_grid {
             display: grid;
