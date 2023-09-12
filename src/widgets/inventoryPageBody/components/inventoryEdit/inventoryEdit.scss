@@ -76,7 +76,8 @@
     font-weight: bold;
 }
 
-.product-card:hover {
+.product-card:hover,
+.product-card:focus {
     background-color: rgba(0, 151, 167, 0.2);
 }
 

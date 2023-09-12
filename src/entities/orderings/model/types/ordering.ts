@@ -7,9 +7,10 @@ export interface IOrderingContent {
     package: string
     countInRow?: number
     summary?: {
+        countInRow?: number
         text?: string 
         sum?: number
-        rows?: string
+        rows?: number
     }
     products: IOrderingProduct[]
 }

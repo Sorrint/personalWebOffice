@@ -8,9 +8,9 @@ import  { type ICheckStoreProduct, type IStoreProduct } from './types/IStoreProd
 const dataBase = localStorage.getItem('dataBase');
 const productEndpoints = dataBase === 'dreamkasStorage' ? productsDreamkasEndpoints : productsStoreEndpoints;
 
-const productsAPI = rtkApi.injectEndpoints({
+const productsAPI = rtkApi.enhanceEndpoints({addTagTypes: ['products']}).injectEndpoints({
     endpoints: (build) => ({
-        loadProducts: build.query<IDreamkasProduct[], IProductListParams | Record<string, unknown>>(productEndpoints.loadProducts),
+        loadProducts: build.query<IDreamkasProduct[], IProductListParams | Record<string, unknown>>({...productEndpoints.loadProducts, providesTags: ['products']}),
         loadProductBySearch: build.query<IDreamkasProduct[], ISearchParams>(
             productsDreamkasEndpoints.loadProductBySearch
         ),
@@ -34,7 +34,7 @@ const productsAPI = rtkApi.injectEndpoints({
             productsStoreEndpoints.checkOrderProducts
         ),
         createProduct: build.mutation<IStoreProduct, IStoreProduct>(
-            productsStoreEndpoints.createProduct
+            {...productsStoreEndpoints.createProduct, invalidatesTags: ['products']}
         )
     })
 });
