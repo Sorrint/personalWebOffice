@@ -26,6 +26,10 @@ const DocumentsPage: FC = () => {
         distribution: {
             path: '/office/documents/distributions',
             title: 'Распаллетовки'
+        },
+        createOrder: {
+            path: '/office/documents/orders/create',
+            title: 'Создать заказ'
         }
     };
 

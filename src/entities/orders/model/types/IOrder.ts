@@ -1,24 +1,18 @@
-import { type IUnitOption, type IStoreProduct } from "@entities/products/model/types/IStoreProduct";
-
-export interface IOrderProduct {
+export interface IOrderRecord {
     orderNumber: number
     productName: string
+    productId?: string
     count: number
-    unit: IUnitOption
+    unitId?: string
+    unit: string
 }
 
 export interface IOrder {
     _id?: string
     orderName: string
-    products: IStoreProduct[]
+    orderRecords: IOrderRecord[]
     ordering?: string
     distribution?: string
-}
-
-export interface IOrderHeader {
-    id: string
-    text: string
-    letter?: string
 }
 
 export interface OrderState {
@@ -27,5 +21,3 @@ export interface OrderState {
     isLoading: boolean
     error: string | undefined
 }
-
-export type FileOrder = Record<string, string>;

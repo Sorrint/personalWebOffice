@@ -1,28 +1,23 @@
 import { NavLink, useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import {useEffect} from 'react';
 
 import { type IOrderingContent } from '@entities/orderings/model/types/ordering';
 import { type IOrderingProduct, OrderingList } from '@entities/orderings';
-import { getCurrentOrder, loadOrderById } from '@entities/orders';
 import { useCheckOrderProducts } from '@entities/products';
 import { useGetPackageCategories, useGetPackages } from '@entities/packages';
-import { useAppDispatch } from '@shared/lib/hooks';
 
 import { hasExtraData } from '../../libs/extraDataTypeGuard';
 import './ordering.scss';
+import { useGetOrderByIdQuery } from '@widgets/documentPageBody/api/documentsOrderApi';
 
 export const Ordering = () => {
 
     const [queryParams] = useSearchParams();
     const orderId = queryParams.get('orderId');
+    if (!orderId) return 'Нет id заказа';
 
-    const dispatch = useAppDispatch();
-    useEffect(()=> {
-        orderId && dispatch(loadOrderById(orderId));
-    }, [orderId]);
+    const {data: order } = useGetOrderByIdQuery(orderId);
     
-    const order = useSelector(getCurrentOrder());
     const { data: packages } = useGetPackages();
     const { data: packageCategories } = useGetPackageCategories();
     
@@ -30,7 +25,7 @@ export const Ordering = () => {
         useCheckOrderProducts();
 
     useEffect(() => {
-        if (order) checkOrder(order.products);
+        if (order) checkOrder(order.orderRecords);
     }, [order]);
 
     const orderingProducts = resultCheck?.productsExists.filter((item): item is IOrderingProduct => hasExtraData(item));

@@ -1,29 +1,24 @@
 import { transformProductName, useCheckOrderProducts } from '@entities/products';
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { getCurrentOrder, loadOrderById } from "@entities/orders";
 import { EditProductCard } from "@features/editProductCard/editProductCard";
-import { useAppDispatch } from '@shared/lib/hooks';
 
-import './editOrderingProducts.scss';
 import { useSearchParams } from 'react-router-dom';
+import { useGetOrderByIdQuery } from '../../../api/documentsOrderApi';
+import './editOrderingProducts.scss';
 
 export const EditOrderingProducts = () => {
     const [queryParams] = useSearchParams();
     const orderId = queryParams.get('orderId');
 
-    const dispatch = useAppDispatch();
-    useEffect(()=> {
-        orderId && dispatch(loadOrderById(orderId));
-    }, [orderId]);
-    
-    const order = useSelector(getCurrentOrder());
+    if (!orderId) return 'Нет id заказа';
+
+    const {data: order} = useGetOrderByIdQuery(orderId);
     const [checkOrder, { data: resultCheck }] =
         useCheckOrderProducts();
 
     useEffect(() => {
-        if (order) checkOrder(order.products);
+        if (order) checkOrder(order.orderRecords);
     }, [order]);
 
     const notFoundProducts = resultCheck?.productsNotExists.map((product) => {

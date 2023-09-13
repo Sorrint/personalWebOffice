@@ -1,11 +1,11 @@
-import { type FC, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import './orderControls.scss';
 
-interface IOrderActionProps {
+interface OrderActionProps {
     children?: ReactNode
 }
 
-export const OrderControls: FC<IOrderActionProps> = ({ children }) => {
+export const OrderControls = ({ children }: OrderActionProps) => {
     return <div className="order__actions">{children}</div>;
 };

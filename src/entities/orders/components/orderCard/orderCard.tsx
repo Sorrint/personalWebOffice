@@ -5,12 +5,12 @@ import { Table } from '@shared/ui/table';
 
 import { type IOrder } from '../../model/types/IOrder';
 import './orderCard.scss';
-interface IOrderCardProps {
+interface OrderCardProps {
     children?: ReactNode
     order?: IOrder
 }
 
-export const OrderCard = ({ children, order }: IOrderCardProps) => {
+export const OrderCard = ({ children, order }: OrderCardProps) => {
     
     if (!order) return null;
     const actions = children ?? Children.toArray(children).filter((child) => hasComponentName(child, 'OrderActions'));
@@ -28,7 +28,7 @@ export const OrderCard = ({ children, order }: IOrderCardProps) => {
                  (<>
                      {actions}
                      <div className="order__title">{order.orderName}</div>
-                     <Table headers={tableHeaders} data={order.products} />
+                     <Table headers={tableHeaders} data={order.orderRecords} />
                  </>)}
         </>
     );
