@@ -1,0 +1,26 @@
+.content__button {
+    display: flex;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    color: black;
+    font-size: inherit;
+    font-weight: 500;
+
+    &.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        color: var(--primary-color);
+        padding: 10px;
+        border-bottom: 2px solid var(--primary-color);
+    }
+}
+
+.tabsList {
+    display: flex;
+}

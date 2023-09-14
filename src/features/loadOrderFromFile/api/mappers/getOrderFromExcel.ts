@@ -1,3 +1,4 @@
+import { transformProductName } from '../../lib/helpers/transformProductName/transformProductName';
 import { parseSheetData } from '@shared/lib/utils/parseSheetData';
 import { readXLSXTable } from '@shared/lib/utils/readXLSXtable';
 import { replaceObjectKeys } from '@shared/lib/utils/replaceObjectKeys';
@@ -16,6 +17,7 @@ export const getOrderFromExcel = async (e: React.BaseSyntheticEvent) => {
     if (typeof parse === 'string') return null;
     const result = parse.tableBody
         .map((item) => replaceObjectKeys(headersOrderObject, item))
-        .filter((item) => item.productName);
+        .filter((item) => item.productName)
+        .map((item)=> ({...item, productName: transformProductName(item.productName)}));
     return result;
 };

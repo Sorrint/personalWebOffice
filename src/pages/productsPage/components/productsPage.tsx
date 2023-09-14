@@ -10,8 +10,8 @@ import { type INavLinkObject } from '@shared/types/navLinkTypes';
 const ProductsPage: FC = () => {
     const navLinks: INavLinkObject = {
         order: {
-            path: '/inventory-lists/documents',
-            title: 'Список документов'
+            path: '/office/products/categories',
+            title: 'Список категорий'
         }
     };
 

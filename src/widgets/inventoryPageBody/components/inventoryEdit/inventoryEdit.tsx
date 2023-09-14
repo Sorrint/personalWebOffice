@@ -2,15 +2,16 @@ import { memo, useEffect, useState, useRef, type KeyboardEvent, useCallback } fr
 import { type FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { OverlayingPopupWithFocusTrap, PopupCard } from '@features/popup';
-import { Popover } from '@features/popover';
 import { type IInventoryProduct, InventoryContent, useUpdateProducts, useRemoveInventoryProduct } from '@entities/inventoryDocs';
-import { type IDreamkasProduct, ProductList, useLoadProductsBySearch } from '@entities/products';
+import { type IDreamkasProduct, ProductList, useLoadProductsBySearch, PopupProductCard} from '@entities/products';
 import { SearchInput } from '@shared/ui/searchInput';
 import { DropdownList } from '@shared/ui/dropdownList';
 import { useKeyPress } from '@shared/lib/hooks';
+import { PopupWithFocusTrap } from '@shared/ui/popup';
+
 import './inventoryEdit.scss';
 
+import { Popover } from '@shared/ui/popover';
 interface IPopupProps {
     product: IInventoryProduct
     popupText: string
@@ -147,9 +148,9 @@ export const InventoryEdit = memo(() => {
                     </DropdownList>
                 </Popover>
             )}
-            <OverlayingPopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
-                {popupProps && <PopupCard {...popupProps} buttonClick={onSubmit} error={updateError} />}
-            </OverlayingPopupWithFocusTrap>
+            <PopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
+                {popupProps && <PopupProductCard {...popupProps} buttonClick={onSubmit} error={updateError} />}
+            </PopupWithFocusTrap>
         </>
     );
 });

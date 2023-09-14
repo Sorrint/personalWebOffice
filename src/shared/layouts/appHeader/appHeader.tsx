@@ -11,8 +11,8 @@ export const AppHeader = ({ children, title }: AppHeaderProps) => {
         <div className="app__header">
             <div className="app__container">
                 <div className="app__title">{title}</div>
-                {children}
             </div>
+            {children}
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import { OrdersListItem } from "../ordersListItem/ordersListItem";
-import { type IOrder } from "@entities/orders/model/types/IOrder";
+import { type IOrder } from "../../model/types/IOrder";
 
 interface OrderListProps {
     orders: IOrder[]

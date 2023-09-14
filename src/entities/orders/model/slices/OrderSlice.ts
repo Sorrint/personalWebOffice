@@ -1,6 +1,3 @@
-import { loadOrderById } from '../services/loadOrderById/loadOrderById';
-import { loadOrdersList } from '../services/loadOrdersList/loadOrdersList';
-import { saveCurrentOrder } from '../services/saveCurrentOrder/saveCurrentOrder';
 import { type OrderState } from '../types/IOrder';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -36,44 +33,6 @@ export const OrderSlice = createSlice({
             state.currentOrder = action.payload;
         }
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(saveCurrentOrder.pending, (state) => {
-                state.error = '';
-                state.isLoading = true;
-            })
-            .addCase(saveCurrentOrder.fulfilled, (state) => {
-                state.isLoading = false;
-            })
-            .addCase(saveCurrentOrder.rejected, (state, action) => {
-                state.isLoading = false;
-                state.error = action.payload;
-            })
-            .addCase(loadOrdersList.pending, (state) => {
-                state.error = '';
-                state.isLoading = true;
-            })
-            .addCase(loadOrdersList.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.entities = action.payload;   
-            })
-            .addCase(loadOrdersList.rejected, (state, action) => {
-                state.isLoading = false;
-                state.error = action.payload;
-            })
-            .addCase(loadOrderById.pending, (state) => {
-                state.error = '';
-                state.isLoading = true;
-            })
-            .addCase(loadOrderById.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.currentOrder = action.payload;   
-            })
-            .addCase(loadOrderById.rejected, (state, action) => {
-                state.isLoading = false;
-                state.error = action.payload;
-            });
-    }
 });
 
 export const { reducer: orderReducer } = OrderSlice;

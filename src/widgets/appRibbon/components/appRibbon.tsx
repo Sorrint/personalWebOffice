@@ -1,28 +1,18 @@
-import { type FC } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
+import { Tabs } from '@shared/ui/tabs';
 
 import './appRibbon.scss';
 
-interface ILinksProps {
+interface AppRibbonProps {
     navLinks: INavLinkObject
 }
 
-export const AppRibbon: FC<ILinksProps> = ({ navLinks }) => {
-
-    const getMenuItemClass = ({ isActive }: {isActive: boolean}): string => 
-        isActive ? 'content__button active': 'content__button';
-      
+export const AppRibbon = ({ navLinks }: AppRibbonProps) => {
+    const tabs = Object.keys(navLinks).map(link => ({contentTab: navLinks[link].title, to: navLinks[link].path}));
     return (
         <div className="app__ribbon">
-            {Object.keys(navLinks).map((link) => (
-                <NavLink to={navLinks[link].path} key={link} className={getMenuItemClass}>
-                    <div className="content__button">{navLinks[link].title}</div>
-                </NavLink>
-            ))}
+            <Tabs list={tabs}></Tabs>
             <div className="fillElement"></div>
         </div>
     );
 };
-
