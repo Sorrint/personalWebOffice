@@ -11,7 +11,7 @@ import './editProductCard.scss';
 import { useCreateProduct } from '@entities/products/model/productsService';
 import { Button } from '@shared/ui/button';
 import { PackageSelect } from '@entities/packages';
-import { parseWeightKg } from '../../entities/products/lib/helpers/parseWeightKg/parseWeightKg';
+import { parseWeightKg } from '../../lib/helpers/parseWeightKg/parseWeightKg';
 import { UnitSelect, UnitTypeSelect } from '@entities/units';
 import { UnitTypes } from '@entities/units/components/unitTypeSelect/unitTypeSelect';
 

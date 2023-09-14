@@ -9,11 +9,20 @@ export const OrderDetails = () => {
     if (!_id) return 'Нет id';
     
     const {data: order, isLoading} = useGetOrderByIdQuery(_id);
-
     if (isLoading) return <span>Идет загрузка</span>;
+    
+    const productsWithoutId = order?.orderRecords.filter(record => !record.productId) || [];
+    
     return (
         <>
             <div>
+                {productsWithoutId?.length > 0 && 
+                    (
+                        <div>
+                            <NavLink to={`../../orders/addProducts?orderId=${order?._id}`}>Не все товары найдены в базе данных</NavLink>
+                        </div>
+                    )
+                }
                 {order?.ordering 
                     ?         
                     <NavLink to={`../../orderings/${order.ordering}`}>Перейти к порядовке</NavLink> 

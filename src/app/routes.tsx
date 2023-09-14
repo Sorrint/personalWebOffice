@@ -7,7 +7,7 @@ import { ProductsPage } from '@pages/productsPage';
 import { ProfilePage } from '@pages/profilePage';
 
 import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
-import { CreateOrder, Distribution, EditOrderingProducts, OrderDetails, Ordering, OrdersCatalog } from '@widgets/documentPageBody';
+import { AddOrderProducts, CreateOrder, Distribution, OrderDetails, Ordering, OrdersCatalog } from '@widgets/documentPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 import { routesLinks } from '@widgets/navBar/model/menuItems';
 
@@ -22,12 +22,12 @@ const routes: RouteObject[] = [
         children: [
             { path: 'orders',  children: [
                 {path: ':_id', element: <OrderDetails />},
+                {path: 'addProducts', element: <AddOrderProducts />},
                 {path: 'create', element: <CreateOrder />},
                 {index: true, element: <OrdersCatalog />}
             ] },
             { path: 'orderings', children: [
                 {path: 'create',element: <Ordering />},
-                {path: 'editOrderingProducts', element: <EditOrderingProducts /> },
                 {index: true, element: <Ordering/>},
             ] },
             { path: 'distributions', element: <Distribution /> },

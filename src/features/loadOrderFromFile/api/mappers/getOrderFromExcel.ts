@@ -1,4 +1,4 @@
-import { transformProductName } from '@entities/products';
+import { transformProductName } from '../../lib/helpers/transformProductName/transformProductName';
 import { parseSheetData } from '@shared/lib/utils/parseSheetData';
 import { readXLSXTable } from '@shared/lib/utils/readXLSXtable';
 import { replaceObjectKeys } from '@shared/lib/utils/replaceObjectKeys';
