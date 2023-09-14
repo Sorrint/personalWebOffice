@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
 
-import { OverlayingPopup } from '@features/popup';
 import { TextField } from '@shared/ui/textField';
 import { Button } from '@shared/ui/button';
 import { RadioButton } from '@shared/ui/radioButton';
 
 import './profile.scss';
+import { Popup } from '@shared/ui/popup';
 
 interface ProfileSettings {
     dataBase: string
@@ -83,12 +83,12 @@ export const ProfilePageBody = () => {
                         )}
                 </div>
 
-                <OverlayingPopup isOpened={activePopup} onClose={showPopup}>
+                <Popup isOpened={activePopup} onClose={showPopup}>
                     <div className="token-input">
                         <TextField label="Введите токен" {...register('dreamToken')} />
                         <Button onClick={handleSubmit(setDreamToken)}>УСТАНОВИТЬ ТОКЕН</Button>
                     </div>
-                </OverlayingPopup>
+                </Popup>
                 <Button onClick={handleSubmit(setDatabase)}>СОХРАНИТЬ НАСТРОЙКИ</Button>
             </div>
         </>

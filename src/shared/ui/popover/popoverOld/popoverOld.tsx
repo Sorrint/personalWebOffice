@@ -1,9 +1,9 @@
-import { useRef, type FC } from 'react';
+import { useRef } from 'react';
 import { Popper } from 'react-popper';
 import type * as PopperJS from '@popperjs/core';
 
-import { ClickOutside } from '@features/popup';
 import { Portal } from '@shared/ui/portal';
+import { ClickOutside } from '@shared/lib/helpers/clickOutside';
 
 interface PopoverProps {
     children: React.ReactNode
@@ -13,7 +13,7 @@ interface PopoverProps {
     placement: PopperJS.Placement
 }
 
-export const Popover: FC<PopoverProps> = ({ onClose, reference, placement, children, isOpened }) => {
+export const PopoverOld = ({ onClose, reference, placement, children, isOpened } : PopoverProps) => {
     const popperRef = useRef();
     return (
         <>

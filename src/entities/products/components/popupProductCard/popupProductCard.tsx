@@ -1,13 +1,15 @@
-import { type SerializedError } from '@reduxjs/toolkit';
-import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useEffect, type KeyboardEvent, useRef, type ForwardedRef, type FocusEvent } from 'react';
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { type FieldValues, useForm } from 'react-hook-form';
+import { type SerializedError } from '@reduxjs/toolkit';
+
 import { type IInventoryProduct } from '@entities/inventoryDocs/model/types';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 import { CounterField } from '@shared/ui/counterField/counterField';
-import './popupCard.scss';
 
-interface IPopupCardProps {
+import './popupProductCard.scss';
+
+interface PopupProductCardProps {
     product: IInventoryProduct
     buttonClick: (data: FieldValues) => Promise<void>
     buttonText: string
@@ -23,7 +25,7 @@ export interface FormValues {
     id: string | undefined
 }
 
-export function PopupCard ({ product, buttonClick, buttonText, error, popupText, method }: IPopupCardProps) {
+export function PopupProductCard ({ product, buttonClick, buttonText, error, popupText, method }: PopupProductCardProps) {
     const { register, handleSubmit, setValue } = useForm<FormValues>({
         defaultValues: {
             id: product.id,

@@ -1,17 +1,15 @@
-import { type FC } from 'react';
-
-import { Portal } from '@shared/ui/portal/portal/portal';
+import { Portal } from '@shared/ui/portal';
 import FocusLock from 'react-focus-lock';
 
-import './overlayingPopupWithFocusTrap.scss';
+import './PopupWithFocusTrap.scss';
 
-interface OverlayingPopupWithFocusTrapProps {
+interface PopupWithFocusTrapProps {
     children: React.ReactNode
     onClose: () => void
     isOpened: boolean
 }
 
-export const OverlayingPopupWithFocusTrap: FC<OverlayingPopupWithFocusTrapProps> = ({ children, onClose, isOpened }) => {
+export const PopupWithFocusTrap= ({ children, onClose, isOpened }: PopupWithFocusTrapProps) => {
     if (!isOpened) {
         return null;
     }

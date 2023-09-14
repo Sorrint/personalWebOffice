@@ -1,5 +1,6 @@
-import { type FC, useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { usePopper } from 'react-popper';
+
 import { useClickOutside } from '@shared/lib/hooks/useClickOutside';
 import { Portal } from '@shared/ui/portal';
 
@@ -10,7 +11,7 @@ interface PopoverProps {
     children: ReactNode
 }
 
-export const PopoverNew: FC<PopoverProps> = ({ isOpen, onClose, referenceElement, children }) => {
+export const Popover = ({ isOpen, onClose, referenceElement, children }: PopoverProps) => {
     const [popperElement, setPopperElement] = useState<any>();
 
     const { styles, attributes } = usePopper(referenceElement, popperElement, {

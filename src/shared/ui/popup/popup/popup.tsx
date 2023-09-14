@@ -1,15 +1,13 @@
-import { type FC } from 'react';
-
-import './overlayingPopup.scss';
+import './popup.scss';
 import { Portal } from '@shared/ui/portal';
 
-interface OverlayingPopupProps {
+interface PopupProps {
     children: React.ReactNode
     onClose: () => void
     isOpened: boolean
 }
 
-export const OverlayingPopup: FC<OverlayingPopupProps> = ({ children, onClose, isOpened }) => {
+export const Popup = ({ children, onClose, isOpened }: PopupProps) => {
     if (!isOpened) {
         return null;
     }
