@@ -1,5 +1,3 @@
-import { type IOrderingProduct } from "@entities/orderings";
-import { type IOrderProduct } from "@entities/orders/model/types/IOrder";
 import { type UnitTypes } from "@entities/units/components/unitTypeSelect/unitTypeSelect";
 
 export type ProductType = 'SCALABLE' | 'COUNTABLE'
@@ -36,8 +34,3 @@ export interface IStoreProduct {
 }
 
 export type IProductStock = [number, string, string, string, string];
-
-export interface ICheckStoreProduct {
-    productsExists: IOrderingProduct[]
-    productsNotExists: IOrderProduct[]
-}

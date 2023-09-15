@@ -1,6 +1,8 @@
+import { normalizeData } from '@shared/lib/helpers';
 import { type IOrder } from "@entities/orders";
 import { rtkApi } from "@shared/api/rtkApi";
-import { type IOrderResponse } from "../model/types/documents";
+import { type INormalizedResponse, type IOrderResponse } from "../model/types/documents";
+
 
 export const documentsOrderApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
@@ -11,14 +13,17 @@ export const documentsOrderApi = rtkApi.injectEndpoints({
                 body: order
             })
         }),
-        getOrderById: build.query<IOrderResponse, string>({
+        getOrderById: build.query<INormalizedResponse, string>({
             query: (id) => ({
                 url: `documents/orders/${id}`,
                 method: 'GET',
             }), 
-            transformResponse: (response: IOrderResponse[]) => response[0]
+            transformResponse: (response: IOrderResponse[]) => {
+                const products = normalizeData(response[0].products);
+                return {...response[0], products: products};
+            }
         }),
     })
 });
 
-export const {useCreateOrderMutation, useGetOrderByIdQuery} = documentsOrderApi;
+export const { useGetOrderByIdQuery, useCreateOrderMutation } = documentsOrderApi;
