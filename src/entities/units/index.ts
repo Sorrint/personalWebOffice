@@ -1,6 +1,6 @@
 export { UnitTypeSelect } from './components/unitTypeSelect/unitTypeSelect';
 
-export { useGetUnits, useCreateNewUnit } from './api/unitesApi';
+export * from './api/unitsApi';
 // export { useGetPackages } from '../api/packagesApi';
 export { UnitSelect } from './components/unitSelect/unitSelect';
-export { type IUnit } from './model/unitTypes';
+export * from './model/unitTypes';

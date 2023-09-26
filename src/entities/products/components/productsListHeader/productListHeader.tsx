@@ -1,4 +1,3 @@
-import { type FC } from 'react';
 
 import './productsListHeader.scss';
 
@@ -6,9 +5,9 @@ interface ProductListHeaderProps {
     selectField: boolean
     avatar: boolean
     count: boolean
-};
+}
 
-export const ProductListHeader: FC<ProductListHeaderProps> = ({ selectField, avatar, count }) => {
+export const ProductListHeader = ({ selectField, avatar, count }: ProductListHeaderProps) => {
     return (
         <>
             <div className="products-list__header">

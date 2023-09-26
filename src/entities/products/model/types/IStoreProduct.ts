@@ -1,4 +1,4 @@
-import { type UnitTypes } from "@entities/units/components/unitTypeSelect/unitTypeSelect";
+import { type UnitTypes } from "@entities/units";
 
 export type ProductType = 'SCALABLE' | 'COUNTABLE'
 

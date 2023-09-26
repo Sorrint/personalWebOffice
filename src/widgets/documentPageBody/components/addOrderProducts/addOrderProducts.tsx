@@ -12,9 +12,9 @@ export const AddOrderProducts = () => {
     if (!orderId) return 'Нет id заказа';
 
     const {data: order, isLoading} = useGetOrderByIdQuery(orderId);
-
+    
     if (isLoading) return <div>Идет загрузка</div>;
-    const productsWithoutId = order?.orderRecords.filter(record => !record.productId) || [];
+    const productsWithoutId = order?.orderRecords.filter(record => !record.product) || [];
 
     return <div className='editProductsCardsList'>Список товаров
         {productsWithoutId?.map((product) => (

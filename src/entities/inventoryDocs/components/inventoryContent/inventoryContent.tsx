@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { transformDataForXLSX, transformDate } from '../../lib/helpers';

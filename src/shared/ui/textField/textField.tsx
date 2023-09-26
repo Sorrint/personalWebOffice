@@ -41,7 +41,7 @@ export const TextField = memo(forwardRef(function TextField<T extends FieldValue
         <div className={'input-container' + (error ? ' is-invalid' : '') +(`input-group_${size}`) + (` ${className ?? ''}`)}>
             <div className={`${getInputClasses()}` + (error ? ' is-invalid' : '')}>
                 <input
-                    id={name}
+                    id={`${name}-${new Date().getTime()}`}
                     className={'input-container__input'}
                     placeholder={' '}
                     type={showPassword ? 'text' : type}

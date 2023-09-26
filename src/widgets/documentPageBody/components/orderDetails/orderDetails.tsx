@@ -1,27 +1,19 @@
 import { NavLink, useParams } from 'react-router-dom';
 import { OrderCard } from '@entities/orders';
 
-import {  useGetOrderByIdQuery } from '../../api/documentsOrderApi';
+import { useGetOrderByIdQuery } from '../../api/documentsOrderApi';
 
 export const OrderDetails = () => {
 
     const { _id} = useParams();
     if (!_id) return 'Нет id';
     
-    const {data: order, isLoading} = useGetOrderByIdQuery(_id);
+    const {data: order, isLoading: orderLoading} = useGetOrderByIdQuery(_id);
+
+    if (orderLoading ) return <span>Идет загрузка</span>;
     
-    if (isLoading) return <span>Идет загрузка</span>;
-    
-    const products = order?.products;
-    
-    let notAllProducts = false;
-    
-    const transformRecords = order?.orderRecords.map(record => { 
-        if (!record.productId && !notAllProducts) notAllProducts=true;
-        if (record.productId && products ) {
-            return {...record, productName: products[record.productId].name};
-        }
-        return record;}) || [];
+    const notAllProducts = order?.orderRecords.some(record=> !record.product) ? true : false;
+    const transformedRecords = order?.orderRecords.map(record => ({...record, product: record.product?.name, unit: record.unit?.description}));
     
     return (
         <>
@@ -39,7 +31,7 @@ export const OrderDetails = () => {
                     : 
                     <NavLink to={`../../orderings/create?orderId=${order?._id}`}>Создать порядовку</NavLink>
                 }
-                {order && <OrderCard order={{...order, orderRecords: transformRecords }}/>}
+                {order && transformedRecords && <OrderCard order={{...order, orderRecords: transformedRecords}}/>}
             </div>
         </>
     );
