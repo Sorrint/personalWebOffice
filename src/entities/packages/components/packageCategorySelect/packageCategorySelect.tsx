@@ -4,5 +4,6 @@ interface PackageCategorySelectProps {
     classname?: string
 }
 export const PackageCategorySelect = (props: PackageCategorySelectProps) => {
-    return <div>Компонент</div>;
+    const {classname}= props;
+    return <div className={classname}>Компонент</div>;
 };

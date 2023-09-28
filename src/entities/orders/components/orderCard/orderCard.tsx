@@ -14,7 +14,6 @@ export const OrderCard = ({ children, order }: OrderCardProps) => {
     
     if (!order) return null;
     const actions = children ?? Children.toArray(children).filter((child) => hasComponentName(child, 'OrderActions'));
-
     const tableHeaders = {
         number: '№',
         productName: 'Товары (работы, услуги)',

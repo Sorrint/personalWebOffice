@@ -1,3 +1,5 @@
+export { EditProductProperty } from './components/editProductProperty/editProductProperty';
+
 export { PopupProductCard } from './components/popupProductCard/popupProductCard';
 
 export { type IUnitOption } from './model/types/IStoreProduct';
@@ -8,3 +10,4 @@ export { CategoryCard } from './components/categoryCard/categoryCard';
 export { CategoriesList } from './components/categoriesList/categoriesList';
 export { ProductList } from './components/productList/productList';
 export * from './model/productsService';
+export * from './model/types/IStoreProduct';

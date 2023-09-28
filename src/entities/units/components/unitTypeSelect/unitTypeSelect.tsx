@@ -1,10 +1,5 @@
+import { UnitTypes } from '../../model/unitTypes';
 import { SelectListBox } from '@shared/ui/selectListBox';
-
-export enum UnitTypes {
-    COUNTABLE = 'COUNTABLE',
-    SCALABLE = 'SCALABLE',   
-    WEIGHTABLE = 'WEIGHTABLE'
-}
 
 interface UnitTypeSelectProps {
     classname?: string

@@ -1,8 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { EditProductCard } from "@features/editProductCard";
+import { type IStoreProduct } from '@entities/products';
 
-import { useGetOrderByIdQuery } from "../../api/documentsOrderApi";
+import { useGetOrderByIdQuery, useUpdateOrderRecordMutation } from "../../api/documentsOrderApi";
 import './addOrderProducts.scss';
 
 export const AddOrderProducts = () => {
@@ -12,13 +13,21 @@ export const AddOrderProducts = () => {
     if (!orderId) return 'Нет id заказа';
 
     const {data: order, isLoading} = useGetOrderByIdQuery(orderId);
-
+    const [updateRecord] = useUpdateOrderRecordMutation();
+    
     if (isLoading) return <div>Идет загрузка</div>;
-    const productsWithoutId = order?.orderRecords.filter(record => !record.productId) || [];
+    const productsWithoutId = order?.orderRecords.filter(record => !record.product) || [];
+
+    const handleSubmit = (createdProduct: IStoreProduct, recordNumber: number) => {
+        updateRecord({
+            record: {number: recordNumber, product: createdProduct._id, unit: createdProduct.unit}, 
+            id: orderId });
+        return;
+    };
 
     return <div className='editProductsCardsList'>Список товаров
         {productsWithoutId?.map((product) => (
-            <EditProductCard product={{...product, name: product.productName}} key={product.productName} />
+            <EditProductCard product={{...product, name: product.productName, unit: product.unit?._id}} key={product.productName} onSubmit={(createdProduct)=> handleSubmit(createdProduct, product.number)}/>
         ))}
     </div>;
 };

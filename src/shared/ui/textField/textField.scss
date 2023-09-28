@@ -14,10 +14,12 @@
     padding: 5px 10px 5px 10px;
     background-color: #ffffff;
 
-    &_standard {
+    &_standard { 
         border: 1px solid grey;
     }
-    &_outline {
+
+    &_outline, 
+    &_table {
         border: none;
         border-bottom: 1px solid grey;
     }
@@ -100,4 +102,10 @@
 .eye-icon {
     height: 20px;
     width: 20px;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    border-bottom: none;
 }

@@ -19,8 +19,8 @@ interface SelectComboBoxProps<T> {
 
 export const SelectComboBox = forwardRef(function SelectComboBox<T extends FieldValues>(props: SelectComboBoxProps<T>, ref: ForwardedRef<HTMLDivElement>) {
 
-    const {defaultValue, options, onChange, name, } = props;
-    const [selectedPerson, setSelectedPerson] = useState(people[0]);
+    const { onChange } = props;
+    const [selectedPerson] = useState(people[0]);
     const [query, setQuery] = useState('');
 
 

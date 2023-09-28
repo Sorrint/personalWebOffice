@@ -1,7 +1,7 @@
-import { type IOrderProduct } from "@entities/orders/model/types/IOrder";
+import { type IOrderRecord } from "@entities/orders/model/types/IOrder";
 import { type IStoreProduct } from "@entities/products/model/types/IStoreProduct";
 
-export interface IOrderingProduct extends IOrderProduct, Omit<IStoreProduct, 'unit'> {}
+export interface IOrderingProduct extends IOrderRecord, Omit<IStoreProduct, 'unit'> {}
 
 export interface IOrderingContent {
     package: string
