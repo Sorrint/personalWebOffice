@@ -1,9 +1,7 @@
 import { type ReactElement, type ReactNode } from 'react';
 
-interface IReactElementWithName {
-    type: {
+interface ReactElementWithName extends ReactElement {
         name: string
-    }
 }
 export function isReactElement (children: ReactNode): children is ReactElement {
     if (children !== null && typeof children === 'object') {
@@ -13,7 +11,7 @@ export function isReactElement (children: ReactNode): children is ReactElement {
     }
 }
 
-export function isComponentWithName (child: any): child is IReactElementWithName {
+export function isComponentWithName (child: ReactElement): child is ReactElementWithName {
     return (
         isReactElement(child) &&
         typeof child.type === 'function' &&

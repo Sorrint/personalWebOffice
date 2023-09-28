@@ -1,2 +1,1 @@
-
-export { AsyncReduxComponent } from './AsyncReduxComponent/AsyncReduxComponent';
+export { AsyncReduxComponent, type ReducersList } from './AsyncReduxComponent/AsyncReduxComponent';

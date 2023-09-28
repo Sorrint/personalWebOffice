@@ -10,13 +10,13 @@ export const OrderDetails = () => {
     
     const {data: order, isLoading: orderLoading} = useGetOrderByIdQuery(_id);
 
-    if (orderLoading ) return <span>Идет загрузка</span>;
+    if (orderLoading) return <span>Идет загрузка</span>;
     
     const notAllProducts = order?.orderRecords.some(record=> !record.product) ? true : false;
     
     const transformedRecords: IOrderRecord[] = order?.orderRecords.map(record => (
         {...record, 
-            product: record.product._id, 
+            product: record.product?._id, 
             productName: record.product?.name, 
             unit: record.unit?.description ?? ''
         })) 

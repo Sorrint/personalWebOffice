@@ -1,1 +1,1 @@
-export { SelectListBox } from './selectListBox';
+export { SelectListBox, type ListBoxItem } from './selectListBox';

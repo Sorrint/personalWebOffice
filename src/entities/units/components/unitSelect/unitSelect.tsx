@@ -1,20 +1,21 @@
+import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
 
-import { SelectListBox } from '@shared/ui/selectListBox';
+import { type ListBoxItem, SelectListBox } from '@shared/ui/selectListBox';
 
-import { type IUnit, type UnitTypes } from '../../model/unitTypes';
-import { type ListBoxItem } from '@shared/ui/selectListBox/selectListBox';
-interface UnitSelectProps {
+import { type UnitTypes } from '../../model/unitTypes';
+import { selectAllUnits } from '../../api/unitsApi';
+
+interface UnitSelectProps  {
     classname?: string
     id?: string
     onChange?: (id: string)=> void
-    units: IUnit[]
     type: UnitTypes
 }
 
 export const UnitSelect = (props: UnitSelectProps) => {
-    const { id, onChange, units, type } = props;
-    
+    const { id, onChange, type } = props;
+    const units = useSelector(selectAllUnits);
     const currentUnits = units?.filter((unit)=> type && unit.type.includes(type));
     const options: ListBoxItem[] = currentUnits?.map((unit)=> ({...unit, content: unit.description}));
     const onChangeHandler = useCallback(

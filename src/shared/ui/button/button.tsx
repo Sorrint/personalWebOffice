@@ -3,11 +3,11 @@ import './buttons.scss';
 import { Icon } from '../icon';
 import Arrows_icon from '@shared/assets/icons/arrows-up-down.svg';
 interface ButtonProps {
-    onClick?: (...args: any) => void
+    onClick?: (...args: any[]) => void
     buttonType?: 'submit' | 'cancel' | 'dropdown'
     children?: ReactNode
     className?: string
-    onKeyDown?: (...args: any) => void
+    onKeyDown?: (...args: any[]) => void
     name?: string
     onChange?: (e: ChangeEvent<HTMLButtonElement>) => void
 

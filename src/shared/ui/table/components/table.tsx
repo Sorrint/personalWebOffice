@@ -1,15 +1,13 @@
 import { TableBody } from './tableBody';
 import { TableHeader } from './tableHeader';
 import './table.scss';
-import { type FC } from 'react';
-import { type IHeaderItem, type IRecord } from '../tableTypes';
 
-interface ITableProps {
-    data: IRecord[]
-    headers: IHeaderItem
+interface TableProps {
+    data: ObjectRecord[]
+    headers: ObjectRecord
 }
 
-export const Table: FC<ITableProps> = ({ data, headers }) => {
+export const Table = ({ data, headers }: TableProps) => {
     return (
         <>
             <div className="table-from-excel">
