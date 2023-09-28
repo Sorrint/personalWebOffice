@@ -29,6 +29,8 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
         mode: 'onChange'
     });
 
+    // const units = unitsData?.entities && Object.values(unitsData?.entities);
+    // console.log(units);
     product.type = product.type ?? UnitTypes.COUNTABLE;
     
     const { watch, register, setValue, handleSubmit } = methods;
@@ -71,7 +73,6 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
                     {units && type && type !== UnitTypes.COUNTABLE && 
                         <EditProductProperty propertyName='Ед.изм.товара'>
                             <UnitSelect 
-                                units={units}
                                 onChange={(value) => handleSet('unit', value)} 
                                 type={type} 
                                 id={unit}/>
@@ -93,7 +94,6 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
 
                         <EditProductProperty propertyName='Ед. изм. веса'>
                             <UnitSelect 
-                                units={units}
                                 onChange={(value) => handleSet('extraData.weightUnit', value)} 
                                 type={UnitTypes.WEIGHTABLE} 
                                 id={weightUnit}/>

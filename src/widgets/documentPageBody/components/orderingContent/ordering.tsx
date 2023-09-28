@@ -1,10 +1,10 @@
 import { NavLink, useSearchParams } from 'react-router-dom';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 import { type IOrderingContent } from '@entities/orderings/model/types/ordering';
 import { type IOrderingProduct, OrderingList } from '@entities/orderings';
 import { useCheckOrderProducts } from '@entities/products';
-import { useGetPackageCategories, useGetPackages } from '@entities/packages';
+import { useGetPackageCategories } from '@entities/packages';
 
 import { hasExtraData } from '../../libs/extraDataTypeGuard';
 import './ordering.scss';
@@ -18,7 +18,7 @@ export const Ordering = () => {
 
     const {data: order } = useGetOrderByIdQuery(orderId);
     
-    const { data: packages } = useGetPackages();
+    // const { data: packages } = useGetPackages();
     const { data: packageCategories } = useGetPackageCategories();
     
     const [checkOrder, { data: resultCheck, isLoading: isChecking, isError: isCheckError }] =

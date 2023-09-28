@@ -1,5 +1,3 @@
-type ObjectRecord = Record<string, any>;
-
 export const replaceObjectKeys = (keysObj: ObjectRecord, replaceObj: ObjectRecord): ObjectRecord => {
     const newObject: ObjectRecord = {};
     Object.keys(replaceObj).forEach((key) => {

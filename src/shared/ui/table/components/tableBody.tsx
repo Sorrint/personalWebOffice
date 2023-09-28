@@ -1,11 +1,8 @@
-import { type FC } from 'react';
-import { type IHeaderItem, type IRecord } from '../tableTypes';
-
-interface ITableBodyProps {
-    headers: IHeaderItem
-    records: IRecord[]
+interface TableBodyProps {
+    headers: ObjectRecord
+    records: ObjectRecord[]
 }
-export const TableBody: FC<ITableBodyProps> = ({ records, headers }) => {
+export const TableBody = ({ records, headers }: TableBodyProps) => {
     const alignColumnName = (text: string) => {
         return text.length > 8 ? 'table-from-excel__column_left' : 'table-from-excel__column';
     };

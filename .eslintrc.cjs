@@ -32,7 +32,8 @@ module.exports = {
         'indent': [2, 4, {'SwitchCase': 1}],
         '@typescript-eslint/ban-ts-comment': 0,   
         "react/display-name": 0,
-        "react/prop-types": 0
+        "react/prop-types": 0,
+        "@typescript-eslint/no-explicit-any": [1, { "ignoreRestArgs": true }]
     }
 };
 

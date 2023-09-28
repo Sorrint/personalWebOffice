@@ -12,6 +12,7 @@ interface PopoverProps {
 }
 
 export const Popover = ({ isOpen, onClose, referenceElement, children }: PopoverProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [popperElement, setPopperElement] = useState<any>();
 
     const { styles, attributes } = usePopper(referenceElement, popperElement, {
