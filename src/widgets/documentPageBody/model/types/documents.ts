@@ -7,7 +7,7 @@ import { type IUnit } from "@entities/units";
 
 interface IOrderRecordResponse extends Omit<IOrderRecord, 'unit' | 'product'> {
     product: IStoreProduct,
-    unit: IUnit
+    unit?: IUnit
 }
 export interface IOrderResponse  extends Omit<IOrder,  'orderRecords'>{
     orderRecords: IOrderRecordResponse[]

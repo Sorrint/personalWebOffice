@@ -6,7 +6,7 @@ export enum UnitTypes {
     WEIGHTABLE = 'WEIGHTABLE'
 }
 export interface IUnit {
-    _id?: string
+    _id: string
     type: UnitTypes[]
     base: number
     description: string

@@ -2,21 +2,21 @@ import { useCallback } from 'react';
 
 import { SelectListBox } from '@shared/ui/selectListBox';
 
-import { useGetUnits } from '../../api/unitsApi';
-import { type UnitTypes } from '../../model/unitTypes';
+import { type IUnit, type UnitTypes } from '../../model/unitTypes';
+import { type ListBoxItem } from '@shared/ui/selectListBox/selectListBox';
 interface UnitSelectProps {
     classname?: string
     id?: string
     onChange?: (id: string)=> void
-    type?: UnitTypes
+    units: IUnit[]
+    type: UnitTypes
 }
 
 export const UnitSelect = (props: UnitSelectProps) => {
-    const { id, onChange, type } = props;
+    const { id, onChange, units, type } = props;
     
-    const { data: units } = useGetUnits();
     const currentUnits = units?.filter((unit)=> type && unit.type.includes(type));
-    const options = currentUnits?.map((unit)=> ({...unit, content: unit.description}));
+    const options: ListBoxItem[] = currentUnits?.map((unit)=> ({...unit, content: unit.description}));
     const onChangeHandler = useCallback(
         (id: string) => {
             onChange?.(id);
@@ -24,5 +24,5 @@ export const UnitSelect = (props: UnitSelectProps) => {
         [onChange],
     );
 
-    return <>{units && (<SelectListBox value={id ?? ''} options={options} defaultValue='Ед. изм.' onChange={onChangeHandler}/>)}</>;
+    return <>{options && (<SelectListBox value={id ?? ''} options={options} defaultValue='Ед. изм.' onChange={onChangeHandler}/>)}</>;
 };

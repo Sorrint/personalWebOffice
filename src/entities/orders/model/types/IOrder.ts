@@ -1,5 +1,5 @@
 export interface IOrderRecord {
-    orderNumber: number
+    number: number
     productName: string
     product?: string
     count: number

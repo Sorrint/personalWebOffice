@@ -1,9 +1,8 @@
 import  { type Path, type PathValue} from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
 
 import  { type IStoreProduct, type extraData, EditProductProperty, useCreateProduct} from '@entities/products';
-import { UnitSelect, UnitTypeSelect, UnitTypes } from '@entities/units';
+import { UnitSelect, UnitTypeSelect, UnitTypes, useGetUnits } from '@entities/units';
 import { PackageSelect } from '@entities/packages';
 import { TextField } from '@shared/ui/textField';
 import { Button } from '@shared/ui/button';
@@ -13,16 +12,17 @@ import './editProductCard.scss';
 
 interface EditProductCardProps <T extends IStoreProduct>{
     product: T
+    onSubmit?: (product: IStoreProduct) => void
 }
 
 const extraDataDefault: extraData ={ 
     weight: 0
 };
 
-export const EditProductCard = <T extends IStoreProduct>({ product }:EditProductCardProps<T>) => {
+export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:EditProductCardProps<T>) => {
 
     const [createProduct] = useCreateProduct();
-
+    const { data: units } = useGetUnits();
     const { name } = product;
     const methods = useForm<IStoreProduct>({
         defaultValues: product,
@@ -32,19 +32,12 @@ export const EditProductCard = <T extends IStoreProduct>({ product }:EditProduct
     product.type = product.type ?? UnitTypes.COUNTABLE;
     
     const { watch, register, setValue, handleSubmit } = methods;
-  
-    useEffect(() => {
-        const subscription = watch((value, { name, type }) => { console.log(value, name, type); });
-        return () => { subscription.unsubscribe(); };
-    }, [watch]);
 
     const handleSet = <T extends Path<IStoreProduct>> (key: T, value: PathValue<IStoreProduct, T>) => {
         //@ts-ignore-next-line
         setValue(key, value);
     };
-
     const weight = parseWeightKg(product.name);
-
 
     if (!product.extraData) product.extraData = {...extraDataDefault};
     if (product.extraData && !product.extraData.weight) {
@@ -57,8 +50,11 @@ export const EditProductCard = <T extends IStoreProduct>({ product }:EditProduct
     const weightUnit = watch('extraData.weightUnit');
 
 
-    const handleCreate = (product: IStoreProduct) => {
-        createProduct({...product, tax: 'NDS_NO_TAX'});
+    const handleCreate = async (product: IStoreProduct) => {
+        const createdProduct = await createProduct({...product, tax: 'NDS_NO_TAX'});
+        if ('data' in createdProduct) {
+            onSubmit?.(createdProduct.data);
+        }
     };
 
     return (
@@ -72,9 +68,10 @@ export const EditProductCard = <T extends IStoreProduct>({ product }:EditProduct
                             className= {`editCard__cell editItem__name`} />
                     </EditProductProperty>
                     
-                    {type !== UnitTypes.COUNTABLE && 
+                    {units && type && type !== UnitTypes.COUNTABLE && 
                         <EditProductProperty propertyName='Ед.изм.товара'>
                             <UnitSelect 
+                                units={units}
                                 onChange={(value) => handleSet('unit', value)} 
                                 type={type} 
                                 id={unit}/>
@@ -85,21 +82,23 @@ export const EditProductCard = <T extends IStoreProduct>({ product }:EditProduct
                             onChange={(value) => handleSet('type', value)} 
                             type={type} />
                     </EditProductProperty> 
-                       
-                    <EditProductProperty propertyName='Вес нетто товара'>
-                        <TextField  
-                            {...register('extraData.weight') } 
-                            className= {`editCard__cell editItem__name`} 
-                            type='number'/>
-                    </EditProductProperty>
 
-                    <EditProductProperty propertyName='Ед. изм. веса'>
-                        <UnitSelect 
-                            onChange={(value) => handleSet('extraData.weightUnit', value)} 
-                            type={UnitTypes.WEIGHTABLE} 
-                            id={weightUnit}/>
-                    </EditProductProperty>
-                    
+                    {units && type && type === UnitTypes.COUNTABLE &&    
+                        (<><EditProductProperty propertyName='Вес нетто товара'>
+                            <TextField  
+                                {...register('extraData.weight', {valueAsNumber: true}) } 
+                                className= {`editCard__cell editItem__name`} 
+                                type='number'/>
+                        </EditProductProperty>
+
+                        <EditProductProperty propertyName='Ед. изм. веса'>
+                            <UnitSelect 
+                                units={units}
+                                onChange={(value) => handleSet('extraData.weightUnit', value)} 
+                                type={UnitTypes.WEIGHTABLE} 
+                                id={weightUnit}/>
+                        </EditProductProperty></>)}
+                     
                     <EditProductProperty propertyName='Упаковка'>    
                         <PackageSelect 
                             onChange={(value) => handleSet('extraData.package', value)} 

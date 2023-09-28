@@ -1,5 +1,5 @@
 import { NavLink, useParams } from 'react-router-dom';
-import { OrderCard } from '@entities/orders';
+import { type IOrderRecord, OrderCard } from '@entities/orders';
 
 import { useGetOrderByIdQuery } from '../../api/documentsOrderApi';
 
@@ -13,7 +13,14 @@ export const OrderDetails = () => {
     if (orderLoading ) return <span>Идет загрузка</span>;
     
     const notAllProducts = order?.orderRecords.some(record=> !record.product) ? true : false;
-    const transformedRecords = order?.orderRecords.map(record => ({...record, product: record.product?.name, unit: record.unit?.description}));
+    
+    const transformedRecords: IOrderRecord[] = order?.orderRecords.map(record => (
+        {...record, 
+            product: record.product._id, 
+            productName: record.product?.name, 
+            unit: record.unit?.description ?? ''
+        })) 
+        ?? [];
     
     return (
         <>
