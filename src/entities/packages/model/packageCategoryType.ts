@@ -4,12 +4,12 @@ export interface IPackageCategory {
     _id?: string;
     name: string;
     package: string;
-    countOfPackages?: number;
+    countOfPackages: number;
 }
 
-export interface IPackageCategoryResponse extends Omit<IPackageCategory, 'package'> {
+export interface IPackageCategoryResponse extends Omit<IPackageCategory, 'package' | 'countOfPackages'> {
     _id: string;
     name: string;
     package: IPackageResponse;
-    countOfPackages?: number;
+    countOfPackages: number;
 }

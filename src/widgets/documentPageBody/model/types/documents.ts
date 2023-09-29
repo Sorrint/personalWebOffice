@@ -3,8 +3,6 @@ import { type IOrderRecord, type IOrder } from "@entities/orders";
 import { type IStoreProductWithId } from "./products";
 import { type IUnit } from "@entities/units";
 
-
-
 export interface IOrderRecordResponse extends Omit<IOrderRecord, 'unit' | 'product'> {
     product: IStoreProduct,
     unit?: IUnit
