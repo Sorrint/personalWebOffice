@@ -17,7 +17,7 @@ export const OrderDetails = () => {
     const transformedRecords: IOrderRecord[] = order?.orderRecords.map(record => (
         {...record, 
             product: record.product?._id, 
-            productName: record.product?.name, 
+            productName: record.product?.name ?? record.productName, 
             unit: record.unit?.description ?? ''
         })) 
         ?? [];

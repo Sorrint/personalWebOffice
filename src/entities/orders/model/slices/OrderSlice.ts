@@ -5,7 +5,8 @@ const initialState: OrderState = {
     entities: [],
     isLoading: true,
     error: '',
-    currentOrder: localStorage.getItem('dataBase') === 'localStorage' ? JSON.parse(localStorage.getItem('currentOrder')?? '')  : ''
+    currentOrder: undefined
+    // currentOrder: localStorage.getItem('dataBase') === 'localStorage' ? JSON.parse(localStorage.getItem('currentOrder')?? '')  : ''
 };
 
 export const OrderSlice = createSlice({

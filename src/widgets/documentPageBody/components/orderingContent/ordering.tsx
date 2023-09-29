@@ -1,61 +1,51 @@
-import { NavLink, useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-import { type IOrderingContent } from '@entities/orderings/model/types/ordering';
-import { type IOrderingProduct, OrderingList } from '@entities/orderings';
-import { useCheckOrderProducts } from '@entities/products';
-import { useGetPackageCategories } from '@entities/packages';
-
-import { hasExtraData } from '../../libs/extraDataTypeGuard';
-import './ordering.scss';
+import { useGetPackageCategories  } from '@entities/packages';
 import { useGetOrderByIdQuery } from '@widgets/documentPageBody/api/documentsOrderApi';
+import { type IOrderRecordResponse } from '@widgets/documentPageBody/model/types/documents';
+
+import './ordering.scss';
+
+interface OrderingRecords {
+    records: IOrderRecordResponse[]
+    count: number
+}
 
 export const Ordering = () => {
 
     const [queryParams] = useSearchParams();
     const orderId = queryParams.get('orderId');
     if (!orderId) return 'Нет id заказа';
-
     const {data: order } = useGetOrderByIdQuery(orderId);
     
-    // const { data: packages } = useGetPackages();
     const { data: packageCategories } = useGetPackageCategories();
-    
-    const [checkOrder, { data: resultCheck, isLoading: isChecking, isError: isCheckError }] =
-        useCheckOrderProducts();
+    const records: Record<string, OrderingRecords> = {};
 
-    useEffect(() => {
-        if (order) checkOrder(order.orderRecords);
-    }, [order]);
+    if (order?.orderRecords) {
+        order.orderRecords.forEach(record => {
+            const { product, count } = record;
+            const productPackage = product?.extraData?.package;
+            if (productPackage) {
+                records[productPackage] = records[productPackage] || {records: [], count: 0};
+                records[productPackage].records.push(record);
+                records[productPackage].count += count;
+            }
+        });
+    }
+    console.log(records);
+    console.log(packageCategories);
 
-    const orderingProducts = resultCheck?.productsExists.filter((item): item is IOrderingProduct => hasExtraData(item));
-
-    const content = packageCategories?.reduce((result: IOrderingContent[], category)=> {
-        const filteredProducts = orderingProducts?.filter((product)=> product.extraData?.package === category.packageId);
-        if (filteredProducts && filteredProducts?.length) {
-            const count = filteredProducts.reduce((sum, product)=> (sum + product.count), 0);
-            result.push({
-                package: category._id, 
-                products: filteredProducts, 
-                summary: {
-                    sum: count, 
-                    countInRow: category.countOfPackages, 
-                    rows: category.countOfPackages ? `${Math.floor(count/category.countOfPackages)}` : ''
-                }});
-        }
-        return result;
-    }, []);
 
     return (
         <>
-            {isCheckError && <>Ошибка c подключением</>}
-            {isChecking && <>&lsquo;Идет проверка документа&lsquo;</>}
-
             <div>Порядовка</div>
-            {content && (<OrderingList ordering={{orderName: order?.orderName || '', content: content}}/>)}
-            {resultCheck && orderId && <NavLink to={`../editOrderingProducts?orderId=${orderId}`}>
-            Перейти к списку
-            </NavLink>}
+            {packageCategories && records && (
+                <div>{packageCategories.map(category => 
+                    records[category.package._id] && records[category.package._id].records &&
+                    records[category.package._id].records.map(record => <div key={record.number}>{record.productName}</div>))
+                }</div>)}
+          
         </>
     );
 };
+
