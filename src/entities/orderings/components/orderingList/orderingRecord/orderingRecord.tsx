@@ -1,6 +1,7 @@
+import classNames from 'classnames';
+
 import { type IOrderingRecordDisplay } from '../../../model/types/ordering';
 import styles from  './orderingRecord.module.scss';
-import classNames from 'classnames';
 
 interface OrderingRecordProps {
     classname?: string

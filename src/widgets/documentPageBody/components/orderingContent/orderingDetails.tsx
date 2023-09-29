@@ -1,13 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
 
-import { useGetPackageCategories  } from '@entities/packages';
-import { useGetOrderByIdQuery } from '@widgets/documentPageBody/api/documentsOrderApi';
-
-import { type IPackageCategoryResponse } from '@entities/packages/model/packageCategoryType';
+import { useGetPackageCategories, type IPackageCategoryResponse } from '@entities/packages';
 import { OrderingList, type IOrdering } from '@entities/orderings';
 
-import './ordering.scss';
-
+import { useGetOrderByIdQuery } from '../../api/documentsOrderApi';
 
 export const OrderingDetails = () => {
 
@@ -17,6 +13,7 @@ export const OrderingDetails = () => {
     const {data: order } = useGetOrderByIdQuery(orderId);
     
     const { data: packageData} = useGetPackageCategories();
+   
     const records: Record<string, IOrdering> = {};
     
     const packages: Record<string, IPackageCategoryResponse> = {};
@@ -57,11 +54,6 @@ export const OrderingDetails = () => {
     return (
         <>
             <div>Порядовка</div>
-            {/* {packageCategories && records && (
-                <div>{packageCategories.map(category => 
-                    records[category.package._id] && records[category.package._id].records &&
-                    records[category.package._id].records.map(record => <div key={record.number}>{record.productName}</div>))
-                }</div>)} */}
             <OrderingList orderingRecords={Object.values(records)}/>
         </>
     );
