@@ -3,9 +3,10 @@ import { OrderingHeaders } from "../../consts/orderingHeaders";
 import { OrderingChapter } from "./orderingChapter/orderingChapter";
 import { OrderingRecord } from "./orderingRecord/orderingRecord";
 import styles from './orderingList.module.scss';
-
+import classNames from "classnames";
 interface OrderingListProps {
-    orderingRecords?: IOrdering[]
+    orderingRecords?: IOrdering[],
+    className?: string
 }
 
 const headers: Partial<IOrderingRecordDisplay> = {
@@ -17,10 +18,10 @@ const headers: Partial<IOrderingRecordDisplay> = {
 };
 
 export const OrderingList = (props: OrderingListProps) => {
-    const {orderingRecords} = props;
+    const {orderingRecords, className} = props;
 
     return (
-        <div className={styles.ordering}>
+        <div className={classNames(styles.ordering, className)}>
             <OrderingRecord header record={headers}/>
             {orderingRecords?.map(item => 
                 <OrderingChapter 

@@ -1,16 +1,10 @@
-import { useSearchParams } from 'react-router-dom';
+import { type IPackageCategoryResponse, useGetPackageCategories } from "@entities/packages";
+import { useGetOrderByIdQuery } from "../api/documentsOrderApi";
+import { type IOrdering } from "@entities/orderings";
 
-import { useGetPackageCategories, type IPackageCategoryResponse } from '@entities/packages';
-import { OrderingList, type IOrdering } from '@entities/orderings';
 
-import { useGetOrderByIdQuery } from '../../api/documentsOrderApi';
-
-export const OrderingDetails = () => {
-
-    const [queryParams] = useSearchParams();
-    const orderId = queryParams.get('orderId');
-    if (!orderId) return 'Нет id заказа';
-    const {data: order } = useGetOrderByIdQuery(orderId);
+export const useCreateOrderingData = ( id: string ) => {
+    const {data: order } = useGetOrderByIdQuery(id);
     
     const { data: packageData} = useGetPackageCategories();
    
@@ -51,11 +45,6 @@ export const OrderingDetails = () => {
         }
         );
     }
-    return (
-        <>
-            <div>Порядовка</div>
-            <OrderingList orderingRecords={Object.values(records)}/>
-        </>
-    );
-};
 
+    return { records, packages };
+};
