@@ -12,6 +12,7 @@ export const useCreateOrderingData = ( id: string ) => {
     
     const packages: Record<string, IPackageCategoryResponse> = {};
     
+
     if (packageData) {
         packageData.forEach(item => {
             packages[item.package._id] = item;
@@ -31,7 +32,7 @@ export const useCreateOrderingData = ( id: string ) => {
             if (!records[productPackage]) { 
                 records[productPackage] = {
                     records: [], 
-                    summary: {categoryName: currentPackage.name, countOfPackages: currentPackage.countOfPackages, totalCount: 1800}};
+                    summary: {categoryName: currentPackage.name, countOfPackages: currentPackage.countOfPackages, totalCount: 0}};
             }
 
             records[productPackage].records.push(
