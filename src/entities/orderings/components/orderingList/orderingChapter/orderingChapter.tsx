@@ -1,3 +1,4 @@
+import { getDeclensions } from "@shared/lib/helpers";
 import { type IOrderingRecordDisplay, type IOrdering } from "../../../model/types/ordering";
 import { OrderingRecord } from "../orderingRecord/orderingRecord";
 
@@ -12,7 +13,7 @@ export const OrderingChapter = ({orderingChapter}: OrderingChapterProps) => {
     const summaryRecord: Partial<IOrderingRecordDisplay> = {
         count: summary.totalCount,
         productName: `В ряду ${summary.countOfPackages} шт.`,
-        rows: `${rowsCount} ряда = ${rowsCount*summary.countOfPackages}`
+        rows: `${rowsCount} ${getDeclensions(rowsCount, ['ряд', 'ряда', 'рядов'])} = ${rowsCount*summary.countOfPackages}`
     };
 
     return <>

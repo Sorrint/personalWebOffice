@@ -32,9 +32,9 @@ export const CreateOrdering = () => {
             <OrderingInfo 
                 orderingInfo={{
                     grossWeight: 3200, 
-                    palletsCount: { pallets125: 9, pallets: 2 },
+                    palletsCount: { pallets125: 9, pallets: 21},
                     slipSheetsCount: 4,
-                    corrugatedSheetsCount: { "T21": 3, "T99/2": 2 },
+                    corrugatedSheetsCount: { T21: 3, T99_2:3 },
                     shipmentDay: new Date()
                 }}/>
         </>
