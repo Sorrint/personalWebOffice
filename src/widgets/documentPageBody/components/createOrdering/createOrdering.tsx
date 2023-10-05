@@ -4,6 +4,9 @@ import { OrderingInfo, OrderingList } from '@entities/orderings';
 
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import styles from './createOrdering.module.scss';
+import { isEmptyObject } from '@shared/lib/helpers';
+import { useGetOrderProductsWeight } from '@features/getOrderProductsWeight';
+import { useGetPackageCategories, useGetPackages } from '@entities/packages';
 
 
 export const CreateOrdering = () => {
@@ -21,9 +24,9 @@ export const CreateOrdering = () => {
     const orderId = queryParams.get('orderId');
     if (!orderId) return 'Нет id заказа';
     
-    const {records, packages } = useCreateOrderingData(orderId);
-
-    const sortedRecords = Object.keys(records).length>0 ? Object.values(sectionOrder).map(item => records?.[item]).filter(item => item) : undefined;
+    const { records } = useCreateOrderingData(orderId);
+    const {productsWeight}= useGetOrderProductsWeight(orderId);
+    const sortedRecords = !isEmptyObject(sectionOrder) && Object.values(sectionOrder).map(item => records?.[item]).filter(item => item);
     
     return (
         <>
@@ -31,7 +34,7 @@ export const CreateOrdering = () => {
             {sortedRecords && <OrderingList orderingRecords={Object.values(sortedRecords)} className={styles.content__body}/>}
             <OrderingInfo 
                 orderingInfo={{
-                    grossWeight: 3200, 
+                    grossWeight: Math.floor(productsWeight/1000), 
                     palletsCount: { pallets125: 9, pallets: 21},
                     slipSheetsCount: 4,
                     corrugatedSheetsCount: { T21: 3, T99_2:3 },

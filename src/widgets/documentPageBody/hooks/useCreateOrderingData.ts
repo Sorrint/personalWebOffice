@@ -1,51 +1,54 @@
-import { type IPackageCategoryResponse, useGetPackageCategories } from "@entities/packages";
+import { useSelector } from "react-redux";
+import { type IPackageCategoryResponse, 
+    useGetPackageCategories,  
+    selectAllPackageCategories 
+} from "@entities/packages";
+import { type IOrderingChapter } from "@entities/orderings";
 import { useGetOrderByIdQuery } from "../api/documentsOrderApi";
-import { type IOrdering } from "@entities/orderings";
 
 
 export const useCreateOrderingData = ( id: string ) => {
-    const {data: order } = useGetOrderByIdQuery(id);
+    useGetPackageCategories();
     
-    const { data: packageData} = useGetPackageCategories();
-   
-    const records: Record<string, IOrdering> = {};
-    
-    const packages: Record<string, IPackageCategoryResponse> = {};
-    
+    const { data: order } = useGetOrderByIdQuery(id);
 
-    if (packageData) {
-        packageData.forEach(item => {
-            packages[item.package._id] = item;
+    const packagesFromData:Record<string, IPackageCategoryResponse>  = {};
+    
+    const packagesArray = useSelector(selectAllPackageCategories);
+
+    if (packagesArray) {
+        packagesArray.forEach(item => {
+            packagesFromData[item.package._id] = item;
         });
     }
 
-    if (order?.orderRecords) {
-        order.orderRecords.forEach(record => {
-            const { product, count } = record;
+    const records = (order?.orderRecords || []).reduce((result: Record<string, IOrderingChapter>, record)  => {
+        const { product, count } = record;
 
-            const productPackage = product?.extraData?.package;
-            if (!productPackage) return;
-
-            const currentPackage = packages?.[productPackage];
-            if (!currentPackage) return;
-
-            if (!records[productPackage]) { 
-                records[productPackage] = {
-                    records: [], 
-                    summary: {categoryName: currentPackage.name, countOfPackages: currentPackage.countOfPackages, totalCount: 0}};
-            }
-
-            records[productPackage].records.push(
-                {...record, 
-                    product: product._id, 
-                    productName: product.name || record.productName, 
-                    unit: record.unit?.description || '',
-                });
-
-            records[productPackage].summary.totalCount += count;
+        const productPackage = product?.extraData?.package;
+        if (!productPackage) return result;
+        
+        const currentPackage = packagesFromData?.[productPackage];
+        if (!currentPackage) return result;
+        
+        if (!result[productPackage]) { 
+            
+            result[productPackage] = {
+                records: [], 
+                summary: {categoryName: currentPackage.name, countOfPackages: currentPackage.countOfPackages, totalCount: 0}};
         }
-        );
-    }
 
-    return { records, packages };
+        result[productPackage].records.push(
+            {...record, 
+                product: product._id, 
+                productName: product.name || record.productName, 
+                unit: record.unit?.description || '',
+            });
+
+        result[productPackage].summary.totalCount += count;
+
+        return result;
+    }, {});
+
+    return { records };
 };

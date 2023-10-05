@@ -20,7 +20,7 @@ export interface IOrderingSummary {
     shipmentDay?: Date
 }
 
-export interface IOrdering {
+export interface IOrderingChapter {
     records: IOrderingRecord[]
     summary: {
         countOfPackages: number,
@@ -34,8 +34,3 @@ export interface IOrderingRecordDisplay extends Omit<IOrderingRecord, 'count' | 
     number: number | string
     rows: string
 }
-
-// type SheetsRecord = Record<K extends keyof CorrugatedSheets, number> = {
-//     [P in K]: number; // Mapped properties are not optional, and it's not a homomorphic mapped type so it can't come from anywhere else.
-// };
-

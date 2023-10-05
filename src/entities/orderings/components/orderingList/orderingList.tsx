@@ -1,11 +1,11 @@
-import { type IOrdering, type IOrderingRecordDisplay } from "../../model/types/ordering";
+import { type IOrderingChapter, type IOrderingRecordDisplay } from "../../model/types/ordering";
 import { OrderingHeaders } from "../../consts/orderingHeaders";
 import { OrderingChapter } from "./orderingChapter/orderingChapter";
 import { OrderingRecord } from "./orderingRecord/orderingRecord";
 import styles from './orderingList.module.scss';
 import classNames from "classnames";
 interface OrderingListProps {
-    orderingRecords?: IOrdering[],
+    orderingRecords?: IOrderingChapter[],
     className?: string
 }
 

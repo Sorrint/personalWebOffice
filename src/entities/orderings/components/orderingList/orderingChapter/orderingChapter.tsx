@@ -1,10 +1,10 @@
 import { getDeclensions } from "@shared/lib/helpers";
-import { type IOrderingRecordDisplay, type IOrdering } from "../../../model/types/ordering";
+import { type IOrderingRecordDisplay, type IOrderingChapter } from "../../../model/types/ordering";
 import { OrderingRecord } from "../orderingRecord/orderingRecord";
 
 interface OrderingChapterProps {
     classname?: string
-    orderingChapter: IOrdering
+    orderingChapter: IOrderingChapter
 }
 export const OrderingChapter = ({orderingChapter}: OrderingChapterProps) => {
     const {records, summary} = orderingChapter;
