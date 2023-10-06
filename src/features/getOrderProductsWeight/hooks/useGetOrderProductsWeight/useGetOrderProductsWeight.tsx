@@ -11,7 +11,7 @@ export const useGetOrderProductsWeight = (id: string) => {
     const {data: order } = useGetOrderByIdQuery(id);
     const packages = useSelector(selectPackagesObject);
     const orderRecords = order?.orderRecords;
-
+    
     const productsWeight = (orderRecords ?? []).reduce((result, record) => {
         const productCount = record.count;
         if (record.product && 'extraData' in record.product) {

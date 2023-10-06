@@ -4,6 +4,8 @@ import { OrderingChapter } from "./orderingChapter/orderingChapter";
 import { OrderingRecord } from "./orderingRecord/orderingRecord";
 import styles from './orderingList.module.scss';
 import classNames from "classnames";
+import { v4 as uuidv4 } from 'uuid';
+
 interface OrderingListProps {
     orderingRecords?: IOrderingChapter[],
     className?: string
@@ -25,7 +27,7 @@ export const OrderingList = (props: OrderingListProps) => {
             <OrderingRecord header record={headers}/>
             {orderingRecords?.map(item => 
                 <OrderingChapter 
-                    key={item.summary.categoryName}
+                    key={item.summary.categoryName+uuidv4()}
                     orderingChapter={item} 
                 />)}
         </div>

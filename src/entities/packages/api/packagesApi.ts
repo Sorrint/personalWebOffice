@@ -47,4 +47,5 @@ export const {
     selectAll: selectAllPackages, 
     selectById: selectPackageById, 
     selectEntities: selectPackagesObject 
-} = packagesAdapter.getSelectors((state: RootState) => selectPackagesData(state) ?? initialState);
+} =
+  packagesAdapter.getSelectors((state: RootState) => selectPackagesData(state) ?? initialState);

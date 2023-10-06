@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import './editProperty.scss';
 
 interface EditPropertyFieldProps {
@@ -8,7 +8,6 @@ interface EditPropertyFieldProps {
 }
 
 export const EditPropertyField = memo(({ propertyName, renderEditField, className }: EditPropertyFieldProps) => {
-    useEffect(()=> {console.log('editProp render');}, []);
     return <div className={`property ${className ?? ''}`}>
         <div className='property__title'>{propertyName}</div>
         {renderEditField()}

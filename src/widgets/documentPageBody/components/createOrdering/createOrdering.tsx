@@ -1,23 +1,21 @@
 import { useSearchParams } from 'react-router-dom';
 
+import { useGetOrderProductsWeight } from '@features/getOrderProductsWeight';
 import { OrderingInfo, OrderingList } from '@entities/orderings';
+import { isEmptyObject } from '@shared/lib/helpers';
 
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import styles from './createOrdering.module.scss';
-import { isEmptyObject } from '@shared/lib/helpers';
-import { useGetOrderProductsWeight } from '@features/getOrderProductsWeight';
-import { useGetPackageCategories, useGetPackages } from '@entities/packages';
-
 
 export const CreateOrdering = () => {
     const sectionOrder = {
-        1: '64c8fa0f3812ac8d1ea9cc59',
-        2: '64c8f9db3812ac8d1ea9cc55',
-        3: '64c8f93e3812ac8d1ea9cc4f',
-        4: '64c8f9653812ac8d1ea9cc51',
-        5: '64c8f8e13812ac8d1ea9cc4b',
-        6: '64c8e78d3812ac8d1ea9c194',
-        7: '64c8e76e3812ac8d1ea9c191'
+        1: '64daa7c326529ad019afc7d0',
+        2: '64daa7a926529ad019afc7cc',
+        3: '64daa78b26529ad019afc7c6',
+        4: '64daa79626529ad019afc7c8',
+        5: '64daa76f26529ad019afc7c2',
+        6: '64daa76326529ad019afc7c0',
+        7: '64daa6fd26529ad019afc7be'
     };
 
     const [queryParams] = useSearchParams();
@@ -25,7 +23,7 @@ export const CreateOrdering = () => {
     if (!orderId) return 'Нет id заказа';
     
     const { records } = useCreateOrderingData(orderId);
-    const {productsWeight}= useGetOrderProductsWeight(orderId);
+    const { productsWeight }= useGetOrderProductsWeight(orderId);
     const sortedRecords = !isEmptyObject(sectionOrder) && Object.values(sectionOrder).map(item => records?.[item]).filter(item => item);
     
     return (

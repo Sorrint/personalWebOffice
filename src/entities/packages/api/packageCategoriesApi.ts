@@ -1,7 +1,9 @@
 import { type EntityState, createEntityAdapter, createSelector } from '@reduxjs/toolkit';
-import { type IPackageCategoryResponse } from './../model/packageCategoryType';
+
 import { rtkApi } from "@shared/api/rtkApi";
 import { type RootState } from '@shared/lib/store/types';
+
+import { type IPackageCategoryResponse } from './../model/packageCategoryType';
 
 const packageCategoriesAdapter = createEntityAdapter({selectId: (unit: IPackageCategoryResponse)=> unit._id});
 
