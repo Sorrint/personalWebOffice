@@ -8,12 +8,13 @@ interface OrderingChapterProps {
 }
 export const OrderingChapter = ({orderingChapter}: OrderingChapterProps) => {
     const {records, summary} = orderingChapter;
+    const {totalCount, text, rowsCount, countOfPackages} = summary;
 
-    const rowsCount = Math.floor(summary.totalCount/summary.countOfPackages);
+    const displayCountRows = Math.round(rowsCount);
     const summaryRecord: Partial<IOrderingRecordDisplay> = {
-        count: summary.totalCount,
-        productName: `В ряду ${summary.countOfPackages} шт.`,
-        rows: `${rowsCount} ${getDeclensions(rowsCount, ['ряд', 'ряда', 'рядов'])} = ${rowsCount*summary.countOfPackages}`
+        count: totalCount,
+        productName: text ? text : `В ряду ${countOfPackages} шт.`,
+        rows: countOfPackages ? `${displayCountRows} ${getDeclensions(displayCountRows, ['ряд', 'ряда', 'рядов'])} = ${displayCountRows*countOfPackages}` : ''
     };
 
     return <>

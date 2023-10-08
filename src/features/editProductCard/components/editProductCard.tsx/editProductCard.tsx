@@ -9,6 +9,7 @@ import { Button } from '@shared/ui/button';
 
 import { parseWeightKg } from '../../lib/helpers/parseWeightKg/parseWeightKg';
 import './editProductCard.scss';
+import { useEffect } from 'react';
 
 interface EditProductCardProps <T extends IStoreProduct>{
     product: T
@@ -41,6 +42,13 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
     };
     const weight = parseWeightKg(product.name);
 
+    useEffect(()=>{
+        const subscription = watch((value, { name, type }) =>
+            console.log(value, name, type)
+        );
+        return () => subscription.unsubscribe();
+    }, [watch]);
+    
     if (!product.extraData) product.extraData = {...extraDataDefault};
     if (product.extraData && !product.extraData.weight) {
         product.extraData = {...product.extraData, weight: weight};
@@ -84,7 +92,7 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
                             type={type} />
                     </EditProductProperty> 
 
-                    {units && type && type === UnitTypes.COUNTABLE &&    
+                    {units &&    
                         (<><EditProductProperty propertyName='Вес нетто товара'>
                             <TextField  
                                 {...register('extraData.weight', {valueAsNumber: true}) } 

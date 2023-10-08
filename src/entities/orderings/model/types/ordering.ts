@@ -25,7 +25,9 @@ export interface IOrderingChapter {
     summary: {
         countOfPackages: number,
         totalCount: number,
-        categoryName: string
+        categoryName: string,
+        text: string,
+        rowsCount: number
     }
 }
 

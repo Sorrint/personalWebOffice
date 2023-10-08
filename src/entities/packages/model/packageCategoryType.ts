@@ -4,6 +4,7 @@ export interface IPackageCategory {
     name: string;
     packages: string[];
     countOfPackages: number;
+    text?: string
 }
 
 export interface IPackageCategoryResponse extends Omit<IPackageCategory, '_id'> {
