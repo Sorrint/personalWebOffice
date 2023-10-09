@@ -1,15 +1,16 @@
-import { type FC } from 'react';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { transformDate } from '../../lib/helpers/transformDate';
+import { transformDate } from '@shared/lib/helpers';
+
 import { type IInventoryDocs } from '../../model/types';
 
 import './inventoryDocs.scss';
 
-interface IInventoryListItemProps {
+interface InventoryListItemProps {
     document: IInventoryDocs
 }
-export const InventoryListItem: FC<IInventoryListItemProps> = ({ document }) => {
+export const InventoryListItem = memo(({ document }: InventoryListItemProps) => {
     const { documentNumber, choosenDate, comment } = document;
     const date = transformDate(choosenDate);
     return (
@@ -20,4 +21,4 @@ export const InventoryListItem: FC<IInventoryListItemProps> = ({ document }) => 
             >{`Инвентаризация № ${documentNumber} от ${date}. ${comment}`}</Link>
         </>
     );
-};
+});

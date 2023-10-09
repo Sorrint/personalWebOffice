@@ -42,12 +42,14 @@ export const CreateOrdering = () => {
     if (!orderId) return 'Нет id заказа';
 
     const { records } = useCreateOrderingData(orderId);
-    const { productsWeight } = useGetOrderProductsWeight(orderId);
+    const { productsWeight, allWeight, packagesWeight } = useGetOrderProductsWeight(orderId);
     const orderingRows = getOrderingRowsCount(records) ;
     const { rowsCount } = orderingRows;
-    const slipSheetsCount = orderingRows ? Number((Math.ceil(rowsCount)/4).toFixed(2)) : 0;
+    const slipSheetsCount = orderingRows ? Number((Math.ceil(rowsCount+1)/4).toFixed(2)) : 0;
     const sortedRecords = !isEmptyObject(sectionOrder) && Object.values(sectionOrder).map(item => records?.[item]).filter(item => item);
-    console.log(slipSheetsCount);
+    console.log(productsWeight);
+    console.log(packagesWeight);
+    console.log(allWeight);
 
     return (
         <>
@@ -55,7 +57,7 @@ export const CreateOrdering = () => {
             {sortedRecords && <OrderingList orderingRecords={Object.values(sortedRecords)} className={styles.content__body} />}
             <OrderingInfo
                 orderingInfo={{
-                    grossWeight: Math.floor((productsWeight + palletsWeight + corrugatedSheetsWeight + slipSheetsCount* SLIPSHEETWEIGHT) / 1000),
+                    grossWeight: ((allWeight + palletsWeight + corrugatedSheetsWeight + slipSheetsCount* SLIPSHEETWEIGHT) / 1000),
                     palletsCount: palletsObj,
                     slipSheetsCount: Math.ceil(slipSheetsCount),
                     corrugatedSheetsCount: {

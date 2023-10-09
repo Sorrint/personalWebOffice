@@ -3,7 +3,9 @@ import { useGetUnits } from "@entities/units";
 import { useGetOrderByIdQuery } from "@widgets/documentPageBody/api/documentsOrderApi";
 import { useSelector } from "react-redux";
 
+
 export const useGetOrderProductsWeight = (id: string) => {
+
     useGetPackages();
     
     const {data: units} = useGetUnits();
@@ -19,17 +21,17 @@ export const useGetOrderProductsWeight = (id: string) => {
             const productWeightUnitId = record.product.extraData?.weightUnit;
             if (productWeightUnitId && productWeight) {
                 const productWeightUnit =  units?.entities[productWeightUnitId]?.base;
-                result += productWeight * (productWeightUnit ?? 1) * productCount;
+                result.productsWeight += productWeight * (productWeightUnit ?? 1) * productCount;
             } 
             
             const packageId = record.product.extraData?.package;
             
             if (packageId) {
-                result += (packages[packageId]?.weight ?? 0)*productCount;
+                result.packagesWeight += (packages[packageId]?.weight ?? 0)*productCount;
             }
         }
         return result;
-    }, 0);
+    }, { productsWeight: 0, packagesWeight: 0 });
 
-    return { productsWeight };
+    return  {...productsWeight, allWeight: productsWeight.productsWeight+ productsWeight.packagesWeight} ;
 };
