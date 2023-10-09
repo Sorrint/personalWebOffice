@@ -42,14 +42,11 @@ export const CreateOrdering = () => {
     if (!orderId) return 'Нет id заказа';
 
     const { records } = useCreateOrderingData(orderId);
-    const { productsWeight, allWeight, packagesWeight } = useGetOrderProductsWeight(orderId);
+    const { allWeight } = useGetOrderProductsWeight(orderId);
     const orderingRows = getOrderingRowsCount(records) ;
     const { rowsCount } = orderingRows;
     const slipSheetsCount = orderingRows ? Number((Math.ceil(rowsCount+1)/4).toFixed(2)) : 0;
     const sortedRecords = !isEmptyObject(sectionOrder) && Object.values(sectionOrder).map(item => records?.[item]).filter(item => item);
-    console.log(productsWeight);
-    console.log(packagesWeight);
-    console.log(allWeight);
 
     return (
         <>
