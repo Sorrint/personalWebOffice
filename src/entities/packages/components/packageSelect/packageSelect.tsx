@@ -1,7 +1,10 @@
-import { SelectListBox } from '@shared/ui/selectListBox';
-import { useGetPackages } from '../../api/packagesApi';
-import './packageSelect.scss';
 import { useCallback, memo, useMemo } from 'react';
+import { useSelector } from 'react-redux';
+
+import { SelectListBox } from '@shared/ui/selectListBox';
+
+import { selectAllPackages, useGetPackages } from '../../api/packagesApi';
+import './packageSelect.scss';
 interface PackageSelectProps {
     classname?: string
     id?: string
@@ -10,9 +13,11 @@ interface PackageSelectProps {
 }
 
 export const PackageSelect = memo((props: PackageSelectProps) => {
+    useGetPackages();
+
     const { id, onChange, content = 'name' } = props;
     
-    const { data: packages } = useGetPackages();
+    const packages = useSelector(selectAllPackages);
 
     const options = useMemo(()=>packages?.map((pack)=> ({...pack, content: pack[content]})),[packages]);
     

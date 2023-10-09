@@ -1,6 +1,12 @@
+
 export interface IPackageCategory {
     _id?: string;
     name: string;
-    packageId: string;
-    countOfPackages?: number;
+    packages: string[];
+    countOfPackages: number;
+    text?: string
+}
+
+export interface IPackageCategoryResponse extends Omit<IPackageCategory, '_id'> {
+    _id: string;
 }

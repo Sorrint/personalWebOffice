@@ -1,0 +1,42 @@
+.name {
+        grid-area: name;
+    }
+
+.number {
+        grid-area: number;
+        justify-items: center;
+
+    }
+
+.unit {
+        grid-area: unit;
+        justify-items: center;
+    }
+
+.rows {
+        grid-area: rows;
+    }
+
+.count {
+    justify-items: center;
+        grid-area: count;
+    }
+
+.record {
+        display: grid;
+        grid-template-columns: 40px 1fr 80px 80px 150px;
+        grid-template-areas: 'number name count unit rows';
+        background-color: white;
+
+}
+
+.header {
+    font-weight: bold;
+    text-align: center;
+}
+
+.cell {
+    display: grid;
+    border: 1px solid grey;
+    padding: 5px;
+}

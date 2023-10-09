@@ -1,13 +1,14 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { transformDataForXLSX, transformDate } from '../../lib/helpers';
+import { transformDataForXLSX } from '../../lib/helpers';
 import { type IInventoryProduct, type IdataForXLSX } from '../../model/types';
 import { InventoryProductList } from '../inventoryProductsList/inventoryProductsList';
 
 import { saveToXLSX } from '@shared/lib/utils/saveToXLSX';
 import './inventoryContent.scss';
 import { useLoadDocumentByNumber } from '../../reducers/inventoryDocsService';
+import { transformDate } from '@shared/lib/helpers';
 
 export interface InventoryContentProps {
     onClick?: (product: IInventoryProduct) => void

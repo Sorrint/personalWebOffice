@@ -29,8 +29,6 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
         mode: 'onChange'
     });
 
-    // const units = unitsData?.entities && Object.values(unitsData?.entities);
-    // console.log(units);
     product.type = product.type ?? UnitTypes.COUNTABLE;
     
     const { watch, register, setValue, handleSubmit } = methods;
@@ -41,6 +39,7 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
     };
     const weight = parseWeightKg(product.name);
 
+ 
     if (!product.extraData) product.extraData = {...extraDataDefault};
     if (product.extraData && !product.extraData.weight) {
         product.extraData = {...product.extraData, weight: weight};
@@ -84,7 +83,7 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
                             type={type} />
                     </EditProductProperty> 
 
-                    {units && type && type === UnitTypes.COUNTABLE &&    
+                    {units &&    
                         (<><EditProductProperty propertyName='Вес нетто товара'>
                             <TextField  
                                 {...register('extraData.weight', {valueAsNumber: true}) } 

@@ -12,6 +12,7 @@ dist
 dist-ssr
 reports
 *.local
+reports
 
 # Editor directories and files
 .vscode/*

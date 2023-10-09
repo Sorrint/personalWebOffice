@@ -1,18 +1,16 @@
-import type { IPackage } from "@entities/packages";
+import { useForm } from "react-hook-form";
+
+import { type IPackage, PackageSelect, useCreateNewPackage } from "@entities/packages";
 import { EditPropertyField } from "@shared/ui/editPropertyField/editPropertyField";
 import { renderRHFTextField } from "@shared/ui/reactHookFormFields";
-import type { FC } from "react";
-import { useForm } from "react-hook-form";
-import './editPackageForm.scss';
 import { Button } from "@shared/ui/button";
-import { useCreateNewPackage } from "@entities/packages/api/packagesApi";
-import { PackageSelect } from "@entities/packages";
+import './editPackageForm.scss';
 
 interface EditPackageFormProps {
     packageBox?: IPackage
 }
 
-export const EditPackageForm: FC<EditPackageFormProps> = ({packageBox}) => {
+export const EditPackageForm = ({packageBox}: EditPackageFormProps) => {
 
     const {register, handleSubmit} = useForm<IPackage>({
         defaultValues: packageBox
