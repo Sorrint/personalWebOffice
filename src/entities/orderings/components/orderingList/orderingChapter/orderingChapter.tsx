@@ -1,6 +1,6 @@
-import { getDeclensions } from "@shared/lib/helpers";
-import { type IOrderingRecordDisplay, type IOrderingChapter } from "../../../model/types/ordering";
-import { OrderingRecord } from "../orderingRecord/orderingRecord";
+import { getDeclensions } from '@shared/lib/helpers';
+import { type IOrderingRecordDisplay, type IOrderingChapter } from '../../../model/types/ordering';
+import { OrderingRecord } from '../orderingRecord/orderingRecord';
 
 interface OrderingChapterProps {
     classname?: string

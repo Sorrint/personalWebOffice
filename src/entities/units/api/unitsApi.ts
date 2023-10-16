@@ -1,7 +1,7 @@
-import { rtkApi } from "@shared/api/rtkApi";
-import type { IUnit } from "../model/unitTypes";
-import { type EntityState, createEntityAdapter, createSelector } from "@reduxjs/toolkit";
-import { type RootState } from "@shared/lib/store/types";
+import { rtkApi } from '@shared/api/rtkApi';
+import type { IUnit } from '../model/unitTypes';
+import { type EntityState, createEntityAdapter, createSelector } from '@reduxjs/toolkit';
+import { type RootState } from '@shared/lib/store/types';
 
 export interface IUnitWithId extends IUnit {
     _id: string

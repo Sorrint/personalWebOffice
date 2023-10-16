@@ -1,3 +1,3 @@
-export { getCorrugatesSheetsString } from "./getCorrugatedSheetsString/getCorrugatesSheetsString";
-export { getPalletsInfoString } from "./getPalletsInfoString/getPalletsInfoString";
+export { getCorrugatesSheetsString } from './getCorrugatedSheetsString/getCorrugatesSheetsString';
+export { getPalletsInfoString } from './getPalletsInfoString/getPalletsInfoString';
 

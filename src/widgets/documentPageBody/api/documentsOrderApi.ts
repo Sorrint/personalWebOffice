@@ -1,7 +1,7 @@
 import { type IOrderRecord } from '@entities/orders';
-import { type IOrder } from "@entities/orders";
-import { rtkApi } from "@shared/api/rtkApi";
-import { type IOrderResponse } from "../model/types/documents";
+import { type IOrder } from '@entities/orders';
+import { type IOrderResponse } from '@features/getOrderProductsWeight';
+import { rtkApi } from '@shared/api/rtkApi';
 
 export const documentsOrderApi = rtkApi.enhanceEndpoints({addTagTypes: ['order']}).injectEndpoints({
     endpoints: (build) => ({
@@ -11,18 +11,6 @@ export const documentsOrderApi = rtkApi.enhanceEndpoints({addTagTypes: ['order']
                 method: 'POST',
                 body: order
             }),
-        }),
-        getOrderById: build.query<IOrderResponse, string>({
-            query: (id) => ({
-                url: `documents/orders/${id}`,
-                method: 'GET',
-            }),
-            providesTags: ()=>['order']
-
-            // transformResponse: (response: IOrderResponse) => {
-            //     const products = normalizeData(response.products);
-            //     return {...response, products: products};
-            // }
         }),
         updateOrderRecord: build.mutation<IOrderResponse, {record: Partial<IOrderRecord>, id: string}>({
             query: ({record, id}) => ({
@@ -35,7 +23,7 @@ export const documentsOrderApi = rtkApi.enhanceEndpoints({addTagTypes: ['order']
     })
 });
 
-export const { useGetOrderByIdQuery, useCreateOrderMutation, useUpdateOrderRecordMutation } = documentsOrderApi;
+export const { useCreateOrderMutation, useUpdateOrderRecordMutation } = documentsOrderApi;
 
 
 

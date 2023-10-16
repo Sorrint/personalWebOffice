@@ -1,1 +1,1 @@
-export { EditPackageCategory } from "./components/editPackageCategory/editPackageCategory";
+export { EditPackageCategory } from './components/editPackageCategory/editPackageCategory';

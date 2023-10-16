@@ -1,9 +1,9 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import { type IOrderingChapter, type IOrderingRecordDisplay } from "../../model/types/ordering";
-import { OrderingHeaders } from "../../consts/orderingHeaders";
-import { OrderingChapter } from "./orderingChapter/orderingChapter";
-import { OrderingRecord } from "./orderingRecord/orderingRecord";
+import { type IOrderingChapter, type IOrderingRecordDisplay } from '../../model/types/ordering';
+import { OrderingHeaders } from '../../consts/orderingHeaders';
+import { OrderingChapter } from './orderingChapter/orderingChapter';
+import { OrderingRecord } from './orderingRecord/orderingRecord';
 import styles from './orderingList.module.scss';
 
 interface OrderingListProps {
@@ -20,15 +20,15 @@ const headers: Partial<IOrderingRecordDisplay> = {
 };
 
 export const OrderingList = (props: OrderingListProps) => {
-    const {orderingRecords, className} = props;
+    const { orderingRecords, className } = props;
 
     return (
         <div className={classNames(styles.ordering, className)}>
-            <OrderingRecord header record={headers}/>
-            {orderingRecords?.map(item => 
-                <OrderingChapter 
+            <OrderingRecord header record={headers} />
+            {orderingRecords?.map(item =>
+                <OrderingChapter
                     key={item.summary.categoryName}
-                    orderingChapter={item} 
+                    orderingChapter={item}
                 />)}
         </div>
     );

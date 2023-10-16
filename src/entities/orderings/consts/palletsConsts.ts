@@ -1,4 +1,4 @@
-import { getDeclensions } from "@shared/lib/helpers";
+import { getDeclensions } from '@shared/lib/helpers';
 
 export enum Pallets {
     PALLETS125 = 'pallets125',

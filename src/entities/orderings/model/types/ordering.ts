@@ -1,5 +1,5 @@
-import { type CorrugatedSheets } from "../../consts/corrugatedSheetsConsts";
-import { type Pallets } from "../../consts/palletsConsts";
+import { type CorrugatedSheets } from '../../consts/corrugatedSheetsConsts';
+import { type Pallets } from '../../consts/palletsConsts';
 
 export type ICountOfPallets = Record<typeof Pallets[keyof typeof Pallets], number>
 

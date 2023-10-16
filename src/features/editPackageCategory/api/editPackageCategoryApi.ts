@@ -1,5 +1,5 @@
-import { type IPackageCategory } from "@entities/packages";
-import { rtkApi } from "@shared/api/rtkApi";
+import { type IPackageCategory } from '@entities/packages';
+import { rtkApi } from '@shared/api/rtkApi';
 
 
 

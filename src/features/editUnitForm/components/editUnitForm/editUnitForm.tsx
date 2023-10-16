@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 
-import { UnitSelect, type IUnit, useCreateNewUnit } from "@entities/units";
-import { renderRHFTextField } from "@shared/ui/reactHookFormFields";
-import { EditPropertyField } from "@shared/ui/editPropertyField";
-import { Button } from "@shared/ui/button";
+import { UnitSelect, type IUnit, useCreateNewUnit } from '@entities/units';
+import { renderRHFTextField } from '@shared/ui/reactHookFormFields';
+import { EditPropertyField } from '@shared/ui/editPropertyField';
+import { Button } from '@shared/ui/button';
 
 import './editUnitForm.scss';
 

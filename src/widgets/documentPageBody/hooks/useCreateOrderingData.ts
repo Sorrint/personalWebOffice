@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import { useGetPackageCategories,  selectPackageCategoriesObject } from "@entities/packages";
-import { type IOrderingChapter } from "@entities/orderings";
+import { useGetPackageCategories,  selectPackageCategoriesObject } from '@entities/packages';
+import { type IOrderingChapter } from '@entities/orderings';
 
-import { useGetOrderByIdQuery } from "../api/documentsOrderApi";
-import { createNewOrderingRecord, getOrderingProduct } from "../libs/helpers/createOrdering";
+import { createNewOrderingRecord, getOrderingProduct } from '../libs/helpers/createOrdering';
+import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
 
 
 export const useCreateOrderingData = ( id: string ) => {

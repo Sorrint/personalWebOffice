@@ -8,15 +8,15 @@ import { type Action, type ReducersMapObject } from '@reduxjs/toolkit';
 
 interface StoreProviderProps {
     children?: ReactNode
-    initialState: StoreSchema
+    initialState?: DeepPartial<StoreSchema>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    asyncReducers: ReducersMapObject<StoreSchema, Action<any>>
+    asyncReducers?: DeepPartial<ReducersMapObject<StoreSchema, Action<any>>>
 }
 
 export const StoreProvider = (props: StoreProviderProps) => {
     const { children, asyncReducers, initialState } = props;
 
-    const store = createStore(initialState, asyncReducers);
+    const store = createStore(initialState as StoreSchema, asyncReducers as ReducersMapObject<StoreSchema, Action<any>>);
     const persistor = persistStore(store);
 
     return (

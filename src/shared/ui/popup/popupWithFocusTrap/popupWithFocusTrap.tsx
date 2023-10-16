@@ -1,6 +1,6 @@
-import { Portal } from '@shared/ui/portal';
 import FocusLock from 'react-focus-lock';
 
+import { Portal } from '../../../ui/portal';
 import './PopupWithFocusTrap.scss';
 
 interface PopupWithFocusTrapProps {

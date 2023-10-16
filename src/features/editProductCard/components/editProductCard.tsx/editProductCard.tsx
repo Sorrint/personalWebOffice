@@ -66,7 +66,7 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
                     <EditProductProperty propertyName='Наименование'>
                         <TextField  
                             {...register('name')} 
-                            className= {`editCard__cell editItem__name`} />
+                            className= {'editCard__cell editItem__name'} />
                     </EditProductProperty>
                     
                     {units && type && type !== UnitTypes.COUNTABLE && 
@@ -87,7 +87,7 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
                         (<><EditProductProperty propertyName='Вес нетто товара'>
                             <TextField  
                                 {...register('extraData.weight', {valueAsNumber: true}) } 
-                                className= {`editCard__cell editItem__name`} 
+                                className= {'editCard__cell editItem__name'} 
                                 type='number'/>
                         </EditProductProperty>
 

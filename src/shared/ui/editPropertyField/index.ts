@@ -1,1 +1,1 @@
-export { EditPropertyField } from "./editPropertyField";
+export { EditPropertyField } from './editPropertyField';

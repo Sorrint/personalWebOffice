@@ -1,3 +1,3 @@
-export { Popup } from "./popup/popup";
+export { Popup } from './popup/popup';
 
-export { PopupWithFocusTrap } from "./popupWithFocusTrap/popupWithFocusTrap";
+export { PopupWithFocusTrap } from './popupWithFocusTrap/popupWithFocusTrap';

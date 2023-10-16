@@ -1,4 +1,4 @@
-import { type StoreWithReducerManager, type StoreSchema, type StoreSchemaKey } from '@app/providers/storeProvider/config/storeSchema';
+import { type StoreWithReducerManager, type StoreSchema, type StoreSchemaKey } from '@app/providers/storeProvider';
 import { type Reducer } from '@reduxjs/toolkit';
 import { useEffect, type ReactNode } from 'react';
 import { useDispatch, useStore } from 'react-redux';

@@ -1,5 +1,5 @@
-import { PalletsText } from "../../../consts/palletsConsts";
-import { type ICountOfPallets } from "../../../model/types/ordering";
+import { PalletsText } from '../../../consts/palletsConsts';
+import { type ICountOfPallets } from '../../../model/types/ordering';
 
 export const getPalletsInfoString = (palletsObject: Partial<ICountOfPallets>) => {
     return Object.entries(palletsObject).map(([key, value]) => {

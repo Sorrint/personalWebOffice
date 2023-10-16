@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { type IOrder } from '../../types/IOrder';
 import axios from 'axios';
-import { type ThunkConfig } from '@app/providers';
+import { type ThunkConfig } from '@app/providers/storeProvider';
 import { orderActions } from '../../slices/OrderSlice';
 
 interface SaveCurrentOrderProps {

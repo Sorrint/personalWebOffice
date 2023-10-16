@@ -1,4 +1,4 @@
-import { SelectListBox } from "@shared/ui/selectListBox";
+import { SelectListBox } from '@shared/ui/selectListBox';
 
 interface IProductCollectionListProps {
     onChange?: (e: ICollection)=> void 

@@ -1,5 +1,8 @@
-import { type UnitTypes } from "@entities/units";
-
+enum UnitTypes {
+    COUNTABLE = 'COUNTABLE',
+    SCALABLE = 'SCALABLE',   
+    WEIGHTABLE = 'WEIGHTABLE'
+}
 export type ProductType = 'SCALABLE' | 'COUNTABLE'
 
 export interface extraData {
