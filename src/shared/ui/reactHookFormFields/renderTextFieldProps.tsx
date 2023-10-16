@@ -1,5 +1,5 @@
-import { TextField } from '@shared/ui/textField';
-import type { FieldValues, Path, UseFormRegister } from "react-hook-form";
+import { TextField } from '../../ui/textField';
+import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 interface renderTextFieldProps<T extends FieldValues> {
     fieldName: Path<T>

@@ -1,4 +1,4 @@
-import { transformProductName } from "./transformProductName";
+import { transformProductName } from './transformProductName';
 
 describe('transformProductName', ()=> {
     test('Добавляем пробелы перед словом кг', ()=> {

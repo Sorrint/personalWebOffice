@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 
-import { type IPackage, PackageSelect, useCreateNewPackage } from "@entities/packages";
-import { EditPropertyField } from "@shared/ui/editPropertyField/editPropertyField";
-import { renderRHFTextField } from "@shared/ui/reactHookFormFields";
-import { Button } from "@shared/ui/button";
+import { type IPackage, PackageSelect, useCreateNewPackage } from '@entities/packages';
+import { EditPropertyField } from '@shared/ui/editPropertyField/editPropertyField';
+import { renderRHFTextField } from '@shared/ui/reactHookFormFields';
+import { Button } from '@shared/ui/button';
 import './editPackageForm.scss';
 
 interface EditPackageFormProps {

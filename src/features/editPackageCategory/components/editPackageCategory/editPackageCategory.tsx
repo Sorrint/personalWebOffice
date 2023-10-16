@@ -1,12 +1,12 @@
-import { memo, useCallback } from "react";
-import { type PathValue, useForm, type Path } from "react-hook-form";
+import { memo, useCallback } from 'react';
+import { type PathValue, useForm, type Path } from 'react-hook-form';
 
-import  { type IPackageCategory, PackageSelect } from "@entities/packages";
-import { EditPropertyField } from "@shared/ui/editPropertyField/editPropertyField";
-import { renderRHFTextField } from "@shared/ui/reactHookFormFields";
-import { Button } from "@shared/ui/button";
+import  { type IPackageCategory, PackageSelect } from '@entities/packages';
+import { EditPropertyField } from '@shared/ui/editPropertyField/editPropertyField';
+import { renderRHFTextField } from '@shared/ui/reactHookFormFields';
+import { Button } from '@shared/ui/button';
 
-import { useCreatePackageCategory } from "../../api/editPackageCategoryApi";
+import { useCreatePackageCategory } from '../../api/editPackageCategoryApi';
 import './editPackageCategory.scss';
 
 interface EditPackageCategoryProps {

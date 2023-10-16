@@ -1,14 +1,12 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { useGetOrderProductsWeight } from '@features/getOrderProductsWeight';
-import { OrderingInfo, OrderingList } from '@entities/orderings';
+import { OrderingInfo, OrderingList, SLIPSHEETWEIGHT, type Pallets, PalletsWeight } from '@entities/orderings';
 import { isEmptyObject } from '@shared/lib/helpers';
 
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
+import { getOrderingRowsCount } from '../../libs/helpers/createOrdering';
 import styles from './createOrdering.module.scss';
-import { type Pallets, PalletsWeight } from '@entities/orderings/consts/palletsConsts';
-import { getOrderingRowsCount } from '@widgets/documentPageBody/libs/helpers/createOrdering';
-import { SLIPSHEETWEIGHT } from '@entities/orderings/consts/slipSheetsConsts';
 
 export const CreateOrdering = () => {
     //mock-данные 

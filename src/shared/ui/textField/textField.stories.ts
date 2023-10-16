@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import './textField.scss';
 import { TextField } from './textField';
-import '@app/styles/style.scss';
+// import '@app/styles/style.scss';
 
 const meta = {
     title: 'uiKit/TextField',

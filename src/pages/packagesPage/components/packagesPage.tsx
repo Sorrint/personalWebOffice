@@ -1,7 +1,7 @@
-import { AppBody, AppHeader, AppLayout } from "@shared/layouts";
-import { Header } from "@widgets/header";
-import { NavBar } from "@widgets/navBar";
-import { Outlet } from "react-router-dom";
+import { AppBody, AppHeader, AppLayout } from '@shared/layouts';
+import { Header } from '@widgets/header';
+import { NavBar } from '@widgets/navBar';
+import { Outlet } from 'react-router-dom';
 
 const PackagesPage = () => {
     return  <><Header />

@@ -8,26 +8,26 @@ import type {Config} from 'jest';
 const config: Config = {
     // Automatically clear mock calls, instances, contexts and results before every test
     clearMocks: true,
-    testEnvironment: "jsdom",
+    testEnvironment: 'jsdom',
     coveragePathIgnorePatterns: [
-        "\\\\node_modules\\\\"
+        '\\\\node_modules\\\\'
     ],
 
     // An array of directory names to be searched recursively up from the requiring module's location
     moduleDirectories: [
-        "node_modules"
+        'node_modules'
     ],
 
     //An array of file extensions your modules use
     moduleFileExtensions: [
-        "js",
-        "mjs",
-        "cjs",
-        "jsx",
-        "ts",
-        "tsx",
-        "json",
-        "node"
+        'js',
+        'mjs',
+        'cjs',
+        'jsx',
+        'ts',
+        'tsx',
+        'json',
+        'node'
     ],
 
     // A list of paths to modules that run some code to configure or set up the testing framework before each test

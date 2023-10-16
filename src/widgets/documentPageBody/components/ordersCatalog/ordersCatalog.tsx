@@ -1,4 +1,4 @@
-import { OrdersList, useGetOrdersListQuery } from "@entities/orders";
+import { OrdersList, useGetOrdersListQuery } from '@entities/orders';
 
 
 export const OrdersCatalog = () => {

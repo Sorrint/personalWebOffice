@@ -1,5 +1,5 @@
 import './popup.scss';
-import { Portal } from '@shared/ui/portal';
+import { Portal } from '../../../ui/portal';
 
 interface PopupProps {
     children: React.ReactNode

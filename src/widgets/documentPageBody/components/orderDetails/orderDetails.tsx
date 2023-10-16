@@ -1,7 +1,7 @@
 import { NavLink, useParams } from 'react-router-dom';
 import { type IOrderRecord, OrderCard } from '@entities/orders';
+import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
 
-import { useGetOrderByIdQuery } from '../../api/documentsOrderApi';
 
 export const OrderDetails = () => {
 

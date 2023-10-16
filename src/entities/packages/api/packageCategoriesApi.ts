@@ -1,6 +1,6 @@
 import { type EntityState, createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 
-import { rtkApi } from "@shared/api/rtkApi";
+import { rtkApi } from '@shared/api/rtkApi';
 import { type RootState } from '@shared/lib/store/types';
 
 import { type IPackageCategoryResponse } from './../model/packageCategoryType';

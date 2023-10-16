@@ -1,10 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
 
-import { EditProductCard } from "@features/editProductCard";
+import { EditProductCard } from '@features/editProductCard';
 import { type IStoreProduct } from '@entities/products';
 
-import { useGetOrderByIdQuery, useUpdateOrderRecordMutation } from "../../api/documentsOrderApi";
+import { useUpdateOrderRecordMutation } from '../../api/documentsOrderApi';
 import './addOrderProducts.scss';
+import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
 
 export const AddOrderProducts = () => {
     const [queryParams] = useSearchParams();

@@ -1,8 +1,8 @@
 import { memo, type ChangeEvent, type ForwardedRef, type KeyboardEvent, type FocusEvent } from 'react';
 
-import { TextField } from '@shared/ui/textField';
-import useDebounce from '@shared/lib/hooks/useDebounce/useDebounce';
-import { Loader } from '@shared/ui/loaders/loader';
+import { TextField } from '../../ui/textField';
+import useDebounce from '../../lib/hooks/useDebounce/useDebounce';
+import { Loader } from '../../ui/loaders/loader';
 
 import './searchInput.scss';
 

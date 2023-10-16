@@ -9,7 +9,7 @@ import { ProfilePage } from '@pages/profilePage';
 import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
 import { AddOrderProducts, CreateOrder, Distribution, OrderDetails, CreateOrdering, OrdersCatalog } from '@widgets/documentPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
-import { routesLinks } from '@widgets/navBar/model/menuItems';
+import { routesLinks } from '@widgets/navBar';
 
 import { EditPackageCategory } from '@features/editPackageCategory';
 import { EditPackageForm } from '@features/editPackageForm';

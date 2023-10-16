@@ -1,8 +1,8 @@
-import { type IPackageCategoryResponse } from "@entities/packages";
-import { type IOrderingChapter } from "@entities/orderings";
-import { type IStoreProduct } from "@entities/products";
+import { type IPackageCategoryResponse } from '@entities/packages';
+import { type IOrderingChapter } from '@entities/orderings';
+import { type IStoreProduct } from '@entities/products';
 
-import { type IOrderRecordResponse } from "../../model/types/documents";
+import { type IOrderRecordResponse } from '../../model/types/documents';
 
 export const createNewOrderingRecord = (category: IPackageCategoryResponse) => {
     return { records: [],

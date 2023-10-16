@@ -1,5 +1,5 @@
-import { CorrugatedSheets } from "../../../consts/corrugatedSheetsConsts";
-import { type ICorrugatedSheetsCount } from "../../../model/types/ordering";
+import { CorrugatedSheets } from '../../../consts/corrugatedSheetsConsts';
+import { type ICorrugatedSheetsCount } from '../../../model/types/ordering';
 
 
 export const getCorrugatesSheetsString = (sheetsObject: Partial<ICorrugatedSheetsCount>) => {

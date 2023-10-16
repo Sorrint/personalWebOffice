@@ -1,4 +1,4 @@
-import { parseWeightKg } from "./parseWeightKg";
+import { parseWeightKg } from './parseWeightKg';
 
 describe('parseWeightKg', ()=> {    
     test('Парсим целое число', ()=> {

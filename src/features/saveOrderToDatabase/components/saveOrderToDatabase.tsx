@@ -1,8 +1,8 @@
 import { type FC } from 'react';
-import { type IOrder } from '@entities/orders/model/types/IOrder';
+import { type IOrder } from '@entities/orders';
 import { useAppDispatch } from '@shared/lib/hooks';
 import { Button } from '@shared/ui/button/button';
-import { saveCurrentOrder } from '@entities/orders/model/services/saveCurrentOrder/saveCurrentOrder';
+import { saveCurrentOrder } from '@entities/orders';
 
 interface ISaveOrderCardProps {
     order: IOrder | undefined

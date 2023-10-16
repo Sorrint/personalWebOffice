@@ -1,8 +1,8 @@
 import { useState, type ReactNode } from 'react';
 import { usePopper } from 'react-popper';
 
-import { useClickOutside } from '@shared/lib/hooks/useClickOutside';
-import { Portal } from '@shared/ui/portal';
+import { useClickOutside } from '../../../lib/hooks/useClickOutside';
+import { Portal } from '../../../ui/portal';
 
 interface PopoverProps {
     isOpen: boolean
