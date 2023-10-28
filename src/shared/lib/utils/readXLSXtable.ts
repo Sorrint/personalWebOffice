@@ -1,9 +1,8 @@
-import { read, utils } from 'xlsx';
-
 export type SheetData = Record<string, unknown>;
 
 export const readXLSXTable = async (e: React.BaseSyntheticEvent, sheetName: string): Promise<SheetData[] | string> => {
     e.preventDefault();
+    const { read, utils } = await import('xlsx')
     const file = e.target.files[0];
     const data = await file.arrayBuffer();
     const workbook = read(data, { WTF: true, sheets: sheetName });

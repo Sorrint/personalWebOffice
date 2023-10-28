@@ -16,6 +16,7 @@ interface StoreProviderProps {
 export const StoreProvider = (props: StoreProviderProps) => {
     const { children, asyncReducers, initialState } = props;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const store = createStore(initialState as StoreSchema, asyncReducers as ReducersMapObject<StoreSchema, Action<any>>);
     const persistor = persistStore(store);
 
