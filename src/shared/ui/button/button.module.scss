@@ -1,40 +1,36 @@
-.submit-button {
-    min-height: 40px;
-    min-width: 88px;
-    line-height: 40px;
+.btn {
     height: 3em;
     width: 15em;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 10px 15px;
+}
+
+.submit {
     color: #fff;
     background-color: var(--primary-color);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     border-radius: 2px;
-    margin: 10px;
-    letter-spacing: 1px;
 
     & a, a:visited {
         color: #fff;
     }
 }
 
-.cancel-button {
-    min-height: 40px;
-    min-width: 88px;
-    line-height: 40px;
-    height: 3em;
-    width: 15em;
-    font-size: 14px;
-    font-weight: bold;
+.cancel {
     color: #fff;
     background-color: rgb(205, 44, 44);
 
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     border-radius: 2px;
-    margin: 10px;
 }
 
-.dropdown-button {
+.disabled {
+    background-color: grey;
+}
+
+.dropdown {
     display: flex;
     align-items: center;
     position: relative;

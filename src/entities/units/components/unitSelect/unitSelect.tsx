@@ -10,7 +10,7 @@ interface UnitSelectProps  {
     classname?: string
     id?: string
     onChange?: (id: string)=> void
-    type: UnitTypes
+    type?: UnitTypes
 }
 
 export const UnitSelect = (props: UnitSelectProps) => {

@@ -51,7 +51,7 @@ export const EditPackageForm = ({packageBox}: EditPackageFormProps) => {
                     renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'color', register, textFieldType: 'text' })}
                     className="packageProperty"
                 />
-                <Button className='packageSubmit' onClick={handleSubmit(editPackage)}>Добавить упаковку</Button>
+                <Button classname='packageSubmit' onClick={handleSubmit(editPackage)}>Добавить упаковку</Button>
             </div>
         </>
     );
