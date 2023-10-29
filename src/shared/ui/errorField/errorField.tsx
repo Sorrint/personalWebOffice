@@ -9,6 +9,6 @@ interface ErrorFieldProps {
 export const ErrorField = memo(({children, classname}: ErrorFieldProps) => {
     if (!children) return null
 
-    const errorStyle = classNames(styles.error,classname)
+    const errorStyle = classNames(styles.error, classname)
     return <small className={errorStyle}>{children}</small>;
 });

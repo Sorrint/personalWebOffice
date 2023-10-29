@@ -11,8 +11,22 @@
     border-radius: 10px;
 }
 
+
 .field {
     display: flex;
     flex-direction: column;
     gap: 5px;
-  }
+}
+
+.submit {
+    margin: 0 auto;
+}
+
+.empty {
+    position: relative;
+    width: 100%;
+}
+
+.error {
+    position: absolute;
+}

@@ -6,38 +6,54 @@ import { TextField } from '@shared/ui/textField';
 import { ErrorField } from '@shared/ui/errorField';
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import { type UserRegisterDTO } from '../model/types/userRegisterDTO';
 import { RegisterSchema } from '../model/registrationSchema';
+import { useRegisterMutation } from '../api/registerApi';
 import styles from './registrationForm.module.scss'
 
 interface RegistrationFormProps {
     classname?: string
 }
 
-interface UserRegisterDTO {
-    email: string
-    password: string
-}
-
 export const RegistrationForm = memo((props: RegistrationFormProps) => {
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm<UserRegisterDTO>({mode: 'onChange', resolver: zodResolver(RegisterSchema)})
+    const {register, handleSubmit, formState: {errors, isValid}} = useForm<UserRegisterDTO>({
+        mode: 'onChange', 
+        resolver: zodResolver(RegisterSchema)
+    })
     
     const emailError = errors.email?.message
     const passwordError = errors.password?.message
+    const nameError = errors.name?.message
 
 
-    const onSubmit = (data: UserRegisterDTO) => {
-        console.log(data)
+    const [registerUser] = useRegisterMutation()
+
+    const onSubmit = async (data: UserRegisterDTO) => {
+        const answer = await registerUser(data)
+        console.log(answer)
     }
  
     return <div className={styles.register}>
         <h2>РЕГИСТРАЦИЯ</h2>
         <div className={styles.field}>
             <TextField 
+                label='Имя пользователя'
+                variant='standard'
+                {...register('name')}
+            />
+            <div className={styles.empty}>
+                <ErrorField classname={styles.error}>{nameError}</ErrorField>
+            </div>
+        </div>
+        <div className={styles.field}>
+            <TextField 
                 label='Введите email'
                 variant='standard'
                 {...register('email')}
             />
-            <ErrorField>{emailError}</ErrorField>
+            <div className={styles.empty}>
+                <ErrorField classname={styles.error}>{emailError}</ErrorField>
+            </div>
         </div>
         <div className={styles.field}>
             <TextField 
@@ -46,8 +62,17 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
                 type='password'
                 {...register('password')}
             />
-            <ErrorField>{passwordError}</ErrorField>
+            <div className={styles.empty}>
+                <ErrorField classname={styles.error}>{passwordError}</ErrorField>
+            </div>
         </div>
-        <Button disabled={!isValid} onClick={handleSubmit(onSubmit)} >Зарегистрироваться</Button>
+        
+        <Button 
+            disabled={!isValid} 
+            onClick={handleSubmit(onSubmit)} 
+            classname={styles.submit}
+        >
+            Зарегистрироваться
+        </Button>
     </div>;
 });
