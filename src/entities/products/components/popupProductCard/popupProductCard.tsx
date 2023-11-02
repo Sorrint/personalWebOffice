@@ -6,6 +6,7 @@ import { type SerializedError } from '@reduxjs/toolkit';
 import { type IInventoryProduct } from '@entities/inventoryDocs';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 import { CounterField } from '@shared/ui/counterField/counterField';
+import { Button } from '@shared/ui/button';
 
 import './popupProductCard.scss';
 
@@ -61,8 +62,8 @@ export function PopupProductCard ({ product, buttonClick, buttonText, error, pop
         e.target.select();
     };
 
-    const getButtonClass = () => {
-        return method === 'Delete' ? 'delete-button' : 'submit-button';
+    const getButtonType = () => {
+        return method === 'Delete' ? 'cancel' : 'submit';
     };
 
     return (
@@ -88,9 +89,9 @@ export function PopupProductCard ({ product, buttonClick, buttonText, error, pop
                     />
                 </div>
                 {popupText && <h3>{popupText}</h3>}
-                <button className={getButtonClass()} onClick={handleSubmit(buttonClick)} ref={submitRef}>
+                <Button buttonType={getButtonType()} onClick={handleSubmit(buttonClick)} ref={submitRef}>
                     {buttonText}
-                </button>
+                </Button>
                 {error && <div className="error-message">Произошла ошибка при отправке данных</div>}
             </form>
         </div>
