@@ -107,10 +107,15 @@ export const routesLinks = {
         text: 'Профиль',
         path: `${BaseURL}/profile`
     },
-    auth: {
-        id: 'auth',
-        text: 'Авторизация',
-        path: `${BaseURL}/auth`
+    register: {
+        id: 'register',
+        text: 'Регистрация',
+        path: `${BaseURL}/register`
+    },
+    login: {
+        id: 'login',
+        text: 'Вход',
+        path: `${BaseURL}/login`
     }
 };
 

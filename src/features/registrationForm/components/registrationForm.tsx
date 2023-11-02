@@ -10,12 +10,13 @@ import { type UserRegisterDTO } from '../model/types/userRegisterDTO';
 import { RegisterSchema } from '../model/registrationSchema';
 import { useRegisterMutation } from '../api/registerApi';
 import styles from './registrationForm.module.scss'
+import classNames from 'classnames';
 
 interface RegistrationFormProps {
     classname?: string
 }
 
-export const RegistrationForm = memo((props: RegistrationFormProps) => {
+export const RegistrationForm = memo(({classname}: RegistrationFormProps) => {
     const {register, handleSubmit, formState: {errors, isValid}} = useForm<UserRegisterDTO>({
         mode: 'onChange', 
         resolver: zodResolver(RegisterSchema)
@@ -32,8 +33,10 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
         const answer = await registerUser(data)
         console.log(answer)
     }
+    
+    const formStyle = classNames(styles.register, classname)
  
-    return <div className={styles.register}>
+    return <div className={formStyle}>
         <h2>РЕГИСТРАЦИЯ</h2>
         <div className={styles.field}>
             <TextField 

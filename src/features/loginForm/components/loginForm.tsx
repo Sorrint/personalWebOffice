@@ -6,16 +6,17 @@ import { TextField } from '@shared/ui/textField';
 import { ErrorField } from '@shared/ui/errorField';
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import styles from './registrationForm.module.scss'
+import styles from './loginForm.module.scss'
 import { type UserLoginDTO } from '../model/types/userLoginDTO';
 import { LoginSchema } from '../model/loginSchema';
 import { useLoginMutation } from '../api/loginApi';
+import classNames from 'classnames';
 
 interface LoginFormProps {
     classname?: string
 }
 
-export const LoginForm = memo((props: LoginFormProps) => {
+export const LoginForm = memo(({classname}: LoginFormProps) => {
     const {register, handleSubmit, formState: {errors, isValid}} = useForm<UserLoginDTO>({
         mode: 'onChange', 
         resolver: zodResolver(LoginSchema)
@@ -31,8 +32,10 @@ export const LoginForm = memo((props: LoginFormProps) => {
         const answer = await registerUser(data)
         console.log(answer)
     }
+
+    const formStyle = classNames(styles.login, classname)
  
-    return <div className={styles.register}>
+    return <div className={formStyle}>
         <h2>Вход</h2>
  
         <div className={styles.field}>

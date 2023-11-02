@@ -13,7 +13,7 @@ import { routesLinks } from '@widgets/navBar';
 
 import { EditPackageCategory } from '@features/editPackageCategory';
 import { EditPackageForm } from '@features/editPackageForm';
-import { RegistrationForm } from '@features/registrationForm';
+import { AuthPage } from '@pages/authPage';
 
 const routes: RouteObject[] = [
     { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },
@@ -79,8 +79,12 @@ const routes: RouteObject[] = [
         element: <ProfilePage />
     },
     {
-        path: `${routesLinks.auth.path}`,
-        element: <RegistrationForm />
+        path: `${routesLinks.register.path}`,
+        element: <AuthPage />
+    },
+    {
+        path: `${routesLinks.login.path}`,
+        element: <AuthPage />
     },
     { path: '*', element: <Navigate to={`.${routesLinks.documents.path}`} /> }
 ];
