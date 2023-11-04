@@ -1,10 +1,10 @@
 import MenuList from '../menuList/menuList';
 import { navBar } from '../../model/menuItems';
-
-import './navBar.scss';
 import { type IMenuItems } from '../../model/menuItemsTypes';
 
-export const NavBar = () => {
+import './sideBar.scss';
+
+export const SideBar = () => {
     return (
         <div className="app__sidenav">
             <nav className="navigation">

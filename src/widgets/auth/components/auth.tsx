@@ -3,10 +3,8 @@ import styles from './auth.module.scss';
 import { LoginForm } from '@features/loginForm';
 import { RegistrationForm } from '@features/registrationForm';
 
-interface AuthProps {
-    classname?: string
-}
-export const Auth = (props: AuthProps) => {
+
+export const Auth = () => {
     const {pathname} = useLocation()
     const route = pathname.split('/').at(-1)
     const isLoginPage = route === 'login' 

@@ -1,14 +1,8 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryAuth } from '@shared/lib/middlewares/authQueryMiddleware';
 
 export const rtkApi = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({
-        baseUrl: __SERVER_URI__,
-        credentials: 'include',
-        prepareHeaders: (headers) => {
-            headers.set('authorization', `Bearer ${localStorage.getItem('dreamToken') ?? ''} `);
-            return headers;
-        }
-    }),
+    baseQuery: baseQueryAuth,
     endpoints: () => ({})
 });

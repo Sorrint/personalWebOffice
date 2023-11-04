@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 import { Header } from '@widgets/header';
-import { NavBar } from '@widgets/navBar';
+import { NavBar } from '@widgets/sideBar';
 import { AppRibbon } from '@widgets/appRibbon';
 import { orderReducer } from '@entities/orders';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';

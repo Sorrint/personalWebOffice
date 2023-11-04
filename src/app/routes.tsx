@@ -5,17 +5,18 @@ import { InventoryPage } from '@pages/inventoryPage';
 import { PackagesPage } from '@pages/packagesPage';
 import { ProductsPage } from '@pages/productsPage';
 import { ProfilePage } from '@pages/profilePage';
+import { AuthPage } from '@pages/authPage';
 
 import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
 import { AddOrderProducts, CreateOrder, Distribution, OrderDetails, CreateOrdering, OrdersCatalog } from '@widgets/documentPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
-import { routesLinks } from '@widgets/navBar';
 
 import { EditPackageCategory } from '@features/editPackageCategory';
 import { EditPackageForm } from '@features/editPackageForm';
-import { AuthPage } from '@pages/authPage';
 
-const routes: RouteObject[] = [
+import { routesLinks } from '@shared/config/router';
+
+export const routes: RouteObject[] = [
     { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },
     {
         path: `${routesLinks.documents.path}`,
@@ -84,8 +85,10 @@ const routes: RouteObject[] = [
     },
     {
         path: `${routesLinks.login.path}`,
-        element: <AuthPage />
+        element: <AuthPage />,
+        
     },
     { path: '*', element: <Navigate to={`.${routesLinks.documents.path}`} /> }
 ];
 export default routes;
+
