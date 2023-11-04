@@ -1,20 +1,23 @@
 import { NavLink } from 'react-router-dom';
-
-import './header.scss';
 import { memo } from 'react';
 
+import styles from './header.module.scss';
+
 export const Header = memo(() => {
-    return (
-        <div className="header">
-            <div className="header__burger">
+
+
+    return (    
+        <div className={styles.header}>
+            <div className={styles.burger}>
                 <span></span>
             </div>
-            <div className="header__logo"></div>
-            <span className="header__text">Кабинет</span>
-            <div className="header__icon"></div>
-            <NavLink className="header__mail" to={'/office/profile'}>
+            <div className={styles.logo}></div>
+            <span className={styles.text}>Кабинет</span>
+            <div className={styles.icon}></div>
+            <NavLink className={styles.mail} to={'/office/profile'}>
                 sorrint@gmail.com
             </NavLink>
+ 
         </div>
     );
 });

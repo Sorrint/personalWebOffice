@@ -1,0 +1,31 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    max-width: 300px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFF;
+}
+
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.submit {
+    margin: 0 auto;
+}
+
+.empty {
+    position: relative;
+    width: 100%;
+}
+
+.error {
+    position: absolute;
+}

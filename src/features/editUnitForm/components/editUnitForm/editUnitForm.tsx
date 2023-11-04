@@ -42,7 +42,7 @@ export const EditUnitForm = ({unit}: EditPackageFormProps) => {
                     renderEditField={() => renderRHFTextField<IUnit>({fieldName: 'description', register, textFieldType: 'text' })}
                     className="unitProperty"
                 />
-                <Button className='unitSubmit' onClick={handleSubmit(editUnit)}>Добавить единицу измерения</Button>
+                <Button classname='unitSubmit' onClick={handleSubmit(editUnit)}>Добавить единицу измерения</Button>
             </div>
         </>
     );

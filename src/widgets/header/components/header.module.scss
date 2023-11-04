@@ -9,38 +9,42 @@
 
     background-color: var(--primary-color);
 
-    &__burger {
-        display: none;
-    }
-    &__logo {
-        width: 25px;
-        height: 25px;
-        background-color: burlywood;
-    }
 
-    &__text {
-        width: 100%;
+  
+  
 
-        color: #fff;
-        font-size: 30px;
-        font-weight: 500;
-        padding: 3px 0 0 6px;
-    }
 
-    &__icon {
-        width: 25px;
-        height: 25px;
-        background-color: burlywood;
-    }
 
-    &__mail {
-        display: inline-block;
-        font-size: 12px;
-        font-weight: 400;
-        padding: 6px 0 0 4px;
-        letter-spacing: 1px;
-        color: #fff !important;
-    }
+}
+
+.burger {
+    display: none;
+}
+
+.auth {
+    background-color: orangered;
+}
+
+.logo {
+    width: 25px;
+    height: 25px;
+    background-color: burlywood;
+}
+
+.text {
+    width: 100%;
+
+    color: #fff;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 3px 0 0 6px;
+}
+
+
+.icon {
+    width: 25px;
+    height: 25px;
+    background-color: burlywood;
 }
 
 .header-top {
@@ -50,6 +54,16 @@
     align-items: center;
     padding: 0 20px 0 10px;
     background-color: var(--primary-color);
+}
+
+
+.mail {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 6px 0 0 4px;
+    letter-spacing: 1px;
+    color: #fff !important;
 }
 
 @media (max-width: 767px) {

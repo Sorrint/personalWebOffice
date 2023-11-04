@@ -1,0 +1,1 @@
+export { SideBar as NavBar } from './components/navBar/sideBar';

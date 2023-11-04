@@ -20,19 +20,22 @@ export const routesLinks = {
         id: 'dashboard',
         text: 'Отчёты',
         image: ReportsIcon,
-        path: `${BaseURL}/dashboard`
+        path: `${BaseURL}/dashboard`,
+        authOnly: true
     },
     stores: {
         id: 'shops',
         text: 'Магазины',
         image: ShopsIcon,
-        path: `${BaseURL}/shops`
+        path: `${BaseURL}/shops`,
+        authOnly: true
     },
     documents: {
         id: 'documents',
         text: 'Документы',
         image: DocumentsIcon,
-        path: `${BaseURL}/documents`
+        path: `${BaseURL}/documents`,
+        authOnly: true
     },
     inventory: {
         id: 'inventory-lists',
@@ -106,29 +109,15 @@ export const routesLinks = {
         id: 'profile',
         text: 'Профиль',
         path: `${BaseURL}/profile`
+    },
+    register: {
+        id: 'register',
+        text: 'Регистрация',
+        path: `${BaseURL}/register`
+    },
+    login: {
+        id: 'login',
+        text: 'Вход',
+        path: `${BaseURL}/login`
     }
 };
-
-const {
-    reports, documents, stores, inventory, packages, products,
-    clients, loyality, stocks, integrations, news, scopes, question, support
-} = routesLinks;
-
-const menuItemsTop = {
-    id: 'navigation-menu__top',
-    wrapperClassName: 'navigation-menu__top',
-    items: [reports, stores, documents, inventory, packages, products, clients, stocks, loyality, integrations]
-};
-
-const menuItemsSpecial = {
-    id: 'navigation-menu__special',
-    items: [scopes, news]
-};
-
-const menuItemsBottom = {
-    id: 'navigation-menu__bottom',
-    wrapperClassName: 'navigation-menu__bottom',
-    items: [support, question]
-};
-
-export const navBar = [menuItemsTop, menuItemsSpecial, menuItemsBottom];

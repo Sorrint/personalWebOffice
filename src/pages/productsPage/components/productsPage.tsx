@@ -2,7 +2,7 @@ import { type FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { Header } from '@widgets/header';
-import { NavBar } from '@widgets/navBar';
+import { NavBar } from '@widgets/sideBar';
 import { AppRibbon } from '@widgets/appRibbon';
 import { AppBody, AppHeader, AppLayout } from '@shared/layouts';
 import { type INavLinkObject } from '@shared/types/navLinkTypes';

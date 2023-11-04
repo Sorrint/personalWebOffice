@@ -3,7 +3,7 @@ import './profile.scss';
 
 import { ProfilePageBody } from '@widgets/profilePageBody';
 import { AppBody, AppLayout } from '@shared/layouts';
-import { NavBar } from '@widgets/navBar';
+import { NavBar } from '@widgets/sideBar';
 
 const ProfilePage = () => {
     return (
