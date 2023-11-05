@@ -1,6 +1,5 @@
 import { TableBody } from './tableBody';
 import { TableHeader } from './tableHeader';
-import './table.scss';
 
 interface TableProps {
     data: ObjectRecord[]

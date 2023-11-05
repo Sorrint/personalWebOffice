@@ -12,7 +12,7 @@
 // import SupportIcon from '@shared/assets/icons/support.svg';
 // import QuestionIcon from '@shared/assets/icons/question.svg';
 // import PackageBoxIcon from '@shared/assets/icons/package-box.svg';
-import { type IconName } from '@shared/ui/iconFont/IconFont';
+import { type IconName } from '@shared/ui/iconFont';
 
 const BaseURL = '/office';
 

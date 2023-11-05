@@ -1,3 +1,7 @@
+.icon {
+    font-size: 20px;
+}
+
 .link{
     width: 100%;
     display: block;
@@ -10,21 +14,17 @@
     }
 
     &:hover {
-        background-color: rgb(236, 236, 236);
+        background-color: rgb(236 236 236);
         cursor: pointer;
     }
 
     & .icon {
-        color: rgb(150, 150, 150);
+        color: rgb(150 150 150);
     }
 }
 
-.icon {
-    font-size: 20px;
-}
-
 .active {
-    background-color: rgb(227, 242, 244);
+    background-color: rgb(227 242 244);
     color: var(--primary-color);
 
     & .icon {
@@ -43,6 +43,7 @@
 .item {
     display: flex;
     align-items: center;
+
     &:last-child {
         margin: 0;
     }

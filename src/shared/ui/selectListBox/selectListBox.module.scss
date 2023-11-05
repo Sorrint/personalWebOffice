@@ -1,0 +1,32 @@
+.select-list {
+    position: relative;
+    display: inline-block;
+}
+
+.button {
+    width: 300px;
+    margin-bottom: 8px;
+}
+
+.options {
+    z-index: 1000;
+    width: 100%;
+    position: absolute;
+    box-shadow: 0 2px 5px 0 rgba(0 0 0 / 40%);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #FFF;
+}
+
+.option {
+    padding: 8px 10px;
+}
+
+.active {
+    background-color:var(--primary-active-color);
+}
+
+.selected {
+    background-color:var(--primary-color);
+    color: #FFF;
+}

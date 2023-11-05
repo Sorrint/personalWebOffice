@@ -1,7 +1,7 @@
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
 import { Tabs } from '@shared/ui/tabs';
 
-import './appRibbon.scss';
+import styles from './appRibbon.module.scss';
 
 interface AppRibbonProps {
     navLinks: INavLinkObject
@@ -10,9 +10,9 @@ interface AppRibbonProps {
 export const AppRibbon = ({ navLinks }: AppRibbonProps) => {
     const tabs = Object.keys(navLinks).map(link => ({contentTab: navLinks[link].title, to: navLinks[link].path}));
     return (
-        <div className="app__ribbon">
+        <div className={styles.ribbon}>
             <Tabs list={tabs}></Tabs>
-            <div className="fillElement"></div>
+            <div className={styles['fill-element']}></div>
         </div>
     );
 };

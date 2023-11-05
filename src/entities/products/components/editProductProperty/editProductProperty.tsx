@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import './editProductProperty.scss';
+import styles from  './editProductProperty.module.scss';
 
 interface EditProductPropertyProps {
     propertyName: string
@@ -7,8 +7,8 @@ interface EditProductPropertyProps {
 }
 
 export const EditProductProperty = ({ propertyName, children }: EditProductPropertyProps) => {
-    return <div className="productProperty">
-        <div className='productProperty__title'>{propertyName}</div>
+    return <div className={styles.property}>
+        <div className={styles.title}>{propertyName}</div>
         {children}
     </div>;
 };

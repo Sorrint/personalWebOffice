@@ -5,7 +5,7 @@ import { transformDate } from '@shared/lib/helpers';
 
 import { type IInventoryDocs } from '../../model/types';
 
-import './inventoryDocs.scss';
+import styles from './inventoryDocs.module.scss';
 
 interface InventoryListItemProps {
     document: IInventoryDocs
@@ -17,7 +17,7 @@ export const InventoryListItem = memo(({ document }: InventoryListItemProps) => 
         <>
             <Link
                 to={`${documentNumber}`}
-                className="inventory__item"
+                className={styles.item}
             >{`Инвентаризация № ${documentNumber} от ${date}. ${comment}`}</Link>
         </>
     );

@@ -1,7 +1,8 @@
 import { forwardRef, type ForwardedRef, type KeyboardEvent } from 'react';
 import { type FieldValues, type Path } from 'react-hook-form';
 
-import './radioButton.scss';
+import styles from './radioButton.module.scss';
+import classNames from 'classnames';
 
 interface IRadioButtonProps<T extends FieldValues> {
     label: string
@@ -27,20 +28,24 @@ export const RadioButton = forwardRef(function RadioButton<T extends FieldValues
         disabled = false
     } = props;
 
+    const radioStyles = classNames(styles.label, {
+        [styles.disabled]: disabled
+    }, inputClass)
+
     return (
-        <label className={`radioButton__label ${inputClass ?? ''} ${disabled ? 'disabled' : ''}`}>
+        <label className={radioStyles}>
             <input
                 type={'radio'}
                 id={name}
                 name={name}
-                className={'radioButton__input'}
+                className={styles.input}
                 onChange={onChange}
                 value={value}
                 ref={ref}
                 onKeyDown={onKeyDown && ((e) => { onKeyDown(e); })}
                 disabled={disabled}
             />
-            <div className='radioButton__icon'/>
+            <div className={styles.icon}/>
             {label}
         </label>
     );

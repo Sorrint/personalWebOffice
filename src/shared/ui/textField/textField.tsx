@@ -1,8 +1,9 @@
 import { useState, forwardRef, type ForwardedRef, type KeyboardEvent, memo } from 'react';
 import { type FieldValues, type Path } from 'react-hook-form';
 
-import './textField.scss';
+import styles from './textField.module.scss';
 import { IconFont } from '../iconFont/IconFont';
+import classNames from 'classnames';
 
 export type ITextFieldType = 'text' | 'number' | 'password' | 'email' | 'tel'
 export interface ITextFieldsProps<T extends FieldValues> {
@@ -28,19 +29,23 @@ export const TextField = memo(forwardRef(function TextField<T extends FieldValue
     const { label, name, type, error, autoComplete, onChange, onKeyDown, variant = 'outline', onFocus, className, size = 'normal' } = props;
     const [showPassword, setShowPassword] = useState(false);
 
-    const getInputClasses = () => {
-        return `input-group input-group_${variant} `;
-    };
+ 
     const toggleShowPassword = () => {
         setShowPassword((prevState) => !prevState);
     };
 
+    const containerClass = classNames(styles.container, styles[size],  {
+        [styles['is-invalid']]: error
+    }, className)
+
+    const inputClass = classNames(styles['input-group'], styles[variant])
+
     return (
-        <div className={'input-container' + (error ? ' is-invalid' : '') +(`input-group_${size}`) + (` ${className ?? ''}`)}>
-            <div className={`${getInputClasses()}` + (error ? ' is-invalid' : '')}>
+        <div className={containerClass}>
+            <div className={inputClass}>
                 <input
                     id={`${name}-${new Date().getTime()}`}
-                    className={'input-container__input'}
+                    className={styles.input}
                     placeholder={' '}
                     type={showPassword ? 'text' : type}
                     name={name}
@@ -51,17 +56,17 @@ export const TextField = memo(forwardRef(function TextField<T extends FieldValue
                     onFocus={onFocus}
                 />
                 {label && (
-                    <label className="placeholder" htmlFor={name}>
+                    <label className={styles.placeholder} htmlFor={name}>
                         {label}
                     </label>
                 )}
                 {type === 'password' && (
-                    <button className="input-container__password-button" type="button" onClick={toggleShowPassword}>
-                        <IconFont iconName={showPassword ? 'icon-eye-open' : 'icon-eye-slashed'} classname='eye-icon'/>
+                    <button className={styles['password-button']} type="button" onClick={toggleShowPassword}>
+                        <IconFont iconName={showPassword ? 'icon-eye-open' : 'icon-eye-slashed'} classname={styles['eye-icon']}/>
                     </button>
                 )}
             </div>
-            {error && <div className="invalid-feedback">{error}</div>}
+            {error && <div className={styles['invalid-feedback']}>{error}</div>}
         </div>
     );
 }));

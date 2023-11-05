@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Tab } from '@headlessui/react';
 import classNames from 'classnames';
 
-import './tabs.scss';
-
+import styles from './tabs.module.scss';
 
 interface CustomTab {
     contentTab: string
@@ -18,9 +17,11 @@ interface TabsProps {
 
 export const Tabs = ({ list, classname } : TabsProps) => {
     const getMenuItemClass = ({ isActive } : {isActive: boolean}) : string => 
-        isActive ? 'content__button active': 'content__button';
+        classNames(styles['content-button'], {
+            [styles.active]: isActive
+        })
 
-    const tabListClass = classNames('tabsList', classname);
+    const tabListClass = classNames(styles['tabs-list'], classname);
 
     return (
         <Tab.Group>

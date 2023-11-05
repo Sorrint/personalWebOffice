@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'office';
+  font-family: office;
   src:  url('fonts/office.eot?2drnsc');
   src:  url('fonts/office.eot?2drnsc#iefix') format('embedded-opentype'),
     url('fonts/office.ttf?2drnsc') format('truetype'),
@@ -12,8 +12,8 @@
 
 i {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'office' !important;
-  speak: never;
+  // stylelint-disable-next-line
+  font-family: office !important;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,63 +25,82 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-eye-slashed:before {
+.icon-eye-slashed::before {
   content: "\e900";
 }
-.icon-eye-open:before {
+
+.icon-eye-open::before {
   content: "\e901";
 }
-.icon-arrows-up-down:before {
+
+.icon-arrows-up-down::before {
   content: "\e902";
 }
-.icon-arrows-v:before {
+
+.icon-arrows-v::before {
   content: "\e903";
 }
-.icon-clients:before {
+
+.icon-clients::before {
   content: "\e904";
 }
-.icon-documents:before {
+
+.icon-documents::before {
   content: "\e905";
 }
-.icon-integrations:before {
+
+.icon-integrations::before {
   content: "\e908";
 }
-.icon-inventory:before {
+
+.icon-inventory::before {
   content: "\e909";
 }
-.icon-loyality:before {
+
+.icon-loyality::before {
   content: "\e90a";
 }
-.icon-marking:before {
+
+.icon-marking::before {
   content: "\e90b";
 }
-.icon-news:before {
+
+.icon-news::before {
   content: "\e90c";
 }
-.icon-package-box:before {
+
+.icon-package-box::before {
   content: "\e90d";
 }
-.icon-products:before {
+
+.icon-products::before {
   content: "\e90e";
 }
-.icon-profile:before {
+
+.icon-profile::before {
   content: "\e90f";
 }
-.icon-question:before {
+
+.icon-question::before {
   content: "\e910";
 }
-.icon-reports:before {
+
+.icon-reports::before {
   content: "\e911";
 }
-.icon-scopes:before {
+
+.icon-scopes::before {
   content: "\e912";
 }
-.icon-shops:before {
+
+.icon-shops::before {
   content: "\e913";
 }
-.icon-stocks:before {
+
+.icon-stocks::before {
   content: "\e914";
 }
-.icon-support:before {
+
+.icon-support::before {
   content: "\e915";
 }

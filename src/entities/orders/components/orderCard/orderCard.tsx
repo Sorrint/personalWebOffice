@@ -4,7 +4,7 @@ import { hasComponentName } from '@shared/lib/utils';
 import { Table } from '@shared/ui/table';
 
 import { type IOrder } from '../../model/types/IOrder';
-import './orderCard.scss';
+import styles from './orderCard.module.scss';
 interface OrderCardProps {
     children?: ReactNode
     order?: IOrder
@@ -26,7 +26,7 @@ export const OrderCard = ({ children, order }: OrderCardProps) => {
             {order && 
                  (<>
                      {actions}
-                     <div className="order__title">{order.orderName}</div>
+                     <div className={styles.title}>{order.orderName}</div>
                      <Table headers={tableHeaders} data={order.orderRecords} />
                  </>)}
         </>

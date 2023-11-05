@@ -1,5 +1,3 @@
-import './packageCategorySelect.scss';
-
 interface PackageCategorySelectProps {
     classname?: string
 }

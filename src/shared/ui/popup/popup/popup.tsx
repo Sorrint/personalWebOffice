@@ -1,4 +1,4 @@
-import './popup.scss';
+import styles from './popup.module.scss';
 import { Portal } from '../../../ui/portal';
 
 interface PopupProps {
@@ -14,8 +14,8 @@ export const Popup = ({ children, onClose, isOpened }: PopupProps) => {
 
     return (
         <Portal>
-            <div className="popup__container" role="dialog">
-                <div className="popup__overlay" role="button" onClick={onClose}></div>
+            <div className={styles.container} role="dialog">
+                <div className={styles.overlay} role="button" onClick={onClose}></div>
                 {children}
             </div>
         </Portal>

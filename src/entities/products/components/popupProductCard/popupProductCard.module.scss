@@ -1,0 +1,50 @@
+.add-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 24px;
+    padding: 30px;
+    width: 50vw;
+    height: 50vh;
+    z-index: 1;
+    background-color: #fff;
+    line-height: 2.5em;
+    text-align: center;
+}
+
+.add-product:focus {
+    outline: red solid 1px;
+}
+
+.submit-button:focus {
+    outline: red solid 1px;
+    color: yellow;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 10px 0;
+}
+
+.counter {
+    border: 1px solid black;
+    font-size: 36px !important;
+    width: 30%;
+    justify-self: center !important;
+    border-radius: 10px;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}

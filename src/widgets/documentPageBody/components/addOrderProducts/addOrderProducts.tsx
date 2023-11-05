@@ -4,7 +4,7 @@ import { EditProductCard } from '@features/editProductCard';
 import { type IStoreProduct } from '@entities/products';
 
 import { useUpdateOrderRecordMutation } from '../../api/documentsOrderApi';
-import './addOrderProducts.scss';
+import styles from './addOrderProducts.module.scss';
 import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
 
 export const AddOrderProducts = () => {
@@ -26,7 +26,7 @@ export const AddOrderProducts = () => {
         return;
     };
 
-    return <div className='editProductsCardsList'>Список товаров
+    return <div className={styles['cards-list']}>Список товаров
         {productsWithoutId?.map((product) => (
             <EditProductCard product={{...product, name: product.productName, unit: product.unit?._id}} key={product.productName} onSubmit={(createdProduct)=> handleSubmit(createdProduct, product.number)}/>
         ))}

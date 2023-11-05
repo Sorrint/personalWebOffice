@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { SelectListBox } from '@shared/ui/selectListBox';
 
 import { selectAllPackages, useGetPackages } from '../../api/packagesApi';
-import './packageSelect.scss';
 interface PackageSelectProps {
     classname?: string
     id?: string

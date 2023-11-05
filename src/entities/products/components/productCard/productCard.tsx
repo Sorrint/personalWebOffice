@@ -2,7 +2,7 @@ import { type FC, type KeyboardEvent } from 'react';
 
 import { type IDreamkasProduct, type IProductStock } from '../../model/types/IDreamkasProduct';
 
-import './productCard.scss';
+import styles from './productCard.module.scss';
 import { type IProductListContentProps } from '../productList/productList';
 
 interface IProductCardProps extends IProductListContentProps<IDreamkasProduct> {
@@ -49,18 +49,18 @@ export const ProductCard: FC<IProductCardProps> = ({
 
     return (
         <div
-            className="product-card"
+            className={styles['product-card']}
             onClick={() => { handleClick(product); }}
             ref={(r) => { r !== null && addProductRef && addProductRef(r); }}
             tabIndex={0}
             onKeyDown={(e: KeyboardEvent) => { if (onCardKeyDown) onCardKeyDown(e, () => { handleClick(product); }); }}
         >
-            {selectField && <div className="product-card__selectField"></div>}
-            {avatar && <div className="product-card__avatar"></div>}
-            <div className="product-card__title">{name}</div>
-            <div className="product-card__price">{price ? price / 100 : 0},00 ₽</div>
+            {selectField && <div className={styles['select-field']}></div>}
+            {avatar && <div className={styles.avatar}></div>}
+            <div className={styles.title}>{name}</div>
+            <div className={styles.price}>{price ? price / 100 : 0},00 ₽</div>
             {count && (
-                <div className="product-card__count">
+                <div className={styles.count}>
                     {getProductRest(stock)} {getProductType(type)}
                 </div>
             )}

@@ -1,16 +1,15 @@
-import { type FC } from 'react';
 import { type IHeaderItem } from '../tableTypes';
-
-interface ITableHeaderProps {
+import styles from './table.module.scss'
+interface TableHeaderProps {
     headers: IHeaderItem
 }
 
-export const TableHeader: FC<ITableHeaderProps> = ({ headers }) => {
+export const TableHeader = ({ headers }: TableHeaderProps) => {
     return (
         <>
-            <div className="table-from-excel__headers">
+            <div className={styles.headers}>
                 {Object.entries(headers).map(([key, value]) => (
-                    <div className="table-from-excel__header" key={key}>
+                    <div className={styles.header} key={key}>
                         <span>{value}</span>
                     </div>
                 ))}

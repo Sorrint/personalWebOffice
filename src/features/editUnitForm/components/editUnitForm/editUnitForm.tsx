@@ -5,7 +5,7 @@ import { renderRHFTextField } from '@shared/ui/reactHookFormFields';
 import { EditPropertyField } from '@shared/ui/editPropertyField';
 import { Button } from '@shared/ui/button';
 
-import './editUnitForm.scss';
+import styles from './editUnitForm.module.scss';
 
 interface EditPackageFormProps {
     unit?: IUnit
@@ -26,7 +26,7 @@ export const EditUnitForm = ({unit}: EditPackageFormProps) => {
     return (
         <>
             <UnitSelect />
-            <div className="editUnitCard">
+            <div className={styles['unit-card']}>
                 <EditPropertyField 
                     propertyName="Тип единицы измерения" 
                     renderEditField={() => renderRHFTextField<IUnit>({fieldName: 'type', register, textFieldType: 'text' })}

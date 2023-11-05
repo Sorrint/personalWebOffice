@@ -8,7 +8,7 @@ import { TextField } from '@shared/ui/textField';
 import { Button } from '@shared/ui/button';
 
 import { parseWeightKg } from '../../lib/helpers/parseWeightKg/parseWeightKg';
-import './editProductCard.scss';
+import styles from './editProductCard.module.scss';
 
 interface EditProductCardProps <T extends IStoreProduct>{
     product: T
@@ -60,9 +60,9 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
 
     return (
         <>
-            <div className="editCard">
-                <h2 className='editCard__title'>{name}</h2>
-                <div className='editCard__properties'>
+            <div className={styles['edit-card']}>
+                <h2 className={styles.title}>{name}</h2>
+                <div className={styles.properties}>
                     <EditProductProperty propertyName='Наименование'>
                         <TextField  
                             {...register('name')} 
@@ -87,7 +87,7 @@ export const EditProductCard = <T extends IStoreProduct>({ product, onSubmit }:E
                         (<><EditProductProperty propertyName='Вес нетто товара'>
                             <TextField  
                                 {...register('extraData.weight', {valueAsNumber: true}) } 
-                                className= {'editCard__cell editItem__name'} 
+                                className= {styles.cell} 
                                 type='number'/>
                         </EditProductProperty>
 
