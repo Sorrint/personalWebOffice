@@ -3,7 +3,6 @@ import DOMPurify from 'dompurify';
 import { useCallback, useState } from 'react';
 import { type FieldValues, type Path, useController } from 'react-hook-form';
 
-import './editableContent.scss';
 
 interface EditableContentProps <T extends FieldValues> {
     name: Path<T>

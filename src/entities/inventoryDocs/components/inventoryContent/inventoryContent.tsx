@@ -6,7 +6,7 @@ import { type IInventoryProduct, type IdataForXLSX } from '../../model/types';
 import { InventoryProductList } from '../inventoryProductsList/inventoryProductsList';
 
 import { saveToXLSX } from '@shared/lib/utils/saveToXLSX';
-import './inventoryContent.scss';
+import styles from './inventoryContent.module.scss';
 import { useLoadDocumentByNumber } from '../../reducers/inventoryDocsService';
 import { transformDate } from '@shared/lib/helpers';
 
@@ -36,20 +36,20 @@ export const InventoryContent = memo(({ onClick, onDelete, tabIndex }: Inventory
 
             return (
                 <>
-                    <button className="createXLSX" onClick={handleClick}>
+                    <button className={styles['create-xlsx']} onClick={handleClick}>
                         Скачать в формате XLSX
                     </button>
                     <h1>{`Инвентаризация № ${inventoryList.documentNumber} от ${date} магазина ${inventoryList.storeName}`}</h1>
-                    <div className="inventory-products-list">
+                    <div className={styles['inventory-products-list']}>
                         <InventoryProductList
                             products={inventoryList.products}
                             onClick={onClick}
                             onDelete={onDelete}
                             tabIndex={tabIndex}
                         />
-                        <div className="inventory-products-list__total">
-                            <div className="inventory-products-list__title">Итого</div>
-                            <div className="inventory-products-list__sum">{sum.toFixed(2)} ₽</div>
+                        <div className={styles.total}>
+                            <div>Итого</div>
+                            <div className={styles.sum}>{sum.toFixed(2)} ₽</div>
                         </div>
                     </div>
                 </>

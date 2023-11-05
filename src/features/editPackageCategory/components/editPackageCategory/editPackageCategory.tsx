@@ -7,7 +7,7 @@ import { renderRHFTextField } from '@shared/ui/reactHookFormFields';
 import { Button } from '@shared/ui/button';
 
 import { useCreatePackageCategory } from '../../api/editPackageCategoryApi';
-import './editPackageCategory.scss';
+import styles from './editPackageCategory.module.scss';
 
 interface EditPackageCategoryProps {
     packageCategory?: IPackageCategory
@@ -32,7 +32,7 @@ export const EditPackageCategory = memo(({packageCategory}: EditPackageCategoryP
     
     return (
         <>
-            <div className="editPackageCard">
+            <div className={styles.card}>
 
                 <EditPropertyField 
                     propertyName="Наименование категории" 
@@ -49,7 +49,7 @@ export const EditPackageCategory = memo(({packageCategory}: EditPackageCategoryP
                     renderEditField={() => renderRHFTextField<IPackageCategory>({fieldName: 'countOfPackages', register, textFieldType: 'number' })}
                     className="packageProperty"
                 />
-                <Button className='packageSubmit' onClick={handleSubmit(editPackage)}>Добавить упаковку</Button>
+                <Button classname='packageSubmit' onClick={handleSubmit(editPackage)}>Добавить упаковку</Button>
             </div>
         </>
     );

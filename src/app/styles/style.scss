@@ -1,9 +1,8 @@
 @import "nullstyle";
 @import "variables";
 @import "themes/mainTheme";
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap";
+@import 'https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap';
 
 body {
     overflow: hidden;
@@ -35,4 +34,12 @@ body {
 
 input:focus {
     outline: none;
+}
+
+h1 {
+    font-size: var(--font-size-header-1);
+}
+
+h2 {
+    font-size: var(--font-size-header-2);
 }

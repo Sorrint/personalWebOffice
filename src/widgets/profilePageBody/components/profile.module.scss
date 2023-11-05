@@ -1,0 +1,59 @@
+.profile {
+    padding: 30px;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: #fff;
+
+
+
+}
+
+.header {
+    font-size: var(--font-size-text-large);
+    font-weight: 600;
+}
+
+.section-header {
+    font-size: var(--font-size-text-large);
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+.settings {
+    max-width: 600px;
+    padding-left: 50px;
+}
+
+.token-access {
+    align-self: flex-end;
+    font-size: var(--font-size-text-medium);
+    color: green;
+    font-weight: bold;
+}
+
+.token-failed {
+    align-self: flex-end;
+    color: rgb(205 44 44);
+    font-size: var(--font-size-text-medium);
+}
+
+.fill-element {
+    flex: 1 1 auto;
+}
+
+.token-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 24px;
+    padding: 30px;
+    width: 50vw;
+    height: 50vh;
+    z-index: 1;
+    background-color: #fff;
+    line-height: 2.5em;
+    text-align: center;
+}

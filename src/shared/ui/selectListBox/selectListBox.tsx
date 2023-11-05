@@ -1,7 +1,8 @@
 import { type ReactNode, Fragment, useMemo, memo } from 'react';
 import { Listbox } from '@headlessui/react';
-import './selectListBox.scss';
+import styles from './selectListBox.module.scss';
 import { Button } from '../button';
+import classNames from 'classnames';
 
 export interface ListBoxItem {
     _id: string | number
@@ -23,22 +24,26 @@ export const SelectListBox = memo(<T extends string> (props: SelectListBoxProps<
         return options?.find((option) => option._id === value);
     }, [options, value]);
 
+    const getItemStyles = (active: boolean, selected: boolean) => classNames(styles.option, {
+        [styles.active]: active,
+        [styles.selected]: selected    
+    })
+
     return (
         <Listbox 
             onChange={onChange} 
             as='div' 
             value={value} 
-            className='selectList'
+            className={styles['select-list']}
         >  
             <Listbox.Button 
                 as={Button} 
                 buttonType='dropdown' 
-                className={'selectList__button'}
             >
                 {selectedItem?.content ?? defaultValue}
             </Listbox.Button>
             <Listbox.Options 
-                className={'selectList__options'}
+                className={styles.options}
             >
                 {options?.map((option) => (
                     <Listbox.Option 
@@ -48,8 +53,7 @@ export const SelectListBox = memo(<T extends string> (props: SelectListBoxProps<
                     >
                         {({ active, selected }) => (
                             <li
-                                className={`selectList__option${active ? ' selectList__option_active' : ''
-                                }${selected ? ' selectList__option_selected' : ''}`}
+                                className={getItemStyles(active, selected)}
                             >
                                 {option.content}
                             </li>

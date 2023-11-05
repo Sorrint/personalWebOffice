@@ -9,7 +9,7 @@ import { DropdownList } from '@shared/ui/dropdownList';
 import { useKeyPress } from '@shared/lib/hooks';
 import { PopupWithFocusTrap } from '@shared/ui/popup';
 
-import './inventoryEdit.scss';
+import styles from './inventoryEdit.module.scss';
 
 import { Popover } from '@shared/ui/popover';
 interface IPopupProps {
@@ -134,7 +134,7 @@ export const InventoryEdit = memo(() => {
                     referenceElement={searchInput.current as HTMLElement}
                     key={'key'}
                 >
-                    <DropdownList className='dropdown-products'>
+                    <DropdownList className={styles['dropdown-products']}>
                         <ProductList
                             products={goods}
                             selectField={false}

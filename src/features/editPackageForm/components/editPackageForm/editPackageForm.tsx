@@ -4,7 +4,7 @@ import { type IPackage, PackageSelect, useCreateNewPackage } from '@entities/pac
 import { EditPropertyField } from '@shared/ui/editPropertyField/editPropertyField';
 import { renderRHFTextField } from '@shared/ui/reactHookFormFields';
 import { Button } from '@shared/ui/button';
-import './editPackageForm.scss';
+import styles from './editPackageForm.module.scss';
 
 interface EditPackageFormProps {
     packageBox?: IPackage
@@ -25,7 +25,7 @@ export const EditPackageForm = ({packageBox}: EditPackageFormProps) => {
     return (
         <>
             <PackageSelect />
-            <div className="editPackageCard">
+            <div className={styles.card}>
                 <EditPropertyField 
                     propertyName="Наименование" 
                     renderEditField={() => renderRHFTextField<IPackage>({fieldName: 'name', register, textFieldType: 'text' })}

@@ -1,4 +1,4 @@
-import { type FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,9 +8,9 @@ import { TextField } from '@shared/ui/textField';
 import { useGetCounter } from '@shared/api/countersAPI';
 import { useCreateNewDocument } from '@entities/inventoryDocs';
 
-import './inventoryCreate.scss';
+import styles from './inventoryCreate.module.scss';
 
-export const InventoryCreate: FC = () => {
+export const InventoryCreate = () => {
     const navigate = useNavigate();
     const [createDoc] = useCreateNewDocument();
     const { data } = useGetCounter('docNumber', { refetchOnMountOrArgChange: true });
@@ -36,10 +36,10 @@ export const InventoryCreate: FC = () => {
     };
     return (
         <>
-            <form className="inventory-form">
-                <div className="card__wrapper">
-                    <div className="card__title">Документ</div>
-                    <div className="input__wrapper">
+            <form className={styles['inventory-form']}>
+                <div className={styles['card-wrapper']}>
+                    <div className={styles['card-title']}>Документ</div>
+                    <div className={styles['input-wrapper']}>
                         <div className="document__number">
                             <TextField
                                 label="Номер документа"
@@ -60,9 +60,9 @@ export const InventoryCreate: FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="card__wrapper">
-                    <div className="card__title">Комментарий</div>
-                    <div className="input__wrapper">
+                <div className={styles['card-wrapper']}>
+                    <div className={styles['card-title']}>Комментарий</div>
+                    <div className={styles['input-wrapper']}>
                         <div className="document__comment">
                             <TextField label="Введите текст" {...register('comment')} />
                         </div>

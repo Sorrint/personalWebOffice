@@ -1,7 +1,7 @@
 import FocusLock from 'react-focus-lock';
 
 import { Portal } from '../../../ui/portal';
-import './PopupWithFocusTrap.scss';
+import styles from './popupWithFocusTrap.module.scss';
 
 interface PopupWithFocusTrapProps {
     children: React.ReactNode
@@ -17,8 +17,8 @@ export const PopupWithFocusTrap= ({ children, onClose, isOpened }: PopupWithFocu
     return (
         <Portal>
             <FocusLock>
-                <div className="popup__container" role="dialog">
-                    <div className="popup__overlay" role="button" onClick={onClose}></div>
+                <div className={styles.container} role="dialog">
+                    <div className={styles.overlay} role="button" onClick={onClose}></div>
                     {children}
                 </div>
             </FocusLock>

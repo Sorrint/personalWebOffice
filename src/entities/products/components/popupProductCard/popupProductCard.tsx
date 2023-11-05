@@ -8,7 +8,7 @@ import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 import { CounterField } from '@shared/ui/counterField/counterField';
 import { Button } from '@shared/ui/button';
 
-import './popupProductCard.scss';
+import styles from './popupProductCard.module.scss';
 
 interface PopupProductCardProps {
     product: IInventoryProduct
@@ -67,23 +67,23 @@ export function PopupProductCard ({ product, buttonClick, buttonText, error, pop
     };
 
     return (
-        <div className="popup__addProduct" onKeyDown={(key) => { handleKey(key); }} ref={modalWindow}>
+        <div className={styles['add-product']} onKeyDown={(key) => { handleKey(key); }} ref={modalWindow}>
             <form>
-                <div className="popup__card">
-                    <div className="popup__title">{product.name}</div>
-                    <CounterField
-                        label="Цена, ₽"
-                        name={'price'}
-                        register={register}
-                        inputClass="popup__counter"
-                        onKeyPress={keyPressed}
-                        onFocus={handleFocus}
-                    />
+                <div className={styles.card}>
+                    <div className={styles.title}>{product.name}</div>
                     <CounterField
                         label="Количество"
                         name={'quantity'}
                         register={register}
-                        inputClass="popup__counter"
+                        inputClass={styles.counter}
+                        onKeyPress={keyPressed}
+                        onFocus={handleFocus}
+                    />
+                    <CounterField
+                        label="Цена, ₽"
+                        name={'price'}
+                        register={register}
+                        inputClass={styles.counter}
                         onKeyPress={keyPressed}
                         onFocus={handleFocus}
                     />
@@ -92,7 +92,7 @@ export function PopupProductCard ({ product, buttonClick, buttonText, error, pop
                 <Button buttonType={getButtonType()} onClick={handleSubmit(buttonClick)} ref={submitRef}>
                     {buttonText}
                 </Button>
-                {error && <div className="error-message">Произошла ошибка при отправке данных</div>}
+                {error && <div className={styles['error-message']}>Произошла ошибка при отправке данных</div>}
             </form>
         </div>
     );

@@ -1,12 +1,12 @@
-import { useState } from 'react';
 import { type FieldValues, useForm } from 'react-hook-form';
+import { useState } from 'react';
 
+import { RadioButton } from '@shared/ui/radioButton';
 import { TextField } from '@shared/ui/textField';
 import { Button } from '@shared/ui/button';
-import { RadioButton } from '@shared/ui/radioButton';
-
-import './profile.scss';
 import { Popup } from '@shared/ui/popup';
+
+import styles from './profile.module.scss';
 
 interface ProfileSettings {
     dataBase: string
@@ -49,11 +49,11 @@ export const ProfilePageBody = () => {
 
     return (
         <>
-            <div className="profile">
-                <h1 className="profile__header">Настройки профиля</h1>
-                <div className="profile__settings">
+            <div className={styles.profile}>
+                <h1 className={styles.header}>Настройки профиля</h1>
+                <div className={styles.settings}>
                     <div className="profile__database">
-                        <h2 className="profile__section-header">Выбор базы данных</h2>
+                        <h2 className={styles['section-header']}>Выбор базы данных</h2>
                         <RadioButton label="Локальная база данных" {...register('dataBase')} value="localStorage" />
                         <RadioButton
                             label="База данных Dreamkass (требуется токен)"
@@ -63,17 +63,17 @@ export const ProfilePageBody = () => {
                         />
                         <RadioButton label="База данных WebOffice" {...register('dataBase')} value="webofficeStorage" />
                     </div>
-                    <h2 className="profile__section-header">Токен для работы с Dreamkas</h2>
+                    <h2 className={styles['section-header']}>Токен для работы с Dreamkas</h2>
 
                     {dreamToken
                         ? (
                             <>
-                                <div className="tokenAccess">Токен установлен</div>
+                                <div className={styles['token-access']}>Токен установлен</div>
                             </>
                         )
                         : (
                             <>
-                                <div className="tokenFailed">
+                                <div className={styles['token-failed']}>
                                 Токен не установлен{' '}
                                     <Button onClick={handleClick} buttonType="cancel">
                                     УСТАНОВИТЬ ТОКЕН
@@ -84,7 +84,7 @@ export const ProfilePageBody = () => {
                 </div>
 
                 <Popup isOpened={activePopup} onClose={showPopup}>
-                    <div className="token-input">
+                    <div className={styles['token-input']}>
                         <TextField label="Введите токен" {...register('dreamToken')} />
                         <Button onClick={handleSubmit(setDreamToken)}>УСТАНОВИТЬ ТОКЕН</Button>
                     </div>

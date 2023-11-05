@@ -2,13 +2,13 @@ import MenuList from '../menuList/menuList';
 import { navBar } from '../../model/menuItems';
 import { type IMenuItems } from '../../model/menuItemsTypes';
 
-import './sideBar.scss';
+import styles from './sideBar.module.scss';
 
 export const SideBar = () => {
     return (
-        <div className="app__sidenav">
-            <nav className="navigation">
-                <ul className="navigation-menu">
+        <div className={styles.sidenav}>
+            <nav className={styles.navigation}>
+                <ul className={styles.navigation__menu}>
                     {navBar.map((navItem: IMenuItems) =>
                         navItem.wrapperClassName
                             ? (

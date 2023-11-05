@@ -1,0 +1,28 @@
+.edit-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 3px solid var(--primary-color);
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.cell {
+    width: 100%;
+}
+
+.title {
+    padding: 20px;
+    font-size: var(--font-size-header-2);
+    font-weight: 500;
+    line-height: 1.5;
+    color: #fff;
+    background-color:var(--primary-color);
+}
+
+.properties {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+}
