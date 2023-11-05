@@ -1,7 +1,9 @@
+import { type IconName } from '@shared/ui/iconFont/IconFont';
+
 export interface IMenuItem {
     id: string;
     text: string;
-    image: React.FC<React.SVGProps<SVGElement>>;
+    image: IconName;
     path: string;
     wrapperClassName?: string;
 }

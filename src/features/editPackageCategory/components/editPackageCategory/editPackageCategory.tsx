@@ -29,6 +29,7 @@ export const EditPackageCategory = memo(({packageCategory}: EditPackageCategoryP
     },[]);
 
     const currentPackage = watch('packageId');
+    
     return (
         <>
             <div className="editPackageCard">
