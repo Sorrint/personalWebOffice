@@ -5,13 +5,13 @@ import { AuthProvider } from './providers/authProvider/components/authProvider';
 
 function App () {
     const elements = useRoutes(routes);
-    // console.log(authElements)
     return <>
         <Suspense fallback="">
             <AuthProvider>
                 {elements}
             </AuthProvider>
-        </Suspense></>;
+        </Suspense>
+    </>;
 }
 
 export default App;

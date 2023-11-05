@@ -1,10 +1,8 @@
 import { useState, forwardRef, type ForwardedRef, type KeyboardEvent, memo } from 'react';
 import { type FieldValues, type Path } from 'react-hook-form';
-import OpenEyeIcon from '@shared/assets/icons/eye-open.svg';
-import SlashedEyeIcon from '@shared/assets/icons/eye-slashed.svg';
-import { Icon } from '../icon';
 
 import './textField.scss';
+import { IconFont } from '../iconFont/IconFont';
 
 export type ITextFieldType = 'text' | 'number' | 'password' | 'email' | 'tel'
 export interface ITextFieldsProps<T extends FieldValues> {
@@ -59,7 +57,7 @@ export const TextField = memo(forwardRef(function TextField<T extends FieldValue
                 )}
                 {type === 'password' && (
                     <button className="input-container__password-button" type="button" onClick={toggleShowPassword}>
-                        <Icon Icon={showPassword ? OpenEyeIcon : SlashedEyeIcon} className='eye-icon'/>
+                        <IconFont iconName={showPassword ? 'icon-eye-open' : 'icon-eye-slashed'} classname='eye-icon'/>
                     </button>
                 )}
             </div>

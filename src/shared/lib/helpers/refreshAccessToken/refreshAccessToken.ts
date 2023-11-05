@@ -1,6 +1,5 @@
 export const refreshAccessToken = async () => {
     try {
-        console.log('отправляю запрос')
         await fetch(`${__SERVER_URI__}/auth/refresh`, {
             method: 'POST',
             headers: {

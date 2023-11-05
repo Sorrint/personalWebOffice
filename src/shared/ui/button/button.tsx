@@ -6,10 +6,8 @@ import {
     type ChangeEvent, 
     type ForwardedRef } from 'react';
 
-import Arrows_icon from '@shared/assets/icons/arrows-up-down.svg';
-
-import { Icon } from '../icon';
 import styles from './button.module.scss'
+import { IconFont } from '../iconFont/IconFont';
 interface ButtonProps {
     onClick?: (...args: any[]) => void
     buttonType?: 'submit' | 'cancel' | 'dropdown'
@@ -46,7 +44,9 @@ export const Button = memo(forwardRef(function Button(props: ButtonProps, ref: F
             disabled={disabled}
         >
             {children}
-            {buttonType == 'dropdown'&& <Icon Icon={Arrows_icon}/>}
+            {buttonType == 'dropdown'&& 
+            <IconFont iconName='icon-arrows-up-down'/>
+            }
         </button>
     );
 }));

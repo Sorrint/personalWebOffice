@@ -1,5 +1,3 @@
-import { type FC } from 'react';
-
 interface IconProps {
     Icon: React.FC<React.SVGProps<SVGElement>>
     width?: number
@@ -7,7 +5,7 @@ interface IconProps {
     className?: string
 }
 
-export const Icon: FC<IconProps> = ({ Icon, width = 24, height = 24, className = '' }) => {
+export const Icon= ({ Icon, width = 24, height = 24, className = '' }: IconProps) => {
     return (<Icon
         width={width}
         height={height}
