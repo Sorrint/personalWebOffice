@@ -1,5 +1,6 @@
-import { memo } from 'react';
 import { useForm } from 'react-hook-form';
+import classNames from 'classnames';
+import { memo } from 'react';
 
 import { Button } from '@shared/ui/button';
 import { TextField } from '@shared/ui/textField';
@@ -10,13 +11,13 @@ import { type UserRegisterDTO } from '../model/types/userRegisterDTO';
 import { RegisterSchema } from '../model/registrationSchema';
 import { useRegisterMutation } from '../api/registerApi';
 import styles from './registrationForm.module.scss'
-import classNames from 'classnames';
 
 interface RegistrationFormProps {
     classname?: string
+    onSuccess?: () => void
 }
 
-export const RegistrationForm = memo(({classname}: RegistrationFormProps) => {
+export const RegistrationForm = memo(({classname, onSuccess}: RegistrationFormProps) => {
     const {register, handleSubmit, formState: {errors, isValid}} = useForm<UserRegisterDTO>({
         mode: 'onChange', 
         resolver: zodResolver(RegisterSchema)
@@ -30,8 +31,15 @@ export const RegistrationForm = memo(({classname}: RegistrationFormProps) => {
     const [registerUser] = useRegisterMutation()
 
     const onSubmit = async (data: UserRegisterDTO) => {
-        const answer = await registerUser(data)
-        console.log(answer)
+        try {
+            const answer = await registerUser(data)
+            if ('data' in answer) {
+                onSuccess?.()
+            }
+        } catch (error) {
+            console.log(error)            
+        }
+        
     }
     
     const formStyle = classNames(styles.register, classname)

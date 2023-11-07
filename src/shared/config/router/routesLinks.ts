@@ -14,7 +14,7 @@
 // import PackageBoxIcon from '@shared/assets/icons/package-box.svg';
 import { type IconName } from '@shared/ui/iconFont';
 
-const BaseURL = '/office';
+export const BaseURL = '/office';
 
 type RoutesLinks = {
     id: string,
