@@ -1,36 +1,41 @@
-import { memo } from 'react';
 import { useForm } from 'react-hook-form';
+import classNames from 'classnames';
+import { memo } from 'react';
 
 import { Button } from '@shared/ui/button';
 import { TextField } from '@shared/ui/textField';
 import { ErrorField } from '@shared/ui/errorField';
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import styles from './loginForm.module.scss'
 import { type UserLoginDTO } from '../model/types/userLoginDTO';
 import { LoginSchema } from '../model/loginSchema';
 import { useLoginMutation } from '../api/loginApi';
-import classNames from 'classnames';
+import styles from './loginForm.module.scss'
 
 interface LoginFormProps {
     classname?: string
+    onSuccess?: () => void
 }
 
-export const LoginForm = memo(({classname}: LoginFormProps) => {
+export const LoginForm = memo(({classname, onSuccess}: LoginFormProps) => {
     const {register, handleSubmit, formState: {errors, isValid}} = useForm<UserLoginDTO>({
         mode: 'onChange', 
         resolver: zodResolver(LoginSchema)
     })
-    
     const emailError = errors.email?.message
     const passwordError = errors.password?.message
 
-
-    const [registerUser] = useLoginMutation()
+    const [loginUser] = useLoginMutation()
 
     const onSubmit = async (data: UserLoginDTO) => {
-        const answer = await registerUser(data)
-        console.log(answer)
+        try {
+            const answer = await loginUser(data)
+            if ('data' in answer) {
+                onSuccess?.()
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const formStyle = classNames(styles.login, classname)
