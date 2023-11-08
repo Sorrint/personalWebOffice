@@ -1,19 +1,28 @@
 .header {
     position: relative;
     display: flex;
+    color: #FFF;
     align-items: center;
-    width: 100%;
     height: 56px;
     padding: 0 30px;
     background-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(8 35 48 / 24%), 0 4px 8px rgba(8 35 48 / 16%);
+
 }
 
 .burger {
     display: none;
 }
 
-.auth {
-    background-color: orangered;
+.logo-group,
+.profile-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.profile-group {
+    margin-left: auto;
 }
 
 .logo {
@@ -22,34 +31,49 @@
     background-color: burlywood;
 }
 
-.text {
-    width: 100%;
-    color: #fff;
+.logo-text {
     font-size: 30px;
     font-weight: 500;
-    padding: 3px 0 0 6px;
-}
-
-.icon {
-    // font-size: 14px;
-    color: #FFF;
-}
-
-.header-top {
-    box-shadow: 0 2px 4px rgba(8 35 48 / 24%), 0 4px 8px rgba(8 35 48 / 16%);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px 0 10px;
-    background-color: var(--primary-color);
 }
 
 .mail {
+    position: relative;
     display: inline-block;
-    margin-left: 10px;
     font-weight: 400;
     letter-spacing: 1px;
+    cursor: pointer;
     color: #fff !important;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    box-sizing: border-box;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+
+    & a {
+        color: var(--primary-color);
+    }
+}
+
+.menu-item {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #FFF;
+    border-bottom: 1px solid var(--primary-color);
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background-color: rgb(227 242 244);
+    }
 }
 
 @media (width <= 767px) {
