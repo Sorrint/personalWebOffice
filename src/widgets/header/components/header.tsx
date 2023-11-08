@@ -1,11 +1,18 @@
 import { NavLink } from 'react-router-dom';
-import { memo } from 'react';
+import { memo, useContext } from 'react';
+
+import { IconFont } from '@shared/ui/iconFont';
+import { AuthContext } from '@shared/lib/context/authContext';
+import { Button } from '@shared/ui/button';
+import { useLogout } from '@features/logout';
 
 import styles from './header.module.scss';
 
 export const Header = memo(() => {
+    const {name} = useContext(AuthContext)
 
-
+    const {logout} = useLogout()
+    
     return (    
         <div className={styles.header}>
             <div className={styles.burger}>
@@ -13,9 +20,11 @@ export const Header = memo(() => {
             </div>
             <div className={styles.logo}></div>
             <span className={styles.text}>Кабинет</span>
-            <div className={styles.icon}></div>
+            <Button onClick={logout}> Выйти</Button>
+            {/* <div className={styles.icon}></div> */}
+            <IconFont iconName='icon-profile' classname={styles.icon}/>
             <NavLink className={styles.mail} to={'/office/profile'}>
-                sorrint@gmail.com
+                {name}
             </NavLink>
  
         </div>

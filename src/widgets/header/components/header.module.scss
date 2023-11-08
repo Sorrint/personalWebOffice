@@ -31,9 +31,8 @@
 }
 
 .icon {
-    width: 25px;
-    height: 25px;
-    background-color: burlywood;
+    // font-size: 14px;
+    color: #FFF;
 }
 
 .header-top {
@@ -47,9 +46,8 @@
 
 .mail {
     display: inline-block;
-    font-size: 12px;
+    margin-left: 10px;
     font-weight: 400;
-    padding: 6px 0 0 4px;
     letter-spacing: 1px;
     color: #fff !important;
 }
