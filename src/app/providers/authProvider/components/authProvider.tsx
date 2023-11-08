@@ -13,19 +13,18 @@ export const AuthProvider = ({children}: ErrorProviderProps) => {
     const from = location.state?.from?.pathname
     const authPaths = ['login', 'register']
     const isAuthPath = authPaths.includes(location.pathname.split('/').at(-1) || '')
-
     if (!isLoading) {
-        if (!data?.user && !isAuthPath) {
+        if (!data?.id && !isAuthPath) {
             return <Navigate to={routesLinks.login.path} state={{ from: location }}/>;
         } 
     }
 
-    if (data?.user && isAuthPath) {
+    if (data?.id && isAuthPath) {
         return <Navigate to={from || routesLinks.documents.path} state={{ from: location }} replace/>
     }
 
     if (isLoading) return null
-    return <AuthContext.Provider value={{user: data?.user, refetch}}> 
+    return <AuthContext.Provider value={{...data, refetch}}> 
         {children}
     </AuthContext.Provider>;
 };

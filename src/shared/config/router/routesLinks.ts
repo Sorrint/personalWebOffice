@@ -1,17 +1,3 @@
-// import ReportsIcon from '@shared/assets/icons/reports.svg';
-// import ShopsIcon from '@shared/assets/icons/shops.svg';
-// import DocumentsIcon from '@shared/assets/icons/documents.svg';
-// import InventoryIcon from '@shared/assets/icons/inventory.svg';
-// import ProductsIcon from '@shared/assets/icons/products.svg';
-// import ClientsIcon from '@shared/assets/icons/clients.svg';
-// import StocksIcon from '@shared/assets/icons/stocks.svg';
-// import LoyalityIcon from '@shared/assets/icons/loyality.svg';
-// import IntegrationsIcon from '@shared/assets/icons/integrations.svg';
-// import ScopesIcon from '@shared/assets/icons/scopes.svg';
-// import NewsIcon from '@shared/assets/icons/news.svg';
-// import SupportIcon from '@shared/assets/icons/support.svg';
-// import QuestionIcon from '@shared/assets/icons/question.svg';
-// import PackageBoxIcon from '@shared/assets/icons/package-box.svg';
 import { type IconName } from '@shared/ui/iconFont';
 
 export const BaseURL = '/office';
@@ -69,7 +55,7 @@ export const routesLinks: Record<string, RoutesLinks> = {
     clients: {
         id: 'clients',
         text: 'Клиенты',
-        image: 'icon-products',
+        image: 'icon-clients',
         path: `${BaseURL}/clients`
     },
     stocks: {
