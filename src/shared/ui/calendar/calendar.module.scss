@@ -1,24 +1,35 @@
 .datepicker {
-    margin-top: 15px;
     display: flex;
     background-color: #fff;
     border-bottom: 1px solid grey;
     color: #000;
-    font-size: 18px;
+    font-size: 16px;
     outline: 0;
-    padding: 4px 20px 0;
+    padding: 5px 10px;
     justify-content: flex-end;
     align-items: flex-end;
+    cursor: pointer;
+    width: 100%;
 }
 
-.date-placeholder {
+.placeholder {
     background-color: inherit;
-    border-radius: 10px;
-    height: 20px;
     left: 20px;
     position: absolute;
-    top: -5px;
+    top: -20px;
     width: 100%;
-    font-size: 13.5px;
+    font-size: 14px;
     color: #808097;
+}
+
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+}
+
+.full {
+    width: 100%;
 }

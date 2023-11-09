@@ -7,7 +7,7 @@ import {
     type ForwardedRef } from 'react';
 
 import styles from './button.module.scss'
-import { IconFont } from '../iconFont/IconFont';
+import { IconFont } from '../iconFont';
 interface ButtonProps {
     onClick?: (...args: any[]) => void
     buttonType?: 'submit' | 'cancel' | 'dropdown'

@@ -35,7 +35,7 @@ export const Header = memo(() => {
                 </div>
             </div>
 
-            {refEl  && refEl.current && 
+            {refEl && refEl.current && isOpen &&
             <Popover isOpen={isOpen} onClose={()=> setIsOpen(false)} referenceElement={refEl.current as HTMLElement} key={'profile'}> 
                 <div className={styles.menu} onClick={()=> setIsOpen(false)}>
                     <div className={styles['menu-item']} >
