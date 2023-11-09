@@ -3,7 +3,6 @@ import { memo, useContext, useRef, useState } from 'react';
 
 import { IconFont } from '@shared/ui/iconFont';
 import { AuthContext } from '@shared/lib/context/authContext';
-import { Button } from '@shared/ui/button';
 import { useLogout } from '@features/logout';
 import { Popover } from '@shared/ui/popover';
 

@@ -8,7 +8,6 @@ type RoutesLinks = {
     image?: IconName,
     path: string,
     authOnly?: boolean
-    wrapperClassName?: string
 }
 
 
@@ -80,14 +79,12 @@ export const routesLinks: Record<string, RoutesLinks> = {
         id: 'paid-options',
         text: 'Подписки',
         image: 'icon-scopes',
-        wrapperClassName: 'subscribe',
         path: `${BaseURL}/paid-options`
     },
     news: {
         id: 'news',
         text: 'Новости',
         image: 'icon-news',
-        wrapperClassName: 'subscribe grow',
         path: `${BaseURL}/news`
     },
     support: {

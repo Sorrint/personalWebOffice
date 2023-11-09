@@ -2,20 +2,20 @@
     &__wrapper {
         display: flex;
         width: 100%;
-        flex-direction: row;
         flex: 0 1 auto;
-        height: 100%;
+        height: calc(100% - var(--header-height));
         background-color: rgb(236 236 236);
-        overflow-y: auto;
+        position: relative;
     }
 
     &__content {
         display: flex;
         width: 100%;
         flex-direction: column;
-        flex: 0 1 auto;
+        flex: 1 1 auto;
         height: 100%;
         background-color: rgb(236 236 236);
         overflow-y: auto;
+        position: relative;
     }
 }

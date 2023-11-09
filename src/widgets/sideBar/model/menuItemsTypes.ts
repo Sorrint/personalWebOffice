@@ -9,7 +9,7 @@ export interface IMenuItem {
 }
 
 export interface IMenuItems {
-    id: string;
-    wrapperClassName?: string;
+    section: string;
     items: IMenuItem[];
+    grow?: boolean;
 }

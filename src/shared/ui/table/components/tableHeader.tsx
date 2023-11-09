@@ -1,7 +1,6 @@
-import { type IHeaderItem } from '../tableTypes';
 import styles from './table.module.scss'
 interface TableHeaderProps {
-    headers: IHeaderItem
+    headers: ObjectRecord
 }
 
 export const TableHeader = ({ headers }: TableHeaderProps) => {

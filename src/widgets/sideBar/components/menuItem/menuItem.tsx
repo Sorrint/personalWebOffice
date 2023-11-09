@@ -6,15 +6,7 @@ interface MenuItemProps {
 }
 
 const MenuItem = ({ item }: MenuItemProps) => {
-    return item.wrapperClassName
-        ? (
-            <div className={item.wrapperClassName}>
-                <MenuLink item={item} />
-            </div>
-        )
-        : (
-            <MenuLink item={item} />
-        );
+    return <MenuLink item={item} />
 };
 
 export default MenuItem;
