@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { IconFont } from '@shared/ui/iconFont/IconFont';
+import { IconFont } from '@shared/ui/iconFont';
 
 import { type IMenuItem } from '../../model/menuItemsTypes';
 import  styles from  './menuLink.module.scss';
@@ -21,7 +21,7 @@ const MenuLink = ({ item }: MenuLinkProps) => {
     return (
         <NavLink className={({ isActive }) => getClassName(isActive)} to={item.path} key={item.id}>
             <li className={styles.item} id={item.id}>
-                <IconFont iconName={item.image} classname={styles.icon}/>
+                {item.image && <IconFont iconName={item.image} classname={styles.icon}/>}
                 <span className={styles.text}>{item.text}</span>
             </li>
         </NavLink>

@@ -3,9 +3,10 @@ interface TableBodyProps {
     records: ObjectRecord[]
 }
 import styles from './table.module.scss'
+
 export const TableBody = ({ records, headers }: TableBodyProps) => {
     const alignColumnName = (text: string) => {
-        return text.length > 8 ? 'table-from-excel__column_left' : 'table-from-excel__column';
+        return text.length > 8 ? styles.column_left : styles.column;
     };
     return (
         <>

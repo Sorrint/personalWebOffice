@@ -1,25 +1,32 @@
 import { routesLinks } from '@shared/config/router';
+import { type IMenuItems } from './menuItemsTypes';
+
 
 const {
     reports, documents, stores, inventory, packages, products,
     clients, loyality, stocks, integrations, news, scopes, question, support
 } = routesLinks;
 
-const menuItemsTop = {
-    id: 'navigation-menu__top',
-    wrapperClassName: 'navigation-menu__top',
+const menuItemsTop: IMenuItems = {
+    section: 'main',
     items: [reports, stores, documents, inventory, packages, products, clients, stocks, loyality, integrations]
 };
 
-const menuItemsSpecial = {
-    id: 'navigation-menu__special',
-    items: [scopes, news]
+const menuItemsSpecial: IMenuItems  = {
+    section: 'special',
+    items: [scopes]
 };
 
-const menuItemsBottom = {
-    id: 'navigation-menu__bottom',
-    wrapperClassName: 'navigation-menu__bottom',
+const menuItemsGrow: IMenuItems = {
+    section: 'grow',
+    items: [news],
+    grow: true
+}
+
+const menuItemsBottom: IMenuItems = {
+    section: 'bottom',
     items: [support, question]
+
 };
 
-export const navBar = [menuItemsTop, menuItemsSpecial, menuItemsBottom];
+export const sideBarScope = [menuItemsTop, menuItemsSpecial, menuItemsGrow, menuItemsBottom];

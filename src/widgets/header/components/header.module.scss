@@ -3,11 +3,11 @@
     display: flex;
     color: #FFF;
     align-items: center;
-    height: 56px;
+    height: var(--header-height);
     padding: 0 30px;
     background-color: var(--primary-color);
     box-shadow: 0 2px 4px rgba(8 35 48 / 24%), 0 4px 8px rgba(8 35 48 / 16%);
-
+    z-index: 2;
 }
 
 .burger {
