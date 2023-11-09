@@ -36,38 +36,30 @@ export const InventoryCreate = () => {
     };
     return (
         <>
+            <div className={styles['card-title']}>Новый документ</div>
             <form className={styles['inventory-form']}>
-                <div className={styles['card-wrapper']}>
-                    <div className={styles['card-title']}>Документ</div>
-                    <div className={styles['input-wrapper']}>
-                        <div className="document__number">
-                            <TextField
-                                label="Номер документа"
-                                {...register('documentNumber', { pattern: /^[0-9]*$/ })}
-                                type="number"
-                            />
-                        </div>
-                        <div className="document__date">
-                            <Calendar
-                                label="Дата документа"
-                                wrapperName="calendar__wrapper"
-                                control={control}
-                                name={'choosenDate'}
-                            />
-                        </div>
-                        <div className="document__store">
-                            <TextField label="Магазин" {...register('storeName')} />
-                        </div>
-                    </div>
-                </div>
-                <div className={styles['card-wrapper']}>
-                    <div className={styles['card-title']}>Комментарий</div>
-                    <div className={styles['input-wrapper']}>
-                        <div className="document__comment">
-                            <TextField label="Введите текст" {...register('comment')} />
-                        </div>
-                    </div>
-                </div>
+                <TextField
+                    full
+                    label="Номер документа"
+                    {...register('documentNumber', { pattern: /^[0-9]*$/ })}
+                    type="number"
+                />
+                <Calendar
+                    label="Дата документа"
+                    wrapperName="calendar__wrapper"
+                    control={control}
+                    name={'choosenDate'}
+                    full
+                />
+                <TextField 
+                    full
+                    label="Магазин" 
+                    {...register('storeName')} />
+                <TextField 
+                    full
+                    label="Комментарий" 
+                    {...register('comment')} 
+                    className={styles.comment}/>
             </form>
             <Button onClick={handleSubmit(onSubmit)}>
                 Создать

@@ -4,7 +4,8 @@ import { type FieldValues, Controller, type Control, type Path } from 'react-hoo
 import ru from 'date-fns/locale/ru';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import './calendar.scss';
+import styles from './calendar.module.scss';
+import classNames from 'classnames';
 
 registerLocale('ru', ru);
 
@@ -14,17 +15,22 @@ interface ICalendarProps<T extends FieldValues> {
     wrapperName: string
     control: Control<T>
     name: Path<T>
+    full?: boolean
 }
 
 export function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
-    const { label, control, name } = props;
+    const { label, control, name, full } = props;
     const [startDate, setStartDate] = useState<Date>(new Date());
+    const containerStyles = classNames(styles.container, {
+        [styles.full]: full
+    })
+
     return (
         <Controller
             control={control}
             name={name}
             render={({ field }) => (
-                <div className="input-container">
+                <div className={containerStyles}>
                     <DatePicker
                         selected={startDate}
                         onChange={(e) => {
@@ -36,11 +42,10 @@ export function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
                         dateFormat="P"
                         locale="ru"
                         id="calendar"
-                        className="datepicker"
+                        className={styles.datepicker}
                         placeholderText={' '}
                     />
-                    <div className="cut"></div>
-                    <label className="date-placeholder" htmlFor={'datepicker'}>
+                    <label className={styles.placeholder} htmlFor={'calendar'}>
                         {label}
                     </label>
                 </div>

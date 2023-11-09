@@ -1,10 +1,9 @@
-import { type FC } from 'react';
-import { Link } from 'react-router-dom';
-
 import { type IInventoryDocs, InventoryList, useLoadAllDocuments } from '@entities/inventoryDocs';
-import { Button } from '@shared/ui/button';
+import { ButtonLink } from '@shared/ui/buttonLink';
 
-export const InventoriesList: FC = () => {
+import styles from './inventoriesList.module.scss'
+
+export const InventoriesList = () => {
     const { data: documents, isLoading } = useLoadAllDocuments({});
 
     const renderDocuments = (list: IInventoryDocs[] | undefined) =>
@@ -12,12 +11,9 @@ export const InventoriesList: FC = () => {
 
     return (
         <>
-            <Button>
-                <Link className="create-link" to={'./create'}>
-                    Новый документ
-                </Link>
-            </Button>
-
+            <ButtonLink to={'./create'} classname={styles.link}>
+                Новый документ
+            </ButtonLink>
             {isLoading ? <h2>Идет загрузка</h2> : renderDocuments(documents)}
         </>
     );
