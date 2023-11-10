@@ -1,12 +1,12 @@
 import { AppBody, AppHeader, AppLayout } from '@shared/layouts';
 import { Header } from '@widgets/header';
-import { NavBar } from '@widgets/sideBar';
+import { SideBar } from '@widgets/sideBar';
 import { Outlet } from 'react-router-dom';
 
 const PackagesPage = () => {
     return  <><Header />
         <AppLayout style="wrapper">
-            <NavBar />
+            <SideBar />
             <AppLayout style="content">
                 <AppHeader title="Упаковка">
                 </AppHeader>
