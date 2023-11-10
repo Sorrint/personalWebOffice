@@ -1,6 +1,6 @@
 import { ProfilePageBody } from '@widgets/profilePageBody';
 import { AppBody, AppLayout } from '@shared/layouts';
-import { NavBar } from '@widgets/sideBar';
+import { SideBar } from '@widgets/sideBar';
 import { Header } from '@widgets/header';
 
 const ProfilePage = () => {
@@ -8,7 +8,7 @@ const ProfilePage = () => {
         <>
             <Header />
             <AppLayout style="wrapper">
-                <NavBar />
+                <SideBar />
                 <AppLayout style="content">
                     <AppBody>
                         <ProfilePageBody />

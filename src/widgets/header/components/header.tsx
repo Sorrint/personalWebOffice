@@ -25,7 +25,7 @@ export const Header = memo(() => {
                 <span></span>
             </div>
             <div className={styles['logo-group']}>
-                <div className={styles.logo}></div>
+                <IconFont iconName='icon-feather' classname={styles.logo}/>
                 <span className={styles['logo-text']}>Кабинет</span>
             </div>
             <div className={styles['profile-group']}>

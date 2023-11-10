@@ -96,7 +96,7 @@ export const routesLinks: Record<string, RoutesLinks> = {
     question: {
         id: 'question',
         text: 'Задать вопрос',
-        image: 'icon-question',
+        image: 'icon-contact',
         path: `${BaseURL}/question`
     },
     profile: {

@@ -2,7 +2,7 @@ import { type FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { Header } from '@widgets/header';
-import { NavBar } from '@widgets/sideBar';
+import { SideBar } from '@widgets/sideBar';
 import { AppRibbon } from '@widgets/appRibbon';
 import { AppBody, AppHeader, AppLayout } from '@shared/layouts';
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
@@ -19,7 +19,7 @@ const ProductsPage: FC = () => {
         <>
             <Header />
             <AppLayout style="wrapper">
-                <NavBar />
+                <SideBar />
                 <AppLayout style="content">
                     <AppHeader title="Товары">
                         <AppRibbon navLinks={navLinks} />
