@@ -1,12 +1,12 @@
 FROM node:16 as client
 
-WORKDIR /webOffice/client
+WORKDIR /office
 
-COPY *.json /webOffice/client/
+COPY *.json /office/
 
 RUN npm install -g npm@9.7.2
 RUN npm install
-COPY . /webOffice/client/
+COPY . /office/
 
 EXPOSE 5000
 
