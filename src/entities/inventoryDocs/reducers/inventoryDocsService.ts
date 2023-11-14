@@ -8,11 +8,13 @@ const inventoryDocsApi = rtkApi.enhanceEndpoints({addTagTypes: ['inventoryConten
     endpoints: (build) => ({
         createNewDocument: build.mutation<IInventoryDocs, FieldValues>({
             query: (document) =>
-                ({ url: `${baseInventoryUri}/create`, method: 'POST', body: document })
+                ({ url: `${baseInventoryUri}/create`, method: 'POST', body: document }),
+            invalidatesTags: ['inventoryContent']
         }),
         loadAllDocuments: build.query<IInventoryDocs[], Record<string, unknown>>({
             query: () =>
-                ({ url: `${baseInventoryUri}`, method: 'GET' })
+                ({ url: `${baseInventoryUri}`, method: 'GET' }),
+            providesTags: () => ['inventoryContent']
         }),
         updateProducts: build.mutation<IInventoryDocs, { product: FieldValues, docNumber: number }>({
             query: ({ product, docNumber }) =>

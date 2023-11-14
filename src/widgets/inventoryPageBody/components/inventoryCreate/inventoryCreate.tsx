@@ -31,8 +31,14 @@ export const InventoryCreate = () => {
 
     const onSubmit = async <T extends FieldValues>(data: T) => {
         const transformData = { ...data };
-        await createDoc(transformData);
-        navigate(-1);
+        const doc = await createDoc(transformData);
+
+        if ('data' in doc) {
+            const number = doc.data.documentNumber
+            if (number) {
+                navigate(`../${number}`);
+            }
+        }
     };
     return (
         <>
