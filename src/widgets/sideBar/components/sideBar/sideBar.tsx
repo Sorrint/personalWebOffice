@@ -13,13 +13,13 @@ export const SideBar = () => {
 
     return (
         <nav className={styles.sidenav}>
-            <ul className={styles.menu}>
-                {sideBarScope.map((navItem: IMenuItems) =>
-                    <section className={getSectionStyles(navItem.grow)} key={navItem.section}>
-                        <MenuList menuItems={navItem.items} />
-                    </section>
-                )}
-            </ul>
+            {/* <ul className={styles.menu}> */}
+            {sideBarScope.map((navItem: IMenuItems) =>
+                <ul className={getSectionStyles(navItem.grow)} key={navItem.section}>
+                    <MenuList menuItems={navItem.items} />
+                </ul>
+            )}
+            {/* </ul> */}
         </nav>
     );
 };
