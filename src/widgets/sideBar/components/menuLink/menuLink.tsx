@@ -19,12 +19,12 @@ const MenuLink = ({ item }: MenuLinkProps) => {
     } 
        
     return (
-        <NavLink className={({ isActive }) => getClassName(isActive)} to={item.path} key={item.id}>
-            <li className={styles.item} id={item.id}>
+        <li className={styles.item} id={item.id}>
+            <NavLink className={({ isActive }) => getClassName(isActive)} to={item.path} key={item.id}>
                 {item.image && <IconFont iconName={item.image} classname={styles.icon}/>}
                 <span className={styles.text}>{item.text}</span>
-            </li>
-        </NavLink>
+            </NavLink>
+        </li>
     );
 };
 
