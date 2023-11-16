@@ -24,6 +24,7 @@ export const Auth = () => {
                 /> 
                 : <RegistrationForm 
                     classname={styles.form} 
+                    onSuccess={refetch}
                 />
         }
     </>;

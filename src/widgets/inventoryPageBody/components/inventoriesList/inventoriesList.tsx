@@ -1,7 +1,7 @@
 import { type IInventoryDocs, InventoryList, useLoadAllDocuments } from '@entities/inventoryDocs';
-import { ButtonLink } from '@shared/ui/buttonLink';
 
 import styles from './inventoriesList.module.scss'
+import { AppLink } from '@shared/ui/buttonLink';
 
 export const InventoriesList = () => {
     const { data: documents, isLoading } = useLoadAllDocuments({});
@@ -11,9 +11,9 @@ export const InventoriesList = () => {
 
     return (
         <>
-            <ButtonLink to={'./create'} classname={styles.link}>
+            <AppLink to={'./create'} classname={styles.link} buttonStyle>
                 Новый документ
-            </ButtonLink>
+            </AppLink>
             {isLoading ? <h2>Идет загрузка</h2> : renderDocuments(documents)}
         </>
     );

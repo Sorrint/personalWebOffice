@@ -8,8 +8,17 @@
     border: 1px solid black;
     border-radius: 10px;
     background-color: #FFF;
+    cursor: default;
 }
 
+.title {
+    text-transform: uppercase;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
 
 .field {
     display: flex;

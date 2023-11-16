@@ -11,6 +11,8 @@ import { type UserRegisterDTO } from '../model/types/userRegisterDTO';
 import { RegisterSchema } from '../model/registrationSchema';
 import { useRegisterMutation } from '../api/registerApi';
 import styles from './registrationForm.module.scss'
+import { AppLink } from '@shared/ui/buttonLink';
+import { routesLinks } from '@shared/config/router';
 
 interface RegistrationFormProps {
     classname?: string
@@ -45,7 +47,10 @@ export const RegistrationForm = memo(({classname, onSuccess}: RegistrationFormPr
     const formStyle = classNames(styles.register, classname)
  
     return <div className={formStyle}>
-        <h2>РЕГИСТРАЦИЯ</h2>
+        <div className={styles.header}>
+            <h2 className={styles.title}>Регистрация</h2>
+            <AppLink to={routesLinks.login.path}>Войти</AppLink>
+        </div>
         <div className={styles.field}>
             <TextField 
                 label='Имя пользователя'
