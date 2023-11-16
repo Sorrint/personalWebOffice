@@ -2,7 +2,7 @@ import { type IconName } from '@shared/ui/iconFont';
 
 export const BaseURL = '/office';
 
-type RoutesLinks = {
+export type Route = {
     id: string,
     text: string,
     image?: IconName,
@@ -10,8 +10,7 @@ type RoutesLinks = {
     authOnly?: boolean
 }
 
-
-export const routesLinks: Record<string, RoutesLinks> = {
+export const routesLinks = {
     reports: {
         id: 'dashboard',
         text: 'Отчёты',
@@ -115,4 +114,4 @@ export const routesLinks: Record<string, RoutesLinks> = {
         text: 'Вход',
         path: `${BaseURL}/login`
     }
-};
+} as const

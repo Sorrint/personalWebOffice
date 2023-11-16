@@ -11,6 +11,8 @@ import { type UserLoginDTO } from '../model/types/userLoginDTO';
 import { LoginSchema } from '../model/loginSchema';
 import { useLoginMutation } from '../api/loginApi';
 import styles from './loginForm.module.scss'
+import { routesLinks } from '@shared/config/router';
+import { AppLink } from '@shared/ui/buttonLink';
 
 interface LoginFormProps {
     classname?: string
@@ -41,7 +43,10 @@ export const LoginForm = memo(({classname, onSuccess}: LoginFormProps) => {
     const formStyle = classNames(styles.login, classname)
  
     return <div className={formStyle}>
-        <h2>Вход</h2>
+        <div className={styles.header}>
+            <h2 className={styles.title}>Вход</h2>
+            <AppLink to={routesLinks.register.path}>Зарегистрироваться</AppLink>
+        </div>
  
         <div className={styles.field}>
             <TextField 
