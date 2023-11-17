@@ -49,5 +49,13 @@ export default defineConfig(({mode})=>{
         define: {
             __SERVER_URI__: JSON.stringify(env.VITE_SERVER_URI)
         },
+        css: {
+            modules: {
+                generateScopedName: (name, filename) => {
+                    const module = filename.split('/').at(-1).split('.')[0]
+                    return `${module}__${name}`
+                }
+            }
+        },
         base: '/office'};
 });
