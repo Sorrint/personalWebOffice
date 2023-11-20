@@ -1,31 +1,113 @@
-import { routesLinks } from '@shared/config/router';
+import { AppRoutes } from '@shared/config/router';
 import { type IMenuItems } from './menuItemsTypes';
 
-
 const {
-    reports, documents, stores, inventory, packages, products,
-    clients, loyality, stocks, integrations, news, scopes, question, support
-} = routesLinks;
+    getClienstRoute, getDashboardRoute, getDocumentsRoute, getInventoriesRoute, getPackagesRoute, getProductsRoute, getPromoRoute, getShopsRoute, getLoyalityRoute, getIntegrationsRoute, getScopesRoute, getNewsRoute, getQuestionRoute, getSupportRoute
+} = AppRoutes
 
 const menuItemsTop: IMenuItems = {
     section: 'main',
-    items: [reports, stores, documents, inventory, packages, products, clients, stocks, loyality, integrations]
+    items: [
+        {
+            path: getDashboardRoute(),
+            text: 'Отчёты',
+            image: 'icon-reports',
+            authOnly: true
+        }, 
+        {
+            id: 'shops',
+            path: getShopsRoute(),
+            text: 'Магазины',
+            image: 'icon-shops',
+            authOnly: true
+        },
+        {
+            id: 'documents',
+            path: getDocumentsRoute(),
+            text: 'Документы',
+            image: 'icon-documents',
+            authOnly: true
+        },
+        {
+            id: 'inventory-lists',
+            path: getInventoriesRoute(),
+            text: 'Инвентаризация',
+            image: 'icon-inventory'
+        },
+        {
+            id: 'packages',
+            path: getPackagesRoute(),
+            text: 'Упаковка',
+            image: 'icon-package-box'
+        },
+        {
+            id: 'products',
+            path: getProductsRoute(),
+            text: 'Товары',
+            image: 'icon-products'
+        },
+        {
+            id: 'clients',
+            path: getClienstRoute(),
+            text: 'Клиенты',
+            image: 'icon-clients'
+        },
+        {
+            id: 'promo',
+            path: getPromoRoute(),
+            text: 'Акции',
+            image: 'icon-stocks'
+        },
+        {
+            id: 'loyality',
+            path: getLoyalityRoute(),
+            text: 'Лояльность',
+            image: 'icon-loyality'
+        },
+        {
+            id: 'applications',
+            path: getIntegrationsRoute(),
+            text: 'Интеграции',
+            image: 'icon-integrations'
+        }
+    ]
 };
 
 const menuItemsSpecial: IMenuItems  = {
     section: 'special',
-    items: [scopes]
+    items: [{
+        id: 'scopes',
+        path: getScopesRoute(),
+        text: 'Подписки',
+        image: 'icon-scopes',
+    }]
 };
 
 const menuItemsGrow: IMenuItems = {
     section: 'grow',
-    items: [news],
+    items: [{
+        id: 'news',
+        text: 'Новости',
+        image: 'icon-news',
+        path: getNewsRoute()
+    }],
     grow: true
 }
 
 const menuItemsBottom: IMenuItems = {
     section: 'bottom',
-    items: [support, question]
+    items: [{
+        id: 'support',
+        text: 'Техподдержка',
+        image: 'icon-support',
+        path: getSupportRoute()
+    },
+    {
+        id: 'question',
+        text: 'Задать вопрос',
+        image: 'icon-contact',
+        path: getQuestionRoute()
+    }]
 
 };
 

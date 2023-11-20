@@ -1,117 +1,42 @@
-import { type IconName } from '@shared/ui/iconFont';
-
 export const BaseURL = '/office';
 
-export type Route = {
-    id: string,
-    text: string,
-    image?: IconName,
-    path: string,
-    authOnly?: boolean
+export const AppRoutes = {
+    getDashboardRoute: () => `${BaseURL}/dashboard`,
+    //Documents Page
+    getDocumentsRoute: () => `${BaseURL}/documents`,
+    getOrdersRoute: () => `${BaseURL}/documents/orders`,
+    getOrderDetailsRoute: (id: string) => `${BaseURL}/documents/orders/${id}`,
+    getOrderCreateRoute: () => `${BaseURL}/documents/orders/create`,
+    getOrderAddProductsRoute: () => `${BaseURL}/documents/orders/addProducts`,
+    getOrderingsRoute: () => `${BaseURL}/documents/orderings`,
+    getOrderingsCreateRoute: () => `${BaseURL}/documents/orderings/create`,
+    getDistributionsRoute: () => `${BaseURL}/documents/distibutions`,
+    // Inventories Page
+    getInventoriesRoute: () => `${BaseURL}/inventories`,
+    getInventoryCreateRoute: () => `${BaseURL}/inventories/create`,
+    getInventoryDetailsRoute: (id: number) => `${BaseURL}/inventories/${id}`,
+    // Products Page
+    getProductsRoute: () => `${BaseURL}/products`,
+    getProductsCategoriesRoute: () => `${BaseURL}/products/categories`,
+    //Packages Page
+    getPackagesRoute: () => `${BaseURL}/packages`,
+    getPackageCreateRoute: () => `${BaseURL}/packages/create`,
+    getPackagesCategoryCreateRoute: () => `${BaseURL}/packages/categories/create`,
+    //User, auth Pages
+    getProfileRoute: () => `${BaseURL}/profile`,
+    getLoginRoute: () => `${BaseURL}/login`,
+    getRegisterRoute: () => `${BaseURL}/register`,
+    //Others
+    getShopsRoute: () => `${BaseURL}/shops`,
+    getClienstRoute: () => `${BaseURL}/clients`,
+    getPromoRoute: () => `${BaseURL}/promo`,
+    getLoyalityRoute: ()=> `${BaseURL}/loyality`,
+    getIntegrationsRoute: () => `${BaseURL}/applications`,
+    getScopesRoute: () => `${BaseURL}/paid-options`,
+    getNewsRoute: () => `${BaseURL}/news`,
+    getSupportRoute: () => `${BaseURL}/support`,
+    getQuestionRoute: () => `${BaseURL}/question`
 }
 
-export const routesLinks = {
-    reports: {
-        id: 'dashboard',
-        text: 'Отчёты',
-        image: 'icon-reports',
-        path: `${BaseURL}/dashboard`,
-        authOnly: true
-    },
-    stores: {
-        id: 'shops',
-        text: 'Магазины',
-        image: 'icon-shops',
-        path: `${BaseURL}/shops`,
-        authOnly: true
-    },
-    documents: {
-        id: 'documents',
-        text: 'Документы',
-        image: 'icon-documents',
-        path: `${BaseURL}/documents`,
-        authOnly: true
-    },
-    inventory: {
-        id: 'inventory-lists',
-        text: 'Инвентаризация',
-        image: 'icon-inventory',
-        path: `${BaseURL}/inventory-lists`
-    },
-    packages: {
-        id: 'packages',
-        text: 'Упаковка',
-        image: 'icon-package-box',
-        path: `${BaseURL}/packages`
-    },
-    products: {
-        id: 'products',
-        text: 'Товары',
-        image: 'icon-products',
-        path: `${BaseURL}/products`
-    },
-    clients: {
-        id: 'clients',
-        text: 'Клиенты',
-        image: 'icon-clients',
-        path: `${BaseURL}/clients`
-    },
-    stocks: {
-        id: 'promo',
-        text: 'Акции',
-        image: 'icon-stocks',
-        path: `${BaseURL}/promo`
-    },
-    loyality: {
-        id: 'loyality',
-        text: 'Лояльность',
-        image: 'icon-loyality',
-        path: `${BaseURL}/loyality`
-    },
-    integrations: {
-        id: 'applications',
-        text: 'Интеграции',
-        image: 'icon-integrations',
-        path: `${BaseURL}/applications`
-    },
-    scopes: {
-        id: 'paid-options',
-        text: 'Подписки',
-        image: 'icon-scopes',
-        path: `${BaseURL}/paid-options`
-    },
-    news: {
-        id: 'news',
-        text: 'Новости',
-        image: 'icon-news',
-        path: `${BaseURL}/news`
-    },
-    support: {
-        id: 'support',
-        text: 'Техподдержка',
-        image: 'icon-support',
-        path: `${BaseURL}/support`
-    },
-    question: {
-        id: 'question',
-        text: 'Задать вопрос',
-        image: 'icon-contact',
-        path: `${BaseURL}/question`
-    },
-    profile: {
-        id: 'profile',
-        text: 'Профиль',
-        path: `${BaseURL}/profile`,
-        image: 'icon-profile'
-    },
-    register: {
-        id: 'register',
-        text: 'Регистрация',
-        path: `${BaseURL}/register`
-    },
-    login: {
-        id: 'login',
-        text: 'Вход',
-        path: `${BaseURL}/login`
-    }
-} as const
+export type RoutesKeys = keyof typeof AppRoutes
+

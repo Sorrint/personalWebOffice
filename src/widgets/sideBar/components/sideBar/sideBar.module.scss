@@ -1,5 +1,5 @@
 .sidenav {
-    max-width: 255px;
+    max-width: var(--sidebar-width);
     width: 100%;
     position: static;
     overflow: hidden auto;
@@ -9,6 +9,14 @@
     font-weight: 500;
     display: flex;
     flex-direction: column;
+}
+
+.collapsed {
+    max-width: var(--sidebar-collapsed-width);
+
+    &:hover {
+        overflow: visible;
+    }
 }
 
 .section {
@@ -25,7 +33,7 @@
     flex: 1 1 auto;
 }
 
-@media (width <= 1200px) {
+@media (width <= 960px) {
     // body.lock {
     //     overflow: hidden;
     // }
@@ -35,12 +43,12 @@
     //     position: relative;
     // }
 
-    // .sidenav {
-    //     position: absolute;
-    //     left: -100%;
-    //     overflow: visible;
-    //     transition: all 0.3s ease 0s;
-    // }
+    .sidenav {
+        position: absolute;
+        left: -100%;
+        overflow: visible;
+        transition: all 0.3s ease 0s;
+    }
 
     // .navigation {
     //     &__menu {

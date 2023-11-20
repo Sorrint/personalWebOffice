@@ -5,7 +5,7 @@ import { rtkApi } from '@shared/api/rtkApi';
 
 export const documentsOrderApi = rtkApi.enhanceEndpoints({addTagTypes: ['order']}).injectEndpoints({
     endpoints: (build) => ({
-        createOrder: build.mutation<IOrder, IOrder>({
+        createOrder: build.mutation<Required<IOrder>, IOrder>({
             query: (order) => ({
                 url: 'documents/orders/create',
                 method: 'POST',

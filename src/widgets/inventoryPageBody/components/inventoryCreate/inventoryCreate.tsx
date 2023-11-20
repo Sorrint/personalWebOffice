@@ -9,6 +9,7 @@ import { useGetCounter } from '@shared/api/countersAPI';
 import { useCreateNewDocument } from '@entities/inventoryDocs';
 
 import styles from './inventoryCreate.module.scss';
+import { AppRoutes } from '@shared/config/router';
 
 export const InventoryCreate = () => {
     const navigate = useNavigate();
@@ -36,7 +37,7 @@ export const InventoryCreate = () => {
         if ('data' in doc) {
             const number = doc.data.documentNumber
             if (number) {
-                navigate(`../${number}`);
+                navigate(AppRoutes.getInventoryDetailsRoute(number));
             }
         }
     };

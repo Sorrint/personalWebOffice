@@ -40,6 +40,7 @@
     padding: auto 0;
 }
 
+
 .item {
     display: flex;
     align-items: center;
@@ -48,3 +49,36 @@
         margin: 0;
     }
 }
+
+.collapsed {
+    .text {
+        opacity: 0;
+        margin-left: 0;
+        transition: 0.2s opacity;
+        font-size: var(--font-size-text);
+        position: absolute;
+        background: rgb(227 242 244);
+        padding: 10px 20px;
+        left: calc(var(--sidebar-collapsed-width) + 5px);
+        width: initial;
+        z-index: 2;
+        box-shadow: 5px 5px 7px rgba(0 0 0 / 25%);
+        border: 1px solid var(--primary-color);
+        border-radius: 3px;
+        white-space: nowrap;
+    }
+
+    &.link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &:hover {
+        .text {
+            opacity: 100;
+        }
+    }
+}
+

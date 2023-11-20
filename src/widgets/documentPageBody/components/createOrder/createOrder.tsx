@@ -4,6 +4,7 @@ import { Button } from '@shared/ui/button';
 import { useCreateOrderMutation } from '../../api/documentsOrderApi';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { AppRoutes } from '@shared/config/router';
 
 export const CreateOrder = () => {
     const order = useSelector(getCurrentOrder());
@@ -12,7 +13,7 @@ export const CreateOrder = () => {
     const handleSaveOrder = async () => {
         if (order) {
             const newOrder = await createNewOrder(order);
-            if ('data' in newOrder) navigate(`/office/documents/orders/${newOrder.data._id}`);
+            if ('data' in newOrder) navigate(AppRoutes.getOrderDetailsRoute(newOrder.data._id));
         } 
     };
 
