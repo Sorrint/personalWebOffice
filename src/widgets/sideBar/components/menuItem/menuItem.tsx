@@ -1,12 +1,31 @@
-import { type IMenuItem } from '../../model/menuItemsTypes';
-import MenuLink from '../menuLink/menuLink';
+import { NavLink } from 'react-router-dom';
+import { IconFont } from '@shared/ui/iconFont';
 
-interface MenuItemProps {
-    item: IMenuItem
+import { type IMenuItem } from '../../model/menuItemsTypes';
+import  styles from  './menuItem.module.scss';
+import classNames from 'classnames';
+
+interface MenuLinkProps {
+    item: IMenuItem,
+    collapsed: boolean
 }
 
-const MenuItem = ({ item }: MenuItemProps) => {
-    return <MenuLink item={item} />
+export const MenuItem = ({ item, collapsed }: MenuLinkProps) => {
+ 
+    const getClassName = (isActive: boolean) =>{
+        return classNames(styles.link, {
+            [styles.active]: isActive,
+            [styles.collapsed]: collapsed
+        })
+    } 
+       
+    return (
+        <li className={styles.item} id={item.id}>
+            <NavLink className={({ isActive }) => getClassName(isActive)} to={item.path} key={item.id}>
+                {item.image && <IconFont iconName={item.image} classname={styles.icon}/>}
+                <span className={styles.text}>{item.text}</span>
+            </NavLink>
+        </li>
+    );
 };
 
-export default MenuItem;

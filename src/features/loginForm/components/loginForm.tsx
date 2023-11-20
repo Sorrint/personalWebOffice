@@ -1,17 +1,17 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 import classNames from 'classnames';
 import { memo } from 'react';
 
 import { Button } from '@shared/ui/button';
 import { TextField } from '@shared/ui/textField';
 import { ErrorField } from '@shared/ui/errorField';
-import { zodResolver } from '@hookform/resolvers/zod'
+import {zodResolver} from '@hookform/resolvers/zod'
 
 import { type UserLoginDTO } from '../model/types/userLoginDTO';
 import { LoginSchema } from '../model/loginSchema';
 import { useLoginMutation } from '../api/loginApi';
 import styles from './loginForm.module.scss'
-import { routesLinks } from '@shared/config/router';
+import { AppRoutes } from '@shared/config/router';
 import { AppLink } from '@shared/ui/buttonLink';
 
 interface LoginFormProps {
@@ -45,7 +45,7 @@ export const LoginForm = memo(({classname, onSuccess}: LoginFormProps) => {
     return <div className={formStyle}>
         <div className={styles.header}>
             <h2 className={styles.title}>Вход</h2>
-            <AppLink to={routesLinks.register.path}>Зарегистрироваться</AppLink>
+            <AppLink to={AppRoutes.getRegisterRoute()}>Зарегистрироваться</AppLink>
         </div>
  
         <div className={styles.field}>

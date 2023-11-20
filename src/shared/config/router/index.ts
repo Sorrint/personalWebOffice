@@ -1,1 +1,1 @@
-export { routesLinks } from './routesLinks';
+export { AppRoutes } from './routesLinks';

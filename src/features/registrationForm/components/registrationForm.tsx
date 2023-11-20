@@ -12,7 +12,7 @@ import { RegisterSchema } from '../model/registrationSchema';
 import { useRegisterMutation } from '../api/registerApi';
 import styles from './registrationForm.module.scss'
 import { AppLink } from '@shared/ui/buttonLink';
-import { routesLinks } from '@shared/config/router';
+import { AppRoutes } from '@shared/config/router';
 
 interface RegistrationFormProps {
     classname?: string
@@ -49,7 +49,7 @@ export const RegistrationForm = memo(({classname, onSuccess}: RegistrationFormPr
     return <div className={formStyle}>
         <div className={styles.header}>
             <h2 className={styles.title}>Регистрация</h2>
-            <AppLink to={routesLinks.login.path}>Войти</AppLink>
+            <AppLink to={AppRoutes.getLoginRoute()}>Войти</AppLink>
         </div>
         <div className={styles.field}>
             <TextField 

@@ -14,81 +14,73 @@ import ProductsCategories from '@widgets/productsPageBody';
 import { EditPackageCategory } from '@features/editPackageCategory';
 import { EditPackageForm } from '@features/editPackageForm';
 
-import { routesLinks } from '@shared/config/router';
+import { AppRoutes } from '@shared/config/router/routesLinks';
 
 export const routes: RouteObject[] = [
-    { index: true, element: <Navigate to={`.${routesLinks.documents.path}`} /> },
+    { index: true, element: <Navigate to={AppRoutes.getDashboardRoute()} /> },
     {
-        path: `${routesLinks.documents.path}`,
+        path: AppRoutes.getDocumentsRoute(),
         element: <DocumentsPage />,
         children: [
             { path: 'orders',  children: [
-                {path: ':_id', element: <OrderDetails />},
-                {path: 'addProducts', element: <AddOrderProducts />},
-                {path: 'create', element: <CreateOrder />},
+                {path: AppRoutes.getOrderDetailsRoute(':_id'), element: <OrderDetails />},
+                {path: AppRoutes.getOrderAddProductsRoute(), element: <AddOrderProducts />},
+                {path: AppRoutes.getOrderCreateRoute(), element: <CreateOrder />},
                 {index: true, element: <OrdersCatalog />}
             ] },
-            { path: 'orderings', children: [
-                {path: 'create',element: <CreateOrdering />},
+            { path: AppRoutes.getOrderingsRoute(), children: [
+                {path: AppRoutes.getOrderingsCreateRoute(),element: <CreateOrdering />},
                 {index: true, element: <CreateOrdering/>},
             ] },
-            { path: 'distributions', element: <Distribution /> },
-            { index: true, element: <Navigate to={'./orders'} /> },
-            { path: '*', element: <Navigate to={'./orders'} /> }
+            { path: AppRoutes.getDistributionsRoute(), element: <Distribution /> },
+            { index: true, element: <Navigate to={AppRoutes.getOrdersRoute()} /> },
+            { path: '*', element: <Navigate to={AppRoutes.getOrdersRoute()} /> }
         ]
     },
     {
-        path: `${routesLinks.inventory.path}`,
+        path: AppRoutes.getInventoriesRoute(),
         element: <InventoryPage />,
         children: [
-            {
-                path: 'documents',
-                children: [
-                    { path: 'create', element: <InventoryCreate /> },
-                    {
-                        path: ':number',
-                        element: <InventoryEdit />
-                    },
-                    { index: true, element: <InventoriesList /> }
-                ]
-            },
-            { index: true, element: <Navigate to={'./documents'} /> },
-            { path: '*', element: <Navigate to={'./documents'} /> }
+            { path: AppRoutes.getInventoryCreateRoute(), element: <InventoryCreate /> },
+            { path: AppRoutes.getInventoryDetailsRoute(':number'), element: <InventoryEdit /> },
+            { index: true, element: <InventoriesList /> },
+            { path: '*', element: <Navigate to={AppRoutes.getInventoriesRoute()} /> }
         ]
     },
     {
-        path: `${routesLinks.products.path}`,
+        path: AppRoutes.getProductsRoute(),
         element: <ProductsPage />,
         children: [
-            { path: 'categories', element: <ProductsCategories /> },
-            { index: true, element: <Navigate to={'./categories'} /> },
-            { path: '*', element: <Navigate to={'./categories'} /> }
+            { path: AppRoutes.getProductsCategoriesRoute(), element: <ProductsCategories /> },
+            { index: true, element: <Navigate to={AppRoutes.getProductsCategoriesRoute()} /> },
+            { path: '*', element: <Navigate to={AppRoutes.getProductsCategoriesRoute()} /> }
         ]
     },
     {
-        path: `${routesLinks.packages.path}`,
+        path: AppRoutes.getPackagesRoute(),
         element: <PackagesPage/>,
         children: [
-            { path: 'create', element: <EditPackageForm />},
+            { path: AppRoutes.getPackagesRoute(), element: <EditPackageForm />},
             { path: 'category/create', element: <EditPackageCategory />},
-            { index: true, element: <Navigate to={'./create'} /> },
-            { path: '*', element: <Navigate to={'./create'} /> }
+            { index: true, element: <Navigate to={AppRoutes.getPackageCreateRoute()} /> },
+            { path: '*', element: <Navigate to={AppRoutes.getPackageCreateRoute()} /> }
         ]
     },
     {
-        path: `${routesLinks.profile.path}`,
+        path: AppRoutes.getProfileRoute(),
         element: <ProfilePage />
     },
     {
-        path: `${routesLinks.register.path}`,
+        path: AppRoutes.getLoginRoute(),
         element: <AuthPage />
     },
     {
-        path: `${routesLinks.login.path}`,
+        path: AppRoutes.getRegisterRoute(),
         element: <AuthPage />,
         
     },
-    { path: '*', element: <Navigate to={`.${routesLinks.documents.path}`} /> }
+    { path: '*', element: <Navigate to={AppRoutes.getDocumentsRoute()} /> }
 ];
 export default routes;
+
 
