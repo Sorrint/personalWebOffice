@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useMemo, useState } from 'react';
+import { memo, useContext, useMemo } from 'react';
 
 import { Button } from '@shared/ui/button';
 
@@ -7,14 +7,12 @@ import { type IMenuItem, type IMenuItems } from '../../model/types/menuItemsType
 import { sideBarScope } from '../../model/slices/menuItems';
 import { MenuItem } from '../menuItem/menuItem';
 import styles from './sideBar.module.scss';
+import { UserSettingsContext } from '@shared/lib/context/settingsContext';
 
-export const SideBar = () => {
-    const {0: collapsed, 1: setCollapsed} = useState<boolean>(false)
-  
-    const changeSidebar = () => {
-        setCollapsed(prev => !prev)
-    }
-
+export const SideBar = memo(() => {
+    const {sidebar} = useContext(UserSettingsContext)
+    const collapsed  = sidebar?.collapsed ?? false
+    const changeSidebar = sidebar?.changeCollapsed
     const menuItems = useMemo(() => (items: IMenuItem[]) => 
         items.map((item) => (
             <MenuItem 
@@ -34,7 +32,7 @@ export const SideBar = () => {
                     {menuItems(item.items)}
                 </ul>
             )}
-            <Button onClick={changeSidebar}>Нажми меня</Button>
+            <Button onClick={changeSidebar} full>{collapsed ? '>>' : '<<'}</Button>
         </nav>
     );
-};
+});

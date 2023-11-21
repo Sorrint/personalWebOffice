@@ -6,7 +6,7 @@ import {
     type ChangeEvent, 
     type ForwardedRef } from 'react';
 
-import styles from './button.module.scss'
+import styles, { full } from './button.module.scss'
 import { IconFont } from '../iconFont';
 interface ButtonProps {
     onClick?: (...args: any[]) => void
@@ -17,18 +17,20 @@ interface ButtonProps {
     name?: string
     onChange?: (e: ChangeEvent<HTMLButtonElement>) => void
     disabled?: boolean
+    full?: boolean
 }
 
 export const Button = memo(forwardRef(function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     
     const { onClick, buttonType, children, 
-        classname,  onKeyDown, name, onChange, disabled} = props;
+        classname,  onKeyDown, name, onChange, disabled, full} = props;
     
     const btnClassName = classNames(
         styles.btn, 
         styles[buttonType ?? 'submit'], 
         {
-            [styles.disabled]: disabled
+            [styles.disabled]: disabled,
+            [styles.full]: full
         }, 
         classname
     )

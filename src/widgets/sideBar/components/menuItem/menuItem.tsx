@@ -4,13 +4,14 @@ import { IconFont } from '@shared/ui/iconFont';
 import { type IMenuItem } from '../../model/types/menuItemsTypes';
 import  styles from  './menuItem.module.scss';
 import classNames from 'classnames';
+import { memo } from 'react';
 
 interface MenuLinkProps {
     item: IMenuItem,
     collapsed: boolean
 }
 
-export const MenuItem = ({ item, collapsed }: MenuLinkProps) => {
+export const MenuItem = memo(({ item, collapsed }: MenuLinkProps) => {
  
     const getClassName = (isActive: boolean) =>{
         return classNames(styles.link, {
@@ -28,5 +29,5 @@ export const MenuItem = ({ item, collapsed }: MenuLinkProps) => {
             </NavLink>
         </li>
     );
-};
+});
 
