@@ -1,20 +1,19 @@
 import classNames from 'classnames';
-
-import { type IMenuItem, type IMenuItems } from '../../model/menuItemsTypes';
-import { sideBarScope } from '../../model/menuItems';
-import { MenuItem } from '../menuItem/menuItem';
-import styles from './sideBar.module.scss';
 import { useMemo, useState } from 'react';
 
+import { Button } from '@shared/ui/button';
+
+import { type IMenuItem, type IMenuItems } from '../../model/types/menuItemsTypes';
+import { sideBarScope } from '../../model/slices/menuItems';
+import { MenuItem } from '../menuItem/menuItem';
+import styles from './sideBar.module.scss';
 
 export const SideBar = () => {
-    const [collapsed] = useState(true)
-
-    const getSectionStyles =(grow: boolean | undefined) => classNames(styles.section, {
-        [styles.grow]: grow,
-    })
-
-
+    const {0: collapsed, 1: setCollapsed} = useState<boolean>(false)
+  
+    const changeSidebar = () => {
+        setCollapsed(prev => !prev)
+    }
 
     const menuItems = useMemo(() => (items: IMenuItem[]) => 
         items.map((item) => (
@@ -24,6 +23,10 @@ export const SideBar = () => {
                 collapsed = {collapsed}/>
         )), [collapsed])
 
+    const getSectionStyles =(grow: boolean | undefined) => classNames(styles.section, {
+        [styles.grow]: grow,
+    })
+
     return (
         <nav className={classNames(styles.sidenav, {[styles.collapsed]: collapsed})}>
             {sideBarScope.map((item: IMenuItems) =>
@@ -31,6 +34,7 @@ export const SideBar = () => {
                     {menuItems(item.items)}
                 </ul>
             )}
+            <Button onClick={changeSidebar}>Нажми меня</Button>
         </nav>
     );
 };

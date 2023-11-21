@@ -25,7 +25,7 @@ export const AsyncReduxComponent= (props: AsyncReduxComponentProps) => {
                 const isMounted = mountedReducers[name as StoreSchemaKey];
                 if (!isMounted) {
                     store.reducerManager?.add(name as StoreSchemaKey, reducer);
-                    dispatch({ type: '@@INIT orders reducer' });
+                    dispatch({ type: `@@INIT ${name} reducer` });
                 }
             });
 
@@ -33,7 +33,7 @@ export const AsyncReduxComponent= (props: AsyncReduxComponentProps) => {
                 if (removeAfterUnmount) {
                     Object.keys(reducersList).forEach((name) => {
                         store.reducerManager?.remove(name as StoreSchemaKey);
-                        dispatch({ type: '@@REMOVE orders reducer' });
+                        dispatch({ type: `@@REMOVE ${name} reducer` });
                     });
                 }
             };

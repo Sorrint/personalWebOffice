@@ -1,5 +1,5 @@
 import { AppRoutes } from '@shared/config/router';
-import { type IMenuItems } from './menuItemsTypes';
+import { type IMenuItems } from '../types/menuItemsTypes';
 
 const {
     getClienstRoute, getDashboardRoute, getDocumentsRoute, getInventoriesRoute, getPackagesRoute, getProductsRoute, getPromoRoute, getShopsRoute, getLoyalityRoute, getIntegrationsRoute, getScopesRoute, getNewsRoute, getQuestionRoute, getSupportRoute
