@@ -1,6 +1,5 @@
 import { OrdersList, useGetOrdersListQuery } from '@entities/orders';
 
-
 export const OrdersCatalog = () => {
     const {data: orders} = useGetOrdersListQuery();
     
