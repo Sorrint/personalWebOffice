@@ -1,11 +1,20 @@
 import { type ReactNode } from 'react';
-import './appLayout.scss';
+import cls from './appLayout.module.scss';
 
 interface LayoutProps {
+    header: ReactNode
+    sidebar: ReactNode
     children: ReactNode
-    style?: 'wrapper' | 'content'
 }
 
-export const AppLayout = ({ children, style }: LayoutProps) => {
-    return <div className={`app__${style ?? 'wrapper'}`}>{children}</div>;
+export const AppLayout = ({ header, sidebar, children}: LayoutProps) => {
+    return <>
+        {header}
+        <div className={cls.app__wrapper}>
+            {sidebar}
+            <div className={cls.app__content}>
+                {children}
+            </div>
+        </div>
+    </>;
 };

@@ -1,12 +1,10 @@
 import { Outlet } from 'react-router-dom';
 
-import { Header } from '@widgets/header';
 import { AppRibbon } from '@widgets/appRibbon';
-import { SideBar } from '@widgets/sideBar';
 import { orderReducer } from '@entities/orders';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
-import { AppBody, AppHeader, AppLayout } from '@shared/layouts';
+import { AppBody, AppHeader } from '@shared/layouts';
 
 const reducers: ReducersList = {
     orders: orderReducer
@@ -34,20 +32,14 @@ const DocumentsPage = () => {
 
     return (
         <>
-            <Header />
-            <AppLayout style="wrapper">
-                <SideBar />
-                <AppLayout style="content">
-                    <AppHeader title="Документы">
-                        <AppRibbon navLinks={navLinks} />
-                    </AppHeader>
-                    <AsyncReduxComponent reducersList={reducers} >
-                        <AppBody>
-                            <Outlet />
-                        </AppBody>
-                    </AsyncReduxComponent>
-                </AppLayout>
-            </AppLayout>
+            <AppHeader title="Документы">
+                <AppRibbon navLinks={navLinks} />
+            </AppHeader>
+            <AsyncReduxComponent reducersList={reducers} >
+                <AppBody>
+                    <Outlet />
+                </AppBody>
+            </AsyncReduxComponent>
         </>
     );
 };

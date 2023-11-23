@@ -7,9 +7,12 @@ import { useLogout } from '@features/logout';
 import { Popover } from '@shared/ui/popover';
 
 import styles from './header.module.scss';
+import { UserSettingsContext } from '@shared/lib/context/settingsContext';
 
 export const Header = memo(() => {
 
+    const {sidebar} = useContext(UserSettingsContext)
+    const hideSidebar = sidebar?.changeHidden
     const {name} = useContext(AuthContext)
     const {logout} = useLogout()
     const refEl = useRef<HTMLDivElement>(null)
@@ -21,10 +24,11 @@ export const Header = memo(() => {
 
     return (    
         <div className={styles.header}>
-            <div className={styles.burger}>
-                <span></span>
-            </div>
+          
             <div className={styles['logo-group']}>
+                <i className={styles.burger} onClick={hideSidebar}>
+                    <span></span>
+                </i>
                 <IconFont iconName='icon-feather' classname={styles.logo}/>
                 <span className={styles['logo-text']}>Кабинет</span>
             </div>

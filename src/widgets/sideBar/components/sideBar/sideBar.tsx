@@ -13,6 +13,7 @@ import { IconFont } from '@shared/ui/iconFont';
 export const SideBar = memo(() => {
     const {sidebar} = useContext(UserSettingsContext)
     const collapsed  = sidebar?.collapsed ?? false
+    const hidden = sidebar?.hidden ?? false
     const changeSidebar = sidebar?.changeCollapsed
     const menuItems = useMemo(() => (items: IMenuItem[]) => 
         items.map((item) => (
