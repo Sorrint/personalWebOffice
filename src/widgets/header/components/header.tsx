@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { memo, useContext, useRef, useState } from 'react';
+import { type ReactNode, memo, useContext, useRef, useState } from 'react';
 
 import { IconFont } from '@shared/ui/iconFont';
 import { AuthContext } from '@shared/lib/context/authContext';
@@ -7,12 +7,13 @@ import { useLogout } from '@features/logout';
 import { Popover } from '@shared/ui/popover';
 
 import styles from './header.module.scss';
-import { UserSettingsContext } from '@shared/lib/context/settingsContext';
 
-export const Header = memo(() => {
+interface HeaderProps {
+    sidebarButton?: ReactNode
+}
 
-    const {sidebar} = useContext(UserSettingsContext)
-    const hideSidebar = sidebar?.changeHidden
+export const Header = memo(({sidebarButton}: HeaderProps) => {
+
     const {name} = useContext(AuthContext)
     const {logout} = useLogout()
     const refEl = useRef<HTMLDivElement>(null)
@@ -24,11 +25,8 @@ export const Header = memo(() => {
 
     return (    
         <div className={styles.header}>
-          
             <div className={styles['logo-group']}>
-                <i className={styles.burger} onClick={hideSidebar}>
-                    <span></span>
-                </i>
+                {sidebarButton}
                 <IconFont iconName='icon-feather' classname={styles.logo}/>
                 <span className={styles['logo-text']}>Кабинет</span>
             </div>

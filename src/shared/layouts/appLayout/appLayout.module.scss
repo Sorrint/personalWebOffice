@@ -19,3 +19,11 @@
         position: relative;
     }
 }
+
+.backdrop {
+    inset: 0;
+    position:absolute;
+    background-color: rgb(33 33 33 );
+    opacity: 0.48;
+    z-index: 1;
+}
