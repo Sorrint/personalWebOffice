@@ -13,6 +13,7 @@ export const AuthProvider = ({children}: ErrorProviderProps) => {
     const from = location.state?.from?.pathname
     const authPaths = ['login', 'register']
     const isAuthPath = authPaths.includes(location.pathname.split('/').at(-1) || '')
+
     if (!isLoading) {
         if (!data?.id && !isAuthPath) {
             return <Navigate to={AppRoutes.getLoginRoute()} state={{ from: location }}/>;

@@ -12,8 +12,8 @@ export const Auth = () => {
     const location = useLocation()
     const route = location.pathname.split('/').at(-1)
     const isLoginPage = route === 'login' 
-    const {user, refetch}= useContext(AuthContext)
-    if (user) return null
+    const {name, refetch}= useContext(AuthContext)
+    if (name) return null
 
     return <>
         {

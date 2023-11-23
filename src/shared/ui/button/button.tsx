@@ -6,7 +6,7 @@ import {
     type ChangeEvent, 
     type ForwardedRef } from 'react';
 
-import styles, { full } from './button.module.scss'
+import styles from './button.module.scss'
 import { IconFont } from '../iconFont';
 interface ButtonProps {
     onClick?: (...args: any[]) => void

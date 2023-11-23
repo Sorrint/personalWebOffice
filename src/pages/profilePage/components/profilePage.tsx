@@ -1,20 +1,12 @@
 import { ProfilePageBody } from '@widgets/profilePageBody';
-import { AppBody, AppLayout } from '@shared/layouts';
-import { SideBar } from '@widgets/sideBar';
-import { Header } from '@widgets/header';
+import { AppBody } from '@shared/layouts';
 
 const ProfilePage = () => {
     return (
         <>
-            <Header />
-            <AppLayout style="wrapper">
-                <SideBar />
-                <AppLayout style="content">
-                    <AppBody>
-                        <ProfilePageBody />
-                    </AppBody>
-                </AppLayout>
-            </AppLayout>
+            <AppBody>
+                <ProfilePageBody />
+            </AppBody>
         </>
     );
 };

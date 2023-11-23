@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'office';
+  font-family: office;
   src:  url('fonts/office.eot?rz9els');
   src:  url('fonts/office.eot?rz9els#iefix') format('embedded-opentype'),
     url('fonts/office.ttf?rz9els') format('truetype'),
@@ -12,8 +12,7 @@
 
 i {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'office' !important;
-  speak: never;
+  font-family: office !important ;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,75 +24,98 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-chevron-right:before {
+.icon-chevron-right::before {
   content: "\e917";
 }
-.icon-chevron-left:before {
+
+.icon-chevron-left::before {
   content: "\e900";
 }
-.icon-contact:before {
+
+.icon-contact::before {
   content: "\e901";
 }
-.icon-feather:before {
+
+.icon-feather::before {
   content: "\e902";
 }
-.icon-eye-slashed:before {
+
+.icon-eye-slashed::before {
   content: "\e903";
 }
-.icon-eye-open:before {
+
+.icon-eye-open::before {
   content: "\e904";
 }
-.icon-arrows-up-down:before {
+
+.icon-arrows-up-down::before {
   content: "\e905";
 }
-.icon-arrows-v:before {
+
+.icon-arrows-v::before {
   content: "\e906";
 }
-.icon-clients:before {
+
+.icon-clients::before {
   content: "\e907";
 }
-.icon-documents:before {
+
+.icon-documents::before {
   content: "\e908";
 }
-.icon-integrations:before {
+
+.icon-integrations::before {
   content: "\e909";
 }
-.icon-inventory:before {
+
+.icon-inventory::before {
   content: "\e90a";
 }
-.icon-loyality:before {
+
+.icon-loyality::before {
   content: "\e90b";
 }
-.icon-marking:before {
+
+.icon-marking::before {
   content: "\e90c";
 }
-.icon-news:before {
+
+.icon-news::before {
   content: "\e90d";
 }
-.icon-package-box:before {
+
+.icon-package-box::before {
   content: "\e90e";
 }
-.icon-products:before {
+
+.icon-products::before {
   content: "\e90f";
 }
-.icon-profile:before {
+
+.icon-profile::before {
   content: "\e910";
 }
-.icon-question:before {
+
+.icon-question::before {
   content: "\e911";
 }
-.icon-reports:before {
+
+.icon-reports::before {
   content: "\e912";
 }
-.icon-scopes:before {
+
+.icon-scopes::before {
   content: "\e913";
 }
-.icon-shops:before {
+
+.icon-shops::before {
   content: "\e914";
 }
-.icon-stocks:before {
+
+.icon-stocks::before {
   content: "\e915";
 }
-.icon-support:before {
+
+.icon-support::before {
   content: "\e916";
 }

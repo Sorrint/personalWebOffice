@@ -62,9 +62,17 @@
         left: -100%;
         overflow: visible;
         transition: all 0.3s ease 0s;
+        z-index: 2;
+        height: 100%;
+
+        &.visible {
+            left: 0;
+        }
     }
 
     .button {
         display: none;
     }
+
+
 }

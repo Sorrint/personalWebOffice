@@ -1,11 +1,24 @@
 import { type ReactNode } from 'react';
-import './appLayout.scss';
+
+import styles from './appLayout.module.scss';
 
 interface LayoutProps {
+    header: ReactNode
+    sidebar: ReactNode
     children: ReactNode
-    style?: 'wrapper' | 'content'
+    isSidebarOpen?: boolean
+    closeSidebar?: () => void 
 }
 
-export const AppLayout = ({ children, style }: LayoutProps) => {
-    return <div className={`app__${style ?? 'wrapper'}`}>{children}</div>;
+export const AppLayout = ({ header, sidebar, children, closeSidebar, isSidebarOpen}: LayoutProps) => {
+    return <>
+        {header}
+        <div className={styles.app__wrapper}>
+            {sidebar}
+            <div className={isSidebarOpen ? styles.backdrop : ''} onClick={()=>closeSidebar?.()}/>
+            <div className={styles.app__content}>
+                {children}
+            </div>
+        </div>
+    </>;
 };
