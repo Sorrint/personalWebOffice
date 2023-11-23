@@ -1,17 +1,16 @@
-import { type FC } from 'react';
-import { type IOrder } from '@entities/orders';
-import { useAppDispatch } from '@shared/lib/hooks';
-import { Button } from '@shared/ui/button/button';
-import { saveCurrentOrder } from '@entities/orders';
+import { memo } from 'react';
+import { useSaveCurrentOrderMutation, type IOrder } from '@entities/orders';
 
-interface ISaveOrderCardProps {
-    order: IOrder | undefined
+import { Button } from '@shared/ui/button/button';
+
+interface SaveOrderCardProps {
+    order: IOrder
 }
 
-export const SaveOrderToDatabase: FC<ISaveOrderCardProps> = ({ order }) => {
-    const dispatch = useAppDispatch();
+export const SaveOrderToDatabase = memo(({ order }: SaveOrderCardProps) => {
+    const [ saveCurrentOrder ] = useSaveCurrentOrderMutation()
     const handleClick = (order: IOrder) => {
-        dispatch(saveCurrentOrder(order));
+        saveCurrentOrder(order)
     };
     return <>{order && <Button onClick={() => { handleClick(order); }}>Сохранить заказ </Button>}</>;
-};
+});

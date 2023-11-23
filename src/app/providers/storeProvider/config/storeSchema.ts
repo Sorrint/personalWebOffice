@@ -1,9 +1,9 @@
-import { type OrderState } from '@entities/orders';
 import { type CombinedState, type AnyAction, type ReducersMapObject, type Reducer } from '@reduxjs/toolkit';
 import { type EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
-import { type rtkApi } from '@shared/api/rtkApi';
+
 import { type SidebarState } from '@widgets/sideBar';
-import { type AxiosInstance } from 'axios';
+import { type OrderState } from '@entities/orders';
+import { type rtkApi } from '@shared/api/rtkApi';
 
 export interface StoreSchema {
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
@@ -25,14 +25,4 @@ export interface ReducerManager {
 
 export interface StoreWithReducerManager extends EnhancedStore<StoreSchema> {
     reducerManager?: ReducerManager
-}
-
-export interface ThunkExtraArg {
-    api: AxiosInstance
-}
-
-export interface ThunkConfig<T> {
-    rejectValue: T
-    extra: ThunkExtraArg
-    state: StoreSchema
 }
