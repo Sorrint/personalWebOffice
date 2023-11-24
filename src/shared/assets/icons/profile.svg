@@ -1,9 +1,0 @@
-<svg id="person_oval" viewBox="0 0 24 24" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"></path>
-</mask>
-<g mask="url(#mask0)">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M11.9995 16.4863C8.67913 16.4863 2.05078 18.1527 2.05078 21.4607V23.9479H21.9483V21.4607C21.9483 18.1527 15.3199 16.4863 11.9995 16.4863Z"></path>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M11.9998 13.9995C14.747 13.9995 16.9741 11.7724 16.9741 9.02515C16.9741 6.27788 14.747 4.05078 11.9998 4.05078C9.25249 4.05078 7.02539 6.27788 7.02539 9.02515C7.02539 11.7724 9.25249 13.9995 11.9998 13.9995Z"></path>
-</g>
-</svg>

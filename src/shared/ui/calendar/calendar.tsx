@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { type FieldValues, Controller, type Control, type Path } from 'react-hook-form';
-import ru from 'date-fns/locale/ru';
 
+import {ru} from '@shared/lib/helpers/transformDate/useDateFNS'
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './calendar.module.scss';
 import classNames from 'classnames';
@@ -18,9 +18,11 @@ interface ICalendarProps<T extends FieldValues> {
     full?: boolean
 }
 
-export function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
+export async function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
+
     const { label, control, name, full } = props;
     const [startDate, setStartDate] = useState<Date>(new Date());
+
     const containerStyles = classNames(styles.container, {
         [styles.full]: full
     })
