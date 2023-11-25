@@ -16,7 +16,7 @@ interface ICalendarProps<T extends FieldValues> {
     full?: boolean
 }
 
-export function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
+function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
 
     const { label, control, name, full } = props;
     const [startDate, setStartDate] = useState<Date>(new Date());
@@ -59,3 +59,6 @@ export function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
         />
     );
 }
+
+
+export default Calendar
