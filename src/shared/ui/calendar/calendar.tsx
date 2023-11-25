@@ -2,12 +2,10 @@ import { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { type FieldValues, Controller, type Control, type Path } from 'react-hook-form';
 
-import {ru} from '@shared/lib/helpers/transformDate/useDateFNS'
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './calendar.module.scss';
 import classNames from 'classnames';
-
-registerLocale('ru', ru);
+import { useAsyncLoad } from '@shared/lib/hooks/';
 
 interface ICalendarProps<T extends FieldValues> {
     onChange?: () => void
@@ -18,14 +16,20 @@ interface ICalendarProps<T extends FieldValues> {
     full?: boolean
 }
 
-export async function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
+export function Calendar<T extends FieldValues> (props: ICalendarProps<T>) {
 
     const { label, control, name, full } = props;
     const [startDate, setStartDate] = useState<Date>(new Date());
-
     const containerStyles = classNames(styles.container, {
         [styles.full]: full
     })
+    const ru = useAsyncLoad('date-fns/locale/ru')
+    if (!ru || !ru.default) {
+        return null;
+    }
+
+    registerLocale('ru', ru.default);
+ 
 
     return (
         <Controller
