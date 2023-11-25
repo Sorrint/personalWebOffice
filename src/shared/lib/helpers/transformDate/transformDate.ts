@@ -1,11 +1,14 @@
-import { format, ru } from './useDateFNS'
-
+import { useAsyncLoad } from '../../hooks';
 
 export const transformDate = (date: Date) => {
-    
-    const transformed = format(new Date(date), 'dd.MM.yyyy', { locale: ru });
+    const ru = useAsyncLoad('date-fns/locale/ru')
+    const format  = useAsyncLoad('date-fns/format')
 
-    return transformed;
+    if (format && ru) {
+        const transformed = format.default(new Date(date), 'dd.MM.yyyy', { locale: ru.default });
+    
+        return transformed;
+    }
 };
 
 
