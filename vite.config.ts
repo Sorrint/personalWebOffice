@@ -35,14 +35,6 @@ export default defineConfig(({mode})=>{
             }
         },
         build: {
-            rollupOptions: {
-                output: {
-                    manualChunks: {
-                        dateFns: ['date-fns'],
-                        datePicker: ['react-datepicker']
-                    }
-                }
-            },
             commonjsOptions: {
                 esmExternals: true,
             },
