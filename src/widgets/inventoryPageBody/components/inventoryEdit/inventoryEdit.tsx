@@ -2,7 +2,7 @@ import { memo, useEffect, useState, useRef, type KeyboardEvent, useCallback } fr
 import { type FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { type IInventoryProduct, InventoryContent, useUpdateProducts, useRemoveInventoryProduct } from '@entities/inventoryDocs';
+import { type IInventoryProduct, InventoryContent, useUpdateProducts, useRemoveInventoryProduct, useLoadDocumentByNumber } from '@entities/inventoryDocs';
 import { type IDreamkasProduct, ProductList, useLoadProductsBySearch, PopupProductCard} from '@entities/products';
 import { SearchInput } from '@shared/ui/searchInput';
 import { DropdownList } from '@shared/ui/dropdownList';
@@ -21,11 +21,13 @@ interface IPopupProps {
 
 export const InventoryEdit = memo(() => {
     const { number } = useParams();
+    if (!number) return null
     const docNumber = Number(number);
     const [popupProps, setPopupProps] = useState<IPopupProps>();
     const [updateList, { error: updateError }] = useUpdateProducts();
     const [removeProduct] = useRemoveInventoryProduct();
     const [search, setSearch] = useState<string>('');
+    const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
 
     // Загрузка данных
     const {
@@ -114,6 +116,8 @@ export const InventoryEdit = memo(() => {
         firstElement.current = el;
     };
 
+    if (isLoading) return 'Идет загрузка...'
+
     return (
         <>
             <SearchInput
@@ -126,6 +130,8 @@ export const InventoryEdit = memo(() => {
                 onClick={handleUpdate}
                 onDelete={handleDelete}
                 tabIndex={activePopup ? -1 : 0}
+                inventoryList={inventoryList}
+                docNumber={number}
             />
             {goods && goods?.length !== 0 && searchInput.current && activePopover && (
                 <Popover
