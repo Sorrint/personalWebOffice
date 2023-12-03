@@ -28,3 +28,4 @@ reports
 *.env
 .env.development
 .env.production
+.editorconfig
