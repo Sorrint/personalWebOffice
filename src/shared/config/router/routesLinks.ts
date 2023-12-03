@@ -14,7 +14,7 @@ export const AppRoutes = {
     // Inventories Page
     getInventoriesRoute: () => `${BaseURL}/inventories`,
     getInventoryCreateRoute: () => `${BaseURL}/inventories/create`,
-    getInventoryDetailsRoute: (id: number) => `${BaseURL}/inventories/${id}`,
+    getInventoryDetailsRoute: (id: string) => `${BaseURL}/inventories/${id}`,
     // Products Page
     getProductsRoute: () => `${BaseURL}/products`,
     getProductsCategoriesRoute: () => `${BaseURL}/products/categories`,
