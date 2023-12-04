@@ -1,27 +1,27 @@
 .header {
     display: flex;
-    background-color: #fff;
-    line-height: 24px;
-    min-height: 48px;
-    justify-content: flex-end;
     align-items: flex-end;
+    justify-content: flex-end;
+    min-height: 48px;
     font-weight: bold;
+    line-height: 24px;
+    background-color: #fff;
 }
 
 .select,
 .avatar {
-    padding: 0 12px;
-    width: 50px;
     flex: 0 0 auto;
+    width: 50px;
+    padding: 0 12px;
 }
 
 .price,
 .count {
     display: flex;
-    width: 100px;
     flex: 0 0 auto;
-    padding: 0 12px;
     justify-content: flex-end;
+    width: 100px;
+    padding: 0 12px;
 }
 
 .name {

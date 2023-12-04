@@ -1,25 +1,25 @@
 .datepicker {
+    cursor: pointer;
     display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #000;
     background-color: #fff;
     border-bottom: 1px solid grey;
-    color: #000;
-    font-size: 16px;
     outline: 0;
-    padding: 5px 10px;
-    justify-content: flex-end;
-    align-items: flex-end;
-    cursor: pointer;
-    width: 100%;
 }
 
 .placeholder {
-    background-color: inherit;
-    left: 20px;
     position: absolute;
     top: -20px;
+    left: 20px;
     width: 100%;
     font-size: 14px;
     color: #808097;
+    background-color: inherit;
 }
 
 

@@ -1,29 +1,29 @@
 .app {
     &__wrapper {
+        position: relative;
         display: flex;
-        width: 100%;
         flex: 0 1 auto;
+        width: 100%;
         height: calc(100% - var(--header-height));
         background-color: rgb(236 236 236);
-        position: relative;
     }
 
     &__content {
+        position: relative;
+        overflow-y: auto;
         display: flex;
-        width: 100%;
-        flex-direction: column;
         flex: 1 1 auto;
+        flex-direction: column;
+        width: 100%;
         height: 100%;
         background-color: rgb(236 236 236);
-        overflow-y: auto;
-        position: relative;
     }
 }
 
 .backdrop {
-    inset: 0;
     position:absolute;
-    background-color: rgb(33 33 33 );
-    opacity: 0.48;
     z-index: 1;
+    inset: 0;
+    opacity: 0.48;
+    background-color: rgb(33 33 33 );
 }

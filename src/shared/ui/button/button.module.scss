@@ -1,10 +1,10 @@
 .btn {
+    position: relative;
     width: 15em;
+    padding: 10px 15px;
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 1px;
-    padding: 10px 15px;
-    position: relative;
 }
 
 .submit {
@@ -21,8 +21,8 @@
 .cancel {
     color: #fff;
     background-color: rgb(205 44 44);
-    box-shadow: 0 2px 5px 0 rgba(0 0 0 / 26%);
     border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0 0 0 / 26%);
 }
 
 .disabled {
@@ -30,24 +30,24 @@
 }
 
 .dropdown {
+    position: relative;
     display: flex;
     align-items: center;
-    position: relative;
-    line-height: 40px;
-    text-align-last: left;
+    padding: 5px 20px;
     font-size: 14px;
     font-weight: bold;
+    line-height: 40px;
     color: rgba(0 0 0 / 80%);
+    text-align-last: left;
     background-color: #fff;
-    padding: 5px 20px;
-    box-shadow: 0 2px 5px 0 rgba(0 0 0 / 26%);
     border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgba(0 0 0 / 26%);
     
     & i {
-        margin-right: 0;
-        font-size: 1.1em;
         position: absolute;
         right: 5px;
+        margin-right: 0;
+        font-size: 1.1em;
     }
 }
 

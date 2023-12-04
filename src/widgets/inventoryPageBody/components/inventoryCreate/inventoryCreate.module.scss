@@ -1,11 +1,11 @@
 .inventory-form {
-    background-color: #fff;
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
-    padding: 60px 20px 20px;
     gap: 90px 30px;
-    border-radius: 10px;
     margin-bottom: 40px;
+    padding: 60px 20px 20px;
+    background-color: #fff;
+    border-radius: 10px;
 }
 
 .card-title {

@@ -1,29 +1,29 @@
 .inventory-card {
-    display: flex;
-    line-height: 24px;
-    min-height: 48px;
-    background-color: #fff;
-    margin-top: 3px;
-    align-items: center;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    margin-top: 3px;
+    line-height: 24px;
+    background-color: #fff;
 
     &__price,
     &__quantity,
     &__sum,
     &__remove {
         display: flex;
-        justify-content: flex-end;
-        padding: 0 12px;
-        width: 100px;
         flex: 0 0 auto;
+        justify-content: flex-end;
+        width: 100px;
+        padding: 0 12px;
     }
 
     &__remove {
-        height: 100%;
         width: 30px;
-        color: red;
-        font-weight: bold;
+        height: 100%;
         font-size: 24px;
+        font-weight: bold;
+        color: red;
     }
     
     &__remove:hover {
@@ -33,10 +33,10 @@
 
     &__number {
         display: flex;
-        justify-content: flex-end;
-        padding: 0 12px;
-        width: 50px;
         flex: 0 0 auto;
+        justify-content: flex-end;
+        width: 50px;
+        padding: 0 12px;
     }
 
     &__title {

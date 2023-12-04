@@ -1,10 +1,10 @@
 .headers {
     display: grid;
-    grid-template-columns: 1fr 12fr 1fr 1fr;
     grid-column-gap: 10px;
-    font-weight: bold;
-    font-size: 14px;
+    grid-template-columns: 1fr 12fr 1fr 1fr;
     height: 49px;
+    font-size: 14px;
+    font-weight: bold;
     background-color: white;
     border: 1px solid rgb(0 0 0 / 20%);
 }
@@ -16,14 +16,14 @@
 }
 
 .item {
-    background-color: white;
-    border: 1px solid rgb(0 0 0 / 20%);
-    font-size: 14px;
     display: grid;
+    grid-column-gap: 10px;
     grid-template-columns: 1fr 12fr 1fr 1fr;
     height: 49px;
-    grid-column-gap: 10px;
+    font-size: 14px;
     text-align: center;
+    background-color: white;
+    border: 1px solid rgb(0 0 0 / 20%);
 }
 
 .column {
@@ -40,6 +40,6 @@
 
 .header {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }

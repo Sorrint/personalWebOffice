@@ -17,14 +17,14 @@
 }
 
 .count {
-    justify-items: center;
     grid-area: count;
+    justify-items: center;
 }
 
 .record {
     display: grid;
-    grid-template-columns: 40px 1fr 80px 80px 150px;
     grid-template-areas: 'number name count unit rows';
+    grid-template-columns: 40px 1fr 80px 80px 150px;
 
 }
 
@@ -35,6 +35,6 @@
 
 .cell {
     display: grid;
-    border: 1px solid grey;
     padding: 5px;
+    border: 1px solid grey;
 }

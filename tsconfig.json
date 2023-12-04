@@ -19,26 +19,9 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
-        "baseUrl": "./src",
+        "baseUrl": ".",
         "paths": {
-            "@app/*": [
-                "app/*"
-            ],
-            "@entities/*": [
-                "entities/*"
-            ],
-            "@features/*": [
-                "features/*"
-            ],
-            "@pages/*": [
-                "pages/*"
-            ],
-            "@shared/*": [
-                "shared/*"
-            ],
-            "@widgets/*": [
-                "widgets/*"
-            ]
+            "@*": ["./src/*"]
         },
         "types": [
             "node",

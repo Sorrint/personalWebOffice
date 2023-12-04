@@ -9,13 +9,13 @@
 }
 
 .options {
-    z-index: 1000;
-    width: 100%;
     position: absolute;
-    box-shadow: 0 2px 5px 0 rgba(0 0 0 / 40%);
-    border-radius: 8px;
+    z-index: 1000;
     overflow: hidden;
+    width: 100%;
     background-color: #FFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgba(0 0 0 / 40%);
 }
 
 .option {
@@ -27,6 +27,6 @@
 }
 
 .selected {
-    background-color:var(--primary-color);
     color: #FFF;
+    background-color:var(--primary-color);
 }

@@ -5,22 +5,22 @@
 @import 'https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap';
 
 body {
+    position: relative;
     overflow: hidden;
     display: flex;
-    height: 100%;
-    position: relative;
-    box-sizing: border-box;
     flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
     font-family: var(--font-family-main);
     font-size: var(--font-size-main);
 }
 
 #root {
-    display: flex;
-    height: 100%;
     position: relative;
+    display: flex;
     flex-direction: column;
     flex-shrink: 1;
+    height: 100%;
 }
 
 :focus {

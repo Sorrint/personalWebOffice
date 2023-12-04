@@ -1,11 +1,11 @@
 .label {
-    color: rgb(0 0 0 / 96%);
+    cursor: pointer;
     display: flex;
+    gap: 10px;
     align-items: center;
     padding: 10px 0;
     font-size: 20px;
-    gap: 10px;
-    cursor: pointer;
+    color: rgb(0 0 0 / 96%);
     
     &:hover {
         background-color: var(--primary-active-color);
@@ -20,18 +20,18 @@
     --icon-size: 16px;
 
     position: relative;
-    height: var(--icon-size);
     width:  var(--icon-size);
+    height: var(--icon-size);
     border: 2px solid var(--primary-color);
     border-radius: 50%;
 
     &::before{
-        display: none;
+        content: '';
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        content: '';
+        display: none;
         width: calc(var(--icon-size) / 2);
         height: calc(var(--icon-size) / 2);
         background-color: var(--primary-color);

@@ -1,8 +1,8 @@
 .item {
+    cursor: pointer;
     display: flex;
     margin-top: 16px;
+    padding: 16px 36px;
     font-size: var(--font-size-text);
     background-color: #fff;
-    padding: 16px 36px;
-    cursor: pointer;
 }
