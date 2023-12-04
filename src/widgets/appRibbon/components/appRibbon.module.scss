@@ -1,11 +1,11 @@
 .ribbon {
-    font-size: 17px;
-    font-weight: 500;
-    display: flex;
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    font-size: 17px;
+    font-weight: 500;
 }
 
 .fill-element {

@@ -1,8 +1,8 @@
 .container {
     position: relative;
-    width: 240px;
     display: flex;
     flex-direction: column;
+    width: 240px;
 }
 
 .input-group {
@@ -14,10 +14,10 @@
 
 .input {
     flex-grow: 1;
-    background-color: #FFF;
     width: 100%;
-    color: inherit;
     font-size: var(--font-family-main);
+    color: inherit;
+    background-color: #FFF;
 }
 
 .standard { 
@@ -34,17 +34,17 @@
 }
 
 .placeholder {
-    color: #65657b;
-    width: 100%;
-    line-height: 1;
     pointer-events: none;
     position: absolute;
-    transition: transform 200ms, color 200ms;
-    overflow: hidden;
     top: 50%;
     transform: translate(0, -50%);
-    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    line-height: 1;
+    color: #65657b;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: transform 200ms, color 200ms;
 }
 
 .input:focus ~ .placeholder,
@@ -60,14 +60,14 @@
 .input[type="number"],
 .input[type="number"]:hover,
 .input[type="number"]:focus {
-    appearance: none;
     -moz-appearance: textfield;
+    appearance: none;
 }
 
 .password-button {
     height: inherit;
-    background-color: #FFF;
     color: rgb(80 80 80);
+    background-color: #FFF;
 }
 
 .eye-icon {

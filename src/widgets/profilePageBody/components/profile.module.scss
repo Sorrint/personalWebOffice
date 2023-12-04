@@ -1,9 +1,9 @@
 .profile {
-    padding: 30px;
-    max-width: 800px;
     width: 100%;
+    max-width: 800px;
     margin: 0 auto;
     margin-top: 100px;
+    padding: 30px;
     background-color: #fff;
 
 
@@ -16,9 +16,9 @@
 }
 
 .section-header {
+    margin: 20px 0;
     font-size: var(--font-size-text-large);
     font-weight: 500;
-    margin: 20px 0;
 }
 
 .settings {
@@ -29,14 +29,14 @@
 .token-access {
     align-self: flex-end;
     font-size: var(--font-size-text-medium);
-    color: green;
     font-weight: bold;
+    color: green;
 }
 
 .token-failed {
     align-self: flex-end;
-    color: rgb(205 44 44);
     font-size: var(--font-size-text-medium);
+    color: rgb(205 44 44);
 }
 
 .fill-element {
@@ -44,16 +44,16 @@
 }
 
 .token-input {
+    z-index: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    font-size: 24px;
-    padding: 30px;
+    align-items: center;
+    justify-content: center;
     width: 50vw;
     height: 50vh;
-    z-index: 1;
-    background-color: #fff;
+    padding: 30px;
+    font-size: 24px;
     line-height: 2.5em;
     text-align: center;
+    background-color: #fff;
 }

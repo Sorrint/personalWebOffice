@@ -1,15 +1,15 @@
 .link {
     display: block;
     width: 15em;
+    padding: 15px;
     font-size: 14px;
     font-weight: 500;
-    letter-spacing: 1px;
-    padding: 15px;
     color: #fff;
-    background-color: var(--primary-color);
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
-    border-radius: 2px;
     text-align: center;
+    letter-spacing: 1px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
 
     &:visited {
         color: #fff;
