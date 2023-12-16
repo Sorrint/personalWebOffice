@@ -7,19 +7,20 @@ import { isEmptyObject } from '@shared/lib/helpers';
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import { getOrderingRowsCount } from '../../libs/helpers/createOrdering';
 import styles from './createOrdering.module.scss';
+import { useState } from 'react';
+import { CountPalletsForm } from '@features/countPalletsForm';
 
 export const CreateOrdering = () => {
-    //mock-данные 
-    const palletsObj: Partial<Record<Pallets, number>> = {
-        pallets125:22,
-        pallets99: 14
-    };
+    const [pallets, setPallets] = useState<Record<Pallets, number>>({pallets: 0, pallets125: 0, pallets99: 0})
 
-    const palletsWeight = (Object.keys(palletsObj) as Pallets[]).reduce((weight, pallet) =>
-        weight += PalletsWeight[pallet] * (palletsObj[pallet] ?? 0), 0);
+    const changeCountPallets = (palletsObj: Record<Pallets, number>) => {
+        setPallets({...palletsObj})
+    }
 
-    const corrugatedSheetsWeight = (palletsObj.pallets125 ? palletsObj.pallets125 * 1.5 * 2000 : 0) + (palletsObj.pallets99 ? palletsObj.pallets99 * 2 * 1500 : 0);
+    const palletsWeight = (Object.keys(pallets) as Pallets[]).reduce((weight, pallet) =>
+        weight += PalletsWeight[pallet] * (pallets[pallet] ?? 0), 0);
 
+    const corrugatedSheetsWeight = (pallets.pallets125 ? pallets.pallets125 * 1.5 * 2000 : 0) + (pallets.pallets99 ? pallets.pallets99 * 2 * 1500 : 0);
 
     //порядок id категорий
     const sectionOrder = {
@@ -48,16 +49,17 @@ export const CreateOrdering = () => {
 
     return (
         <>
-            <div>Порядовка</div>
+            <div className={styles.title}>Порядовка</div>
+            <CountPalletsForm classname={styles.form} onChange={changeCountPallets}/>
             {sortedRecords && <OrderingList orderingRecords={Object.values(sortedRecords)} className={styles.content__body} />}
             <OrderingInfo
                 orderingInfo={{
                     grossWeight: ((allWeight + palletsWeight + corrugatedSheetsWeight + slipSheetsCount* SLIPSHEETWEIGHT) / 1000),
-                    palletsCount: palletsObj,
+                    palletsCount: pallets,
                     slipSheetsCount: Math.ceil(slipSheetsCount),
                     corrugatedSheetsCount: {
-                        T21: (palletsObj.pallets125 && palletsObj.pallets125 * 1.5),
-                        T99_2: palletsObj.pallets99 && palletsObj.pallets99 * 2
+                        T21: (pallets.pallets125 && pallets.pallets125 * 1.5),
+                        T99_2: pallets.pallets99 && pallets.pallets99 * 2
                     },
                     shipmentDay: new Date()
                 }} />
