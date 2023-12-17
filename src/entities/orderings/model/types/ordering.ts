@@ -31,8 +31,22 @@ export interface IOrderingChapter {
     }
 }
 
+export interface IOrdering {
+    ordering: IOrderingChapter[]
+    summary: IOrderingSummary
+}
+
 export interface IOrderingRecordDisplay extends Omit<IOrderingRecord, 'count' | 'number'> {
     count: number | string
     number: number | string
     rows: string
+}
+
+
+export interface IOrderingDataForXLSX {
+    '№'?: number | string
+    'Наименование'?: string
+    'Кол-во'?: number
+    'Ед.'?: string
+    'Ряды'?: string
 }

@@ -1,3 +1,7 @@
+export { saveOrderingToXLSX } from './lib/helpers/transformOrderingDataForXLSX/saveOrderingToXLSX';
+
+export { transformOrderingDataForXLSX } from './lib/helpers';
+
 export * from './consts/slipSheetsConsts';
 export * from './consts/corrugatedSheetsConsts';
 export * from './consts/palletsConsts';
