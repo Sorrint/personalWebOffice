@@ -4,10 +4,19 @@
     }
 }
 
-.title {
-    margin-bottom: 40px;
-}
+
 
 .form {
     margin-bottom: 20px;
+}
+
+.create-xlsx {
+    display: block;
+    margin: 10px 0;
+    margin-bottom: 40px;
+    padding: 5px 15px;
+    font-size: 16px;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 10px;
 }
