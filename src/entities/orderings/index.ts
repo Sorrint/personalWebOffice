@@ -1,14 +1,8 @@
-export { type IOrderingSlice } from './model/slice/OrderingSlice';
-
-export { saveOrderingToXLSX } from './lib/helpers/transformOrderingDataForXLSX/saveOrderingToXLSX';
-
-export { transformOrderingDataForXLSX } from './lib/helpers';
-
-export * from './consts/slipSheetsConsts';
-export * from './consts/corrugatedSheetsConsts';
-export * from './consts/palletsConsts';
-
-export * from './model/types/ordering';
 export { OrderingList } from './components/orderingList/orderingList';
 export { OrderingInfo } from './components/orderingInfo/orderingInfo';
-export * from './model/slice/OrderingSlice'
+export * from './lib/helpers/getSummaryText/getSummaryText'
+export * from './consts/corrugatedSheetsConsts';
+export * from './model/slice/OrderingSlice';
+export * from './consts/slipSheetsConsts';
+export * from './consts/palletsConsts';
+export * from './model/types/ordering';

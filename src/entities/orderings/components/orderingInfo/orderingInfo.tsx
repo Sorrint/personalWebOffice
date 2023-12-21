@@ -3,10 +3,11 @@ import classNames from 'classnames';
 
 import { useAppSelector } from '@shared/lib/hooks';
 
-import { getCorrugatesSheetsText, getGrossweightText, 
+import { getCorrugatesSheetsText, 
+    getGrossweightText, 
     getPalletsText, 
     getShipmentDayText, 
-    getSleepsheetsText } from '../../lib/helpers/getSummaryText/getSummaryText';
+    getSleepsheetsText } from '../../lib/helpers';
 import { getOrderingSummary, initSummary } from '../../model/slice/OrderingSlice';
 import { type IOrderingSummaryData } from '../../model/types/ordering';
 import styles from './orderingInfo.module.scss';
@@ -31,6 +32,6 @@ export const OrderingInfo = memo(({ className }: OrderingInfoProps) => {
         <p>{getSleepsheetsText(summary.slipSheetsCount ?? 0)}</p>
         <p>{getCorrugatesSheetsText(summary.corrugatedSheetsCount)}</p>
         <p>{getGrossweightText(summary.weights)}</p>
-        <p>{getShipmentDayText()}</p>
+        <p>{getShipmentDayText(summary.shipmentDay)}</p>
     </div>;
 });

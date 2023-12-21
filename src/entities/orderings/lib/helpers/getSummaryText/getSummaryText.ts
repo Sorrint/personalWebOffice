@@ -34,6 +34,6 @@ export const getSleepsheetsText = (count: number) => {
     return `ДВП неконд ${count > 0 ? count + ' шт' : ''}`
 }
 
-export const getShipmentDayText = (date?: Date) => {
+export const getShipmentDayText = (date?: string) => {
     return `Отгрузка ориентировочно: ${date ?? ''}`
 }

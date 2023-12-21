@@ -1,6 +1,13 @@
-import { type IOrderingSummaryData, type IOrderingChapter, type IOrdering, type ICountOfPallets, type IOrderingWeights, type ICorrugatedSheetsCount } from './../types/ordering';
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { type StoreSchema } from '@app/providers/storeProvider';
+
+import { 
+    type IOrderingSummaryData, 
+    type IOrderingChapter, 
+    type IOrdering, 
+    type ICountOfPallets, 
+    type IOrderingWeights, 
+    type ICorrugatedSheetsCount } from './../types/ordering';
 import { SLIPSHEETWEIGHT } from '../../consts/slipSheetsConsts';
 import { type Pallets, PalletsWeight, CorrugatedSheetsWeight } from '../../consts/palletsConsts';
 
@@ -14,7 +21,7 @@ export const initSummary: IOrderingSummaryData = {
         corrugatedSheetsWeight: 0
     },
     palletsCount: {pallets: 0, pallets125: 0, pallets99: 0},
-    shipmentDay: new Date().toString(),
+    shipmentDay: '',
     slipSheetsCount: 0,
     rowsCount: 0
 }
