@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 
+import { SaveOrderingToXLSX } from '@features/saveOrderingToXLSX';
 import { CountPalletsForm } from '@features/countPalletsForm';
 import { OrderingInfo, OrderingList, type Pallets, orderingReducer, orderingActions } from '@entities/orderings';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
@@ -7,7 +8,6 @@ import { useAppDispatch } from '@shared/lib/hooks';
 
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import style from './createOrdering.module.scss'
-import { SaveOrderingToXLSX } from '@features/saveOrderingToXLSX';
 
 const reducers: ReducersList = {
     ordering: orderingReducer

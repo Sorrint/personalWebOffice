@@ -1,8 +1,16 @@
-import { type IOrderingChapter } from '@entities/orderings';
-import { type IOrderResponse } from '@features/getOrderProductsWeight';
-import { getOrderingProduct } from './createOrdering';
-import { type IPackageCategoryResponse } from '@entities/packages';
 import { type Dictionary } from '@reduxjs/toolkit';
+
+import { type IOrderRecordResponse, type IOrderResponse } from '@features/getOrderProductsWeight';
+import { type IPackageCategoryResponse } from '@entities/packages';
+import { type IOrderingChapter } from '@entities/orderings';
+import { type IStoreProduct } from '@entities/products';
+
+const getOrderingProduct = (record: IOrderRecordResponse, product: Partial<IStoreProduct>) => {
+    return {...record,
+        product: product?._id, 
+        productName: product?.name || record.productName, 
+        unit: record.unit?.description || '',};
+}; 
 
 export const groupProductsByCategory = (order: IOrderResponse) => {
     return order.orderRecords.reduce((result: Record<string, IOrderingChapter>, record)  => {
