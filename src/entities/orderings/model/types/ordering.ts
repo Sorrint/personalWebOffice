@@ -1,7 +1,7 @@
 import { type CorrugatedSheets } from '../../consts/corrugatedSheetsConsts';
 import { type Pallets } from '../../consts/palletsConsts';
 
-export type ICountOfPallets = Record<typeof Pallets[keyof typeof Pallets], number>
+export type ICountOfPallets = Record<Pallets, number>
 
 export type ICorrugatedSheetsCount = Record<keyof typeof CorrugatedSheets, number>
 export interface IOrderingRecord {
@@ -12,12 +12,21 @@ export interface IOrderingRecord {
     count: number
 }
 
-export interface IOrderingSummary {
-    palletsCount: Partial<ICountOfPallets>
+export interface IOrderingWeights {
+    packagesWeight: number
+    productsWeight: number
+    slipSheetsWeight: number
+    palletsWeight: number
+    corrugatedSheetsWeight: number
+}
+
+export interface IOrderingSummaryData {
+    rowsCount: number
+    palletsCount: ICountOfPallets
     corrugatedSheetsCount: Partial<ICorrugatedSheetsCount>
-    slipSheetsCount?: number
-    grossWeight: number
-    shipmentDay?: Date
+    slipSheetsCount: number
+    weights: IOrderingWeights
+    shipmentDay?: string
 }
 
 export interface IOrderingChapter {
@@ -32,21 +41,12 @@ export interface IOrderingChapter {
 }
 
 export interface IOrdering {
-    ordering: IOrderingChapter[]
-    summary: IOrderingSummary
+    summaryData: IOrderingSummaryData
+    chaptersData: Record<string, IOrderingChapter>
 }
 
 export interface IOrderingRecordDisplay extends Omit<IOrderingRecord, 'count' | 'number'> {
     count: number | string
     number: number | string
     rows: string
-}
-
-
-export interface IOrderingDataForXLSX {
-    '№'?: number | string
-    'Наименование'?: string
-    'Кол-во'?: number
-    'Ед.'?: string
-    'Ряды'?: string
 }

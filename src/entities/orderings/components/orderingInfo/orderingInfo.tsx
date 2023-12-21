@@ -1,29 +1,37 @@
-import { type IOrderingSummary } from '../../model/types/ordering';
-import { getCorrugatesSheetsString, getPalletsInfoString  } from '../../lib/helpers/';
-import { transformDate } from '@shared/lib/helpers';
+import { memo, useEffect, useState } from 'react';
+import classNames from 'classnames';
 
+import { useAppSelector } from '@shared/lib/hooks';
+
+import { getCorrugatesSheetsText, 
+    getGrossweightText, 
+    getPalletsText, 
+    getShipmentDayText, 
+    getSleepsheetsText } from '../../lib/helpers';
+import { getOrderingSummary, initSummary } from '../../model/slice/OrderingSlice';
+import { type IOrderingSummaryData } from '../../model/types/ordering';
 import styles from './orderingInfo.module.scss';
-interface OrderingInfoProps {
-    classname?: string
-    orderingInfo: IOrderingSummary
+    interface OrderingInfoProps {
+    className?: string
 }
-export const OrderingInfo = ({ orderingInfo}: OrderingInfoProps) => {
-    const {corrugatedSheetsCount, 
-        grossWeight, 
-        palletsCount, 
-        shipmentDay, 
-        slipSheetsCount} = orderingInfo;
+
+export const OrderingInfo = memo(({ className }: OrderingInfoProps) => {
     
-    const pallets = getPalletsInfoString(palletsCount);
+    const orderingSummary = useAppSelector(getOrderingSummary)
+    
+    const [summary, setSummary] = useState<IOrderingSummaryData>(initSummary)
 
-    const corrugatedSheets = getCorrugatesSheetsString(corrugatedSheetsCount);
+    useEffect(() => {
+        if (orderingSummary ) {
+            setSummary(orderingSummary)
+        }
+    }, [orderingSummary])
 
-
-    return <div className={styles.summary}>
-        <p>Паллеты: {pallets}</p>
-        <p>ДВП неконд: {slipSheetsCount && `${slipSheetsCount} шт`}</p>
-        <p>Гофролист: {`${corrugatedSheets}`}</p>
-        <p>Вес брутто ориентировочно: {grossWeight && `${grossWeight.toFixed(0)} кг`}</p>
-        <p>Отгрузка ориентировочно: {shipmentDay && transformDate(shipmentDay)}</p>
+    return <div className={classNames(styles.summary, className)}>
+        <p>{getPalletsText(summary.palletsCount)}</p>
+        <p>{getSleepsheetsText(summary.slipSheetsCount ?? 0)}</p>
+        <p>{getCorrugatesSheetsText(summary.corrugatedSheetsCount)}</p>
+        <p>{getGrossweightText(summary.weights)}</p>
+        <p>{getShipmentDayText(summary.shipmentDay)}</p>
     </div>;
-};
+});

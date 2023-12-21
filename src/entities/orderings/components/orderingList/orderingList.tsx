@@ -1,9 +1,14 @@
+import { memo } from 'react';
 import classNames from 'classnames';
 
+import { useAppSelector } from '@shared/lib/hooks';
+import { Loader } from '@shared/ui/loaders';
+
 import { type IOrderingChapter, type IOrderingRecordDisplay } from '../../model/types/ordering';
-import { OrderingHeaders } from '../../consts/orderingHeaders';
+import { getIsLoading, getOrderingData } from '../../model/slice/OrderingSlice';
 import { OrderingChapter } from './orderingChapter/orderingChapter';
 import { OrderingRecord } from './orderingRecord/orderingRecord';
+import { OrderingHeaders } from '../../consts/orderingHeaders';
 import styles from './orderingList.module.scss';
 
 interface OrderingListProps {
@@ -19,17 +24,19 @@ const headers: Partial<IOrderingRecordDisplay> = {
     rows: OrderingHeaders.ROWS
 };
 
-export const OrderingList = (props: OrderingListProps) => {
-    const { orderingRecords, className } = props;
+export const OrderingList = memo(({className}: OrderingListProps) => {
+    const records = useAppSelector(getOrderingData)
+    const isLoading = useAppSelector(getIsLoading)
 
     return (
         <div className={classNames(styles.ordering, className)}>
             <OrderingRecord header record={headers} />
-            {orderingRecords?.map(item =>
-                <OrderingChapter
-                    key={item.summary.categoryName}
-                    orderingChapter={item}
-                />)}
+            {isLoading ? <Loader/> : 
+                records && Object.values(records)?.map(item =>
+                    <OrderingChapter
+                        key={item.summary.categoryName}
+                        orderingChapter={item}
+                    />)} 
         </div>
     );
-};
+});

@@ -4,6 +4,7 @@ import { type EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
 import { type SidebarState } from '@widgets/sideBar';
 import { type OrderState } from '@entities/orders';
 import { type rtkApi } from '@shared/api/rtkApi';
+import { type IOrderingSlice } from '@entities/orderings';
 
 export interface StoreSchema {
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
@@ -11,7 +12,9 @@ export interface StoreSchema {
     orders?: OrderState
     counter?: string
     sidebar?: SidebarState
+    ordering?: IOrderingSlice
 }
+
 
 export type StoreSchemaKey = keyof StoreSchema
 export type MountedReducers = OptionalRecord<StoreSchemaKey, boolean>;
