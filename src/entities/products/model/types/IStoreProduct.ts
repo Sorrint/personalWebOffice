@@ -7,6 +7,7 @@ export type ProductType = 'SCALABLE' | 'COUNTABLE'
 
 export interface extraData {
     package?: string
+    packageCategory?: string
     weight?: number
     weightUnit?: string
 }

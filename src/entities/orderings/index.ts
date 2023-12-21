@@ -1,3 +1,5 @@
+export { type IOrderingSlice } from './model/slice/OrderingSlice';
+
 export { saveOrderingToXLSX } from './lib/helpers/transformOrderingDataForXLSX/saveOrderingToXLSX';
 
 export { transformOrderingDataForXLSX } from './lib/helpers';
@@ -9,3 +11,4 @@ export * from './consts/palletsConsts';
 export * from './model/types/ordering';
 export { OrderingList } from './components/orderingList/orderingList';
 export { OrderingInfo } from './components/orderingInfo/orderingInfo';
+export * from './model/slice/OrderingSlice'
