@@ -1,9 +1,8 @@
-.content {
-    &__body {
-        margin-bottom: 20px;
-    }
+.form {
+    margin-top: 20px;
 }
 
-.form {
-    margin-bottom: 20px;
+.layout {
+    display: grid;
+    gap: calc(var(--margin) * 3);
 }

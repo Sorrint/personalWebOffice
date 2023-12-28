@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import styles from './appHeader.module.scss';
+import { Container } from '../container/container';
 
 interface AppHeaderProps {
     children?: ReactNode
@@ -9,10 +10,10 @@ interface AppHeaderProps {
 export const AppHeader = ({ children, title }: AppHeaderProps) => {
     return (
         <div className={styles.header}>
-            <div className={styles.container}>
+            <Container>
                 <div className={styles.title}>{title}</div>
-            </div>
-            {children}
+                {children}
+            </Container>
         </div>
     );
 };
