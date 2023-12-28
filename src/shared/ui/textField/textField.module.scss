@@ -1,23 +1,15 @@
-.container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 240px;
-}
-
 .input-group {
-    display: flex;
+    position: relative;
+
+    // display: block;
     width: 100%;
     padding: 5px 10px;
     background-color: #FFF;
 }
 
 .input {
-    flex-grow: 1;
     width: 100%;
     font-size: var(--font-family-main);
-    color: inherit;
-    background-color: #FFF;
 }
 
 .standard { 
@@ -29,18 +21,13 @@
     border-bottom: 1px solid grey;
 }
 
-.full {
-    width: 100%;
-}
-
 .placeholder {
     pointer-events: none;
     position: absolute;
-    top: 50%;
+    top: 50%; 
+    left: 10px;
     transform: translate(0, -50%);
     overflow: hidden;
-    width: 100%;
-    line-height: 1;
     color: #65657b;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -49,7 +36,10 @@
 
 .input:focus ~ .placeholder,
 .input:not(:placeholder-shown) ~ .placeholder {
-    transform: translateY(-35px) translateX(0) scale(0.875);
+    transform: translateY(-35px) translateX(calc(var(--margin) * 3));
+    width: 100%;
+    font-size: calc(var(--font-size-text) * 0.85);
+    appearance: none;
 }
 
 .input[type="number"]::-webkit-outer-spin-button,

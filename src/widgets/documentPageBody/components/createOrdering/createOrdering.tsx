@@ -27,11 +27,13 @@ export const CreateOrdering = () => {
 
     return (
         <AsyncReduxComponent reducersList={reducers}>
-            <div className={style.content__body}>Порядовка</div>
-            <SaveOrderingToXLSX />
-            <CountPalletsForm classname={style.content__body} onChange={setPallets}/>
-            <OrderingList className={style.content__body}/>
-            <OrderingInfo />
+            <div className={style.layout} >
+                <div>Порядовка</div>
+                <SaveOrderingToXLSX />
+                <CountPalletsForm classname={style.form} onChange={setPallets}/>
+                <OrderingList/>
+                <OrderingInfo />
+            </div>
         </AsyncReduxComponent>
     );
 };
