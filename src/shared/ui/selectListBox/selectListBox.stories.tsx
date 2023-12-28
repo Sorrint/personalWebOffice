@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 import { SelectListBox } from './selectListBox';
-import './selectListBox.scss';
+// import './selectListBox.scss';
 
 const meta: Meta<typeof SelectListBox> = {
     title: 'uikit/selectListBox',
