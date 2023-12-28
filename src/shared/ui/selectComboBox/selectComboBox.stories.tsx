@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 import { SelectComboBox } from './selectComboBox';
-import './selectComboBox.scss';
+// import './selectComboBox.scss';
 
 const meta: Meta<typeof SelectComboBox> = {
     title: 'module/selectComboBox',

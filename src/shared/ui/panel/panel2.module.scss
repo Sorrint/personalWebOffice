@@ -1,0 +1,28 @@
+.component {
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .title {
+    font-weight: 600;
+  }
+  
+  .head {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr var(--font-size-text);
+    gap: var(--margin);
+    align-items: center;
+    padding: calc(var(--margin) * 2);
+  
+  }
+  
+  .content {
+    cursor: default;
+    padding: calc(var(--margin) * 2);
+  }
+
+  .content-top {
+    padding-top: 0;
+  }

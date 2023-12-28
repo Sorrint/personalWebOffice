@@ -7,7 +7,7 @@
     padding: 0 30px;
     color: #FFF;
     background-color: var(--primary-color);
-    box-shadow: 0 2px 4px rgba(8 35 48 / 24%), 0 4px 8px rgba(8 35 48 / 16%);
+    box-shadow: var(--header-shadow);
 }
 
 .burger {

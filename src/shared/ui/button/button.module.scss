@@ -11,7 +11,7 @@
     color: #fff;
     background-color: var(--primary-color);
     border-radius: 2px;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
+    box-shadow: var(--shadow);
 
     & a, a:visited {
         color: #fff;
