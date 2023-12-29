@@ -8,6 +8,7 @@ import { useAppDispatch } from '@shared/lib/hooks';
 
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import style from './createOrdering.module.scss'
+import { Panel } from '@shared/ui/panel/panel';
 
 const reducers: ReducersList = {
     ordering: orderingReducer
@@ -30,7 +31,9 @@ export const CreateOrdering = () => {
             <div className={style.layout} >
                 <div>Порядовка</div>
                 <SaveOrderingToXLSX />
-                <CountPalletsForm classname={style.form} onChange={setPallets}/>
+                <Panel title='Дополнительные параметры для расчета' open={false}>
+                    <CountPalletsForm classname={style.form} onChange={setPallets}/>
+                </Panel>
                 <OrderingList/>
                 <OrderingInfo />
             </div>

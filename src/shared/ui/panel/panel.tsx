@@ -33,14 +33,14 @@ export const Panel = memo(({ children, className, onChange, open, title }: Panel
 
     const renderContent = useCallback(()=> {
         if (!title || (title && open === undefined) || (title && open !== undefined && isOpen)) {
-            return <div className={classNames(style.content, {[style['content-top']]: title || isOpen})}>{children}</div>
+            return <div className={classNames(style.content, {[style['content-top']]: title && isOpen !== undefined})}>{children}</div>
         }
     }, [title, open, isOpen, children])
 
     return (
-        <div className={componentClass} onClick={onClick}>
+        <div className={componentClass} >
             {title && (
-                <div className={style.head}>
+                <div className={style.head} onClick={onClick}>
                     <h3 className={style.title}>
                         {title}
                     </h3>
