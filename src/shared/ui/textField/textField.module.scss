@@ -10,6 +10,7 @@
 .input {
     width: 100%;
     font-size: var(--font-family-main);
+    -webkit-text-security: none !important;
 }
 
 .standard { 
@@ -51,7 +52,7 @@
 .input[type="number"]:hover,
 .input[type="number"]:focus {
     -moz-appearance: textfield;
-    appearance: none;
+    appearance: textfield;
 }
 
 .password-button {
