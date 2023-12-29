@@ -11,7 +11,7 @@ import { type UserRegisterDTO } from '../model/types/userRegisterDTO';
 import { RegisterSchema } from '../model/registrationSchema';
 import { useRegisterMutation } from '../api/registerApi';
 import styles from './registrationForm.module.scss'
-import { AppLink } from '@shared/ui/buttonLink';
+import { AppLink } from '@shared/ui/appLink';
 import { AppRoutes } from '@shared/config/router';
 
 interface RegistrationFormProps {

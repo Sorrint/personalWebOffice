@@ -7,6 +7,7 @@ import { useLogout } from '@features/logout';
 import { Popover } from '@shared/ui/popover';
 
 import styles from './header.module.scss';
+import { AppLink } from '@shared/ui/appLink';
 
 interface HeaderProps {
     sidebarButton?: ReactNode
@@ -40,11 +41,9 @@ export const Header = memo(({sidebarButton}: HeaderProps) => {
             {refEl && refEl.current && isOpen &&
             <Popover isOpen={isOpen} onClose={()=> setIsOpen(false)} referenceElement={refEl.current as HTMLElement} key={'profile'}> 
                 <div className={styles.menu} onClick={()=> setIsOpen(false)}>
-                    <div className={styles['menu-item']} >
-                        <NavLink  to={'/office/profile'}>
+                    <AppLink  to={'/office/profile'} classname={styles['menu-item']}>
                             Профиль
-                        </NavLink>
-                    </div>
+                    </AppLink>
                     <div onClick={logout} className={styles['menu-item']}>Выйти</div>
                 </div>
             </Popover>

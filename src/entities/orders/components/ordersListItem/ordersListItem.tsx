@@ -1,7 +1,6 @@
-import { NavLink } from 'react-router-dom';
-
 import { type IOrder } from '../../model/types/IOrder';
 import styles from './ordersListItem.module.scss';
+import { AppLink } from '@shared/ui/appLink';
 
 interface OrdersListItemProps {
     order: IOrder
@@ -10,6 +9,6 @@ export const OrdersListItem = ({ order }: OrdersListItemProps) => {
     const { orderName, _id } = order;
 
     return (
-        <NavLink  to={`./${_id}`} className={styles.item}>{orderName}</NavLink>
+        <AppLink  to={`./${_id}`} classname={styles.item}>{orderName}</AppLink>
     );
 };

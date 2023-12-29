@@ -12,7 +12,7 @@ import { LoginSchema } from '../model/loginSchema';
 import { useLoginMutation } from '../api/loginApi';
 import styles from './loginForm.module.scss'
 import { AppRoutes } from '@shared/config/router';
-import { AppLink } from '@shared/ui/buttonLink';
+import { AppLink } from '@shared/ui/appLink';
 
 interface LoginFormProps {
     classname?: string
