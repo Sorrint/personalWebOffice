@@ -1,6 +1,7 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { type IOrderRecord, OrderCard } from '@entities/orders';
 import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
+import { AppLink } from '@shared/ui/appLink';
 
 
 export const OrderDetails = () => {
@@ -28,15 +29,15 @@ export const OrderDetails = () => {
                 {notAllProducts && 
                     (
                         <div>
-                            <NavLink to={`../../orders/addProducts?orderId=${order?._id}`}>Не все товары найдены в базе данных</NavLink>
+                            <AppLink to={`../../orders/addProducts?orderId=${order?._id}`}>Не все товары найдены в базе данных</AppLink>
                         </div>
                     )
                 }
                 {order?.ordering 
                     ?         
-                    <NavLink to={`../../orderings/${order.ordering}`}>Перейти к порядовке</NavLink> 
+                    <AppLink to={`../../orderings/${order.ordering}`}>Перейти к порядовке</AppLink> 
                     : 
-                    <NavLink to={`../../orderings/create?orderId=${order?._id}`}>Создать порядовку</NavLink>
+                    <AppLink to={`../../orderings/create?orderId=${order?._id}`}>Создать порядовку</AppLink>
                 }
                 {order && transformedRecords && <OrderCard order={{...order, orderRecords: transformedRecords}}/>}
             </div>

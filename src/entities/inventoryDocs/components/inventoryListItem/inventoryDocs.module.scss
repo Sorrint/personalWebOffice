@@ -1,7 +1,7 @@
 .item {
     display: flex;
-    margin-top: 16px;
-    padding: 16px 36px;
+    margin-top: calc(var(--margin) * 2);
+    padding: calc(var(--margin) * 2) calc(var(--margin) * 4);
     font-size: var(--font-size-text);
     background-color: #fff;
 }

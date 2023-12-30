@@ -1,18 +1,37 @@
 .component {
     display: flex;
-    gap: calc(var(--margin) * 3);
+    gap: calc(var(--margin) * 10);
     align-items: center;
     justify-content: space-between;
 }
 
 .button {
-    width: 40px;
     height: 40px;
     padding: 0;
 }
 
+.label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.span {
+    width: 200px;
+}
+
+
 @media (width <= 768px){
+    .label {
+        width: auto;
+    }
+
     .component {
         flex-wrap: wrap;
+        gap: calc(var(--margin) * 4);
+    }
+
+    .button {
+        width: 50%;
     }
 }

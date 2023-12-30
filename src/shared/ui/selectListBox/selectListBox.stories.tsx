@@ -21,4 +21,5 @@ Normal.args = {
         { _id: '4', content: '4,5 кг кан'},
     ],
     value: '2,5 3 кг низ',
+    defaultValue: 'Кнопка'
 };

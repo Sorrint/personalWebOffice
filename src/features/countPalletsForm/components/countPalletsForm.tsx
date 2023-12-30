@@ -5,12 +5,15 @@ import { useForm } from 'react-hook-form';
 import { type Pallets } from '@entities/orderings';
 import { IconFont } from '@shared/ui/iconFont';
 import { Button } from '@shared/ui/button';
+import { useResize } from '@shared/lib/hooks';
 
 interface CountPalletsFormProps {
     classname?: string
     onChange?: (palletsObj: Record<Pallets, number>) => void
 }
 export const CountPalletsForm = ({classname, onChange}: CountPalletsFormProps) => {
+    const {isScreenMd} = useResize()
+
 
     const {register, handleSubmit} = useForm<Record<Pallets, number>>({
         defaultValues: {
@@ -25,9 +28,20 @@ export const CountPalletsForm = ({classname, onChange}: CountPalletsFormProps) =
     }
 
     return <form className={classNames(styles.component, classname)}>
-        <TextField type='number' label='Паллета 125' {...register('pallets125', {valueAsNumber: true})}/>
-        <TextField type='number' label='Паллета 99' {...register('pallets99', {valueAsNumber: true})}/>
-        <TextField type='number' label='Поддон' {...register('pallets', {valueAsNumber: true})}/>
-        <Button classname={styles.button} onClick={handleSubmit(onSubmit)}><IconFont iconName='icon-package-box' /></Button>
+        <label className={styles.label}>
+            {!isScreenMd && <span className={styles.span}>Паллета 125</span>}
+            <TextField type='number' label={isScreenMd ? 'Паллета 125' : undefined} {...register('pallets125', {valueAsNumber: true})}/>
+        </label>
+        <label className={styles.label}>
+            {!isScreenMd && <span className={styles.span}>Паллета 99</span>}
+            <TextField type='number' label={isScreenMd ? 'Паллета 99' : undefined} {...register('pallets99', {valueAsNumber: true})}/>
+
+        </label>
+        <label className={styles.label}>    
+            {!isScreenMd && <span className={styles.span}>Поддон</span>}
+            <TextField type='number' label={isScreenMd ? 'Поддон' : undefined} {...register('pallets', {valueAsNumber: true})}/>
+
+        </label>
+        <Button classname={styles.button} onClick={handleSubmit(onSubmit)}><IconFont iconName='icon-check' /></Button>
     </form>;
 };

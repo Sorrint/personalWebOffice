@@ -30,7 +30,11 @@ export const TextField = memo(forwardRef(function TextField<T extends FieldValue
     };
 
     const id = `${name}-${new Date().getTime()}`
-    const inputClass = classNames(styles['input-group'], styles[variant], className)
+    const inputClass = classNames(styles['input-group'], 
+        styles[variant], 
+        {[styles['password']]: type === 'password'}, 
+        className
+    )
 
     return (
         <div className={inputClass}>

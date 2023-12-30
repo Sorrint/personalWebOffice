@@ -1,10 +1,9 @@
 import { memo } from 'react';
-import { Link } from 'react-router-dom';
 
 import { transformDate } from '@shared/lib/helpers';
+import { AppLink } from '@shared/ui/appLink';
 
 import { type IInventoryDocs } from '../../model/types';
-
 import styles from './inventoryDocs.module.scss';
 
 interface InventoryListItemProps {
@@ -15,10 +14,10 @@ export const InventoryListItem = memo(({ document }: InventoryListItemProps) => 
     const date = transformDate(choosenDate);
     return (
         <>
-            <Link
+            <AppLink
                 to={`${documentNumber}`}
-                className={styles.item}
-            >{`Инвентаризация № ${documentNumber} от ${date}. ${comment}`}</Link>
+                classname={styles.item}
+            >{`Инвентаризация № ${documentNumber} от ${date}. ${comment}`}</AppLink>
         </>
     );
 });
