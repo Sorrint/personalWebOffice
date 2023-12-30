@@ -1,6 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
 
-import { SaveOrderingToXLSX } from '@features/saveOrderingToXLSX';
 import { CountPalletsForm } from '@features/countPalletsForm';
 import { OrderingInfo, OrderingList, type Pallets, orderingReducer, orderingActions } from '@entities/orderings';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
@@ -29,8 +28,6 @@ export const CreateOrdering = () => {
     return (
         <AsyncReduxComponent reducersList={reducers}>
             <div className={style.layout} >
-                <div>Порядовка</div>
-                <SaveOrderingToXLSX />
                 <Panel title='Дополнительные параметры для расчета' open={false}>
                     <CountPalletsForm classname={style.form} onChange={setPallets}/>
                 </Panel>

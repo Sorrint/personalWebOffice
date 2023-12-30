@@ -5,13 +5,14 @@
 
 .list {
     position: absolute;
+    z-index: 2;
     top: 0;
     right: 0;
     display: grid;
     padding: calc(var(--padding) * 0.5) 0;
     list-style-position: outside;
     background-color: #fff;
-    border: var(--border);
+    border: 1px solid var(--primary-color);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
 }
@@ -39,4 +40,12 @@
 .opacity-end {
     width: max-content;
     opacity: 1;
+}
+
+.btn {
+    border: 1px solid var(--primary-color);
+
+    & i {
+        color: var(--primary-color)
+    }
 }

@@ -4,14 +4,18 @@ import { Container } from '../container/container';
 
 interface AppHeaderProps {
     children?: ReactNode
+    renderBtn?: ()=> ReactNode
     title: string
 }
 
-export const AppHeader = ({ children, title }: AppHeaderProps) => {
+export const AppHeader = ({ children, title, renderBtn }: AppHeaderProps) => {
     return (
         <div className={styles.header}>
             <Container>
-                <div className={styles.title}>{title}</div>
+                <div className={styles.component}>
+                    <div className={styles.title}>{title}</div>
+                    {renderBtn?.()}
+                </div>
                 {children}
             </Container>
         </div>
