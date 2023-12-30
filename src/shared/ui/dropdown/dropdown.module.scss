@@ -1,0 +1,42 @@
+.component {
+    position: relative;
+    display: inline-block;
+}
+
+.list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: grid;
+    padding: calc(var(--padding) * 0.5) 0;
+    list-style-position: outside;
+    background-color: #fff;
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.item {
+    padding: var(--padding);
+
+}
+
+.active {
+    background-color: rgba(0 0 0 / 12%);
+}
+
+.transform {
+    transition: width 0.3s ease-out, height 0.3s ease-out, opacity 0.3s ease-out;
+
+}
+
+.opacity-start {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.opacity-end {
+    width: max-content;
+    opacity: 1;
+}

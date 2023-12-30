@@ -6,16 +6,19 @@
     --font-size-text: 16px;
     --font-size-text-large: 24px;
     --font-size-text-medium: 20px;
+    --font-spacing: 1px;
 
     /* Размеры */
     --header-height: 56px;
     --sidebar-width: 255px;
     --sidebar-collapsed-width: 80px;
     --margin: 8px;
+    --padding: 10px;
 
     /* Границы */
     --border: 1px solid var(--bg-color);
     --radius: 8px;
+    --button-radius: 2px;
 
     /* Тени */
     --header-shadow: 0 2px 4px rgba(8 35 48 / 24%), 0 4px 8px rgba(8 35 48 / 16%);

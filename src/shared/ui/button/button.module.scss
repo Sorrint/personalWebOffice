@@ -1,27 +1,22 @@
 .btn {
-    position: relative;
     width: 15em;
-    padding: 10px 15px;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    padding: var(--padding) calc(var(--padding) * 1.5);
+    font-size: var(--font-size-ui);
+    font-weight: 700;
+    letter-spacing: var(--font-spacing);
+    border-radius: var(--button-radius);
 }
 
 .submit {
     color: #fff;
     background-color: var(--primary-color);
-    border-radius: 2px;
+    border-radius: var(--button-radius);
     box-shadow: var(--shadow);
-
-    & a, a:visited {
-        color: #fff;
-    }
 }
 
 .cancel {
     color: #fff;
     background-color: rgb(205 44 44);
-    border-radius: 2px;
     box-shadow: 0 2px 5px 0 rgba(0 0 0 / 26%);
 }
 
@@ -33,21 +28,18 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 5px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 40px;
-    color: rgba(0 0 0 / 80%);
-    text-align-last: left;
+    padding: calc(var(--padding) * 1.8) calc(var(--padding) * 2) ;
+    color: var(--font-color);
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px 0 rgba(0 0 0 / 26%);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
     
     & i {
         position: absolute;
         right: 5px;
         margin-right: 0;
-        font-size: 1.1em;
+        font-size: var(--font-size-text);
     }
 }
 

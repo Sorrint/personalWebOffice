@@ -41,7 +41,7 @@
     display: inline-block;
     font-weight: 400;
     color: #fff !important;
-    letter-spacing: 1px;
+    letter-spacing: var(--font-spacing);
 }
 
 .menu {
