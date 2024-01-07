@@ -19,8 +19,8 @@
 }
 
 .rows {
-  grid-area: rows;
   display: flex;
+  grid-area: rows;
 }
 
 .count {

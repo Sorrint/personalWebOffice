@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 
+import { IconFont } from '@shared/ui/iconFont';
+
 import { type IOrderingRecordDisplay } from '../../../model/types/ordering';
 import styles from './orderingRecord.module.scss';
-import { IconFont } from '@shared/ui/iconFont';
 
 interface OrderingRecordProps {
   classname?: string;
@@ -24,11 +25,7 @@ export const OrderingRecord = ({ record, header, editRows }: OrderingRecordProps
       <div className={classNames(styles.cell, styles.rows)}>
         {record.rows}
         {editRows && (
-          <IconFont
-            iconName={'icon-more_vert'}
-            classname={styles['edit-rows']}
-            onClick={editRows}
-          />
+          <IconFont iconName={'icon-plus'} classname={styles['edit-rows']} onClick={editRows} />
         )}
       </div>
     </div>
