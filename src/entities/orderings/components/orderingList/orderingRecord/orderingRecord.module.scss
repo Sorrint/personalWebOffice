@@ -1,40 +1,44 @@
+.cell {
+  display: grid;
+  padding: 5px;
+  border: 1px solid var(--bg-color);
+}
+
 .name {
-    grid-area: name;
+  grid-area: name;
 }
 
 .number {
-    grid-area: number;
-    justify-items: center;
+  grid-area: number;
+  justify-items: center;
 }
 
 .unit {
-    grid-area: unit;
-    justify-items: center;
+  grid-area: unit;
+  justify-items: center;
 }
 
 .rows {
-    grid-area: rows;
+  grid-area: rows;
+  display: flex;
 }
 
 .count {
-    grid-area: count;
-    justify-items: center;
+  grid-area: count;
+  justify-items: center;
 }
 
 .record {
-    display: grid;
-    grid-template-areas: 'number name count unit rows';
-    grid-template-columns: 40px 1fr 80px 80px 150px;
-
+  display: grid;
+  grid-template-areas: 'number name count unit rows';
+  grid-template-columns: 40px 1fr 80px 80px 150px;
 }
 
 .header {
-    font-weight: 500;
-    text-align: center;
+  font-weight: 500;
+  text-align: center;
 }
 
-.cell {
-    display: grid;
-    padding: 5px;
-    border: 1px solid var(--bg-color);
+.edit-rows {
+  cursor: pointer;
 }
