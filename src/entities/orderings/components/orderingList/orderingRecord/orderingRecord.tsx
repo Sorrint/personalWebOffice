@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-
-import { IconFont } from '@shared/ui/iconFont';
+import { type ReactNode } from 'react';
 
 import { type IOrderingRecordDisplay } from '../../../model/types/ordering';
 import styles from './orderingRecord.module.scss';
@@ -9,7 +8,7 @@ interface OrderingRecordProps {
   classname?: string;
   record: Partial<IOrderingRecordDisplay>;
   header?: boolean;
-  editRows?: () => void;
+  editRows?: () => ReactNode;
 }
 
 export const OrderingRecord = ({ record, header, editRows }: OrderingRecordProps) => {
@@ -27,9 +26,7 @@ export const OrderingRecord = ({ record, header, editRows }: OrderingRecordProps
       <div className={getClass('unit')}>{record.unit}</div>
       <div className={getClass('rows')}>
         {record.rows}
-        {editRows && (
-          <IconFont iconName={'icon-plus'} classname={styles['edit-rows']} onClick={editRows} />
-        )}
+        {editRows?.()}
       </div>
     </div>
   );

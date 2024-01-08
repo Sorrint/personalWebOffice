@@ -3,7 +3,7 @@ import { type ReactNode } from 'react';
 import styles from './modal.module.scss';
 import classNames from 'classnames';
 
-interface PopupProps {
+interface ModalProps {
   children: ReactNode;
   centered?: boolean;
   isActive?: boolean;
@@ -12,15 +12,15 @@ interface PopupProps {
   onClose?: () => void;
 }
 
-export const Popup = ({
+export const Modal = ({
   children,
   centered,
   isActive,
   fullHeight,
   animation,
   onClose = () => null,
-}: PopupProps) => {
-  const popupClasses = classNames(styles.popup, {
+}: ModalProps) => {
+  const modalClasses = classNames(styles.component, {
     [styles.centered]: centered,
   });
   const panelClasses = classNames(styles.panel, {
@@ -29,7 +29,7 @@ export const Popup = ({
   });
 
   return (
-    <Dialog open={isActive} onClose={onClose} className={popupClasses}>
+    <Dialog open={isActive} onClose={onClose} className={modalClasses}>
       <Dialog.Panel className={panelClasses}>{children}</Dialog.Panel>
     </Dialog>
   );

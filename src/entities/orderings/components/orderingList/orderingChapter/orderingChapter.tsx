@@ -1,11 +1,12 @@
 import { getDeclensions } from '@shared/lib/helpers';
 import { type IOrderingRecordDisplay, type IOrderingChapter } from '../../../model/types/ordering';
 import { OrderingRecord } from '../orderingRecord/orderingRecord';
+import { type ReactNode } from 'react';
 
 interface OrderingChapterProps {
   classname?: string;
   orderingChapter: IOrderingChapter;
-  editRows?: () => void;
+  editRows?: () => ReactNode;
 }
 export const OrderingChapter = ({ orderingChapter, editRows }: OrderingChapterProps) => {
   const { records, summary } = orderingChapter;
