@@ -1,37 +1,39 @@
 .cell {
-  display: grid;
   padding: 5px;
+  text-align: center;
   border: 1px solid var(--bg-color);
 }
 
 .name {
   grid-area: name;
+  text-align: left;
 }
 
 .number {
   grid-area: number;
-  justify-items: center;
 }
 
 .unit {
   grid-area: unit;
-  justify-items: center;
 }
 
 .rows {
-  display: flex;
+  --icon-size: 22px;
+
+  display: grid;
   grid-area: rows;
+  grid-template-areas: 'text icon';
+  grid-template-columns: 1fr var(--icon-size);
 }
 
 .count {
   grid-area: count;
-  justify-items: center;
 }
 
 .record {
   display: grid;
   grid-template-areas: 'number name count unit rows';
-  grid-template-columns: 40px 1fr 80px 80px 150px;
+  grid-template-columns: 40px 1fr 80px 80px 180px;
 }
 
 .header {
@@ -41,4 +43,10 @@
 
 .edit-rows {
   cursor: pointer;
+  grid-area: icon;
+  color: var(--accent-color);
+
+  &:hover {
+    color: var(--primary-color);
+  }
 }
