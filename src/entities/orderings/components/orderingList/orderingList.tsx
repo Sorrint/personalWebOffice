@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { type ReactNode, memo } from 'react';
 import classNames from 'classnames';
 
 import { useAppSelector } from '@shared/lib/hooks';
@@ -13,7 +13,7 @@ import styles from './orderingList.module.scss';
 
 interface OrderingListProps {
   className?: string;
-  editRows?: (key: string) => void;
+  editRows?: (key: string) => ReactNode;
 }
 
 const headers: Partial<IOrderingRecordDisplay> = {

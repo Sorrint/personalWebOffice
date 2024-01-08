@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { CountPalletsForm } from '@features/countPalletsForm';
+import { EditOrderingRows } from '@features/editOrdreringRows';
 import {
   OrderingInfo,
   OrderingList,
@@ -10,10 +11,10 @@ import {
 } from '@entities/orderings';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
 import { useAppDispatch } from '@shared/lib/hooks';
+import { Panel } from '@shared/ui/panel/panel';
 
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import style from './createOrdering.module.scss';
-import { Panel } from '@shared/ui/panel/panel';
 
 const reducers: ReducersList = {
   ordering: orderingReducer,
@@ -31,21 +32,13 @@ export const CreateOrdering = () => {
     dispatch(orderingActions.setPalletsCount(palletsObj));
   };
 
-  const setRows = (key: string) => {
-    dispatch(
-      orderingActions.setChapterSummary({
-        [key]: { rowsCount: 2 },
-      }),
-    );
-  };
-
   return (
     <AsyncReduxComponent reducersList={reducers}>
       <div className={style.layout}>
         <Panel title='Дополнительные параметры для расчета' open={false}>
           <CountPalletsForm classname={style.form} onChange={setPallets} />
         </Panel>
-        <OrderingList editRows={setRows} />
+        <OrderingList editRows={(key: string) => <EditOrderingRows chapterKey={key} />} />
         <OrderingInfo />
       </div>
     </AsyncReduxComponent>

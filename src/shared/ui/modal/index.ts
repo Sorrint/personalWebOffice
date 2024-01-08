@@ -1,1 +1,1 @@
-export { Popup } from './modal';
+export { Modal } from './modal';
