@@ -11,10 +11,13 @@ import { type FieldValues, type Path } from 'react-hook-form';
 import classNames from 'classnames';
 
 import style from './counterField.module.scss';
+import { IconFont } from '../iconFont';
 
 interface ICounterFieldsProps<T extends FieldValues> {
   label: string;
   name: Path<T>;
+  min?: number | string;
+  max?: number | string;
   onClick?: (e: MouseEvent) => void;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   classname?: string;
@@ -28,20 +31,24 @@ export const CounterField = memo(
     props: ICounterFieldsProps<T>,
     ref: ForwardedRef<HTMLInputElement | null>,
   ) {
-    const { label, name, onChange, onClick, classname, onKeyPress, tabIndex, onFocus } = props;
-    const inputClass = classNames(style.input, classname);
+    const { label, name, onChange, onClick, classname, onKeyPress, tabIndex, onFocus, min, max } =
+      props;
+    const inputClass = classNames(style.component, classname);
 
     return (
-      <div className={style.component}>
+      <div className={inputClass}>
         {label && (
           <label className={style.label} htmlFor={name}>
             {label}
           </label>
         )}
+        <IconFont iconName='icon-plus' />
         <input
           id={name}
           name={name}
-          className={inputClass}
+          min={min}
+          max={max}
+          className={style.input}
           onChange={onChange}
           onClick={onClick}
           type={'number'}
@@ -55,6 +62,7 @@ export const CounterField = memo(
           tabIndex={tabIndex}
           onFocus={onFocus}
         />
+        <IconFont iconName='icon-arrow_up' />
       </div>
     );
   }),

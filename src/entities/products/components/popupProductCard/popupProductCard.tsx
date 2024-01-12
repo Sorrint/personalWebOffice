@@ -77,14 +77,16 @@ export function PopupProductCard({
           <div className={styles.title}>{product.name}</div>
           <CounterField
             label='Количество'
-            {...register('quantity', { valueAsNumber: true })}
+            {...register('quantity', { valueAsNumber: true, min: 0 })}
             classname={styles.counter}
             onKeyPress={keyPressed}
             onFocus={handleFocus}
+            min={0}
           />
           <CounterField
             label='Цена, ₽'
-            {...register('price', { valueAsNumber: true })}
+            {...register('price', { valueAsNumber: true, min: 0 })}
+            min={0}
             classname={styles.counter}
             onKeyPress={keyPressed}
             onFocus={handleFocus}

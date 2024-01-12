@@ -3,18 +3,26 @@
   align-items: center;
   justify-content: center;
   width: 80%;
+  font-size: var(--font-size-text-medium);
 }
 
 .input {
+  --width: 150px;
   text-align: center;
+  border: var(--border);
+  height: 45px;
+  //   padding: var(--padding) 0;
+  max-width: var(--width);
+  width: 100%;
 }
 
-.counter-group {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  // display: none;
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 .label {
-  margin-right: 20px;
+  margin-right: calc(var(--margin) * 2);
 }

@@ -1,13 +1,12 @@
 import { type Meta, type StoryObj } from '@storybook/react';
-import { Popup } from './modal';
-import '@app/styles/index.scss';
+import { Modal } from './modal';
 
-const meta: Meta<typeof Popup> = {
-  title: 'ui/Popup',
-  component: Popup,
+const meta: Meta<typeof Modal> = {
+  title: 'uikit/Modal',
+  component: Modal,
 };
 export default meta;
-type Story = StoryObj<typeof Popup>;
+type Story = StoryObj<typeof Modal>;
 
 export const Normal: Story = {};
 Normal.args = {
