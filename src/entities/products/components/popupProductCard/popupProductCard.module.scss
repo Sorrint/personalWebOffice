@@ -1,50 +1,46 @@
 .add-product {
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50vw;
-    height: 50vh;
-    padding: 30px;
-    font-size: 24px;
-    line-height: 2.5em;
-    text-align: center;
-    background-color: #fff;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+  height: 50vh;
+  padding: 30px;
+  font-size: 24px;
+  line-height: 2.5em;
+  text-align: center;
+  background-color: #fff;
 }
 
 .add-product:focus {
-    outline: red solid 1px;
+  outline: red solid 1px;
 }
 
 .submit-button:focus {
-    color: yellow;
-    outline: red solid 1px;
+  color: yellow;
+  outline: red solid 1px;
 }
 
 .title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 10px 0;
 }
 
 .counter {
-    justify-self: center !important;
-    width: 30%;
-    font-size: 36px !important;
-    border: 1px solid black;
-    border-radius: 10px;
+  font-size: 28px;
 }
 
 .error-message {
-    font-weight: bold;
-    color: red;
+  font-weight: bold;
+  color: red;
 }

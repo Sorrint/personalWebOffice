@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'office';
-  src:  url('fonts/office.eot?tcnqfw');
-  src:  url('fonts/office.eot?tcnqfw#iefix') format('embedded-opentype'),
-    url('fonts/office.ttf?tcnqfw') format('truetype'),
-    url('fonts/office.woff?tcnqfw') format('woff'),
-    url('fonts/office.svg?tcnqfw#office') format('svg');
+  src:  url('fonts/office.eot?9ewz55');
+  src:  url('fonts/office.eot?9ewz55#iefix') format('embedded-opentype'),
+    url('fonts/office.ttf?9ewz55') format('truetype'),
+    url('fonts/office.woff?9ewz55') format('woff'),
+    url('fonts/office.svg?9ewz55#office') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,21 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-minus:before {
+  content: "\e900";
+}
+.icon-remove:before {
+  content: "\e901";
+}
+.icon-plus:before {
+  content: "\e902";
+}
+.icon-more_vert:before {
+  content: "\e903";
+}
+.icon-plus-rectangle:before {
+  content: "\e908";
+}
 .icon-arrow_up:before {
   content: "\e918";
 }
@@ -38,71 +53,71 @@ i {
   content: "\e917";
 }
 .icon-chevron-left:before {
-  content: "\e900";
+  content: "\e91b";
 }
 .icon-contact:before {
-  content: "\e901";
-}
-.icon-feather:before {
-  content: "\e902";
-}
-.icon-eye-slashed:before {
-  content: "\e903";
-}
-.icon-eye-open:before {
   content: "\e904";
 }
-.icon-arrows-up-down:before {
+.icon-feather:before {
   content: "\e905";
 }
-.icon-arrows-v:before {
+.icon-eye-slashed:before {
   content: "\e906";
 }
-.icon-clients:before {
+.icon-eye-open:before {
   content: "\e907";
 }
-.icon-documents:before {
-  content: "\e908";
-}
-.icon-integrations:before {
+.icon-arrows-up-down:before {
   content: "\e909";
 }
-.icon-inventory:before {
+.icon-arrows-v:before {
   content: "\e90a";
 }
-.icon-loyality:before {
+.icon-clients:before {
   content: "\e90b";
 }
-.icon-marking:before {
+.icon-documents:before {
+  content: "\e91c";
+}
+.icon-integrations:before {
   content: "\e90c";
 }
-.icon-news:before {
+.icon-inventory:before {
   content: "\e90d";
 }
-.icon-package-box:before {
+.icon-loyality:before {
   content: "\e90e";
 }
-.icon-products:before {
+.icon-marking:before {
   content: "\e90f";
 }
-.icon-profile:before {
+.icon-news:before {
   content: "\e910";
 }
-.icon-question:before {
+.icon-package-box:before {
   content: "\e911";
 }
-.icon-reports:before {
+.icon-products:before {
   content: "\e912";
 }
-.icon-scopes:before {
+.icon-profile:before {
   content: "\e913";
 }
-.icon-shops:before {
+.icon-question:before {
   content: "\e914";
 }
-.icon-stocks:before {
+.icon-reports:before {
   content: "\e915";
 }
-.icon-support:before {
+.icon-scopes:before {
   content: "\e916";
+}
+.icon-shops:before {
+  content: "\e91d";
+}
+.icon-stocks:before {
+  content: "\e91e";
+}
+.icon-support:before {
+  content: "\e91f";
 }

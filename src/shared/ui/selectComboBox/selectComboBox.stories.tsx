@@ -3,8 +3,8 @@ import { SelectComboBox } from './selectComboBox';
 // import './selectComboBox.scss';
 
 const meta: Meta<typeof SelectComboBox> = {
-    title: 'module/selectComboBox',
-    component: SelectComboBox
+  title: 'uikit/selectComboBox',
+  component: SelectComboBox,
 };
 export default meta;
 type Story = StoryObj<typeof SelectComboBox>;

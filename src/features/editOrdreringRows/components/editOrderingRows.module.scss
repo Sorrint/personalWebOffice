@@ -1,0 +1,9 @@
+.edit-rows {
+  cursor: pointer;
+  grid-area: icon;
+  color: var(--accent-color);
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}
