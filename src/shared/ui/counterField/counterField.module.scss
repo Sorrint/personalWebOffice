@@ -2,25 +2,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
   font-size: var(--font-size-text-medium);
 }
 
-.input {
-  --width: 150px;
-  text-align: center;
+.icon {
+  cursor: pointer;
+  font-size: var(--font-size-ui);
+  color: var(--accent-color);
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  width: 6em;
+  padding: 0 0.5em;
+  background-color: #fff;
   border: var(--border);
-  height: 45px;
-  //   padding: var(--padding) 0;
-  max-width: var(--width);
+  border-radius: 2em;
+  box-shadow: var(--shadow);
+}
+
+.input {
   width: 100%;
+  max-width: var(--width);
+  height: 45px;
+  text-align: center;
 }
 
 .input::-webkit-outer-spin-button,
 .input::-webkit-inner-spin-button {
-  // display: none;
-  -webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  -webkit-appearance: none;
 }
 
 .label {

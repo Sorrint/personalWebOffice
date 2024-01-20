@@ -27,8 +27,10 @@ export const EditOrderingRows = memo(({ chapterKey, classname }: EditOrderingRow
       button={
         <IconFont iconName={'icon-plus'} classname={classNames(style['edit-rows'], classname)} />
       }
+      placementPanel='right'
+      offsetY={10}
     >
-      <CounterField label='Кол-во рядов' name='rows'></CounterField>
+      <CounterField name='rows' min={0}></CounterField>
     </HPopover>
   );
 });

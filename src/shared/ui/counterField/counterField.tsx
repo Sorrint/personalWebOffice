@@ -14,7 +14,7 @@ import style from './counterField.module.scss';
 import { IconFont } from '../iconFont';
 
 interface ICounterFieldsProps<T extends FieldValues> {
-  label: string;
+  label?: string;
   name: Path<T>;
   min?: number | string;
   max?: number | string;
@@ -42,27 +42,29 @@ export const CounterField = memo(
             {label}
           </label>
         )}
-        <IconFont iconName='icon-plus' />
-        <input
-          id={name}
-          name={name}
-          min={min}
-          max={max}
-          className={style.input}
-          onChange={onChange}
-          onClick={onClick}
-          type={'number'}
-          ref={ref}
-          onKeyDown={
-            onKeyPress &&
-            ((e) => {
-              onKeyPress(e, name);
-            })
-          }
-          tabIndex={tabIndex}
-          onFocus={onFocus}
-        />
-        <IconFont iconName='icon-arrow_up' />
+        <div className={style.counter}>
+          <IconFont iconName='icon-minus' classname={style.icon} />
+          <input
+            id={name}
+            name={name}
+            min={min}
+            max={max}
+            className={style.input}
+            onChange={onChange}
+            onClick={onClick}
+            type={'number'}
+            ref={ref}
+            onKeyDown={
+              onKeyPress &&
+              ((e) => {
+                onKeyPress(e, name);
+              })
+            }
+            tabIndex={tabIndex}
+            onFocus={onFocus}
+          />
+          <IconFont iconName='icon-plus' classname={style.icon} />
+        </div>
       </div>
     );
   }),
