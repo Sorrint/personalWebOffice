@@ -26,6 +26,7 @@ interface ICounterFieldsProps<T extends FieldValues> {
   onKeyPress?: (e: KeyboardEvent, name: Path<T>) => void;
   tabIndex?: number;
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
+  autofocus?: boolean;
 }
 
 export const CounterField = memo(
@@ -33,8 +34,19 @@ export const CounterField = memo(
     props: ICounterFieldsProps<T>,
     ref: ForwardedRef<HTMLInputElement | null>,
   ) {
-    const { label, name, onChange, onClick, classname, onKeyPress, tabIndex, onFocus, min, max } =
-      props;
+    const {
+      label,
+      name,
+      onChange,
+      onClick,
+      classname,
+      onKeyPress,
+      tabIndex,
+      onFocus,
+      min,
+      max,
+      autofocus,
+    } = props;
     const inputClass = classNames(style.component, classname);
     const inputRef = useRef<HTMLInputElement | null>();
 
@@ -61,6 +73,7 @@ export const CounterField = memo(
         <div className={style.counter}>
           <IconFont iconName='icon-minus' classname={style.icon} onClick={decrement} />
           <input
+            autoFocus={autofocus ?? false}
             id={name}
             name={name}
             min={min}
