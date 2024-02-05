@@ -6,8 +6,10 @@ import {
   memo,
   forwardRef,
   type ForwardedRef,
+  useRef,
+  useEffect,
 } from 'react';
-import { type FieldValues, type Path } from 'react-hook-form';
+import { type FieldValues, type Path, type PathValue, type SetFieldValue } from 'react-hook-form';
 import classNames from 'classnames';
 
 import style from './counterField.module.scss';
@@ -24,6 +26,8 @@ interface ICounterFieldsProps<T extends FieldValues> {
   onKeyPress?: (e: KeyboardEvent, name: Path<T>) => void;
   tabIndex?: number;
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
+  autofocus?: boolean;
+  setValue?: SetFieldValue<T>;
 }
 
 export const CounterField = memo(
@@ -31,9 +35,41 @@ export const CounterField = memo(
     props: ICounterFieldsProps<T>,
     ref: ForwardedRef<HTMLInputElement | null>,
   ) {
-    const { label, name, onChange, onClick, classname, onKeyPress, tabIndex, onFocus, min, max } =
-      props;
+    const {
+      label,
+      name,
+      onChange,
+      onClick,
+      classname,
+      onKeyPress,
+      tabIndex,
+      onFocus,
+      min,
+      max,
+      autofocus,
+      setValue,
+    } = props;
     const inputClass = classNames(style.component, classname);
+    const inputRef = useRef<HTMLInputElement | null>();
+
+    const decrement = () => {
+      if (inputRef.current) {
+        inputRef.current?.stepDown();
+        setValue?.(name, Number(inputRef.current?.value) as PathValue<T, Path<T>>);
+      }
+    };
+
+    const increment = () => {
+      if (inputRef.current) {
+        inputRef.current?.stepUp();
+        setValue?.(name, Number(inputRef.current?.value) as PathValue<T, Path<T>>);
+      }
+    };
+    useEffect(() => {
+      if (inputRef.current && !inputRef.current?.value) {
+        inputRef.current.value = '0';
+      }
+    }, []);
 
     return (
       <div className={inputClass}>
@@ -43,8 +79,9 @@ export const CounterField = memo(
           </label>
         )}
         <div className={style.counter}>
-          <IconFont iconName='icon-minus' classname={style.icon} />
+          <IconFont iconName='icon-minus' classname={style.icon} onClick={decrement} />
           <input
+            autoFocus={autofocus ?? false}
             id={name}
             name={name}
             min={min}
@@ -53,7 +90,14 @@ export const CounterField = memo(
             onChange={onChange}
             onClick={onClick}
             type={'number'}
-            ref={ref}
+            ref={(e) => {
+              if (typeof ref === 'function') {
+                ref(e);
+              } else if (ref && 'current' in ref) {
+                ref.current = e;
+              }
+              inputRef.current = e;
+            }}
             onKeyDown={
               onKeyPress &&
               ((e) => {
@@ -63,7 +107,7 @@ export const CounterField = memo(
             tabIndex={tabIndex}
             onFocus={onFocus}
           />
-          <IconFont iconName='icon-plus' classname={style.icon} />
+          <IconFont iconName='icon-plus' classname={style.icon} onClick={increment} />
         </div>
       </div>
     );

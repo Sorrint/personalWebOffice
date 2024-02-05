@@ -7,3 +7,37 @@
     color: var(--primary-color);
   }
 }
+
+.form {
+  padding: calc(var(--padding) * 1.5) var(--padding);
+  background-color: #fff;
+  border: var(--border);
+  border-radius: calc(var(--radius) * 2);
+  box-shadow: var(--shadow);
+}
+
+.check {
+  color: var(--primary-color);
+}
+
+.close {
+  font-size: var(--font-size-ui);
+  color: red;
+}
+
+.cached {
+  font-size: 18px;
+  color: var(--primary-color);
+}
+
+.check,
+.close,
+.cached {
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: calc(var(--margin) * 1.5);
+}

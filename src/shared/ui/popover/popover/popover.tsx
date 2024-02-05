@@ -5,13 +5,19 @@ import { type Placement } from '@popperjs/core';
 
 interface PopoverProps {
   button: ReactNode;
-  children: ReactNode;
+  renderChildren: (props: { close: () => void }) => ReactNode;
   placementPanel?: Placement;
   offsetX?: number;
   offsetY?: number;
 }
 
-export const Popover = ({ button, children, placementPanel, offsetX, offsetY }: PopoverProps) => {
+export const Popover = ({
+  button,
+  renderChildren,
+  placementPanel,
+  offsetX,
+  offsetY,
+}: PopoverProps) => {
   const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
 
@@ -33,7 +39,7 @@ export const Popover = ({ button, children, placementPanel, offsetX, offsetY }: 
         {button}
       </HPopover.Button>
       <HPopover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}>
-        {children}
+        {({ close }) => <>{renderChildren?.({ close })}</>}
       </HPopover.Panel>
     </HPopover>
   );

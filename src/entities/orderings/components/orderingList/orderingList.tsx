@@ -5,7 +5,7 @@ import { useAppSelector } from '@shared/lib/hooks';
 import { Loader } from '@shared/ui/loaders';
 
 import { type IOrderingRecordDisplay } from '../../model/types/ordering';
-import { getIsLoading, getOrderingData } from '../../model/slice/OrderingSlice';
+import { getIsLoading, getOrderingChaptersData } from '../../model/slice/OrderingSlice';
 import { OrderingChapter } from './orderingChapter/orderingChapter';
 import { OrderingRecord } from './orderingRecord/orderingRecord';
 import { OrderingHeaders } from '../../consts/orderingHeaders';
@@ -25,7 +25,7 @@ const headers: Partial<IOrderingRecordDisplay> = {
 };
 
 export const OrderingList = memo(({ className, editRows }: OrderingListProps) => {
-  const records = useAppSelector(getOrderingData);
+  const records = useAppSelector(getOrderingChaptersData);
   const isLoading = useAppSelector(getIsLoading);
 
   return (

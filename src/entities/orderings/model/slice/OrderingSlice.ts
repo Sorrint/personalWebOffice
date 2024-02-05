@@ -126,7 +126,7 @@ export const orderingSlice = createSlice({
 export const { actions: orderingActions } = orderingSlice;
 export const { reducer: orderingReducer } = orderingSlice;
 
-export const getOrderingData = (state: StoreSchema) => state.ordering?.chaptersData;
+export const getOrderingChaptersData = (state: StoreSchema) => state.ordering?.chaptersData;
 export const getOrderingSummary = (state: StoreSchema) => state.ordering?.summaryData;
 export const getChaptersOrder = (state: StoreSchema) => state.ordering?.categoriesOrder;
 export const getIsLoading = (state: StoreSchema) => state.ordering?.isLoading;
