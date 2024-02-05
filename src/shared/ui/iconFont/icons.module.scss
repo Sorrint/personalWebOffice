@@ -1,0 +1,12 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 100px);
+  gap: calc(var(--margin) * 3);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.text {
+  margin-top: var(--margin);
+}

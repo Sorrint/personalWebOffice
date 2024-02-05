@@ -1,129 +1,163 @@
 @font-face {
-  font-family: 'office';
-  src:  url('fonts/office.eot?kwhpgi');
-  src:  url('fonts/office.eot?kwhpgi#iefix') format('embedded-opentype'),
-    url('fonts/office.ttf?kwhpgi') format('truetype'),
-    url('fonts/office.woff?kwhpgi') format('woff'),
-    url('fonts/office.svg?kwhpgi#office') format('svg');
+  font-family: office;
   font-weight: normal;
   font-style: normal;
   font-display: block;
+  src: url('fonts/office.eot?ifbt7q');
+  src: url('fonts/office.eot?ifbt7q#iefix') format('embedded-opentype'),
+    url('fonts/office.ttf?ifbt7q') format('truetype'),
+    url('fonts/office.woff?ifbt7q') format('woff'),
+    url('fonts/office.svg?ifbt7q#office') format('svg');
 }
 
 i {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'office' !important;
   speak: never;
-  font-style: normal;
+
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: office !important;
   font-weight: normal;
+  font-style: normal;
   font-variant: normal;
-  text-transform: none;
   line-height: 1;
+  text-transform: none;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-cached:before {
-  content: "\e900";
+.icon-cached::before {
+  content: '\e900';
 }
-.icon-close:before {
-  content: "\e901";
+
+.icon-close::before {
+  content: '\e901';
 }
-.icon-minus:before {
-  content: "\e902";
+
+.icon-minus::before {
+  content: '\e902';
 }
-.icon-remove:before {
-  content: "\e903";
+
+.icon-remove::before {
+  content: '\e903';
 }
-.icon-plus:before {
-  content: "\e904";
+
+.icon-plus::before {
+  content: '\e904';
 }
-.icon-more_vert:before {
-  content: "\e905";
+
+.icon-more-vert::before {
+  content: '\e905';
 }
-.icon-plus-rectangle:before {
-  content: "\e908";
+
+.icon-plus-rectangle::before {
+  content: '\e908';
 }
-.icon-arrow_up:before {
-  content: "\e918";
+
+.icon-arrow-up::before {
+  content: '\e918';
 }
-.icon-arrow_down:before {
-  content: "\e919";
+
+.icon-arrow-down::before {
+  content: '\e919';
 }
-.icon-check:before {
-  content: "\e91a";
+
+.icon-check::before {
+  content: '\e91a';
 }
-.icon-chevron-right:before {
-  content: "\e917";
+
+.icon-chevron-right::before {
+  content: '\e917';
 }
-.icon-chevron-left:before {
-  content: "\e91b";
+
+.icon-chevron-left::before {
+  content: '\e91b';
 }
-.icon-contact:before {
-  content: "\e906";
+
+.icon-contact::before {
+  content: '\e906';
 }
-.icon-feather:before {
-  content: "\e907";
+
+.icon-feather::before {
+  content: '\e907';
 }
-.icon-eye-slashed:before {
-  content: "\e909";
+
+.icon-eye-slashed::before {
+  content: '\e909';
 }
-.icon-eye-open:before {
-  content: "\e90a";
+
+.icon-eye-open::before {
+  content: '\e90a';
 }
-.icon-arrows-up-down:before {
-  content: "\e90b";
+
+.icon-arrows-up-down::before {
+  content: '\e90b';
 }
-.icon-arrows-v:before {
-  content: "\e90c";
+
+.icon-arrows-v::before {
+  content: '\e90c';
 }
-.icon-clients:before {
-  content: "\e90d";
+
+.icon-clients::before {
+  content: '\e90d';
 }
-.icon-documents:before {
-  content: "\e91c";
+
+.icon-documents::before {
+  content: '\e91c';
 }
-.icon-integrations:before {
-  content: "\e90e";
+
+.icon-integrations::before {
+  content: '\e90e';
 }
-.icon-inventory:before {
-  content: "\e90f";
+
+.icon-inventory::before {
+  content: '\e90f';
 }
-.icon-loyality:before {
-  content: "\e910";
+
+.icon-loyality::before {
+  content: '\e910';
 }
-.icon-marking:before {
-  content: "\e911";
+
+.icon-marking::before {
+  content: '\e911';
 }
-.icon-news:before {
-  content: "\e912";
+
+.icon-news::before {
+  content: '\e912';
 }
-.icon-package-box:before {
-  content: "\e913";
+
+.icon-package-box::before {
+  content: '\e913';
 }
-.icon-products:before {
-  content: "\e914";
+
+.icon-products::before {
+  content: '\e914';
 }
-.icon-profile:before {
-  content: "\e915";
+
+.icon-profile::before {
+  content: '\e915';
 }
-.icon-question:before {
-  content: "\e916";
+
+.icon-question::before {
+  content: '\e916';
 }
-.icon-reports:before {
-  content: "\e91d";
+
+.icon-reports::before {
+  content: '\e91d';
 }
-.icon-scopes:before {
-  content: "\e91e";
+
+.icon-scopes::before {
+  content: '\e91e';
 }
-.icon-shops:before {
-  content: "\e91f";
+
+.icon-shops::before {
+  content: '\e91f';
 }
-.icon-stocks:before {
-  content: "\e920";
+
+.icon-stocks::before {
+  content: '\e920';
 }
-.icon-support:before {
-  content: "\e921";
+
+.icon-support::before {
+  content: '\e921';
 }
