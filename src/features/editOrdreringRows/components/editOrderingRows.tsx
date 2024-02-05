@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import style from './editOrderingRows.module.scss';
 import { HPopover } from '@shared/ui/popover';
 import { IconFont } from '@shared/ui/iconFont';
@@ -21,15 +21,27 @@ export const EditOrderingRows = memo(({ chapterKey, classname }: EditOrderingRow
   const dispatch = useAppDispatch();
   const chapters = useAppSelector(getOrderingChaptersData);
 
-  const { register, handleSubmit } = useForm<IOrderingChapter['summary']>({
+  const { register, handleSubmit, setValue, watch } = useForm<IOrderingChapter['summary']>({
     defaultValues: {
       rowsCount: chapters?.[chapterKey]?.summary.rowsCount ?? 0,
     },
     mode: 'onChange',
   });
 
-  const editRows = (key: Partial<IOrderingChapter['summary']>) => {
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) => console.log(value, name, type));
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  const editRows = (key: Partial<IOrderingChapter['summary']>, close?: () => void) => {
     dispatch(orderingActions.setChapterSummary({ [chapterKey]: key }));
+    close?.();
+  };
+
+  const setToStartValue = () => {
+    if (chapters?.[chapterKey]?.summary.rowsCount) {
+      setValue('rowsCount', chapters?.[chapterKey]?.summary.rowsCount);
+    }
   };
 
   return (
@@ -39,19 +51,25 @@ export const EditOrderingRows = memo(({ chapterKey, classname }: EditOrderingRow
       }
       placementPanel='right'
       offsetY={10}
-    >
-      <form onSubmit={handleSubmit(editRows)} className={style.form}>
-        <CounterField
-          min={0}
-          autofocus
-          {...register('rowsCount', { valueAsNumber: true })}
-        ></CounterField>
-        <div className={style.actions}>
-          <IconFont iconName={'icon-check'} classname={style.check} />
-          <IconFont iconName={'icon-close'} classname={style.close} />
-          <IconFont iconName={'icon-cached'} classname={style.cached} />
-        </div>
-      </form>
-    </HPopover>
+      renderChildren={({ close }) => (
+        <form onSubmit={handleSubmit((data) => editRows(data, close))} className={style.form}>
+          <CounterField
+            min={0}
+            autofocus
+            {...register('rowsCount', { valueAsNumber: true })}
+            setValue={setValue}
+          ></CounterField>
+          <div className={style.actions}>
+            <IconFont
+              iconName={'icon-check'}
+              classname={style.check}
+              onClick={handleSubmit((data) => editRows(data, close))}
+            />
+            <IconFont iconName={'icon-close'} classname={style.close} onClick={() => close()} />
+            <IconFont iconName={'icon-cached'} classname={style.cached} onClick={setToStartValue} />
+          </div>
+        </form>
+      )}
+    />
   );
 });

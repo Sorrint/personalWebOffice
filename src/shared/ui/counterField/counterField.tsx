@@ -9,7 +9,7 @@ import {
   useRef,
   useEffect,
 } from 'react';
-import { type FieldValues, type Path } from 'react-hook-form';
+import { type FieldValues, type Path, type PathValue, type SetFieldValue } from 'react-hook-form';
 import classNames from 'classnames';
 
 import style from './counterField.module.scss';
@@ -27,6 +27,7 @@ interface ICounterFieldsProps<T extends FieldValues> {
   tabIndex?: number;
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
   autofocus?: boolean;
+  setValue?: SetFieldValue<T>;
 }
 
 export const CounterField = memo(
@@ -46,16 +47,23 @@ export const CounterField = memo(
       min,
       max,
       autofocus,
+      setValue,
     } = props;
     const inputClass = classNames(style.component, classname);
     const inputRef = useRef<HTMLInputElement | null>();
 
     const decrement = () => {
-      inputRef.current?.stepDown();
+      if (inputRef.current) {
+        inputRef.current?.stepDown();
+        setValue?.(name, Number(inputRef.current?.value) as PathValue<T, Path<T>>);
+      }
     };
 
     const increment = () => {
-      inputRef.current?.stepUp();
+      if (inputRef.current) {
+        inputRef.current?.stepUp();
+        setValue?.(name, Number(inputRef.current?.value) as PathValue<T, Path<T>>);
+      }
     };
     useEffect(() => {
       if (inputRef.current && !inputRef.current?.value) {
