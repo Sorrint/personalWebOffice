@@ -1,0 +1,33 @@
+image: node:20-alpine
+stages:
+  - build
+  - test
+
+cache:
+  key: '$CI_PIPELINE_ID'
+  paths:
+    - node_modules/
+  policy: pull
+
+build:
+  cache:
+    key: '$CI_PIPELINE_ID'
+    paths:
+      - node_modules/
+    policy: push
+  stage: build
+  script:
+    - npm install
+  allow_failure: false
+
+eslint:
+  stage: test
+  script:
+    - npm run lint:code
+  allow_failure: false
+
+stylelint:
+  stage: test
+  script:
+    - npm run lint:style
+  allow_failure: false
