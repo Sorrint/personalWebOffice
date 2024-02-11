@@ -1,5 +1,6 @@
 image: node:20-alpine
 stages:
+  - buildProd
   - build
   - test
 
@@ -19,15 +20,34 @@ build:
   script:
     - npm install
   allow_failure: false
+  only:
+    - merge_requests
 
 eslint:
   stage: test
   script:
     - npm run lint:code
   allow_failure: false
+  only:
+    - merge_requests
 
 stylelint:
   stage: test
   script:
     - npm run lint:style
   allow_failure: false
+  only:
+    - merge_requests
+
+buildProd:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+    - cd ./dist
+    - git init
+    - git add .
+    - git commit -m "Auto commit by Gitlab CI"
+    - git push origin HEAD:prod
+  only:
+    - development
