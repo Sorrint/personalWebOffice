@@ -9,6 +9,7 @@ import { CounterField } from '@shared/ui/counterField/counterField';
 import { Button } from '@shared/ui/button';
 
 import styles from './popupProductCard.module.scss';
+import classNames from 'classnames';
 
 interface PopupProductCardProps {
   product: IInventoryProduct;
@@ -17,12 +18,14 @@ interface PopupProductCardProps {
   error: FetchBaseQueryError | SerializedError | undefined;
   popupText?: string;
   method: string;
+  isActive: boolean;
 }
 export interface FormValues {
   name: string;
   price: number | null;
   quantity: number;
   id: string | undefined;
+  isActiveAccount: boolean;
 }
 
 export function PopupProductCard({
@@ -32,12 +35,14 @@ export function PopupProductCard({
   error,
   popupText,
   method,
+  isActive,
 }: PopupProductCardProps) {
   const initData: FormValues = {
     id: product.id,
     price: product.price,
     quantity: product.quantity,
     name: product.name,
+    isActiveAccount: product.isActiveAccount ?? true,
   };
   const { register, handleSubmit, setValue } = useForm<FormValues>({
     defaultValues: initData,
@@ -71,7 +76,10 @@ export function PopupProductCard({
   };
 
   return (
-    <div className={styles['add-product']} ref={modalWindow}>
+    <div
+      className={classNames(styles['add-product'], { [styles['old-account']]: !isActive })}
+      ref={modalWindow}
+    >
       <form>
         <div className={styles.card}>
           <div className={styles.title}>{product.name}</div>
