@@ -1,46 +1,50 @@
 .inventory-card {
-    cursor: pointer;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  margin-top: 3px;
+  line-height: 24px;
+  background-color: #fff;
+
+  &__price,
+  &__quantity,
+  &__sum,
+  &__remove {
     display: flex;
-    align-items: center;
-    min-height: 48px;
-    margin-top: 3px;
-    line-height: 24px;
-    background-color: #fff;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    width: 100px;
+    padding: 0 12px;
+  }
 
-    &__price,
-    &__quantity,
-    &__sum,
-    &__remove {
-        display: flex;
-        flex: 0 0 auto;
-        justify-content: flex-end;
-        width: 100px;
-        padding: 0 12px;
-    }
+  &__remove {
+    width: 30px;
+    height: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+  }
 
-    &__remove {
-        width: 30px;
-        height: 100%;
-        font-size: 24px;
-        font-weight: bold;
-        color: red;
-    }
-    
-    &__remove:hover {
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: white;
-    }
+  &__remove:hover {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: white;
+  }
 
-    &__number {
-        display: flex;
-        flex: 0 0 auto;
-        justify-content: flex-end;
-        width: 50px;
-        padding: 0 12px;
-    }
+  &__number {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    width: 50px;
+    padding: 0 12px;
+  }
 
-    &__title {
-        flex: 1 1 auto;
-        padding: 0 12px;
-    }
+  &__title {
+    flex: 1 1 auto;
+    padding: 0 12px;
+  }
+}
+
+.is-inactive {
+  background-color: yellow;
 }
