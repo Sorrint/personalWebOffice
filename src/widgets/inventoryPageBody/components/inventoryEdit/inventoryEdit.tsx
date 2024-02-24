@@ -145,7 +145,6 @@ export const InventoryEdit = memo(() => {
         onDelete={handleDelete}
         tabIndex={activePopup ? -1 : 0}
         inventoryList={inventoryList}
-        docNumber={number}
       />
       {goods && goods?.length !== 0 && searchInput.current && activePopover && (
         <Popover

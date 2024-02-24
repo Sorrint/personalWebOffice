@@ -39,18 +39,3 @@ stylelint:
   allow_failure: false
   only:
     - merge_requests
-
-buildProd:
-  stage: buildProd
-  before_script:
-    - apk add --no-cache npm
-  script:
-    - npm install
-    - npm run build
-    - cd ./dist
-    - git init
-    - git add .
-    - git commit -m "Auto commit by Gitlab CI"
-    - git push origin HEAD:prod
-  only:
-    - development
