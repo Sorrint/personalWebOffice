@@ -73,11 +73,7 @@ export const CounterField = memo(
 
     return (
       <div className={inputClass}>
-        {label && (
-          <label className={style.label} htmlFor={name}>
-            {label}
-          </label>
-        )}
+        {label && <label htmlFor={name}>{label}</label>}
         <div className={style.counter}>
           <IconFont iconName='icon-minus' classname={style.icon} onClick={decrement} />
           <input
