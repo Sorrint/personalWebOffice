@@ -1,7 +1,7 @@
 .component {
   display: flex;
+  gap: calc(var(--margin) * 2);
   align-items: center;
-  justify-content: center;
   font-size: var(--font-size-text-medium);
 }
 
@@ -35,6 +35,8 @@
   -webkit-appearance: none;
 }
 
-.label {
-  margin-right: calc(var(--margin) * 2);
+@media (width <= 410px) {
+  .component {
+    flex-wrap: wrap;
+  }
 }

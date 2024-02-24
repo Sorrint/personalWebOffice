@@ -82,7 +82,7 @@ export function PopupProductCard({
     >
       <form>
         <div className={styles.card}>
-          <div className={styles.title}>{product.name}</div>
+          <h2>{product.name}</h2>
           <CounterField
             label='Количество'
             {...register('quantity', { valueAsNumber: true, min: 0 })}
@@ -99,14 +99,14 @@ export function PopupProductCard({
             onKeyPress={keyPressed}
             onFocus={handleFocus}
           />
+          {popupText && <h3>{popupText}</h3>}
+          <Button buttonType={getButtonType()} onClick={handleSubmit(buttonClick)} ref={submitRef}>
+            {buttonText}
+          </Button>
+          {error && (
+            <div className={styles['error-message']}>Произошла ошибка при отправке данных</div>
+          )}
         </div>
-        {popupText && <h3>{popupText}</h3>}
-        <Button buttonType={getButtonType()} onClick={handleSubmit(buttonClick)} ref={submitRef}>
-          {buttonText}
-        </Button>
-        {error && (
-          <div className={styles['error-message']}>Произошла ошибка при отправке данных</div>
-        )}
       </form>
     </div>
   );

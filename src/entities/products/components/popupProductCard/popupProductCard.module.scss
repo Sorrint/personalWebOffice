@@ -4,47 +4,40 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50vw;
-  height: 50vh;
-  padding: 30px;
-  font-size: 24px;
+  padding: calc(var(--padding) * 3);
+  font-size: var(--font-size-text-large);
   line-height: 2.5em;
   text-align: center;
   background-color: #fff;
 }
 
-.add-product:focus {
-  outline: red solid 1px;
-}
-
-.submit-button:focus {
-  color: yellow;
-  outline: red solid 1px;
-}
-
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .card {
   display: flex;
   flex-direction: column;
+  gap: calc(var(--margin) * 2);
   align-items: center;
-  box-sizing: border-box;
-  margin: 10px 0;
 }
 
 .counter {
-  font-size: 28px;
+  justify-content: center;
+  font-size: calc(var(--font-size-ui) * 2);
 }
 
 .error-message {
   font-weight: bold;
-  color: red;
+  color: var(--error);
 }
 
 .old-account {
-  background-color: yellow;
+  background-color: var(--warning);
+}
+
+@media (width <= 768px) {
+  .add-product {
+    font-size: var(--font-size-text-medium);
+  }
+
+  .counter {
+    font-size: var(--font-size-text-large);
+  }
 }
