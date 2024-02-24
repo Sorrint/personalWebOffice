@@ -8,10 +8,11 @@ import classNames from 'classnames';
 export interface InventoryProductCardProps extends InventoryContentProps {
   product: IInventoryProduct;
   itemNumber: number;
+  highlight?: boolean;
 }
 
 export const InventoryProductCard = memo(
-  ({ product, itemNumber, tabIndex, onClick, onDelete }: InventoryProductCardProps) => {
+  ({ product, itemNumber, tabIndex, onClick, onDelete, highlight }: InventoryProductCardProps) => {
     const { name, price, quantity, isActiveAccount } = product;
 
     const handleClick = (product: IInventoryProduct) => {
@@ -24,7 +25,9 @@ export const InventoryProductCard = memo(
 
     return (
       <div
-        className={classNames('inventory-card', { ['is-inactive']: !isActiveAccount })}
+        className={classNames('inventory-card', {
+          ['is-inactive']: !isActiveAccount && highlight,
+        })}
         onClick={() => {
           handleClick(product);
         }}

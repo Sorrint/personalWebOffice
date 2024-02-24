@@ -1,5 +1,6 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
+import { Checkbox } from '@shared/ui/checkbox';
 import { transformDate } from '@shared/lib/helpers';
 
 import { InventoryProductList } from '../inventoryProductsList/inventoryProductsList';
@@ -17,6 +18,14 @@ export interface InventoryContentProps {
 export const InventoryContent = memo(
   ({ onClick, onDelete, tabIndex, inventoryList }: InventoryContentProps) => {
     if (!inventoryList) return 'Нет данных для отображения';
+    const [highlight, setHighlight] = useState(
+      localStorage.getItem('highlight') === 'true' ? true : false,
+    );
+
+    const handleCheckboxClick = (checked: boolean) => {
+      checked ? localStorage.setItem('highlight', 'true') : localStorage.setItem('highlight', '');
+      setHighlight(checked);
+    };
 
     if (inventoryList != null) {
       const sum = inventoryList.products?.reduce(
@@ -31,12 +40,21 @@ export const InventoryContent = memo(
 
       return (
         <>
-          <button className={styles['create-xlsx']} onClick={handleClick}>
-            Скачать в формате XLSX
-          </button>
+          <div className={styles.controls}>
+            <button className={styles['create-xlsx']} onClick={handleClick}>
+              Скачать в формате XLSX
+            </button>
+            <Checkbox
+              text='Выделять поля с резервного аккаунта'
+              name='tempAcc'
+              onChange={handleCheckboxClick}
+              defaultChecked={highlight}
+            />
+          </div>
           <h1>{`Инвентаризация № ${inventoryList.documentNumber} от ${date} магазина ${inventoryList.storeName}`}</h1>
           <div className={styles['inventory-products-list']}>
             <InventoryProductList
+              highlight={highlight}
               products={inventoryList.products}
               onClick={onClick}
               onDelete={onDelete}
