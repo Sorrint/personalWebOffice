@@ -7,23 +7,23 @@ import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '@shared/config/router';
 
 export const CreateOrder = () => {
-    const order = useSelector(getCurrentOrder());
-    const navigate = useNavigate();
-    const [createNewOrder] = useCreateOrderMutation();
-    const handleSaveOrder = async () => {
-        if (order) {
-            const newOrder = await createNewOrder(order);
-            if ('data' in newOrder) navigate(AppRoutes.getOrderDetailsRoute(newOrder.data._id));
-        } 
-    };
+  const order = useSelector(getCurrentOrder());
+  const navigate = useNavigate();
+  const [createNewOrder] = useCreateOrderMutation();
+  const handleSaveOrder = async () => {
+    if (order) {
+      const newOrder = await createNewOrder(order);
+      if ('data' in newOrder) navigate(AppRoutes.getOrderDetailsRoute(newOrder.data._id));
+    }
+  };
 
-    return (
-        <>
-            <div>
-                <LoadOrderFromFile/>
-                {order && <Button onClick={handleSaveOrder}>Сохранить заказ</Button>}
-                <OrderCard order={order}/>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div>
+        <LoadOrderFromFile />
+        {order && <Button onClick={handleSaveOrder}>Сохранить заказ</Button>}
+        <OrderCard order={order} />
+      </div>
+    </>
+  );
 };

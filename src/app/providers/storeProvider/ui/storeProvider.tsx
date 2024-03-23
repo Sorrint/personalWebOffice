@@ -8,23 +8,26 @@ import { createStore } from '../config/storeApp';
 import { type StoreSchema } from '../config/storeSchema';
 
 interface StoreProviderProps {
-    children?: ReactNode
-    initialState?: DeepPartial<StoreSchema>
-  
-    asyncReducers?: DeepPartial<ReducersMapObject<StoreSchema, AnyAction>>
+  children?: ReactNode;
+  initialState?: DeepPartial<StoreSchema>;
+
+  asyncReducers?: DeepPartial<ReducersMapObject<StoreSchema, AnyAction>>;
 }
 
 export const StoreProvider = (props: StoreProviderProps) => {
-    const { children, asyncReducers, initialState } = props;
+  const { children, asyncReducers, initialState } = props;
 
-    const store = createStore(initialState as StoreSchema, asyncReducers as ReducersMapObject<StoreSchema, AnyAction>);
-    const persistor = persistStore(store);
+  const store = createStore(
+    initialState as StoreSchema,
+    asyncReducers as ReducersMapObject<StoreSchema, AnyAction>,
+  );
+  const persistor = persistStore(store);
 
-    return (
-        <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-                {children}
-            </PersistGate>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  );
 };

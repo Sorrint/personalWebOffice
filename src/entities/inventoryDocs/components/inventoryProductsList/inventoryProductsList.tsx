@@ -27,3 +27,5 @@ export const InventoryProductList = memo(
     );
   },
 );
+
+InventoryProductList.displayName = 'InventoryProductList';

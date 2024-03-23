@@ -25,7 +25,7 @@ export const OrderingChapter = ({ orderingChapter, editRows }: OrderingChapterPr
 
   return (
     <>
-      {records.map((record) => (
+      {records.map(record => (
         <OrderingRecord key={record.number} record={record} />
       ))}
       <OrderingRecord record={summaryRecord} header editRows={editRows} />

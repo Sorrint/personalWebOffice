@@ -70,3 +70,5 @@ export const InventoryContent = memo(
     }
   },
 );
+
+InventoryContent.displayName = 'InventoryContent';

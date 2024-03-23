@@ -11,46 +11,46 @@ import style from './documentsPage.module.scss';
 import { AppLink } from '@shared/ui/appLink';
 
 const reducers: ReducersList = {
-    orders: orderReducer
+  orders: orderReducer,
 };
 
 const DocumentsPage = () => {
-    const navLinks: INavLinkObject = {
-        order: {
-            path: '/office/documents/orders',
-            title: 'Заказы'
-        },
-        ordering: {
-            path: '/office/documents/orderings',
-            title: 'Порядовки'
-        },
-        distribution: {
-            path: '/office/documents/distributions',
-            title: 'Распаллетовки'
-        }
-    };
+  const navLinks: INavLinkObject = {
+    order: {
+      path: '/office/documents/orders',
+      title: 'Заказы',
+    },
+    ordering: {
+      path: '/office/documents/orderings',
+      title: 'Порядовки',
+    },
+    distribution: {
+      path: '/office/documents/distributions',
+      title: 'Распаллетовки',
+    },
+  };
 
-    const items: DropdownItem[] = [
-        {_id: 1, content: <SaveOrderingToXLSX classname={style['list-item']}/>},
-        {_id: 2, content: <AppLink to='/office/documents/orders/create'>Создать заказ</AppLink>},
-    ];
+  const items: DropdownItem[] = [
+    { _id: 1, content: <SaveOrderingToXLSX classname={style['list-item']} /> },
+    { _id: 2, content: <AppLink to='/office/documents/orders/create'>Создать заказ</AppLink> },
+  ];
 
-    const renderBtn = () => {
-        return <Dropdown title='Меню' options={items}></Dropdown>;
-    };
+  const renderBtn = () => {
+    return <Dropdown title='Меню' options={items}></Dropdown>;
+  };
 
-    return (
-        <>
-            <AppHeader title="Документы" renderBtn={renderBtn}>
-                <AppRibbon navLinks={navLinks} />
-            </AppHeader>
-            <AsyncReduxComponent reducersList={reducers} >
-                <AppBody>
-                    <Outlet />
-                </AppBody>
-            </AsyncReduxComponent>
-        </>
-    );
+  return (
+    <>
+      <AppHeader title='Документы' renderBtn={renderBtn}>
+        <AppRibbon navLinks={navLinks} />
+      </AppHeader>
+      <AsyncReduxComponent reducersList={reducers}>
+        <AppBody>
+          <Outlet />
+        </AppBody>
+      </AsyncReduxComponent>
+    </>
+  );
 };
 
 export default DocumentsPage;

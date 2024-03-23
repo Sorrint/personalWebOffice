@@ -3,4 +3,10 @@ export { InventoryContent } from './components/inventoryContent/inventoryContent
 
 export * from './model/types';
 
-export { useCreateNewDocument, useLoadAllDocuments, useLoadDocumentByNumber, useRemoveInventoryProduct, useUpdateProducts } from './reducers/inventoryDocsService';
+export {
+  useCreateNewDocument,
+  useLoadAllDocuments,
+  useLoadDocumentByNumber,
+  useRemoveInventoryProduct,
+  useUpdateProducts,
+} from './reducers/inventoryDocsService';

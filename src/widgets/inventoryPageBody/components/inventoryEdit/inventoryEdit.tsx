@@ -70,7 +70,7 @@ export const InventoryEdit = memo(() => {
   };
 
   const showPopup = () => {
-    setActivePopup((prevState) => !prevState);
+    setActivePopup(prevState => !prevState);
   };
 
   const hidePopover = () => {
@@ -159,7 +159,7 @@ export const InventoryEdit = memo(() => {
               selectField={false}
               avatar={false}
               count={false}
-              onClick={(product) => {
+              onClick={product => {
                 handleCreate(product, isActiveAccount);
               }}
               setFirstElement={setFirstElement}

@@ -1,1 +1,1 @@
-export {AppRibbon} from './components/appRibbon';
+export { AppRibbon } from './components/appRibbon';

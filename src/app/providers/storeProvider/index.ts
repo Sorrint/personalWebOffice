@@ -1,2 +1,2 @@
 export { StoreProvider } from './ui/storeProvider';
-export * from './config/storeSchema'
+export * from './config/storeSchema';

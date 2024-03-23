@@ -9,9 +9,7 @@ interface AppBodyProps {
 export const AppBody = ({ children, withoutContainer }: AppBodyProps) => {
   return (
     <div className={style.component}>
-      {withoutContainer
-        ? children
-        : <Container>{children}</Container>}
+      {withoutContainer ? children : <Container>{children}</Container>}
     </div>
   );
 };

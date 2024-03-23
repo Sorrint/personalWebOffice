@@ -10,7 +10,7 @@ const productEndpoints =
   dataBase === 'dreamkasStorage' ? productsDreamkasEndpoints : productsStoreEndpoints;
 
 const productsAPI = rtkApi.enhanceEndpoints({ addTagTypes: ['products'] }).injectEndpoints({
-  endpoints: (build) => ({
+  endpoints: build => ({
     loadProducts: build.query<IDreamkasProduct[], IProductListParams | Record<string, unknown>>({
       ...productEndpoints.loadProducts,
       providesTags: ['products'],
@@ -19,7 +19,7 @@ const productsAPI = rtkApi.enhanceEndpoints({ addTagTypes: ['products'] }).injec
       productsDreamkasEndpoints.loadProductBySearch,
     ),
     loadCategoriesBySearch: build.query<IProductCategory[], ISearchParams>({
-      query: (params) => ({
+      query: params => ({
         url: `/dreamkas/products/search?q=${encodeURI(params.q)}&limit=${params.limit}`,
       }),
       transformResponse: (response: ISearchResult) => {

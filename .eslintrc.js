@@ -14,7 +14,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    // "plugin:prettier/recommended",
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -26,8 +26,9 @@ module.exports = {
     'react',
     'fsd-custom-sorrint',
     '@stylistic',
-    '@stylistic/migrate'
-],
+    '@stylistic/migrate',
+    'prettier',
+  ],
   settings: {
     react: {
       version: 'detect',
@@ -40,6 +41,12 @@ module.exports = {
         prefer: 'type-imports',
         fixStyle: 'inline-type-imports',
         disallowTypeAnnotations: false,
+      },
+    ],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
       },
     ],
     // 'indent': [2, 4, {'SwitchCase': 1}],

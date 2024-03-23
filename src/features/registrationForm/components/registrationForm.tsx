@@ -15,82 +15,74 @@ import { AppLink } from '@shared/ui/appLink';
 import { AppRoutes } from '@shared/config/router';
 
 interface RegistrationFormProps {
-    classname?: string
-    onSuccess?: () => void
+  classname?: string;
+  onSuccess?: () => void;
 }
 
-export const RegistrationForm = memo(({classname, onSuccess}: RegistrationFormProps) => {
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm<UserRegisterDTO>({
-        mode: 'onChange',
-        resolver: zodResolver(RegisterSchema)
-    });
+export const RegistrationForm = memo(({ classname, onSuccess }: RegistrationFormProps) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<UserRegisterDTO>({
+    mode: 'onChange',
+    resolver: zodResolver(RegisterSchema),
+  });
 
-    const emailError = errors.email?.message;
-    const passwordError = errors.password?.message;
-    const nameError = errors.name?.message;
+  const emailError = errors.email?.message;
+  const passwordError = errors.password?.message;
+  const nameError = errors.name?.message;
 
+  const [registerUser] = useRegisterMutation();
 
-    const [registerUser] = useRegisterMutation();
+  const onSubmit = async (data: UserRegisterDTO) => {
+    try {
+      const answer = await registerUser(data);
+      if ('data' in answer) {
+        onSuccess?.();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    const onSubmit = async (data: UserRegisterDTO) => {
-        try {
-            const answer = await registerUser(data);
-            if ('data' in answer) {
-                onSuccess?.();
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  const formStyle = classNames(styles.register, classname);
 
-    };
-
-    const formStyle = classNames(styles.register, classname);
-
-    return <div className={formStyle}>
-        <div className={styles.header}>
-            <h2 className={styles.title}>Регистрация</h2>
-            <AppLink to={AppRoutes.getLoginRoute()}>Войти</AppLink>
+  return (
+    <div className={formStyle}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Регистрация</h2>
+        <AppLink to={AppRoutes.getLoginRoute()}>Войти</AppLink>
+      </div>
+      <div className={styles.field}>
+        <TextField label='Имя пользователя' variant='standard' {...register('name')} />
+        <div className={styles.empty}>
+          <ErrorField classname={styles.error}>{nameError}</ErrorField>
         </div>
-        <div className={styles.field}>
-            <TextField
-                label='Имя пользователя'
-                variant='standard'
-                {...register('name')}
-            />
-            <div className={styles.empty}>
-                <ErrorField classname={styles.error}>{nameError}</ErrorField>
-            </div>
+      </div>
+      <div className={styles.field}>
+        <TextField label='Введите email' variant='standard' {...register('email')} />
+        <div className={styles.empty}>
+          <ErrorField classname={styles.error}>{emailError}</ErrorField>
         </div>
-        <div className={styles.field}>
-            <TextField
-                label='Введите email'
-                variant='standard'
-                {...register('email')}
-            />
-            <div className={styles.empty}>
-                <ErrorField classname={styles.error}>{emailError}</ErrorField>
-            </div>
+      </div>
+      <div className={styles.field}>
+        <TextField
+          label='Введите пароль'
+          variant='standard'
+          type='password'
+          {...register('password')}
+        />
+        <div className={styles.empty}>
+          <ErrorField classname={styles.error}>{passwordError}</ErrorField>
         </div>
-        <div className={styles.field}>
-            <TextField
-                label='Введите пароль'
-                variant='standard'
-                type='password'
-                {...register('password')}
-            />
-            <div className={styles.empty}>
-                <ErrorField classname={styles.error}>{passwordError}</ErrorField>
-            </div>
-        </div>
+      </div>
 
-        <Button
-            disabled={!isValid}
-            onClick={handleSubmit(onSubmit)}
-            classname={styles.submit}
-        >
-            Зарегистрироваться
-        </Button>
-    </div>;
+      <Button disabled={!isValid} onClick={handleSubmit(onSubmit)} classname={styles.submit}>
+        Зарегистрироваться
+      </Button>
+    </div>
+  );
 });
 
 RegistrationForm.displayName = 'RegistrationForm';

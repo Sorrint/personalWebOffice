@@ -4,14 +4,16 @@ import styles from './appLink.module.scss';
 import classNames from 'classnames';
 
 interface AppLinkProps {
-    classname?: string
-    to: string
-    children: ReactNode
+  classname?: string;
+  to: string;
+  children: ReactNode;
 }
-export const AppLink = ({classname, to, children}: AppLinkProps) => {
-    const linkStyles = classNames(styles.component, classname)
-    
-    return <NavLink className={linkStyles} to={to}>
-        {children}
-    </NavLink>;
+export const AppLink = ({ classname, to, children }: AppLinkProps) => {
+  const linkStyles = classNames(styles.component, classname);
+
+  return (
+    <NavLink className={linkStyles} to={to}>
+      {children}
+    </NavLink>
+  );
 };
