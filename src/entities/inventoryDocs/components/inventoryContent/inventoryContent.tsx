@@ -5,7 +5,7 @@ import { transformDate } from '@shared/lib/helpers';
 
 import { InventoryProductList } from '../inventoryProductsList/inventoryProductsList';
 import { type IInventoryDocs, type IInventoryProduct } from '../../model/types';
-import { saveInventoryToExcel } from '../../lib/helpers/saveInventoryToExcel';
+import { saveInventoryToExcel } from '../../lib/helpers';
 import styles from './inventoryContent.module.scss';
 
 export interface InventoryContentProps {

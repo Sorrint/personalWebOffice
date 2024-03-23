@@ -7,7 +7,7 @@ import { type INavLinkObject } from '@shared/types/navLinkTypes';
 import { AppBody, AppHeader } from '@shared/layouts';
 import { Dropdown, type DropdownItem } from '@shared/ui/dropdown';
 import { SaveOrderingToXLSX } from '@features/saveOrderingToXLSX';
-import style from './documentsPage.module.scss'
+import style from './documentsPage.module.scss';
 import { AppLink } from '@shared/ui/appLink';
 
 const reducers: ReducersList = {
@@ -33,11 +33,11 @@ const DocumentsPage = () => {
     const items: DropdownItem[] = [
         {_id: 1, content: <SaveOrderingToXLSX classname={style['list-item']}/>},
         {_id: 2, content: <AppLink to='/office/documents/orders/create'>Создать заказ</AppLink>},
-    ]
+    ];
 
     const renderBtn = () => {
-        return <Dropdown title='Меню' options={items}></Dropdown>
-    }
+        return <Dropdown title='Меню' options={items}></Dropdown>;
+    };
 
     return (
         <>

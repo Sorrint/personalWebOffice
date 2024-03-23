@@ -8,9 +8,11 @@ interface SaveOrderCardProps {
 }
 
 export const SaveOrderToDatabase = memo(({ order }: SaveOrderCardProps) => {
-    const [ saveCurrentOrder ] = useSaveCurrentOrderMutation()
+    const [ saveCurrentOrder ] = useSaveCurrentOrderMutation();
     const handleClick = (order: IOrder) => {
-        saveCurrentOrder(order)
+        saveCurrentOrder(order);
     };
     return <>{order && <Button onClick={() => { handleClick(order); }}>Сохранить заказ </Button>}</>;
 });
+
+SaveOrderToDatabase.displayName = 'SaveOrderToDatabase';
