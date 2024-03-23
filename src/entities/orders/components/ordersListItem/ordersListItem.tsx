@@ -3,12 +3,14 @@ import styles from './ordersListItem.module.scss';
 import { AppLink } from '@shared/ui/appLink';
 
 interface OrdersListItemProps {
-    order: IOrder
+  order: IOrder;
 }
 export const OrdersListItem = ({ order }: OrdersListItemProps) => {
-    const { orderName, _id } = order;
+  const { orderName, _id } = order;
 
-    return (
-        <AppLink  to={`./${_id}`} classname={styles.item}>{orderName}</AppLink>
-    );
+  return (
+    <AppLink to={`./${_id}`} classname={styles.item}>
+      {orderName}
+    </AppLink>
+  );
 };

@@ -5,27 +5,43 @@ import { SelectListBox } from '@shared/ui/selectListBox';
 
 import { selectAllPackages, useGetPackages } from '../../api/packagesApi';
 interface PackageSelectProps {
-    classname?: string
-    id?: string
-    onChange?: (id: string)=> void
-    content?: 'category' | 'name'
+  classname?: string;
+  id?: string;
+  onChange?: (id: string) => void;
+  content?: 'category' | 'name';
 }
 
 export const PackageSelect = memo((props: PackageSelectProps) => {
-    useGetPackages();
+  useGetPackages();
 
-    const { id, onChange, content = 'name' } = props;
-    
-    const packages = useSelector(selectAllPackages);
+  const { id, onChange, content = 'name' } = props;
 
-    const options = useMemo(()=>packages?.map((pack)=> ({...pack, content: pack[content]})),[packages]);
-    
-    const onChangeHandler = useCallback(
-        (id: string) => {
-            onChange?.(id);
-        },
-        [onChange],
-    );
+  const packages = useSelector(selectAllPackages);
 
-    return <>{packages && (<SelectListBox value={id ?? ''} options={options} defaultValue='Выберите упаковку' onChange={onChangeHandler}/>)}</>;
+  const options = useMemo(
+    () => packages?.map(pack => ({ ...pack, content: pack[content] })),
+    [packages],
+  );
+
+  const onChangeHandler = useCallback(
+    (id: string) => {
+      onChange?.(id);
+    },
+    [onChange],
+  );
+
+  return (
+    <>
+      {packages && (
+        <SelectListBox
+          value={id ?? ''}
+          options={options}
+          defaultValue='Выберите упаковку'
+          onChange={onChangeHandler}
+        />
+      )}
+    </>
+  );
 });
+
+PackageSelect.displayName = 'PackageSelect';

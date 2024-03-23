@@ -7,25 +7,20 @@ import { AuthContext } from '@shared/lib/context/authContext';
 
 import styles from './auth.module.scss';
 
-
 export const Auth = () => {
-    const location = useLocation()
-    const route = location.pathname.split('/').at(-1)
-    const isLoginPage = route === 'login' 
-    const {name, refetch}= useContext(AuthContext)
-    if (name) return null
+  const location = useLocation();
+  const route = location.pathname.split('/').at(-1);
+  const isLoginPage = route === 'login';
+  const { name, refetch } = useContext(AuthContext);
+  if (name) return null;
 
-    return <>
-        {
-            isLoginPage 
-                ? <LoginForm 
-                    classname={styles.form} 
-                    onSuccess={refetch}
-                /> 
-                : <RegistrationForm 
-                    classname={styles.form} 
-                    onSuccess={refetch}
-                />
-        }
-    </>;
+  return (
+    <>
+      {isLoginPage ? (
+        <LoginForm classname={styles.form} onSuccess={refetch} />
+      ) : (
+        <RegistrationForm classname={styles.form} onSuccess={refetch} />
+      )}
+    </>
+  );
 };

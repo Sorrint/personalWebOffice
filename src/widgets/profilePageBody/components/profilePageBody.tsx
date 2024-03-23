@@ -26,7 +26,7 @@ export const ProfilePageBody = () => {
     setActivePopup(true);
   };
   const showPopup = () => {
-    setActivePopup((prevState) => !prevState);
+    setActivePopup(prevState => !prevState);
   };
 
   const setDreamToken = <T extends FieldValues>(data: T) => {

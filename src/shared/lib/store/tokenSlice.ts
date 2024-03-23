@@ -12,13 +12,13 @@ export const tokenSlice = createSlice({
   initialState,
   name: 'token',
   reducers: {
-    clearToken: (state) => {
+    clearToken: state => {
       state.authToken = null;
     },
     setToken: (state, action: PayloadAction<string | null>) => {
       state.authToken = action.payload;
     },
-    getToken: (state) => {
+    getToken: state => {
       state.authToken;
     },
   },

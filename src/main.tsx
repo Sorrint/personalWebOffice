@@ -8,13 +8,13 @@ import { StoreProvider } from '@app/providers/storeProvider';
 import { AuthProvider } from '@app/providers/authProvider';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <StoreProvider>
-        <BrowserRouter>
-            <AuthProvider>
-                <React.StrictMode>
-                    <App />
-                </React.StrictMode>
-            </AuthProvider>
-        </BrowserRouter>
-    </StoreProvider>
+  <StoreProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </AuthProvider>
+    </BrowserRouter>
+  </StoreProvider>,
 );

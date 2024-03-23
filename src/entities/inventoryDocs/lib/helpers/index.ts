@@ -1,3 +1,1 @@
-import { transformDataForXLSX } from './transformDataForXLSX';
-
-export { transformDataForXLSX };
+export { saveInventoryToExcel } from './saveInventoryToExcel';

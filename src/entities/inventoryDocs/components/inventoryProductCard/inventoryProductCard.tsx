@@ -40,7 +40,7 @@ export const InventoryProductCard = memo(
         <div className='inventory-card__sum'>{price ? (price * quantity).toFixed(2) : 0} ₽</div>
         <div
           className='inventory-card__remove'
-          onClick={(e) => {
+          onClick={e => {
             handleDelete(e, product);
           }}
         >
@@ -50,3 +50,4 @@ export const InventoryProductCard = memo(
     );
   },
 );
+InventoryProductCard.displayName = 'InventoryProductCard';

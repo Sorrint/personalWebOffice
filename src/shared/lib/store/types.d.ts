@@ -6,9 +6,9 @@ export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore['dispatch'];
 
 export interface MutationResult<T> {
-    isLoading: boolean
-    isSuccess: boolean
-    isError: boolean
-    error: unknown
-    data: T | undefined
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  error: unknown;
+  data: T | undefined;
 }
