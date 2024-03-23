@@ -52,7 +52,7 @@ export const EditOrderingRows = memo(({ chapterKey, classname }: EditOrderingRow
       placementPanel='right'
       offsetY={10}
       renderChildren={({ close }) => (
-        <form onSubmit={handleSubmit((data) => editRows(data, close))} className={style.form}>
+        <form onSubmit={handleSubmit(data => editRows(data, close))} className={style.form}>
           <CounterField
             min={0}
             autofocus
@@ -63,7 +63,7 @@ export const EditOrderingRows = memo(({ chapterKey, classname }: EditOrderingRow
             <IconFont
               iconName={'icon-check'}
               classname={style.check}
-              onClick={handleSubmit((data) => editRows(data, close))}
+              onClick={handleSubmit(data => editRows(data, close))}
             />
             <IconFont iconName={'icon-close'} classname={style.close} onClick={() => close()} />
             <IconFont iconName={'icon-cached'} classname={style.cached} onClick={setToStartValue} />
@@ -73,3 +73,5 @@ export const EditOrderingRows = memo(({ chapterKey, classname }: EditOrderingRow
     />
   );
 });
+
+EditOrderingRows.displayName = 'EditOrderingRows';

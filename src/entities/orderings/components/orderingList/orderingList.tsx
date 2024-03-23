@@ -35,7 +35,7 @@ export const OrderingList = memo(({ className, editRows }: OrderingListProps) =>
         <Loader />
       ) : (
         records &&
-        Object.keys(records)?.map((key) => (
+        Object.keys(records)?.map(key => (
           <OrderingChapter
             key={key}
             orderingChapter={records[key]}
@@ -46,3 +46,5 @@ export const OrderingList = memo(({ className, editRows }: OrderingListProps) =>
     </div>
   );
 });
+
+OrderingList.displayName = 'OrderingList';

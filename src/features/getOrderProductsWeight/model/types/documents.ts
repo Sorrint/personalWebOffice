@@ -4,13 +4,13 @@ import { type IStoreProductWithId } from './products';
 import { type IUnit } from '@entities/units';
 
 export interface IOrderRecordResponse extends Omit<IOrderRecord, 'unit' | 'product'> {
-    product: IStoreProduct,
-    unit?: IUnit
+  product: IStoreProduct;
+  unit?: IUnit;
 }
-export interface IOrderResponse  extends Omit<IOrder,  'orderRecords'>{
-    orderRecords: IOrderRecordResponse[]
+export interface IOrderResponse extends Omit<IOrder, 'orderRecords'> {
+  orderRecords: IOrderRecordResponse[];
 }
 
 export interface INormalizedResponse extends IOrder {
-    products: Record<string,IStoreProductWithId>
+  products: Record<string, IStoreProductWithId>;
 }

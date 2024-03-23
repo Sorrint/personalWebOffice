@@ -8,34 +8,40 @@ import { rtkApi } from '@shared/api/rtkApi';
 import { type StoreWithReducerManager, type StoreSchema } from './storeSchema';
 import { createReducerManager } from './reducerManager';
 
-export function createStore (initialState: StoreSchema, asyncReducers: ReducersMapObject<StoreSchema>) {
-    const persistConfig = {
-        key: 'root',
-        storage,
-        blacklist: [rtkApi.reducerPath],
-        whitelist: ['persist']
-    };
+export function createStore(
+  initialState: StoreSchema,
+  asyncReducers: ReducersMapObject<StoreSchema>,
+) {
+  const persistConfig = {
+    key: 'root',
+    storage,
+    blacklist: [rtkApi.reducerPath],
+    whitelist: ['persist'],
+  };
 
-    const rootReducer = {
-        ...asyncReducers,
-        [rtkApi.reducerPath]: rtkApi.reducer
-    };
+  const rootReducer = {
+    ...asyncReducers,
+    [rtkApi.reducerPath]: rtkApi.reducer,
+  };
 
-    const reducerManager = createReducerManager(rootReducer);
-    const persistedReducer = persistReducer(persistConfig, reducerManager.reduce as Reducer<CombinedState<StoreSchema>>);
+  const reducerManager = createReducerManager(rootReducer);
+  const persistedReducer = persistReducer(
+    persistConfig,
+    reducerManager.reduce as Reducer<CombinedState<StoreSchema>>,
+  );
 
-    const store: StoreWithReducerManager = configureStore({
-        reducer: persistedReducer,
-        preloadedState: initialState,
-        middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware({
-                serializableCheck: {
-                    ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-                }
-            }).concat(rtkApi.middleware)
-    });
+  const store: StoreWithReducerManager = configureStore({
+    reducer: persistedReducer,
+    preloadedState: initialState,
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }).concat(rtkApi.middleware),
+  });
 
-    store.reducerManager = reducerManager;
+  store.reducerManager = reducerManager;
 
-    return store;
+  return store;
 }

@@ -4,15 +4,15 @@ import CategoryCard from '../categoryCard/categoryCard';
 import { type IProductCategory } from '../../model/types/IDreamkasProduct';
 
 interface ICategoriesListProps {
-    categories: IProductCategory[]
+  categories: IProductCategory[];
 }
 
 export const CategoriesList: FC<ICategoriesListProps> = ({ categories }) => {
-    return (
-        <>
-            {categories.map((item) => (
-                <CategoryCard category={item} key={item.id} />
-            ))}
-        </>
-    );
+  return (
+    <>
+      {categories.map(item => (
+        <CategoryCard category={item} key={item.id} />
+      ))}
+    </>
+  );
 };

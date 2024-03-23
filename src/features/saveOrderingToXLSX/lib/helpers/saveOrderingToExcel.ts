@@ -116,7 +116,7 @@ function addSummary(sheet: Worksheet, data: IOrdering['summaryData']) {
     { number: getShipmentDayText(data.shipmentDay) },
   ]);
 
-  summaryRows.forEach((row) => {
+  summaryRows.forEach(row => {
     row.alignment = { vertical: 'middle' };
   });
 }
@@ -124,8 +124,8 @@ function addSummary(sheet: Worksheet, data: IOrdering['summaryData']) {
 function addProductRows(sheet: Worksheet, data: Record<string, IOrderingChapter>) {
   const cellRowBorder: Partial<Borders> = { top: { style: 'thin' }, bottom: { style: 'thin' } };
 
-  Object.values(data).map((item) => {
-    item.records.map((record) => {
+  Object.values(data).map(item => {
+    item.records.map(record => {
       const horizontalAlignments: HorizontalAlignments[] = [
         'left',
         'center',
@@ -189,7 +189,7 @@ function addEmptyRow(sheet: Worksheet, borderTop?: boolean) {
     rows: '',
   });
   if (borderTop) {
-    emptyRow.eachCell((cell) => {
+    emptyRow.eachCell(cell => {
       cell.border = { top: { style: 'medium' } };
     });
   }

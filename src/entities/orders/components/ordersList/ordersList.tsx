@@ -2,16 +2,17 @@ import { OrdersListItem } from '../ordersListItem/ordersListItem';
 import { type IOrder } from '../../model/types/IOrder';
 
 interface OrderListProps {
-    orders: IOrder[]
+  orders: IOrder[];
 }
 
-export const OrdersList = ({orders}: OrderListProps) => {
-    
-    return <>
-        {orders 
-            ? orders.map((order)=> <OrdersListItem key={order.orderName} order={order}/>) 
-            : <div>Документов нет</div>
-        }
-    </>;
+export const OrdersList = ({ orders }: OrderListProps) => {
+  return (
+    <>
+      {orders ? (
+        orders.map(order => <OrdersListItem key={order.orderName} order={order} />)
+      ) : (
+        <div>Документов нет</div>
+      )}
+    </>
+  );
 };
-

@@ -31,7 +31,7 @@ export const Checkbox = forwardRef(function Checkbox<T extends FieldValues>(
         disabled={disabled}
         id={name}
         name={name}
-        onChange={(e) => onChange?.(e.target.checked)}
+        onChange={e => onChange?.(e.target.checked)}
         ref={ref}
         type='checkbox'
         value={value}

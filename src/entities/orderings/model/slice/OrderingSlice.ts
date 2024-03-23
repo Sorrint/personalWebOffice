@@ -108,7 +108,7 @@ export const orderingSlice = createSlice({
       state,
       action: PayloadAction<Record<string, Partial<IOrderingChapter['summary']>>>,
     ) => {
-      Object.keys(action.payload).map((key) => {
+      Object.keys(action.payload).map(key => {
         state.chaptersData[key].summary = {
           ...state.chaptersData[key].summary,
           ...action.payload[key],

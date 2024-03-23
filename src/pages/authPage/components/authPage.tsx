@@ -1,8 +1,7 @@
-import { Auth } from '@widgets/auth'
+import { Auth } from '@widgets/auth';
 
 const AuthPage = () => {
-
-    return <Auth/>;
+  return <Auth />;
 };
 
-export default AuthPage
+export default AuthPage;

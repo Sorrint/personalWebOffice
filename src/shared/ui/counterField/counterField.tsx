@@ -86,7 +86,7 @@ export const CounterField = memo(
             onChange={onChange}
             onClick={onClick}
             type={'number'}
-            ref={(e) => {
+            ref={e => {
               if (typeof ref === 'function') {
                 ref(e);
               } else if (ref && 'current' in ref) {
@@ -96,7 +96,7 @@ export const CounterField = memo(
             }}
             onKeyDown={
               onKeyPress &&
-              ((e) => {
+              (e => {
                 onKeyPress(e, name);
               })
             }
