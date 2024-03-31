@@ -29,7 +29,7 @@ export const Panel = memo(({ children, className, onChange, open, title }: Panel
   }, [open, isOpen]);
 
   const showIcon = useMemo(
-    () => <IconFont iconName={isOpen ? 'icon-arrow_up' : 'icon-arrow_down'} />,
+    () => <IconFont iconName={isOpen ? 'icon-arrow-up' : 'icon-arrow-down'} />,
     [isOpen],
   );
   const componentClass = classNames(style.component, className);
@@ -40,8 +40,7 @@ export const Panel = memo(({ children, className, onChange, open, title }: Panel
         <div
           className={classNames(style.content, {
             [style['content-top']]: title && isOpen !== undefined,
-          })}
-        >
+          })}>
           {children}
         </div>
       );

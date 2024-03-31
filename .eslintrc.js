@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 // Migrate built-in rules to @stylistic/js namespace
 /* eslint @stylistic/migrate/migrate-js: "error" */
 
@@ -24,10 +25,10 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
     'react',
+    'prettier',
     'fsd-custom-sorrint',
     '@stylistic',
     '@stylistic/migrate',
-    'prettier',
   ],
   settings: {
     react: {
@@ -46,10 +47,9 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'auto',
+        'endOfLine': 'auto',
       },
     ],
-    // 'indent': [2, 4, {'SwitchCase': 1}],
     '@typescript-eslint/ban-ts-comment': 0,
     'react/display-name': 'error',
     'react/prop-types': 0,
