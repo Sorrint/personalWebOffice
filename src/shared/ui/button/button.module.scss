@@ -25,7 +25,6 @@
 }
 
 .dropdown {
-    position: relative;
     display: flex;
     align-items: center;
     padding: calc(var(--padding) * 1.8) calc(var(--padding) * 2) ;
@@ -36,10 +35,15 @@
     box-shadow: var(--shadow);
     
     & i {
-        position: absolute;
         right: 5px;
-        margin-right: 0;
+        margin-left: auto;
         font-size: var(--font-size-text);
+    }
+
+    @media (width <= 768px) {
+        gap: var(--padding);
+        width: auto;
+        padding: var(--padding);
     }
 }
 

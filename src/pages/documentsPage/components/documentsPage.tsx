@@ -9,6 +9,7 @@ import { Dropdown, type DropdownItem } from '@shared/ui/dropdown';
 import { SaveOrderingToXLSX } from '@features/saveOrderingToXLSX';
 import style from './documentsPage.module.scss';
 import { AppLink } from '@shared/ui/appLink';
+import { useResize } from '@shared/lib/hooks';
 
 const reducers: ReducersList = {
   orders: orderReducer,
@@ -29,6 +30,8 @@ const DocumentsPage = () => {
       title: 'Распаллетовки',
     },
   };
+
+  const { isScreenLg } = useResize();
 
   const items: DropdownItem[] = [
     { _id: 1, content: <SaveOrderingToXLSX classname={style['list-item']} /> },
