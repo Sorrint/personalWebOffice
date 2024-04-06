@@ -12,7 +12,8 @@ export const OrderDetails = () => {
   const { data: order, isLoading: orderLoading } = useGetOrderByIdQuery(_id);
 
   if (orderLoading) return <span>Идет загрузка</span>;
-
+  if (!order) return;
+  const { orderName, ordering } = order;
   const notAllProducts = order?.orderRecords.some(record => !record.product) ? true : false;
 
   const transformedRecords: IOrderRecord[] =
@@ -25,21 +26,21 @@ export const OrderDetails = () => {
 
   return (
     <>
-      <Container>
+      <Container classname={styles.container}>
         {notAllProducts && (
-          <AppLink to={`../../orders/addProducts?orderId=${order?._id}`}>
+          <AppLink to={`../../orders/addProducts?orderId=${_id}`}>
             Не все товары найдены в базе данных
           </AppLink>
         )}
         {order?.ordering ? (
-          <AppLink to={`../../orderings/${order.ordering}`}>Перейти к порядовке</AppLink>
+          <AppLink to={`../../orderings/${ordering}`}>Перейти к порядовке</AppLink>
         ) : (
-          <AppLink to={`../../orderings/create?orderId=${order?._id}`}>Создать порядовку</AppLink>
+          <AppLink to={`../../orderings/create?orderId=${_id}`}>Создать порядовку</AppLink>
         )}
-        <div className={styles.title}>{order?.orderName}</div>
+        {orderName && <div>{orderName}</div>}
       </Container>
       {order && transformedRecords && (
-        <Container classname={styles.container}>
+        <Container scrollable>
           <OrderCard order={{ ...order, orderRecords: transformedRecords }} />
         </Container>
       )}
