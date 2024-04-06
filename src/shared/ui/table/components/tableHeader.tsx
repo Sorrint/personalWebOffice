@@ -6,13 +6,15 @@ interface TableHeaderProps {
 export const TableHeader = ({ headers }: TableHeaderProps) => {
   return (
     <>
-      <div className={styles.headers}>
-        {Object.entries(headers).map(([key, value]) => (
-          <div className={styles.header} key={key}>
-            <span>{value}</span>
-          </div>
-        ))}
-      </div>
+      <thead className={styles.body}>
+        <tr className={styles.item}>
+          {Object.entries(headers).map(([key, value]) => (
+            <th className={styles.header} key={key}>
+              <span>{value}</span>
+            </th>
+          ))}
+        </tr>
+      </thead>
     </>
   );
 };

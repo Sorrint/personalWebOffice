@@ -15,6 +15,7 @@ import { Panel } from '@shared/ui/panel/panel';
 
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import style from './createOrdering.module.scss';
+import { Container } from '@shared/layouts/container/container';
 
 const reducers: ReducersList = {
   ordering: orderingReducer,
@@ -25,7 +26,7 @@ export const CreateOrdering = () => {
   const orderId = queryParams.get('orderId');
   const dispatch = useAppDispatch();
 
-  if (!orderId) return 'Нет id заказа';
+  if (!orderId) return <Container>{'Нет id заказа'}</Container>;
   useCreateOrderingData(orderId);
 
   const setPallets = (palletsObj: Record<Pallets, number>) => {

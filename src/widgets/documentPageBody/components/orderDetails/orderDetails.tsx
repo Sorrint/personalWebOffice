@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import { type IOrderRecord, OrderCard } from '@entities/orders';
 import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
 import { AppLink } from '@shared/ui/appLink';
+import { Container } from '@shared/layouts/container/container';
+import styles from './orderDetails.module.scss';
 
 export const OrderDetails = () => {
   const { _id } = useParams();
@@ -23,23 +25,24 @@ export const OrderDetails = () => {
 
   return (
     <>
-      <div>
+      <Container>
         {notAllProducts && (
-          <div>
-            <AppLink to={`../../orders/addProducts?orderId=${order?._id}`}>
-              Не все товары найдены в базе данных
-            </AppLink>
-          </div>
+          <AppLink to={`../../orders/addProducts?orderId=${order?._id}`}>
+            Не все товары найдены в базе данных
+          </AppLink>
         )}
         {order?.ordering ? (
           <AppLink to={`../../orderings/${order.ordering}`}>Перейти к порядовке</AppLink>
         ) : (
           <AppLink to={`../../orderings/create?orderId=${order?._id}`}>Создать порядовку</AppLink>
         )}
-        {order && transformedRecords && (
+        <div className={styles.title}>{order?.orderName}</div>
+      </Container>
+      {order && transformedRecords && (
+        <Container classname={styles.container}>
           <OrderCard order={{ ...order, orderRecords: transformedRecords }} />
-        )}
-      </div>
+        </Container>
+      )}
     </>
   );
 };

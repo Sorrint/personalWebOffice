@@ -10,17 +10,17 @@ export const TableBody = ({ records, headers }: TableBodyProps) => {
   };
   return (
     <>
-      <div className={styles.body}>
+      <tbody className={styles.body}>
         {records.map((item, index) => (
-          <div key={index} className={styles.item}>
+          <tr key={index} className={styles.item}>
             {Object.keys(headers).map((headline: string) => (
-              <div className={alignColumnName(String(item[headline] ?? ''))} key={headline}>
+              <td className={alignColumnName(String(item[headline] ?? ''))} key={headline}>
                 {item[headline] ?? ''}
-              </div>
+              </td>
             ))}
-          </div>
+          </tr>
         ))}
-      </div>
+      </tbody>
     </>
   );
 };
