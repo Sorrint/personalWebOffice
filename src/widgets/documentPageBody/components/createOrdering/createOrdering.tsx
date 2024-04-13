@@ -35,13 +35,17 @@ export const CreateOrdering = () => {
 
   return (
     <AsyncReduxComponent reducersList={reducers}>
-      <div className={style.layout}>
+      <Container>
         <Panel title='Дополнительные параметры для расчета' open={false}>
           <CountPalletsForm classname={style.form} onChange={setPallets} />
         </Panel>
+      </Container>
+      <Container scrollable>
         <OrderingList editRows={(key: string) => <EditOrderingRows chapterKey={key} />} />
+      </Container>
+      <Container>
         <OrderingInfo />
-      </div>
+      </Container>
     </AsyncReduxComponent>
   );
 };

@@ -2,10 +2,6 @@
     max-width: 1024px;
     margin: 0 auto;
     padding: calc(var(--margin) * 4) calc(var(--margin) * 6);
-
-    &.scroll {
-      width: fit-content;
-    }
 }
 
 .scroll {
@@ -22,5 +18,9 @@
 @media (width <= 768px) {
     .component {
         padding: var(--margin);
+
+        &.scroll {
+          width: fit-content;
+        }
     }
 }

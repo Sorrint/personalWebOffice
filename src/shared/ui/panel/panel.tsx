@@ -40,7 +40,8 @@ export const Panel = memo(({ children, className, onChange, open, title }: Panel
         <div
           className={classNames(style.content, {
             [style['content-top']]: title && isOpen !== undefined,
-          })}>
+          })}
+        >
           {children}
         </div>
       );

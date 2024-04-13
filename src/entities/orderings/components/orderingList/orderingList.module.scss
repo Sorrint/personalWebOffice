@@ -1,7 +1,7 @@
 .ordering {
     cursor: default;
     display: grid;
-    background-color: white;
+    background-color: var(--ui-bg-color);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
 }

@@ -14,8 +14,8 @@ export const TableBody = ({ records, headers }: TableBodyProps) => {
         {records.map((item, index) => (
           <tr key={index} className={styles.item}>
             {Object.keys(headers).map((headline: string) => (
-              <td className={alignColumnName(String(item[headline] ?? ''))} key={headline}>
-                {item[headline] ?? ''}
+              <td className={alignColumnName(String(item[headline]))} key={headline}>
+                {item[headline]}
               </td>
             ))}
           </tr>

@@ -8,12 +8,12 @@
 .item {
     display: grid;
     grid-column-gap: 10px;
-    grid-template-columns: 30px 705px 70px 30px;
-    height: 49px;
-    font-size: 14px;
+    grid-template-columns: var(--col-template);
+    padding: 16px;
+    font-size: var(--font-size-ui);
     text-align: center;
-    background-color: white;
-    border: 1px solid rgb(0 0 0 / 20%);
+    background-color: var(--ui-bg-color);
+    border: var(--table-border);
 }
 
 .table {

@@ -10,6 +10,8 @@ interface OrderCardProps {
   order?: IOrder;
 }
 
+const COLUMNS_WIDTHS = '30px minmax(500px, 1fr) 70px 30px';
+
 export const OrderCard = ({ children, order }: OrderCardProps) => {
   if (!order) return null;
   const actions =
@@ -26,7 +28,7 @@ export const OrderCard = ({ children, order }: OrderCardProps) => {
       {order && (
         <>
           {actions}
-          <Table headers={tableHeaders} data={order.orderRecords} />
+          <Table headers={tableHeaders} data={order.orderRecords} colTemplate={COLUMNS_WIDTHS} />
         </>
       )}
     </>
