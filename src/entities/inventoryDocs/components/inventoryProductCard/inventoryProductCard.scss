@@ -28,7 +28,7 @@
 
   &__remove:hover {
     -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-color: var(--ui-bg-color);
   }
 
   &__number {

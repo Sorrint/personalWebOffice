@@ -7,8 +7,8 @@
     font-size: inherit;
     font-weight: 500;
     color: var(--header-color);
-    background-color: white;
-    border-bottom: 2px solid rgb(255 255 255);
+    background-color: var(--ui-bg-color);
+    border-bottom: 2px solid var(--ui-bg-color);
 }
 
 .active {

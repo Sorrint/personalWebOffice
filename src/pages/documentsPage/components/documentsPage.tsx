@@ -45,7 +45,7 @@ const DocumentsPage = () => {
         <AppRibbon navLinks={navLinks} />
       </AppHeader>
       <AsyncReduxComponent reducersList={reducers}>
-        <AppBody>
+        <AppBody withoutContainer>
           <Outlet />
         </AppBody>
       </AsyncReduxComponent>

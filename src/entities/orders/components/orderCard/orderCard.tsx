@@ -4,11 +4,13 @@ import { hasComponentName } from '@shared/lib/utils';
 import { Table } from '@shared/ui/table';
 
 import { type IOrder } from '../../model/types/IOrder';
-import styles from './orderCard.module.scss';
+
 interface OrderCardProps {
   children?: ReactNode;
   order?: IOrder;
 }
+
+const COLUMNS_WIDTHS = '30px minmax(500px, 1fr) 70px 30px';
 
 export const OrderCard = ({ children, order }: OrderCardProps) => {
   if (!order) return null;
@@ -26,8 +28,7 @@ export const OrderCard = ({ children, order }: OrderCardProps) => {
       {order && (
         <>
           {actions}
-          <div className={styles.title}>{order.orderName}</div>
-          <Table headers={tableHeaders} data={order.orderRecords} />
+          <Table headers={tableHeaders} data={order.orderRecords} colTemplate={COLUMNS_WIDTHS} />
         </>
       )}
     </>

@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react';
 import { type CorrugatedSheets } from '../../consts/corrugatedSheetsConsts';
 import { type Pallets } from '../../consts/palletsConsts';
 
@@ -45,8 +46,10 @@ export interface IOrdering {
   chaptersData: Record<string, IOrderingChapter>;
 }
 
-export interface IOrderingRecordDisplay extends Omit<IOrderingRecord, 'count' | 'number'> {
-  count: number | string;
-  number: number | string;
-  rows: string;
+export interface IOrderingRecordDisplay
+  extends Omit<IOrderingRecord, 'count' | 'number' | 'productName'> {
+  count: number | string | (() => ReactNode);
+  number: number | string | (() => ReactNode);
+  rows: string | (() => ReactNode);
+  productName: string | (() => ReactNode);
 }

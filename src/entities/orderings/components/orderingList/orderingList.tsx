@@ -1,15 +1,11 @@
 import { type ReactNode, memo } from 'react';
-import classNames from 'classnames';
-
 import { useAppSelector } from '@shared/lib/hooks';
 import { Loader } from '@shared/ui/loaders';
-
 import { type IOrderingRecordDisplay } from '../../model/types/ordering';
 import { getIsLoading, getOrderingChaptersData } from '../../model/slice/OrderingSlice';
-import { OrderingChapter } from './orderingChapter/orderingChapter';
-import { OrderingRecord } from './orderingRecord/orderingRecord';
 import { OrderingHeaders } from '../../consts/orderingHeaders';
-import styles from './orderingList.module.scss';
+import { Table } from '@shared/ui/table';
+import useTableData from '../../lib/hooks/useTableData/useTableData';
 
 interface OrderingListProps {
   className?: string;
@@ -17,9 +13,9 @@ interface OrderingListProps {
 }
 
 const headers: Partial<IOrderingRecordDisplay> = {
-  count: OrderingHeaders.COUNT,
   number: OrderingHeaders.NUMBER,
   productName: OrderingHeaders.NAME,
+  count: OrderingHeaders.COUNT,
   unit: OrderingHeaders.UNIT,
   rows: OrderingHeaders.ROWS,
 };
@@ -27,23 +23,24 @@ const headers: Partial<IOrderingRecordDisplay> = {
 export const OrderingList = memo(({ className, editRows }: OrderingListProps) => {
   const records = useAppSelector(getOrderingChaptersData);
   const isLoading = useAppSelector(getIsLoading);
-
+  const displayingRecords = useTableData({ records, editRows });
+  const colTemplate = '40px minmax(360px, 1fr) 80px 80px 180px';
   return (
-    <div className={classNames(styles.ordering, className)}>
-      <OrderingRecord header record={headers} />
+    <>
       {isLoading ? (
         <Loader />
       ) : (
-        records &&
-        Object.keys(records)?.map(key => (
-          <OrderingChapter
-            key={key}
-            orderingChapter={records[key]}
-            editRows={() => editRows?.(key)}
+        displayingRecords && (
+          <Table
+            className={className}
+            data={displayingRecords}
+            headers={headers}
+            colTemplate={colTemplate}
+            view='grid'
           />
-        ))
+        )
       )}
-    </div>
+    </>
   );
 });
 

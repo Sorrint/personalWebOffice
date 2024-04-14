@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import { type IOrderRecord, OrderCard } from '@entities/orders';
 import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
 import { AppLink } from '@shared/ui/appLink';
+import { Container } from '@shared/layouts/container/container';
+import styles from './orderDetails.module.scss';
 
 export const OrderDetails = () => {
   const { _id } = useParams();
@@ -10,7 +12,8 @@ export const OrderDetails = () => {
   const { data: order, isLoading: orderLoading } = useGetOrderByIdQuery(_id);
 
   if (orderLoading) return <span>Идет загрузка</span>;
-
+  if (!order) return;
+  const { orderName, ordering } = order;
   const notAllProducts = order?.orderRecords.some(record => !record.product) ? true : false;
 
   const transformedRecords: IOrderRecord[] =
@@ -23,23 +26,24 @@ export const OrderDetails = () => {
 
   return (
     <>
-      <div>
+      <Container classname={styles.container}>
         {notAllProducts && (
-          <div>
-            <AppLink to={`../../orders/addProducts?orderId=${order?._id}`}>
-              Не все товары найдены в базе данных
-            </AppLink>
-          </div>
+          <AppLink to={`../../orders/addProducts?orderId=${_id}`}>
+            Не все товары найдены в базе данных
+          </AppLink>
         )}
         {order?.ordering ? (
-          <AppLink to={`../../orderings/${order.ordering}`}>Перейти к порядовке</AppLink>
+          <AppLink to={`../../orderings/${ordering}`}>Перейти к порядовке</AppLink>
         ) : (
-          <AppLink to={`../../orderings/create?orderId=${order?._id}`}>Создать порядовку</AppLink>
+          <AppLink to={`../../orderings/create?orderId=${_id}`}>Создать порядовку</AppLink>
         )}
-        {order && transformedRecords && (
+        {orderName && <div>{orderName}</div>}
+      </Container>
+      {order && transformedRecords && (
+        <Container scrollable>
           <OrderCard order={{ ...order, orderRecords: transformedRecords }} />
-        )}
-      </div>
+        </Container>
+      )}
     </>
   );
 };
