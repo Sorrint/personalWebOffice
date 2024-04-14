@@ -1,3 +1,7 @@
+:root {
+  --grid-gap: 3px;
+}
+
 .body,
 .headers {
     display: grid;
@@ -5,15 +9,16 @@
     text-align: center;
 }
 
+.headers {
+  font-weight: bold;
+}
+
 .item {
+    cursor: var(--cursor);
     display: grid;
-    grid-column-gap: 10px;
     grid-template-columns: var(--col-template);
-    padding: 16px;
-    font-size: var(--font-size-ui);
     text-align: center;
     background-color: var(--ui-bg-color);
-    border: var(--table-border);
 }
 
 .table {
@@ -22,22 +27,47 @@
 
 .column {
     display: flex;
-    align-items: center;
     justify-content: center;
 
-    &_left {
+    &-left {
         display: flex;
         align-items: center;
         text-align: left;
     }
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.table.list {
+  font-size: var(--font-size-ui);
 }
 
-.headers {
-    font-weight: bold;
+.body.list,
+.headers.list {
+  row-gap: var(--grid-gap);
 }
+
+.headers.list {
+  margin-bottom: var(--grid-gap);
+}
+
+.column.list {
+  align-items: center;
+}
+
+.item.list {
+  grid-column-gap: var(--margin);
+  padding: calc(var(--padding) * 1.5);
+}
+
+.table.grid {
+  overflow: hidden;
+  font-size: var(--font-size-text);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.column.grid,
+.column-left.grid {
+  padding: calc(var(--padding) * 0.5);
+  border: var(--border);
+}
+

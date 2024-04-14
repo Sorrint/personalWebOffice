@@ -1,15 +1,18 @@
+import classNames from 'classnames';
+import { type TableViews } from './table';
 import styles from './table.module.scss';
 interface TableHeaderProps {
   headers: ObjectRecord;
+  view: TableViews;
 }
 
-export const TableHeader = ({ headers }: TableHeaderProps) => {
+export const TableHeader = ({ headers, view }: TableHeaderProps) => {
   return (
     <>
-      <thead className={styles.body}>
-        <tr className={styles.item}>
+      <thead className={classNames(styles.headers, styles[view])}>
+        <tr className={classNames(styles.item, styles[view])}>
           {Object.entries(headers).map(([key, value]) => (
-            <th className={styles.header} key={key}>
+            <th className={classNames(styles.column, styles[view])} key={key}>
               <span>{value}</span>
             </th>
           ))}
