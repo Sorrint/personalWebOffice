@@ -1,12 +1,11 @@
-import { memo, useState } from 'react';
-
+import { memo, useCallback, useEffect, useState } from 'react';
 import { Checkbox } from '@shared/ui/checkbox';
-import { transformDate } from '@shared/lib/helpers';
-
-import { InventoryProductList } from '../inventoryProductsList/inventoryProductsList';
 import { type IInventoryDocs, type IInventoryProduct } from '../../model/types';
 import { saveInventoryToExcel } from '../../lib/helpers';
 import styles from './inventoryContent.module.scss';
+import { FormatDate } from '@shared/ui/formatDate/FormatDate';
+import { InventoryProductsTable } from '../inventoryProductsTable/inventoryProductsTable';
+import { Button } from '@shared/ui/button';
 
 export interface InventoryContentProps {
   onClick?: (product: IInventoryProduct) => void;
@@ -15,59 +14,58 @@ export interface InventoryContentProps {
   inventoryList?: IInventoryDocs | undefined;
 }
 
+const highlightByAccount = (item: IInventoryProduct) => {
+  return !item?.isActiveAccount;
+};
+
 export const InventoryContent = memo(
   ({ onClick, onDelete, tabIndex, inventoryList }: InventoryContentProps) => {
-    if (!inventoryList) return 'Нет данных для отображения';
-    const [highlight, setHighlight] = useState(
-      localStorage.getItem('highlight') === 'true' ? true : false,
-    );
+    const [highlightFunc, setHighlightFunc] = useState<
+      ((item: IInventoryProduct) => boolean) | undefined
+    >(undefined);
 
-    const handleCheckboxClick = (checked: boolean) => {
+    useEffect(() => {
+      const highlightOn = localStorage.getItem('highlight') === 'true';
+      setHighlightFunc(() => (highlightOn ? highlightByAccount : undefined));
+    }, []);
+    const handleCheckboxClick = useCallback((checked: boolean) => {
       checked ? localStorage.setItem('highlight', 'true') : localStorage.setItem('highlight', '');
-      setHighlight(checked);
+      setHighlightFunc(() => (checked ? highlightByAccount : undefined));
+    }, []);
+
+    const handleClick = () => {
+      inventoryList && saveInventoryToExcel(inventoryList);
     };
 
-    if (inventoryList != null) {
-      const sum = inventoryList.products?.reduce(
-        (result: number, product: IInventoryProduct) =>
-          product.price ? result + product.quantity * product.price : result,
-        0,
-      );
-      const date = transformDate(inventoryList.choosenDate);
-      const handleClick = () => {
-        saveInventoryToExcel(inventoryList);
-      };
+    if (!inventoryList?.products) return 'Нет данных для отображения';
 
-      return (
-        <>
-          <div className={styles.controls}>
-            <button className={styles['create-xlsx']} onClick={handleClick}>
-              Скачать в формате XLSX
-            </button>
-            <Checkbox
-              text='Выделять поля с резервного аккаунта'
-              name='tempAcc'
-              onChange={handleCheckboxClick}
-              defaultChecked={highlight}
-            />
-          </div>
-          <h1>{`Инвентаризация № ${inventoryList.documentNumber} от ${date} магазина ${inventoryList.storeName}`}</h1>
-          <div className={styles['inventory-products-list']}>
-            <InventoryProductList
-              highlight={highlight}
-              products={inventoryList.products}
-              onClick={onClick}
-              onDelete={onDelete}
-              tabIndex={tabIndex}
-            />
-            <div className={styles.total}>
-              <div>Итого</div>
-              <div className={styles.sum}>{sum.toFixed(2)} ₽</div>
-            </div>
-          </div>
-        </>
-      );
-    }
+    return (
+      <>
+        <div className={styles.controls}>
+          <Button buttonType='submit' onClick={handleClick} outline>
+            Скачать в формате XLSX
+          </Button>
+          <Checkbox
+            text='Выделять поля с резервного аккаунта'
+            name='tempAcc'
+            onChange={handleCheckboxClick}
+            defaultChecked={localStorage.getItem('highlight') === 'true'}
+          />
+        </div>
+        <h1>
+          {`Инвентаризация № ${inventoryList.documentNumber} от `}
+          <FormatDate date={inventoryList.choosenDate} />
+          {` магазина ${inventoryList.storeName}`}
+        </h1>
+        <InventoryProductsTable
+          highlightFunc={highlightFunc}
+          inventoryList={inventoryList}
+          onClick={onClick}
+          onDelete={onDelete}
+          tabIndex={tabIndex}
+        />
+      </>
+    );
   },
 );
 

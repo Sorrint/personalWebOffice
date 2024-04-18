@@ -26,12 +26,13 @@ export const CreateOrdering = () => {
   const orderId = queryParams.get('orderId');
   const dispatch = useAppDispatch();
 
-  if (!orderId) return <Container>{'Нет id заказа'}</Container>;
-  useCreateOrderingData(orderId);
+  useCreateOrderingData(orderId ?? '');
 
   const setPallets = (palletsObj: Record<Pallets, number>) => {
     dispatch(orderingActions.setPalletsCount(palletsObj));
   };
+
+  if (!orderId) return <Container>{'Нет id заказа'}</Container>;
 
   return (
     <AsyncReduxComponent reducersList={reducers}>

@@ -17,11 +17,14 @@
 
   /* Границы */
   --border: 1px solid var(--content-bg-color);
+  --border-primary: 1px solid var(--primary-color);
+  --border-error: 1px solid var(--error-color);
   --radius: 8px;
   --button-radius: 2px;
   --table-border: 1px solid var(--table-border-color);
 
   /* Тени */
   --header-shadow: 0 2px 4px rgba(8 35 48 / 24%), 0 4px 8px rgba(8 35 48 / 16%);
-  --shadow: 0 2px 4px rgb(159 163 165 / 16%);
+  --shadow: 0 2px 4px #9fa3a529;
+  --error-shadow: 0 2px 2px var(--error-color);
 }

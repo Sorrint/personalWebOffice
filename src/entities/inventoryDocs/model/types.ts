@@ -1,3 +1,6 @@
+import { type TableData } from '@shared/ui/table/components/table';
+import { type ReactNode } from 'react';
+
 export interface IInventoryProduct {
   name: string;
   price: number | null;
@@ -43,4 +46,11 @@ export interface IInventoryProductCardProps {
   onClick?: (product: IInventoryProduct) => void;
   onDelete?: (product: IInventoryProduct) => void;
   tabIndex?: number;
+}
+
+export interface IInventoryProductDisplay extends Omit<IInventoryProduct, 'price'>, TableData {
+  price: string;
+  number: number;
+  sum: number | string;
+  delete: () => ReactNode;
 }

@@ -25,11 +25,11 @@
 
 .error-message {
   font-weight: bold;
-  color: var(--error);
+  color: var(--error-color);
 }
 
 .old-account {
-  background-color: var(--warning);
+  background-color: var(--warning-color);
 }
 
 @media (width <= 768px) {

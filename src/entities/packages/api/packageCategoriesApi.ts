@@ -13,7 +13,7 @@ const initialState = packageCategoriesAdapter.getInitialState();
 
 const packageCategoryApi = rtkApi.injectEndpoints({
   endpoints: build => ({
-    getPackageCategories: build.query<EntityState<IPackageCategoryResponse>, void>({
+    getPackageCategories: build.query<EntityState<IPackageCategoryResponse, string>, void>({
       query: () => ({
         url: '/package-categories',
       }),

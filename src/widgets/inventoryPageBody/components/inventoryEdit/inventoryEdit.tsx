@@ -28,7 +28,7 @@ interface IPopupProps {
 
 export const InventoryEdit = memo(() => {
   const { number } = useParams();
-  if (!number) return null;
+  // if (!number) return null;
   const docNumber = Number(number);
   const [popupProps, setPopupProps] = useState<IPopupProps>();
   const [updateList, { error: updateError }] = useUpdateProducts();
@@ -45,11 +45,25 @@ export const InventoryEdit = memo(() => {
   const firstElement = useRef<HTMLDivElement | null>(null);
   const { isKeyPressed, setIsKeyPressed } = useKeyPress('Escape');
 
+  const handleCreate = useCallback((product: IDreamkasProduct, isActiveAccount: boolean) => {
+    const { name, price } = product;
+    const newProduct = {
+      name,
+      price: price && price / 100,
+      quantity: 1,
+      id: undefined,
+      isActiveAccount,
+    };
+    setActivePopover(false);
+    setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
+    setActivePopup(true);
+  }, []);
+
   useEffect(() => {
     setIsKeyPressed(false);
     setActivePopup(false);
     setActivePopover(false);
-  }, [isKeyPressed]);
+  }, [isKeyPressed, setIsKeyPressed]);
 
   useEffect(() => {
     if (goods) {
@@ -57,7 +71,7 @@ export const InventoryEdit = memo(() => {
         ? handleCreate(goods[0], isActiveAccount)
         : setActivePopover(goods?.length > 0);
     }
-  }, [goods]);
+  }, [goods, handleCreate, isActiveAccount]);
 
   useEffect(() => {
     !activePopup && searchInput.current?.focus();
@@ -76,20 +90,6 @@ export const InventoryEdit = memo(() => {
   const hidePopover = () => {
     setActivePopover(false);
   };
-
-  const handleCreate = useCallback((product: IDreamkasProduct, isActiveAccount: boolean) => {
-    const { name, price } = product;
-    const newProduct = {
-      name,
-      price: price && price / 100,
-      quantity: 1,
-      id: undefined,
-      isActiveAccount,
-    };
-    setActivePopover(false);
-    setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
-    setActivePopup(true);
-  }, []);
 
   const handleUpdate = useCallback((product: IInventoryProduct) => {
     setPopupProps({ product, buttonText: 'Обновить', popupText: '', method: 'Update' });

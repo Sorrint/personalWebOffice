@@ -16,6 +16,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:prettier/recommended',
+    'plugin:react-hooks/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -58,5 +59,6 @@ module.exports = {
     'fsd-custom-sorrint/public-api-imports': [2, { alias: '@' }],
     '@stylistic/quotes': ['error', 'single'],
     '@stylistic/semi': [2, 'always'],
+    'react-hooks/exhaustive-deps': 'error'
   },
 };

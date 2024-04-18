@@ -7,9 +7,10 @@ interface AppLinkProps {
   classname?: string;
   to: string;
   children: ReactNode;
+  variant?: 'panel';
 }
-export const AppLink = ({ classname, to, children }: AppLinkProps) => {
-  const linkStyles = classNames(styles.component, classname);
+export const AppLink = ({ classname, to, children, variant }: AppLinkProps) => {
+  const linkStyles = classNames(styles.component, { [styles.panel]: variant }, classname);
 
   return (
     <NavLink className={linkStyles} to={to}>

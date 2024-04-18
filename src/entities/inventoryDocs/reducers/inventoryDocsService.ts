@@ -24,7 +24,7 @@ const inventoryDocsApi = rtkApi
         }),
         invalidatesTags: ['inventoryContent'],
       }),
-      loadDocumentByNumber: build.query<IInventoryDocs, string>({
+      loadDocumentByNumber: build.query<IInventoryDocs, string | undefined>({
         query: docNumber => ({ url: `${baseInventoryUri}/${docNumber}`, method: 'GET' }),
         providesTags: () => ['inventoryContent'],
       }),

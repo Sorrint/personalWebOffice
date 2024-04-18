@@ -15,7 +15,7 @@ export const InventoryCreate = () => {
   const navigate = useNavigate();
   const [createDoc] = useCreateNewDocument();
   const { data } = useGetCounter('docNumber', { refetchOnMountOrArgChange: true });
-  const { register, handleSubmit, control, setValue } = useForm({
+  const { register, handleSubmit, control, setValue } = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
       documentNumber: '',
@@ -28,14 +28,14 @@ export const InventoryCreate = () => {
     if (data) {
       setValue('documentNumber', data);
     }
-  }, [data]);
+  }, [data, setValue]);
 
   const onSubmit = async <T extends FieldValues>(data: T) => {
     const transformData = { ...data };
     const doc = await createDoc(transformData);
 
     if ('data' in doc) {
-      const number = doc.data.documentNumber;
+      const number = doc.data.documentNumber.toString();
       if (number) {
         navigate(AppRoutes.getInventoryDetailsRoute(number));
       }
@@ -46,7 +46,6 @@ export const InventoryCreate = () => {
       <div className={styles['card-title']}>Новый документ</div>
       <form className={styles['inventory-form']}>
         <TextField
-          full
           label='Номер документа'
           {...register('documentNumber', { pattern: /^[0-9]*$/ })}
           type='number'
@@ -58,8 +57,8 @@ export const InventoryCreate = () => {
           name={'choosenDate'}
           full
         />
-        <TextField full label='Магазин' {...register('storeName')} />
-        <TextField full label='Комментарий' {...register('comment')} className={styles.comment} />
+        <TextField label='Магазин' {...register('storeName')} />
+        <TextField label='Комментарий' {...register('comment')} className={styles.comment} />
       </form>
       <Button onClick={handleSubmit(onSubmit)}>Создать</Button>
     </>

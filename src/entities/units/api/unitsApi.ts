@@ -13,7 +13,7 @@ const initialState = unitsAdapter.getInitialState();
 
 const unitsApi = rtkApi.injectEndpoints({
   endpoints: build => ({
-    getUnits: build.query<EntityState<IUnitWithId>, void>({
+    getUnits: build.query<EntityState<IUnitWithId, string>, void>({
       query: () => ({
         url: '/units',
       }),

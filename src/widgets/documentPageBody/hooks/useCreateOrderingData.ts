@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { type EntityState, type Dictionary } from '@reduxjs/toolkit';
+import { useCallback, useEffect, useMemo } from 'react';
+import { type EntityState } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 
 import { type IOrderResponse, useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
@@ -30,45 +30,54 @@ export const useCreateOrderingData = (id: string) => {
   const packageCategories = useSelector(selectPackageCategoriesObject);
   const packages = useSelector(selectPackagesObject);
 
-  const sectionOrder: Record<number, string> = {
-    1: '64daa7c326529ad019afc7d0',
-    2: '64daa7a926529ad019afc7cc',
-    3: '64daa79626529ad019afc7c8',
-    4: '64daa78b26529ad019afc7c6',
-    5: '64daa76f26529ad019afc7c2',
-    6: '652016c4b3e554be97d46267',
-    7: '64daa76326529ad019afc7c0',
-    8: '64daa6fd26529ad019afc7be',
-    9: '6521251cec860329e66ef6a8',
-    10: '652131a4177b2cc6d7f2b44c',
-  };
+  const sectionOrder: Record<number, string> = useMemo(
+    () => ({
+      1: '64daa7c326529ad019afc7d0',
+      2: '64daa7a926529ad019afc7cc',
+      3: '64daa79626529ad019afc7c8',
+      4: '64daa78b26529ad019afc7c6',
+      5: '64daa76f26529ad019afc7c2',
+      6: '652016c4b3e554be97d46267',
+      7: '64daa76326529ad019afc7c0',
+      8: '64daa6fd26529ad019afc7be',
+      9: '6521251cec860329e66ef6a8',
+      10: '652131a4177b2cc6d7f2b44c',
+    }),
+    [],
+  );
 
-  const setRecords = (
-    order: IOrderResponse,
-    packageCategories: Dictionary<IPackageCategoryResponse>,
-  ) => {
-    const records = groupProductsByCategory(order);
-    const updatedRecords = updateOrderingChapterSummary(packageCategories, records);
-    dispatch(orderingActions.setRecords(updatedRecords));
-  };
+  const setRecords = useCallback(
+    (order: IOrderResponse, packageCategories: Record<string, IPackageCategoryResponse>) => {
+      const records = groupProductsByCategory(order);
+      const updatedRecords = updateOrderingChapterSummary(packageCategories, records);
+      dispatch(orderingActions.setRecords(updatedRecords));
+    },
+    [dispatch],
+  );
 
-  const setChaptersOrder = (packageCategories: Dictionary<IPackageCategoryResponse>) => {
-    if (packageCategories) {
-      dispatch(orderingActions.setChaptersOrder(sectionOrder));
-    }
-  };
+  const setChaptersOrder = useCallback(
+    (packageCategories: Record<string, IPackageCategoryResponse>) => {
+      if (packageCategories) {
+        dispatch(orderingActions.setChaptersOrder(sectionOrder));
+      }
+    },
+    [dispatch, sectionOrder],
+  );
 
-  const setWeights = (
-    order: IOrderResponse,
-    units: EntityState<IUnitWithId>,
-    packages: Dictionary<IPackageWithId>,
-  ) => {
-    const weights = calculateProductsWeight(order.orderRecords, units, packages);
-    if (weights) {
-      const { packagesWeight, productsWeight } = weights;
-      dispatch(orderingActions.setWeights({ packagesWeight, productsWeight }));
-    }
-  };
+  const setWeights = useCallback(
+    (
+      order: IOrderResponse,
+      units: EntityState<IUnitWithId, string>,
+      packages: Dictionary<IPackageWithId>,
+    ) => {
+      const weights = calculateProductsWeight(order.orderRecords, units, packages);
+      if (weights) {
+        const { packagesWeight, productsWeight } = weights;
+        dispatch(orderingActions.setWeights({ packagesWeight, productsWeight }));
+      }
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     if (order && packageCategories) {
@@ -77,13 +86,13 @@ export const useCreateOrderingData = (id: string) => {
       setChaptersOrder(packageCategories);
       dispatch(orderingActions.setIsLoading(false));
     }
-  }, [order, packageCategories]);
+  }, [dispatch, order, packageCategories, setChaptersOrder, setRecords]);
 
   useEffect(() => {
     if (order && units && packages) {
       setWeights(order, units, packages);
     }
-  }, [order, units, packages]);
+  }, [order, units, packages, setWeights]);
 
   return;
 };

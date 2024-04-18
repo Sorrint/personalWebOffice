@@ -1,19 +1,20 @@
 import classNames from 'classnames';
-import { type TableViews } from './table';
+import { type TableHeaders, type TableViews } from './table';
 import styles from './table.module.scss';
-interface TableHeaderProps {
-  headers: ObjectRecord;
+import { toReactNode } from './tableBody';
+interface TableHeaderProps<T> {
+  headers: Partial<TableHeaders<T>>;
   view: TableViews;
 }
 
-export const TableHeader = ({ headers, view }: TableHeaderProps) => {
+export const TableHeader = <T extends ObjectRecord>({ headers, view }: TableHeaderProps<T>) => {
   return (
     <>
       <thead className={classNames(styles.headers, styles[view])}>
         <tr className={classNames(styles.item, styles[view])}>
-          {Object.entries(headers).map(([key, value]) => (
-            <th className={classNames(styles.column, styles[view])} key={key}>
-              <span>{value}</span>
+          {Object.entries(headers).map(([key, item]) => (
+            <th className={classNames(styles.column, styles[view], styles.center)} key={key}>
+              <span>{toReactNode(item?.value)}</span>
             </th>
           ))}
         </tr>

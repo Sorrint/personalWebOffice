@@ -1,5 +1,3 @@
-import { type Dictionary } from '@reduxjs/toolkit';
-
 import { type IOrderRecordResponse, type IOrderResponse } from '@features/getOrderProductsWeight';
 import { type IPackageCategoryResponse } from '@entities/packages';
 import { type IOrderingChapter } from '@entities/orderings';

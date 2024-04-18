@@ -1,11 +1,11 @@
 import { type IPackageWithId } from '@entities/packages';
 import { type IUnitWithId } from '@entities/units';
 import { type IOrderRecordResponse } from '@features/getOrderProductsWeight';
-import { type Dictionary, type EntityState } from '@reduxjs/toolkit';
+import { type EntityState } from '@reduxjs/toolkit';
 
 export const calculateProductsWeight = (
   records: IOrderRecordResponse[],
-  units: EntityState<IUnitWithId>,
+  units: EntityState<IUnitWithId, string>,
   packages: Dictionary<IPackageWithId>,
 ) => {
   if (!records) return;
