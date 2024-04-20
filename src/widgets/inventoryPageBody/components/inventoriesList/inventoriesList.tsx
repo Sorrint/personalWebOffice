@@ -1,8 +1,7 @@
 import { type IInventoryDocs, InventoryList, useLoadAllDocuments } from '@entities/inventoryDocs';
-
-import styles from './inventoriesList.module.scss';
-import { AppLink } from '@shared/ui/appLink';
-import { Button } from '@shared/ui/button';
+import { Container } from '@shared/layouts/container/container';
+import { Grid } from '@shared/ui/grid';
+import { LinkButton } from '@shared/ui/linkButton/linkButton';
 
 export const InventoriesList = () => {
   const { data: documents, isLoading } = useLoadAllDocuments({});
@@ -11,11 +10,11 @@ export const InventoriesList = () => {
     list ? <InventoryList documents={list} /> : <h2>Документов нет</h2>;
 
   return (
-    <>
-      <AppLink to={'./create'} classname={styles.link}>
-        <Button classname={styles.btn}>Новый документ</Button>
-      </AppLink>
-      {isLoading ? <h2>Идет загрузка</h2> : renderDocuments(documents)}
-    </>
+    <Container>
+      <Grid>
+        <LinkButton href={'./create'}>Новый документ</LinkButton>
+        {isLoading ? <h2>Идет загрузка</h2> : renderDocuments(documents)}
+      </Grid>
+    </Container>
   );
 };

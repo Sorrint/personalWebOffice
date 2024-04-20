@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { type IInventoryProduct, type IInventoryDocs } from '../../model/types';
 import { AppLink } from '@shared/ui/appLink';
-import styles from './inventoryList.module.scss';
 import { FormatDate } from '@shared/ui/formatDate/FormatDate';
+import { Grid } from '@shared/ui/grid';
 
 interface InventoryListProps {
   documents: IInventoryDocs[];
@@ -17,7 +17,7 @@ export const InventoryList = memo(({ documents }: InventoryListProps) => {
       .toFixed(2);
   };
   return (
-    <div className={styles.list}>
+    <Grid>
       <h1>Список документов</h1>
       {documents.map(({ _id, documentNumber, comment, choosenDate, products }) => (
         <AppLink key={_id} to={`${documentNumber}`} variant='panel'>
@@ -26,7 +26,7 @@ export const InventoryList = memo(({ documents }: InventoryListProps) => {
           {`. ${comment && comment + '.'} Сумма: ${getSummary(products)}`}
         </AppLink>
       ))}
-    </div>
+    </Grid>
   );
 });
 

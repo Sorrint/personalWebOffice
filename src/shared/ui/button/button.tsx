@@ -3,7 +3,7 @@ import { forwardRef, memo, type ReactNode, type ChangeEvent, type ForwardedRef }
 
 import styles from './button.module.scss';
 import { IconFont } from '../iconFont';
-interface ButtonProps {
+export interface ButtonProps {
   onClick?: (...args: any[]) => void;
   buttonType?: 'submit' | 'cancel' | 'dropdown';
   children?: ReactNode;

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 interface AppLinkProps {
   classname?: string;
   to: string;
-  children: ReactNode;
+  children?: ReactNode;
   variant?: 'panel';
 }
 export const AppLink = ({ classname, to, children, variant }: AppLinkProps) => {

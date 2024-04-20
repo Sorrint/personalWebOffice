@@ -19,6 +19,8 @@ import styles from './inventoryEdit.module.scss';
 
 import { Popover } from '@shared/ui/popover';
 import { useLoadInventoryProducts } from '../../hooks/useLoadInventoryProducts';
+import { Container } from '@shared/layouts/container/container';
+import { Grid } from '@shared/ui/grid';
 interface IPopupProps {
   product: IInventoryProduct;
   popupText: string;
@@ -133,53 +135,55 @@ export const InventoryEdit = memo(() => {
   if (isLoading) return 'Идет загрузка...';
 
   return (
-    <>
-      <SearchInput
-        searchFunction={getGoods}
-        loading={isFetching}
-        inputRef={searchInput}
-        onKeyDown={handleInputKeydown}
-      />
-      <InventoryContent
-        onClick={handleUpdate}
-        onDelete={handleDelete}
-        tabIndex={activePopup ? -1 : 0}
-        inventoryList={inventoryList}
-      />
-      {goods && goods?.length !== 0 && searchInput.current && activePopover && (
-        <Popover
-          isOpen={activePopover}
-          onClose={hidePopover}
-          referenceElement={searchInput.current as HTMLElement}
-          key={'key'}
-        >
-          <DropdownList className={styles['dropdown-products']}>
-            <ProductList
-              products={goods}
-              selectField={false}
-              avatar={false}
-              count={false}
-              onClick={product => {
-                handleCreate(product, isActiveAccount);
-              }}
-              setFirstElement={setFirstElement}
-              parentRef={searchInput}
-              displayHeaders={false}
-            />
-          </DropdownList>
-        </Popover>
-      )}
-      <PopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
-        {popupProps && (
-          <PopupProductCard
-            {...popupProps}
-            buttonClick={onSubmit}
-            error={updateError}
-            isActive={isActiveAccount}
-          />
+    <Container>
+      <Grid>
+        <SearchInput
+          searchFunction={getGoods}
+          loading={isFetching}
+          inputRef={searchInput}
+          onKeyDown={handleInputKeydown}
+        />
+        <InventoryContent
+          onClick={handleUpdate}
+          onDelete={handleDelete}
+          tabIndex={activePopup ? -1 : 0}
+          inventoryList={inventoryList}
+        />
+        {goods && goods?.length !== 0 && searchInput.current && activePopover && (
+          <Popover
+            isOpen={activePopover}
+            onClose={hidePopover}
+            referenceElement={searchInput.current as HTMLElement}
+            key={'key'}
+          >
+            <DropdownList className={styles['dropdown-products']}>
+              <ProductList
+                products={goods}
+                selectField={false}
+                avatar={false}
+                count={false}
+                onClick={product => {
+                  handleCreate(product, isActiveAccount);
+                }}
+                setFirstElement={setFirstElement}
+                parentRef={searchInput}
+                displayHeaders={false}
+              />
+            </DropdownList>
+          </Popover>
         )}
-      </PopupWithFocusTrap>
-    </>
+        <PopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
+          {popupProps && (
+            <PopupProductCard
+              {...popupProps}
+              buttonClick={onSubmit}
+              error={updateError}
+              isActive={isActiveAccount}
+            />
+          )}
+        </PopupWithFocusTrap>
+      </Grid>
+    </Container>
   );
 });
 

@@ -10,6 +10,8 @@ import { useCreateNewDocument } from '@entities/inventoryDocs';
 
 import styles from './inventoryCreate.module.scss';
 import { AppRoutes } from '@shared/config/router';
+import { Container } from '@shared/layouts/container/container';
+import { Grid } from '@shared/ui/grid';
 
 export const InventoryCreate = () => {
   const navigate = useNavigate();
@@ -42,25 +44,27 @@ export const InventoryCreate = () => {
     }
   };
   return (
-    <>
-      <div className={styles['card-title']}>Новый документ</div>
-      <form className={styles['inventory-form']}>
-        <TextField
-          label='Номер документа'
-          {...register('documentNumber', { pattern: /^[0-9]*$/ })}
-          type='number'
-        />
-        <Calendar
-          label='Дата документа'
-          wrapperName='calendar__wrapper'
-          control={control}
-          name={'choosenDate'}
-          full
-        />
-        <TextField label='Магазин' {...register('storeName')} />
-        <TextField label='Комментарий' {...register('comment')} className={styles.comment} />
-      </form>
-      <Button onClick={handleSubmit(onSubmit)}>Создать</Button>
-    </>
+    <Container>
+      <Grid>
+        <div className={styles['card-title']}>Новый документ</div>
+        <form className={styles['inventory-form']}>
+          <TextField
+            label='Номер документа'
+            {...register('documentNumber', { pattern: /^[0-9]*$/ })}
+            type='number'
+          />
+          <Calendar
+            label='Дата документа'
+            wrapperName='calendar__wrapper'
+            control={control}
+            name={'choosenDate'}
+            full
+          />
+          <TextField label='Магазин' {...register('storeName')} />
+          <TextField label='Комментарий' {...register('comment')} className={styles.comment} />
+        </form>
+        <Button onClick={handleSubmit(onSubmit)}>Создать</Button>
+      </Grid>
+    </Container>
   );
 };

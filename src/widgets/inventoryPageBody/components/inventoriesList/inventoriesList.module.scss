@@ -1,7 +1,8 @@
 .link {
-    width: 100%;
+    position: absolute;
+    inset: 0;
 }
 
 .btn {
-    margin-bottom: calc(var(--margin) * 2);
+    position: relative;
 }
