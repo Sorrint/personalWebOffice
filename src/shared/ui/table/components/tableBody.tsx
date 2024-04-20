@@ -40,6 +40,7 @@ export const TableBody = <T extends ObjectRecord>({
               [styles.highlight]: item.highlight,
             })}
             onClick={() => onItemClick?.(item)}
+            tabIndex={tabIndex}
           >
             {Object.keys(headers).map((headline: string) => (
               <td
@@ -49,7 +50,6 @@ export const TableBody = <T extends ObjectRecord>({
                   styles[headers[headline]?.alignment || 'center'],
                 )}
                 key={headline}
-                tabIndex={tabIndex}
               >
                 {toReactNode(item?.[headline])}
               </td>

@@ -33,7 +33,7 @@ export const useLoadInventoryProducts = () => {
         setRequestCompleted(true);
       }
     }
-  }, [goods, isFetching, dispatch, setToken, refetch]);
+  }, [goods, isFetching, dispatch, setToken, refetch, requestCompleted]);
 
   return { goods, isFetching, setSearch, isActiveAccount };
 };

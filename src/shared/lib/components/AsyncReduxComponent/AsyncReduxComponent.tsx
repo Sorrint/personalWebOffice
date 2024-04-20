@@ -42,7 +42,7 @@ export const AsyncReduxComponent = (props: AsyncReduxComponentProps) => {
         }
       };
     }
-  }, []);
+  }, [dispatch, reducersList, removeAfterUnmount, store.reducerManager]);
 
   return <>{children}</>;
 };

@@ -11,9 +11,7 @@ export const AddOrderProducts = () => {
   const [queryParams] = useSearchParams();
   const orderId = queryParams.get('orderId');
 
-  if (!orderId) return 'Нет id заказа';
-
-  const { data: order, isLoading } = useGetOrderByIdQuery(orderId);
+  const { data: order, isLoading } = useGetOrderByIdQuery(orderId ?? '');
   const [updateRecord] = useUpdateOrderRecordMutation();
 
   if (isLoading) return <div>Идет загрузка</div>;
@@ -22,10 +20,11 @@ export const AddOrderProducts = () => {
   const handleSubmit = (createdProduct: IStoreProduct, recordNumber: number) => {
     updateRecord({
       record: { number: recordNumber, product: createdProduct._id, unit: createdProduct.unit },
-      id: orderId,
+      id: orderId ?? '',
     });
     return;
   };
+  if (!orderId) return 'Нет id заказа';
 
   return (
     <div className={styles['cards-list']}>

@@ -19,14 +19,14 @@ export const Panel = memo(({ children, className, onChange, open, title }: Panel
       setIsOpen(open);
       onChange?.(isOpen);
     }
-  }, [open]);
+  }, [isOpen, onChange, open]);
 
   const onClick = useCallback(() => {
     setIsOpen(prev => !prev);
     if (isOpen !== undefined) {
       onChange?.(isOpen);
     }
-  }, [open, isOpen]);
+  }, [isOpen, onChange]);
 
   const showIcon = useMemo(
     () => <IconFont iconName={isOpen ? 'icon-arrow-up' : 'icon-arrow-down'} />,

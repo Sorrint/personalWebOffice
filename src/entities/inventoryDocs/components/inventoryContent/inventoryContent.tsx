@@ -43,7 +43,7 @@ export const InventoryContent = memo(
       <>
         <div className={styles.controls}>
           <Button buttonType='submit' onClick={handleClick} outline>
-            Скачать в формате XLSX
+            Скачать в XLSX
           </Button>
           <Checkbox
             text='Выделять поля с резервного аккаунта'

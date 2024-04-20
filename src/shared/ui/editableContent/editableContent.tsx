@@ -12,11 +12,14 @@ export const EditableContent = <T extends FieldValues>({ name }: EditableContent
 
   const [, setContent] = useState('');
 
-  const onContentChange = useCallback((evt: ContentEditableEvent) => {
-    const checked = DOMPurify.sanitize(evt.currentTarget.innerHTML);
-    setContent(checked);
-    field.onChange(checked);
-  }, []);
+  const onContentChange = useCallback(
+    (evt: ContentEditableEvent) => {
+      const checked = DOMPurify.sanitize(evt.currentTarget.innerHTML);
+      setContent(checked);
+      field.onChange(checked);
+    },
+    [field],
+  );
 
   const onContentBlur = useCallback(() => {
     return;

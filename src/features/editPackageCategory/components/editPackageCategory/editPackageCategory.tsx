@@ -32,7 +32,7 @@ export const EditPackageCategory = memo(({ packageCategory }: EditPackageCategor
       //@ts-ignore-next-line
       setValue(key, value);
     },
-    [],
+    [setValue],
   );
 
   const currentPackage = watch('packageId');

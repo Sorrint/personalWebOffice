@@ -21,7 +21,7 @@ export const SaveOrderingToXLSX = ({ classname }: SaveOrderingToXLSXProps) => {
 
   return (
     <button className={classNames(style['create-xlsx'], classname)} onClick={saveToXLSX}>
-      Скачать в формате XLSX
+      Скачать в XLSX
     </button>
   );
 };

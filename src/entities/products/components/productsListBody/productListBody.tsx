@@ -24,7 +24,7 @@ export const ProductListBody: FC<IProductListBodyProps> = ({
 
   useEffect(() => {
     listRefs.current[0] && setFirstElement && setFirstElement(listRefs.current[0]);
-  }, []);
+  }, [setFirstElement]);
 
   const handleListRefsActions = handleListKeydownEvent(listRefs.current, parentRef ?? undefined);
 

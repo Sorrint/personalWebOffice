@@ -20,7 +20,7 @@ export const PackageSelect = memo((props: PackageSelectProps) => {
 
   const options = useMemo(
     () => packages?.map(pack => ({ ...pack, content: pack[content] })),
-    [packages],
+    [content, packages],
   );
 
   const onChangeHandler = useCallback(
