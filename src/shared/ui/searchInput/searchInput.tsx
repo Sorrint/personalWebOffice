@@ -23,6 +23,7 @@ export interface SearchInputProps<T> {
   renderList?: () => ReactNode;
   canShowPopover?: boolean;
   showPopover?: boolean;
+  setShowPopover?: (show: boolean) => void;
   searchInputRef?: RefObject<HTMLInputElement>;
   firstListElement?: RefObject<HTMLDivElement | null>;
 }
@@ -36,6 +37,7 @@ export const SearchInput = memo(
     showPopover,
     firstListElement,
     searchInputRef,
+    setShowPopover,
   }: SearchInputProps<void>) => {
     const [activePopover, setActivePopover] = useState<boolean>(showPopover ?? false);
 
@@ -46,6 +48,10 @@ export const SearchInput = memo(
     useEffect(() => {
       canShowPopover && !activePopover && searchInputRef?.current?.focus();
     }, [activePopover, canShowPopover, searchInputRef]);
+
+    useEffect(() => {
+      setShowPopover?.(activePopover);
+    }, [activePopover, setShowPopover]);
 
     const debounceSearch = useDebounce(searchFunction, 1000);
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {

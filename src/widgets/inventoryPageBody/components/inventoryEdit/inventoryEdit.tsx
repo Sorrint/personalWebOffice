@@ -45,7 +45,7 @@ export const InventoryEdit = memo(() => {
   const [showPopover, setShowPopover] = useState<boolean>(false);
   const [activePopup, setActivePopup] = useState<boolean>(false);
   const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
-  const { isKeyPressed, setIsKeyPressed } = useKeyPress('Escape');
+  const { isKeyPressed } = useKeyPress('Escape');
   const [highlightFunc, setHighlightFunc] = useState<
     ((item: IInventoryProduct) => boolean) | undefined
   >(undefined);
@@ -65,10 +65,6 @@ export const InventoryEdit = memo(() => {
   };
 
   const popoverCondition = goods && goods?.length !== 0 && !activePopup;
-
-  const showPopup = () => {
-    setActivePopup(prevState => !prevState);
-  };
 
   const handleUpdate = useCallback(
     (product: IInventoryProduct) => {
@@ -93,10 +89,10 @@ export const InventoryEdit = memo(() => {
   };
 
   useEffect(() => {
-    setIsKeyPressed(false);
     setActivePopup(false);
     setShowPopover(false);
-  }, [isKeyPressed, setIsKeyPressed]);
+    searchInputRef.current?.focus();
+  }, [isKeyPressed, searchInputRef]);
 
   useEffect(() => {
     if (goods) {
@@ -151,6 +147,7 @@ export const InventoryEdit = memo(() => {
             showPopover={showPopover}
             firstListElement={firstListElement}
             searchInputRef={searchInputRef}
+            setShowPopover={setShowPopover}
           />
           <div className={styles.controls}>
             <Checkbox
@@ -177,7 +174,7 @@ export const InventoryEdit = memo(() => {
           tabIndex={activePopup ? -1 : 0}
         />
       </Container>
-      <PopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
+      <PopupWithFocusTrap isOpened={activePopup} onClose={() => setActivePopup(false)}>
         {formProps && (
           <EditProductForm
             {...formProps}

@@ -12,13 +12,18 @@ export const useKeyPress = (keyTarget: string) => {
 
   const upHandler = useCallback(
     ({ key }: KeyboardEvent) => {
-      if (key === keyTarget) setIsKeyPressed(true);
+      if (key === keyTarget) setIsKeyPressed(false);
     },
     [keyTarget],
   );
   useEffect(() => {
     window.addEventListener('keydown', downHandler);
     window.addEventListener('keyup', upHandler);
+
+    return () => {
+      window.removeEventListener('keydown', downHandler);
+      window.removeEventListener('keyup', upHandler);
+    };
   }, [downHandler, upHandler]);
-  return { isKeyPressed, setIsKeyPressed };
+  return { isKeyPressed };
 };
