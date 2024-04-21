@@ -4,12 +4,10 @@ import { useParams } from 'react-router-dom';
 import { SaveInventoryToXLSX } from '@features/saveInventoryToXLSX';
 import {
   type IInventoryProduct,
-  useUpdateProducts,
-  useRemoveInventoryProduct,
   useLoadDocumentByNumber,
   InventoryProductsTable,
 } from '@entities/inventoryDocs';
-import { type IDreamkasProduct, ProductList, PopupProductCard } from '@entities/products';
+import { type IDreamkasProduct, ProductList } from '@entities/products';
 import { useKeyPress, useSearchInput } from '@shared/lib/hooks';
 import { Container } from '@shared/layouts/container/container';
 import { FormatDate } from '@shared/ui/formatDate/FormatDate';
@@ -21,13 +19,7 @@ import { Grid } from '@shared/ui/grid';
 import { useLoadInventoryProducts } from '../../hooks/useLoadInventoryProducts';
 
 import styles from './inventoryEdit.module.scss';
-
-interface IPopupProps {
-  product: IInventoryProduct;
-  popupText: string;
-  buttonText: string;
-  method: 'Delete' | 'Update' | 'Create';
-}
+import { EditProductForm, useEditProductForm } from '@features/editProductForm';
 
 const highlightByAccount = (item: IInventoryProduct) => {
   return !item?.isActiveAccount;
@@ -35,14 +27,18 @@ const highlightByAccount = (item: IInventoryProduct) => {
 
 export const InventoryEdit = memo(() => {
   const { number } = useParams();
-  // if (!number) return null;
   const docNumber = Number(number);
-  const [popupProps, setPopupProps] = useState<IPopupProps>();
-  const [updateList, { error: updateError }] = useUpdateProducts();
-  const [removeProduct] = useRemoveInventoryProduct();
-  const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
+  const {
+    displayCreateForm,
+    displayDeleteForm,
+    displayUpdateForm,
+    onSubmit,
+    updateError,
+    formProps,
+  } = useEditProductForm(docNumber);
 
   // Загрузка данных
+  const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
   const { goods, isFetching, setSearch, isActiveAccount } = useLoadInventoryProducts();
 
   // состояния popup && popover
@@ -50,20 +46,51 @@ export const InventoryEdit = memo(() => {
   const [activePopup, setActivePopup] = useState<boolean>(false);
   const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
   const { isKeyPressed, setIsKeyPressed } = useKeyPress('Escape');
+  const [highlightFunc, setHighlightFunc] = useState<
+    ((item: IInventoryProduct) => boolean) | undefined
+  >(undefined);
 
-  const handleCreate = useCallback((product: IDreamkasProduct, isActiveAccount: boolean) => {
-    const { name, price } = product;
-    const newProduct = {
-      name,
-      price: price && price / 100,
-      quantity: 1,
-      id: undefined,
-      isActiveAccount,
-    };
+  const handleCreate = useCallback(
+    (product: IDreamkasProduct, isActiveAccount: boolean) => {
+      displayCreateForm(product, isActiveAccount);
+      setShowPopover(false);
+      setActivePopup(true);
+    },
+    [displayCreateForm],
+  );
+
+  const getGoods = async (value: string) => {
     setShowPopover(false);
-    setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
-    setActivePopup(true);
-  }, []);
+    setSearch(value);
+  };
+
+  const popoverCondition = goods && goods?.length !== 0 && !activePopup;
+
+  const showPopup = () => {
+    setActivePopup(prevState => !prevState);
+  };
+
+  const handleUpdate = useCallback(
+    (product: IInventoryProduct) => {
+      displayUpdateForm(product);
+      setActivePopup(true);
+    },
+    [displayUpdateForm],
+  );
+
+  const handleDelete = useCallback(
+    (product: IInventoryProduct) => {
+      displayDeleteForm(product);
+      setActivePopup(true);
+    },
+    [displayDeleteForm],
+  );
+
+  const handleSubmit = async (data: FieldValues) => {
+    onSubmit(data);
+
+    if (!updateError) setActivePopup(false);
+  };
 
   useEffect(() => {
     setIsKeyPressed(false);
@@ -77,48 +104,13 @@ export const InventoryEdit = memo(() => {
         ? handleCreate(goods[0], isActiveAccount)
         : setShowPopover(goods?.length > 0);
     }
-  }, [goods, handleCreate, isActiveAccount]);
-
-  const getGoods = async (value: string) => {
-    setShowPopover(false);
-    setSearch(value);
-  };
-
-  const popoverCondition = goods && goods?.length !== 0 && !activePopup;
-
-  const showPopup = () => {
-    setActivePopup(prevState => !prevState);
-  };
-
-  const handleUpdate = useCallback((product: IInventoryProduct) => {
-    setPopupProps({ product, buttonText: 'Обновить', popupText: '', method: 'Update' });
-    setActivePopup(true);
-  }, []);
-
-  const handleDelete = useCallback((product: IInventoryProduct) => {
-    setPopupProps({ product, buttonText: 'Удалить', popupText: 'Вы уверены?', method: 'Delete' });
-    setActivePopup(true);
-  }, []);
-
-  const onSubmit = async (data: FieldValues) => {
-    if (popupProps) {
-      const { method, product } = popupProps;
-      method === 'Delete'
-        ? await removeProduct({ id: product.id, docNumber }).unwrap()
-        : await updateList({ product: { ...data }, docNumber }).unwrap();
-    }
-
-    if (!updateError) showPopup();
-  };
-
-  const [highlightFunc, setHighlightFunc] = useState<
-    ((item: IInventoryProduct) => boolean) | undefined
-  >(undefined);
+  }, [goods, displayCreateForm, isActiveAccount, handleCreate]);
 
   useEffect(() => {
     const highlightOn = localStorage.getItem('highlight') === 'true';
     setHighlightFunc(() => (highlightOn ? highlightByAccount : undefined));
   }, []);
+
   const handleCheckboxClick = useCallback((checked: boolean) => {
     checked ? localStorage.setItem('highlight', 'true') : localStorage.setItem('highlight', '');
     setHighlightFunc(() => (checked ? highlightByAccount : undefined));
@@ -186,10 +178,10 @@ export const InventoryEdit = memo(() => {
         />
       </Container>
       <PopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
-        {popupProps && (
-          <PopupProductCard
-            {...popupProps}
-            buttonClick={onSubmit}
+        {formProps && (
+          <EditProductForm
+            {...formProps}
+            buttonClick={handleSubmit}
             error={updateError}
             isActive={isActiveAccount}
           />
