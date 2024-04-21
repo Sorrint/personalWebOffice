@@ -1,32 +1,37 @@
-import { memo, useEffect, useState, useRef, type KeyboardEvent, useCallback } from 'react';
+import { memo, useEffect, useState, useCallback } from 'react';
 import { type FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-
+import { SaveInventoryToXLSX } from '@features/saveInventoryToXLSX';
 import {
   type IInventoryProduct,
-  InventoryContent,
   useUpdateProducts,
   useRemoveInventoryProduct,
   useLoadDocumentByNumber,
+  InventoryProductsTable,
 } from '@entities/inventoryDocs';
 import { type IDreamkasProduct, ProductList, PopupProductCard } from '@entities/products';
+import { useKeyPress, useSearchInput } from '@shared/lib/hooks';
+import { Container } from '@shared/layouts/container/container';
+import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/searchInput';
-import { DropdownList } from '@shared/ui/dropdownList';
-import { useKeyPress } from '@shared/lib/hooks';
 import { PopupWithFocusTrap } from '@shared/ui/popup';
+import { Checkbox } from '@shared/ui/checkbox';
+import { Grid } from '@shared/ui/grid';
+
+import { useLoadInventoryProducts } from '../../hooks/useLoadInventoryProducts';
 
 import styles from './inventoryEdit.module.scss';
 
-import { Popover } from '@shared/ui/popover';
-import { useLoadInventoryProducts } from '../../hooks/useLoadInventoryProducts';
-import { Container } from '@shared/layouts/container/container';
-import { Grid } from '@shared/ui/grid';
 interface IPopupProps {
   product: IInventoryProduct;
   popupText: string;
   buttonText: string;
   method: 'Delete' | 'Update' | 'Create';
 }
+
+const highlightByAccount = (item: IInventoryProduct) => {
+  return !item?.isActiveAccount;
+};
 
 export const InventoryEdit = memo(() => {
   const { number } = useParams();
@@ -41,10 +46,9 @@ export const InventoryEdit = memo(() => {
   const { goods, isFetching, setSearch, isActiveAccount } = useLoadInventoryProducts();
 
   // состояния popup && popover
-  const [activePopover, setActivePopover] = useState<boolean>(false);
+  const [showPopover, setShowPopover] = useState<boolean>(false);
   const [activePopup, setActivePopup] = useState<boolean>(false);
-  const searchInput = useRef<HTMLInputElement>(null);
-  const firstElement = useRef<HTMLDivElement | null>(null);
+  const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
   const { isKeyPressed, setIsKeyPressed } = useKeyPress('Escape');
 
   const handleCreate = useCallback((product: IDreamkasProduct, isActiveAccount: boolean) => {
@@ -56,7 +60,7 @@ export const InventoryEdit = memo(() => {
       id: undefined,
       isActiveAccount,
     };
-    setActivePopover(false);
+    setShowPopover(false);
     setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
     setActivePopup(true);
   }, []);
@@ -64,33 +68,26 @@ export const InventoryEdit = memo(() => {
   useEffect(() => {
     setIsKeyPressed(false);
     setActivePopup(false);
-    setActivePopover(false);
+    setShowPopover(false);
   }, [isKeyPressed, setIsKeyPressed]);
 
   useEffect(() => {
     if (goods) {
       goods.length === 1
         ? handleCreate(goods[0], isActiveAccount)
-        : setActivePopover(goods?.length > 0);
+        : setShowPopover(goods?.length > 0);
     }
   }, [goods, handleCreate, isActiveAccount]);
 
-  useEffect(() => {
-    !activePopup && searchInput.current?.focus();
-    !activePopover && searchInput.current?.focus();
-  }, [activePopup, activePopover]);
-
   const getGoods = async (value: string) => {
-    setActivePopover(false);
+    setShowPopover(false);
     setSearch(value);
   };
 
+  const popoverCondition = goods && goods?.length !== 0 && !activePopup;
+
   const showPopup = () => {
     setActivePopup(prevState => !prevState);
-  };
-
-  const hidePopover = () => {
-    setActivePopover(false);
   };
 
   const handleUpdate = useCallback((product: IInventoryProduct) => {
@@ -114,76 +111,91 @@ export const InventoryEdit = memo(() => {
     if (!updateError) showPopup();
   };
 
-  const handleInputKeydown = (key: KeyboardEvent) => {
-    if (key.code === 'ArrowDown' && !activePopover) {
-      goods && setActivePopover(true);
-    }
-    if (key.code === 'ArrowDown' && activePopover && firstElement.current) {
-      key.preventDefault();
-      firstElement.current.focus();
-    }
-    if (key.code === 'ArrowUp' && activePopover) {
-      key.preventDefault();
-      setActivePopover(false);
-    }
-  };
+  const [highlightFunc, setHighlightFunc] = useState<
+    ((item: IInventoryProduct) => boolean) | undefined
+  >(undefined);
 
-  const setFirstElement = (el: HTMLDivElement) => {
-    firstElement.current = el;
-  };
+  useEffect(() => {
+    const highlightOn = localStorage.getItem('highlight') === 'true';
+    setHighlightFunc(() => (highlightOn ? highlightByAccount : undefined));
+  }, []);
+  const handleCheckboxClick = useCallback((checked: boolean) => {
+    checked ? localStorage.setItem('highlight', 'true') : localStorage.setItem('highlight', '');
+    setHighlightFunc(() => (checked ? highlightByAccount : undefined));
+  }, []);
+
+  if (!inventoryList?.products) return 'Нет данных для отображения';
 
   if (isLoading) return 'Идет загрузка...';
 
-  return (
-    <Container>
-      <Grid>
-        <SearchInput
-          searchFunction={getGoods}
-          loading={isFetching}
-          inputRef={searchInput}
-          onKeyDown={handleInputKeydown}
+  const renderList = () => (
+    <>
+      {popoverCondition && (
+        <ProductList
+          products={goods}
+          selectField={false}
+          avatar={false}
+          count={false}
+          onClick={product => {
+            handleCreate(product, isActiveAccount);
+          }}
+          setFirstElement={setFirstListElement}
+          parentRef={searchInputRef}
+          displayHeaders={false}
         />
-        <InventoryContent
+      )}
+    </>
+  );
+
+  return (
+    <>
+      <Container>
+        <Grid>
+          <SearchInput
+            searchFunction={getGoods}
+            loading={isFetching}
+            canShowPopover={popoverCondition}
+            renderList={renderList}
+            showPopover={showPopover}
+            firstListElement={firstListElement}
+            searchInputRef={searchInputRef}
+          />
+          <div className={styles.controls}>
+            <Checkbox
+              text='Выделять поля с резервного аккаунта'
+              name='tempAcc'
+              onChange={handleCheckboxClick}
+              defaultChecked={localStorage.getItem('highlight') === 'true'}
+            />
+            <SaveInventoryToXLSX inventoryList={inventoryList} />
+          </div>
+          <h1>
+            {`Инвентаризация № ${inventoryList.documentNumber} от `}
+            <FormatDate date={inventoryList.choosenDate} />
+            {` магазина ${inventoryList.storeName}`}
+          </h1>
+        </Grid>
+      </Container>
+      <Container scrollable>
+        <InventoryProductsTable
+          highlightFunc={highlightFunc}
+          inventoryList={inventoryList}
           onClick={handleUpdate}
           onDelete={handleDelete}
           tabIndex={activePopup ? -1 : 0}
-          inventoryList={inventoryList}
         />
-        {goods && goods?.length !== 0 && searchInput.current && activePopover && (
-          <Popover
-            isOpen={activePopover}
-            onClose={hidePopover}
-            referenceElement={searchInput.current as HTMLElement}
-            key={'key'}
-          >
-            <DropdownList className={styles['dropdown-products']}>
-              <ProductList
-                products={goods}
-                selectField={false}
-                avatar={false}
-                count={false}
-                onClick={product => {
-                  handleCreate(product, isActiveAccount);
-                }}
-                setFirstElement={setFirstElement}
-                parentRef={searchInput}
-                displayHeaders={false}
-              />
-            </DropdownList>
-          </Popover>
+      </Container>
+      <PopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
+        {popupProps && (
+          <PopupProductCard
+            {...popupProps}
+            buttonClick={onSubmit}
+            error={updateError}
+            isActive={isActiveAccount}
+          />
         )}
-        <PopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
-          {popupProps && (
-            <PopupProductCard
-              {...popupProps}
-              buttonClick={onSubmit}
-              error={updateError}
-              isActive={isActiveAccount}
-            />
-          )}
-        </PopupWithFocusTrap>
-      </Grid>
-    </Container>
+      </PopupWithFocusTrap>
+    </>
   );
 });
 
