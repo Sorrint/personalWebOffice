@@ -4,8 +4,6 @@ import {
   type KeyboardEvent,
   type FocusEvent,
   type ReactNode,
-  useState,
-  useEffect,
   type RefObject,
 } from 'react';
 
@@ -22,8 +20,8 @@ export interface SearchInputProps<T> {
   loading?: boolean;
   renderList?: () => ReactNode;
   canShowPopover?: boolean;
-  showPopover?: boolean;
-  setShowPopover?: (show: boolean) => void;
+  activePopover?: boolean;
+  setActivePopover?: (show: boolean) => void;
   searchInputRef?: RefObject<HTMLInputElement>;
   firstListElement?: RefObject<HTMLDivElement | null>;
 }
@@ -34,25 +32,11 @@ export const SearchInput = memo(
     loading,
     renderList,
     canShowPopover,
-    showPopover,
+    activePopover,
     firstListElement,
     searchInputRef,
-    setShowPopover,
+    setActivePopover,
   }: SearchInputProps<void>) => {
-    const [activePopover, setActivePopover] = useState<boolean>(showPopover ?? false);
-
-    useEffect(() => {
-      showPopover !== undefined && setActivePopover(showPopover);
-    }, [showPopover]);
-
-    useEffect(() => {
-      canShowPopover && !activePopover && searchInputRef?.current?.focus();
-    }, [activePopover, canShowPopover, searchInputRef]);
-
-    useEffect(() => {
-      setShowPopover?.(activePopover);
-    }, [activePopover, setShowPopover]);
-
     const debounceSearch = useDebounce(searchFunction, 1000);
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
       const { target } = e;
@@ -64,7 +48,7 @@ export const SearchInput = memo(
 
     const handleInputKeydown = (key: KeyboardEvent) => {
       if (key.code === 'ArrowDown' && !activePopover) {
-        canShowPopover && setActivePopover(true);
+        canShowPopover && setActivePopover?.(true);
       }
       if (key.code === 'ArrowDown' && activePopover && firstListElement?.current) {
         key.preventDefault();
@@ -72,12 +56,12 @@ export const SearchInput = memo(
       }
       if (key.code === 'ArrowUp' && activePopover) {
         key.preventDefault();
-        setActivePopover(false);
+        setActivePopover?.(false);
       }
     };
 
     const hidePopover = () => {
-      setActivePopover(false);
+      setActivePopover?.(false);
     };
 
     return (
@@ -100,7 +84,7 @@ export const SearchInput = memo(
           )}
         </div>
         <Popover
-          isOpen={activePopover}
+          isOpen={activePopover ?? false}
           onClose={hidePopover}
           referenceElement={searchInputRef?.current as HTMLElement}
           key={'key'}

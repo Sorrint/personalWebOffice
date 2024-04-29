@@ -10,14 +10,15 @@ import { Button } from '@shared/ui/button';
 
 import styles from './editProductForm.module.scss';
 import classNames from 'classnames';
+import { type formVariants } from '../../lib/hooks/useEditProductForm/useEditProductForm';
 
-interface EditProductFormProps {
+export interface EditProductFormProps {
   product: IInventoryProduct;
   buttonClick: (data: FieldValues) => Promise<void>;
   buttonText: string;
   error: FetchBaseQueryError | SerializedError | undefined;
   popupText?: string;
-  method: string;
+  method: formVariants;
   isActive: boolean;
 }
 export interface FormValues {
@@ -35,7 +36,6 @@ export function EditProductForm({
   error,
   popupText,
   method,
-  isActive,
 }: EditProductFormProps) {
   const initData: FormValues = {
     id: product.id,
@@ -72,12 +72,14 @@ export function EditProductForm({
   };
 
   const getButtonType = () => {
-    return method === 'Delete' ? 'cancel' : 'submit';
+    return method === 'delete' ? 'cancel' : 'submit';
   };
 
   return (
     <div
-      className={classNames(styles['add-product'], { [styles['old-account']]: !isActive })}
+      className={classNames(styles['add-product'], {
+        [styles['old-account']]: !product.isActiveAccount,
+      })}
       ref={modalWindow}
     >
       <form>

@@ -1,25 +1,23 @@
 import { memo, useEffect, useState, useCallback } from 'react';
-import { type FieldValues } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import { useEditProductForm, PopupEditProductForm } from '@features/editProductForm';
 import { SaveInventoryToXLSX } from '@features/saveInventoryToXLSX';
 import {
   type IInventoryProduct,
   useLoadDocumentByNumber,
   InventoryProductsTable,
 } from '@entities/inventoryDocs';
-import { type IDreamkasProduct, ProductList } from '@entities/products';
-import { useKeyPress, useSearchInput } from '@shared/lib/hooks';
+import { PopoverProductsList } from '@entities/products';
+import { useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
 import { Container } from '@shared/layouts/container/container';
 import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/searchInput';
-import { PopupWithFocusTrap } from '@shared/ui/popup';
 import { Checkbox } from '@shared/ui/checkbox';
 import { Grid } from '@shared/ui/grid';
 
-import { useLoadInventoryProducts } from '../../hooks/useLoadInventoryProducts';
+import { useLoadInventoryProductsBySearch } from '../../hooks/useLoadInventoryProductsBySearch';
 
 import styles from './inventoryEdit.module.scss';
-import { EditProductForm, useEditProductForm } from '@features/editProductForm';
 
 const highlightByAccount = (item: IInventoryProduct) => {
   return !item?.isActiveAccount;
@@ -28,79 +26,46 @@ const highlightByAccount = (item: IInventoryProduct) => {
 export const InventoryEdit = memo(() => {
   const { number } = useParams();
   const docNumber = Number(number);
-  const {
-    displayCreateForm,
-    displayDeleteForm,
-    displayUpdateForm,
-    onSubmit,
-    updateError,
-    formProps,
-  } = useEditProductForm(docNumber);
+
+  const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
+
+  const onCloseModal = () => {
+    searchInputRef?.current?.focus();
+  };
+
+  const { activePopup, displayForm, onSubmit, updateError, formProps, setActivePopup } =
+    useEditProductForm(docNumber, true, onCloseModal);
+  const { activePopover, setActivePopover } = useSearchInputPopover(onCloseModal);
 
   // Загрузка данных
   const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
-  const { goods, isFetching, setSearch, isActiveAccount } = useLoadInventoryProducts();
+  const { goods, isFetching, setSearch, isActiveAccount } = useLoadInventoryProductsBySearch();
 
-  // состояния popup && popover
-  const [showPopover, setShowPopover] = useState<boolean>(false);
-  const [activePopup, setActivePopup] = useState<boolean>(false);
-  const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
-  const { isKeyPressed } = useKeyPress('Escape');
   const [highlightFunc, setHighlightFunc] = useState<
     ((item: IInventoryProduct) => boolean) | undefined
   >(undefined);
 
   const handleCreate = useCallback(
-    (product: IDreamkasProduct, isActiveAccount: boolean) => {
-      displayCreateForm(product, isActiveAccount);
-      setShowPopover(false);
+    (product: IInventoryProduct) => {
+      displayForm('create')(product);
+      setActivePopover(false);
       setActivePopup(true);
     },
-    [displayCreateForm],
+    [displayForm, setActivePopover, setActivePopup],
   );
 
   const getGoods = async (value: string) => {
-    setShowPopover(false);
+    setActivePopover(false);
     setSearch(value);
   };
 
   const popoverCondition = goods && goods?.length !== 0 && !activePopup;
 
-  const handleUpdate = useCallback(
-    (product: IInventoryProduct) => {
-      displayUpdateForm(product);
-      setActivePopup(true);
-    },
-    [displayUpdateForm],
-  );
-
-  const handleDelete = useCallback(
-    (product: IInventoryProduct) => {
-      displayDeleteForm(product);
-      setActivePopup(true);
-    },
-    [displayDeleteForm],
-  );
-
-  const handleSubmit = async (data: FieldValues) => {
-    onSubmit(data);
-
-    if (!updateError) setActivePopup(false);
-  };
-
-  useEffect(() => {
-    setActivePopup(false);
-    setShowPopover(false);
-    searchInputRef.current?.focus();
-  }, [isKeyPressed, searchInputRef]);
-
   useEffect(() => {
     if (goods) {
-      goods.length === 1
-        ? handleCreate(goods[0], isActiveAccount)
-        : setShowPopover(goods?.length > 0);
+      goods.length === 1 ? handleCreate(goods[0]) : setActivePopover(goods?.length > 0);
     }
-  }, [goods, displayCreateForm, isActiveAccount, handleCreate]);
+  }, [goods, handleCreate, setActivePopover]);
 
   useEffect(() => {
     const highlightOn = localStorage.getItem('highlight') === 'true';
@@ -118,18 +83,12 @@ export const InventoryEdit = memo(() => {
 
   const renderList = () => (
     <>
-      {popoverCondition && (
-        <ProductList
+      {popoverCondition && activePopover && (
+        <PopoverProductsList
           products={goods}
-          selectField={false}
-          avatar={false}
-          count={false}
-          onClick={product => {
-            handleCreate(product, isActiveAccount);
-          }}
-          setFirstElement={setFirstListElement}
+          onClick={handleCreate}
           parentRef={searchInputRef}
-          displayHeaders={false}
+          setFirstElement={setFirstListElement}
         />
       )}
     </>
@@ -144,10 +103,10 @@ export const InventoryEdit = memo(() => {
             loading={isFetching}
             canShowPopover={popoverCondition}
             renderList={renderList}
-            showPopover={showPopover}
+            activePopover={activePopover}
             firstListElement={firstListElement}
             searchInputRef={searchInputRef}
-            setShowPopover={setShowPopover}
+            setActivePopover={setActivePopover}
           />
           <div className={styles.controls}>
             <Checkbox
@@ -169,21 +128,19 @@ export const InventoryEdit = memo(() => {
         <InventoryProductsTable
           highlightFunc={highlightFunc}
           inventoryList={inventoryList}
-          onClick={handleUpdate}
-          onDelete={handleDelete}
+          onClick={displayForm('update')}
+          onDelete={displayForm('delete')}
           tabIndex={activePopup ? -1 : 0}
         />
       </Container>
-      <PopupWithFocusTrap isOpened={activePopup} onClose={() => setActivePopup(false)}>
-        {formProps && (
-          <EditProductForm
-            {...formProps}
-            buttonClick={handleSubmit}
-            error={updateError}
-            isActive={isActiveAccount}
-          />
-        )}
-      </PopupWithFocusTrap>
+      <PopupEditProductForm
+        activePopup={activePopup}
+        formProps={formProps}
+        buttonClick={onSubmit}
+        error={updateError}
+        isActive={isActiveAccount}
+        setActivePopup={setActivePopup}
+      />
     </>
   );
 });

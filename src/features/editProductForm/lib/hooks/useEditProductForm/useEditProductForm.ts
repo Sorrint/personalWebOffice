@@ -3,60 +3,75 @@ import {
   useUpdateProducts,
   type IInventoryProduct,
 } from '@entities/inventoryDocs';
-import { type IDreamkasProduct } from '@entities/products';
-import { useCallback, useState } from 'react';
+import { useKeyPress } from '@shared/lib/hooks';
+import { useCallback, useEffect, useState } from 'react';
 import { type FieldValues } from 'react-hook-form';
 
-export interface IFormProps {
-  product: IInventoryProduct;
+export type formVariants = 'delete' | 'update' | 'create';
+
+export type IFormProps = {
   popupText: string;
   buttonText: string;
-  method: 'Delete' | 'Update' | 'Create';
-}
+  product: IInventoryProduct;
+  method: formVariants;
+};
 
-export const useEditProductForm = (docNumber: number) => {
+const formVariantsProps: Record<formVariants, Omit<IFormProps, 'product'>> = {
+  delete: { buttonText: 'Удалить', popupText: 'Вы уверены?', method: 'delete' },
+  update: { buttonText: 'Обновить', popupText: '', method: 'update' },
+  create: { buttonText: 'Добавить', popupText: '', method: 'create' },
+};
+
+const isCreate = (value: formVariants) => value === 'create';
+
+export const useEditProductForm = (
+  docNumber: number,
+  isModal?: boolean,
+  onCloseModal?: () => void,
+) => {
+  const [activePopup, setActivePopup] = useState(false);
   const [formProps, setFormProps] = useState<IFormProps>();
   const [removeProduct] = useRemoveInventoryProduct();
   const [updateList, { error: updateError }] = useUpdateProducts();
 
-  const displayUpdateForm = useCallback((product: IInventoryProduct) => {
-    setFormProps({ product, buttonText: 'Обновить', popupText: '', method: 'Update' });
-    // setActivePopup(true);
-  }, []);
+  const { isKeyPressed } = useKeyPress('Escape');
 
-  const displayDeleteForm = useCallback((product: IInventoryProduct) => {
-    setFormProps({ product, buttonText: 'Удалить', popupText: 'Вы уверены?', method: 'Delete' });
-    // setActivePopup(true);
-  }, []);
+  useEffect(() => {
+    isKeyPressed && activePopup && setActivePopup(false);
+    onCloseModal?.();
+  }, [activePopup, isKeyPressed, onCloseModal]);
 
-  const displayCreateForm = useCallback((product: IDreamkasProduct, isActiveAccount: boolean) => {
-    const { name, price } = product;
-    const newProduct = {
-      name,
-      price: price && price / 100,
-      quantity: 1,
-      id: undefined,
-      isActiveAccount,
-    };
-    setFormProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
-  }, []);
+  const displayForm = useCallback(
+    (variant: formVariants) => (product: IInventoryProduct) => {
+      const formProduct = isCreate(variant) ? { ...product, id: undefined } : product;
+      setFormProps({
+        product: formProduct,
+        ...formVariantsProps[variant],
+      });
+      isModal && setActivePopup(true);
+    },
+    [isModal],
+  );
 
   const onSubmit = async (data: FieldValues) => {
     if (formProps) {
       const { method, product } = formProps;
-      method === 'Delete'
+      method === 'delete'
         ? await removeProduct({ id: product.id, docNumber }).unwrap()
         : await updateList({ product: { ...data }, docNumber }).unwrap();
     }
 
-    // if (!updateError) showPopup();
+    if (!updateError) {
+      setActivePopup(false);
+      onCloseModal?.();
+    }
   };
 
   return {
-    displayCreateForm,
-    displayUpdateForm,
-    displayDeleteForm,
+    activePopup,
     onSubmit,
+    setActivePopup,
+    displayForm,
     updateError,
     formProps,
   };

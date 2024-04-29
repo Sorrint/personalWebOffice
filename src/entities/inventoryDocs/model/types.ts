@@ -5,7 +5,7 @@ export interface IInventoryProduct {
   name: string;
   price: number | null;
   quantity: number;
-  id: string | undefined;
+  id?: string;
   isActiveAccount?: boolean;
 }
 

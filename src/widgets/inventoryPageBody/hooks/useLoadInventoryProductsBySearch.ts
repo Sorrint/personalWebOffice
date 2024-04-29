@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useLoadProductsBySearch } from '@entities/products';
 import { useAppDispatch } from '@shared/lib/hooks';
 import { tokenActions } from '@shared/lib/store';
+import { transformProducts } from '../lib/helpers/transformProducts';
 
-export const useLoadInventoryProducts = () => {
+export const useLoadInventoryProductsBySearch = () => {
   const [search, setSearch] = useState<string>('');
   const [isActiveAccount, setIsActiveAccount] = useState(true);
   const [requestCompleted, setRequestCompleted] = useState(false);
@@ -35,5 +36,7 @@ export const useLoadInventoryProducts = () => {
     }
   }, [goods, isFetching, dispatch, setToken, refetch, requestCompleted]);
 
-  return { goods, isFetching, setSearch, isActiveAccount };
+  const result = useMemo(() => transformProducts(goods), [goods]);
+
+  return { goods: result, isFetching, setSearch, isActiveAccount };
 };

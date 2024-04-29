@@ -1,7 +1,8 @@
+export { default as PopoverProductsList } from './components/popoverProductsList/popoverProductsList';
+
 export { EditProductProperty } from './components/editProductProperty/editProductProperty';
 
 export { PopupProductCard } from './components/popupProductCard/popupProductCard';
-
 export { type IUnitOption } from './model/types/IStoreProduct';
 export { type ProductsState } from './model/types/productsState';
 export { type IDreamkasProduct } from './model/types/IDreamkasProduct';
