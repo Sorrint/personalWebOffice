@@ -11,7 +11,6 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       svgr({
-        exportAsDefault: true,
         svgrOptions: {
           icon: true,
         },

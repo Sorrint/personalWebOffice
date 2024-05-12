@@ -18,9 +18,15 @@ import { Grid } from '@shared/ui/grid';
 import { useLoadInventoryProductsBySearch } from '../../hooks/useLoadInventoryProductsBySearch';
 
 import styles from './inventoryEdit.module.scss';
+import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
+import { editProductFormReducer } from '@features/editProductForm';
 
 const highlightByAccount = (item: IInventoryProduct) => {
   return !item?.isActiveAccount;
+};
+
+const reducers: ReducersList = {
+  editProductForm: editProductFormReducer,
 };
 
 export const InventoryEdit = memo(() => {
@@ -33,13 +39,17 @@ export const InventoryEdit = memo(() => {
     searchInputRef?.current?.focus();
   };
 
-  const { activePopup, displayForm, onSubmit, updateError, formProps, setActivePopup } =
-    useEditProductForm(docNumber, true, onCloseModal);
+  const { activePopup, displayForm, updateError, setActivePopup, onSubmit } = useEditProductForm(
+    docNumber,
+    true,
+    onCloseModal,
+  );
+
   const { activePopover, setActivePopover } = useSearchInputPopover(onCloseModal);
 
   // Загрузка данных
   const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
-  const { goods, isFetching, setSearch, isActiveAccount } = useLoadInventoryProductsBySearch();
+  const { goods, isFetching, setSearch } = useLoadInventoryProductsBySearch();
 
   const [highlightFunc, setHighlightFunc] = useState<
     ((item: IInventoryProduct) => boolean) | undefined
@@ -95,7 +105,7 @@ export const InventoryEdit = memo(() => {
   );
 
   return (
-    <>
+    <AsyncReduxComponent reducersList={reducers}>
       <Container>
         <Grid>
           <SearchInput
@@ -135,13 +145,12 @@ export const InventoryEdit = memo(() => {
       </Container>
       <PopupEditProductForm
         activePopup={activePopup}
-        formProps={formProps}
         buttonClick={onSubmit}
         error={updateError}
-        isActive={isActiveAccount}
         setActivePopup={setActivePopup}
+        highlightFunc={highlightFunc}
       />
-    </>
+    </AsyncReduxComponent>
   );
 });
 

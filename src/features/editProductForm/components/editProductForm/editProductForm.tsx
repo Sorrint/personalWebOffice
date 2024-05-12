@@ -1,6 +1,6 @@
 import { useEffect, type KeyboardEvent, useRef, type FocusEvent } from 'react';
 import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
-import { type FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { type SerializedError } from '@reduxjs/toolkit';
 
 import { type IInventoryProduct } from '@entities/inventoryDocs';
@@ -10,41 +10,26 @@ import { Button } from '@shared/ui/button';
 
 import styles from './editProductForm.module.scss';
 import classNames from 'classnames';
-import { type formVariants } from '../../lib/hooks/useEditProductForm/useEditProductForm';
+import { useAppSelector } from '@shared/lib/hooks';
+import { selectFormProduct, selectFormProps } from '../../model/selectors/EditProductFormSelectors';
 
 export interface EditProductFormProps {
-  product: IInventoryProduct;
-  buttonClick: (data: FieldValues) => Promise<void>;
-  buttonText: string;
+  buttonClick: (item: IInventoryProduct) => Promise<void>;
   error: FetchBaseQueryError | SerializedError | undefined;
-  popupText?: string;
-  method: formVariants;
-  isActive: boolean;
-}
-export interface FormValues {
-  name: string;
-  price: number | null;
-  quantity: number;
-  id: string | undefined;
-  isActiveAccount: boolean;
+  highlightFunc?: (item: IInventoryProduct) => boolean;
 }
 
-export function EditProductForm({
-  product,
-  buttonClick,
-  buttonText,
-  error,
-  popupText,
-  method,
-}: EditProductFormProps) {
-  const initData: FormValues = {
-    id: product.id,
-    price: product.price,
-    quantity: product.quantity,
-    name: product.name,
-    isActiveAccount: product.isActiveAccount ?? true,
+export function EditProductForm({ buttonClick, error, highlightFunc }: EditProductFormProps) {
+  const product = useAppSelector(selectFormProduct);
+  const { buttonText, method, popupText } = useAppSelector(selectFormProps);
+  const initData: Partial<IInventoryProduct> = {
+    id: product?.id,
+    price: product?.price,
+    quantity: product?.quantity,
+    name: product?.name,
+    isActiveAccount: product?.isActiveAccount ?? true,
   };
-  const { register, handleSubmit, setValue } = useForm<FormValues>({
+  const { register, handleSubmit, setValue } = useForm<IInventoryProduct>({
     defaultValues: initData,
     mode: 'onChange',
   });
@@ -75,10 +60,14 @@ export function EditProductForm({
     return method === 'delete' ? 'cancel' : 'submit';
   };
 
+  if (!product) {
+    return null;
+  }
+
   return (
     <div
       className={classNames(styles['add-product'], {
-        [styles['old-account']]: !product.isActiveAccount,
+        [styles.highlight]: highlightFunc?.(product),
       })}
       ref={modalWindow}
     >

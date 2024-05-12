@@ -1,14 +1,14 @@
 import { type ReactNode, type CSSProperties } from 'react';
+import classNames from 'classnames';
 import { TableBody } from './tableBody';
 import { TableHeader } from './tableHeader';
 import styles from './table.module.scss';
-import classNames from 'classnames';
 
 export type TableAlignments = 'left' | 'right' | 'center';
 
 export type TableHeaders<T> = {
   [K in keyof T]: {
-    value: string | number | ReactNode | (() => ReactNode) | undefined;
+    value: ReactNode;
     alignment?: TableAlignments;
   };
 };
@@ -28,6 +28,7 @@ interface TableProps<T extends TableData> {
   onItemClick?: (item: T) => void;
   view?: TableViews;
   tabIndex?: number;
+  highlightFunc?: (item: T) => boolean;
 }
 
 export const Table = <T extends ObjectRecord>({
@@ -39,6 +40,7 @@ export const Table = <T extends ObjectRecord>({
   onItemClick,
   tabIndex,
   view,
+  highlightFunc,
 }: TableProps<T>) => {
   const cssStyles = {
     '--col-template': colTemplate || '1fr',
@@ -56,6 +58,7 @@ export const Table = <T extends ObjectRecord>({
         view={tableView}
         tabIndex={tabIndex}
         onItemClick={onItemClick}
+        highlightFunc={highlightFunc}
       />
     </table>
   );

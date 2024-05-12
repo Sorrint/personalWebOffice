@@ -8,6 +8,7 @@ interface TableBodyProps<T extends TableData> {
   records: T[];
   tabIndex?: number;
   view: TableViews;
+  highlightFunc?: (item: T) => boolean;
 }
 export const toReactNode = (
   value: string | number | ReactNode | (() => ReactNode) | undefined,
@@ -29,6 +30,7 @@ export const TableBody = <T extends ObjectRecord>({
   onItemClick,
   tabIndex,
   view,
+  highlightFunc,
 }: TableBodyProps<T>) => {
   return (
     <>
@@ -37,7 +39,7 @@ export const TableBody = <T extends ObjectRecord>({
           <tr
             key={index}
             className={classNames(styles.item, styles[view], {
-              [styles.highlight]: item.highlight,
+              [styles.highlight]: highlightFunc?.(item),
             })}
             onClick={() => onItemClick?.(item)}
             tabIndex={tabIndex}

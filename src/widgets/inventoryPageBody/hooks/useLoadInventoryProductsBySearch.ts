@@ -36,7 +36,7 @@ export const useLoadInventoryProductsBySearch = () => {
     }
   }, [goods, isFetching, dispatch, setToken, refetch, requestCompleted]);
 
-  const result = useMemo(() => transformProducts(goods), [goods]);
+  const result = useMemo(() => transformProducts(goods, isActiveAccount), [goods, isActiveAccount]);
 
   return { goods: result, isFetching, setSearch, isActiveAccount };
 };

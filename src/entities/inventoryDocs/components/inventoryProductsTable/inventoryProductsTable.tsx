@@ -8,12 +8,14 @@ import {
   type IInventoryDocs,
 } from '../../model/types';
 
-import { type InventoryContentProps } from '../inventoryContent/inventoryContent';
 import useTableData from '../../lib/hooks/useTableData';
 
-export interface InventoryProductsTableProps extends Omit<InventoryContentProps, 'inventoryList'> {
+export interface InventoryProductsTableProps {
+  tabIndex: number;
   inventoryList: IInventoryDocs;
-  highlightFunc?: ((item: IInventoryProduct) => boolean) | undefined;
+  onClick: (item: IInventoryProduct) => void;
+  onDelete: (item: IInventoryProduct) => void;
+  highlightFunc?: (item: IInventoryProduct) => boolean;
 }
 const tableHeaders: TableHeaders<Partial<IInventoryProductDisplay>> = {
   number: { value: '№' },
@@ -43,6 +45,7 @@ export const InventoryProductsTable = memo(
         colTemplate={COLUMNS_WIDTHS}
         onItemClick={onItemClick}
         tabIndex={tabIndex}
+        highlightFunc={highlightFunc}
       />
     );
   },

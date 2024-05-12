@@ -48,8 +48,7 @@ export interface IInventoryProductCardProps {
   tabIndex?: number;
 }
 
-export interface IInventoryProductDisplay extends Omit<IInventoryProduct, 'price'>, TableData {
-  price: string;
+export interface IInventoryProductDisplay extends IInventoryProduct, TableData {
   number: number;
   sum: number | string;
   delete: () => ReactNode;
