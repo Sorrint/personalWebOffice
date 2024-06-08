@@ -25,7 +25,7 @@ const useTableData = ({
   const tableData = records.reduce((acc: IInventoryProductDisplay[], record, index) => {
     const data: IInventoryProductDisplay = {
       ...record,
-      price: `${record.price?.toFixed(2)} ₽`,
+      priceString: `${record.price?.toFixed(2)} ₽`,
       number: index + 1,
       sum: `${record.price ? (record.price * record.quantity).toFixed(2) : 0} ₽`,
       delete: () => (

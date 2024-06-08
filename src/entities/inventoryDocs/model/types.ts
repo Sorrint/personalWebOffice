@@ -49,6 +49,7 @@ export interface IInventoryProductCardProps {
 }
 
 export interface IInventoryProductDisplay extends IInventoryProduct, TableData {
+  priceString: string;
   number: number;
   sum: number | string;
   delete: () => ReactNode;

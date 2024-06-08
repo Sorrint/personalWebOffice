@@ -21,7 +21,7 @@ const tableHeaders: TableHeaders<Partial<IInventoryProductDisplay>> = {
   number: { value: '№' },
   name: { value: 'Товары (работы, услуги)', alignment: 'left' },
   quantity: { value: 'Количество' },
-  price: { value: 'Цена' },
+  priceString: { value: 'Цена' },
   sum: { value: 'Итого' },
   delete: { value: 'Удалить' },
 };
