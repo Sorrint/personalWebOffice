@@ -1,0 +1,19 @@
+.component {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+@media (width <= 768px) {
+  .component {
+    width: fit-content;
+  }
+
+  .scroll {
+    margin-right: calc(-1 * var(--margin));
+    padding-right: var(--margin);
+  }
+}

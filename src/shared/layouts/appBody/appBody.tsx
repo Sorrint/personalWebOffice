@@ -6,10 +6,10 @@ interface AppBodyProps {
   withoutContainer?: boolean;
 }
 
-export const AppBody = ({ children, withoutContainer }: AppBodyProps) => {
+export const AppBody = ({ children }: AppBodyProps) => {
   return (
     <div className={style.component}>
-      {withoutContainer ? children : <Container>{children}</Container>}
+      {<Container classname={style.component}>{children}</Container>}
     </div>
   );
 };

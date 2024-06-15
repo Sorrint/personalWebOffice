@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 import styles from './appHeader.module.scss';
 import { Container } from '../container/container';
+import { HeaderTabs } from './components/HeaderTabs/HeaderTabs';
 
 interface AppHeaderProps {
   children?: ReactNode;
@@ -21,3 +22,5 @@ export const AppHeader = ({ children, title, renderBtn }: AppHeaderProps) => {
     </div>
   );
 };
+
+AppHeader.Tabs = HeaderTabs;

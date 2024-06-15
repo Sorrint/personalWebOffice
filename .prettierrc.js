@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   singleQuote: true,
   jsxSingleQuote: true,
   semi: true,

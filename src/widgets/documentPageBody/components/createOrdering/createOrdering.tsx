@@ -15,7 +15,7 @@ import { Panel } from '@shared/ui/panel/panel';
 
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import style from './createOrdering.module.scss';
-import { Container } from '@shared/layouts/container/container';
+import { ScrollableBlock } from '../../../../shared/ui/ScrollableBlock';
 
 const reducers: ReducersList = {
   ordering: orderingReducer,
@@ -32,21 +32,17 @@ export const CreateOrdering = () => {
     dispatch(orderingActions.setPalletsCount(palletsObj));
   };
 
-  if (!orderId) return <Container>{'Нет id заказа'}</Container>;
+  if (!orderId) return <>{'Нет id заказа'}</>;
 
   return (
     <AsyncReduxComponent reducersList={reducers}>
-      <Container>
-        <Panel title='Дополнительные параметры для расчета' open={false}>
-          <CountPalletsForm classname={style.form} onChange={setPallets} />
-        </Panel>
-      </Container>
-      <Container scrollable>
+      <Panel title='Дополнительные параметры для расчета' open={false}>
+        <CountPalletsForm classname={style.form} onChange={setPallets} />
+      </Panel>
+      <ScrollableBlock>
         <OrderingList editRows={(key: string) => <EditOrderingRows chapterKey={key} />} />
-      </Container>
-      <Container>
-        <OrderingInfo />
-      </Container>
+      </ScrollableBlock>
+      <OrderingInfo />
     </AsyncReduxComponent>
   );
 };

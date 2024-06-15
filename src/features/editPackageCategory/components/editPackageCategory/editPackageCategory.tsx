@@ -29,7 +29,7 @@ export const EditPackageCategory = memo(({ packageCategory }: EditPackageCategor
 
   const handleSet = useCallback(
     <T extends Path<IPackageCategory>>(key: T, value: PathValue<IPackageCategory, T>) => {
-      //@ts-ignore-next-line
+      //@ts-expect-error значение гарантированно соответствует типу
       setValue(key, value);
     },
     [setValue],

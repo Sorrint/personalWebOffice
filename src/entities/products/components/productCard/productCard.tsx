@@ -1,4 +1,4 @@
-import { type FC, type KeyboardEvent } from 'react';
+import { type KeyboardEvent } from 'react';
 
 import { type IDreamkasProduct, type IProductStock } from '../../model/types/IDreamkasProduct';
 
@@ -8,10 +8,10 @@ import { type IProductListContentProps } from '../productList/productList';
 interface IProductCardProps extends IProductListContentProps<IDreamkasProduct> {
   product: IDreamkasProduct;
   addProductRef?: (productRef: HTMLDivElement) => void;
-  onCardKeyDown?: (event: KeyboardEvent, onSubmit: (...args: any[]) => void) => void;
+  onCardKeyDown?: (event: KeyboardEvent, onSubmit: (product: IDreamkasProduct) => void) => void;
 }
 
-export const ProductCard: FC<IProductCardProps> = ({
+export const ProductCard = ({
   product,
   selectField,
   avatar,
@@ -19,7 +19,7 @@ export const ProductCard: FC<IProductCardProps> = ({
   onClick,
   addProductRef,
   onCardKeyDown,
-}) => {
+}: IProductCardProps) => {
   const { name, price, stock, type } = product;
   const getProductRest = (stock: IProductStock[] | null) => {
     if (stock) {

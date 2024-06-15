@@ -9,7 +9,6 @@ import {
 } from '@entities/inventoryDocs';
 import { PopoverProductsList } from '@entities/products';
 import { useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
-import { Container } from '@shared/layouts/container/container';
 import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/searchInput';
 import { Checkbox } from '@shared/ui/checkbox';
@@ -20,6 +19,7 @@ import { useLoadInventoryProductsBySearch } from '../../hooks/useLoadInventoryPr
 import styles from './inventoryEdit.module.scss';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
 import { editProductFormReducer } from '@features/editProductForm';
+import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 
 const highlightByAccount = (item: IInventoryProduct) => {
   return !item?.isActiveAccount;
@@ -106,35 +106,33 @@ export const InventoryEdit = memo(() => {
 
   return (
     <AsyncReduxComponent reducersList={reducers}>
-      <Container>
-        <Grid>
-          <SearchInput
-            searchFunction={getGoods}
-            loading={isFetching}
-            canShowPopover={popoverCondition}
-            renderList={renderList}
-            activePopover={activePopover}
-            firstListElement={firstListElement}
-            searchInputRef={searchInputRef}
-            setActivePopover={setActivePopover}
+      <Grid>
+        <SearchInput
+          searchFunction={getGoods}
+          loading={isFetching}
+          canShowPopover={popoverCondition}
+          renderList={renderList}
+          activePopover={activePopover}
+          firstListElement={firstListElement}
+          searchInputRef={searchInputRef}
+          setActivePopover={setActivePopover}
+        />
+        <div className={styles.controls}>
+          <Checkbox
+            text='Выделять поля с резервного аккаунта'
+            name='tempAcc'
+            onChange={handleCheckboxClick}
+            defaultChecked={localStorage.getItem('highlight') === 'true'}
           />
-          <div className={styles.controls}>
-            <Checkbox
-              text='Выделять поля с резервного аккаунта'
-              name='tempAcc'
-              onChange={handleCheckboxClick}
-              defaultChecked={localStorage.getItem('highlight') === 'true'}
-            />
-            <SaveInventoryToXLSX inventoryList={inventoryList} />
-          </div>
-          <h1>
-            {`Инвентаризация № ${inventoryList.documentNumber} от `}
-            <FormatDate date={inventoryList.choosenDate} />
-            {` магазина ${inventoryList.storeName}`}
-          </h1>
-        </Grid>
-      </Container>
-      <Container scrollable>
+          <SaveInventoryToXLSX inventoryList={inventoryList} />
+        </div>
+        <h1>
+          {`Инвентаризация № ${inventoryList.documentNumber} от `}
+          <FormatDate date={inventoryList.choosenDate} />
+          {` магазина ${inventoryList.storeName}`}
+        </h1>
+      </Grid>
+      <ScrollableBlock>
         <InventoryProductsTable
           highlightFunc={highlightFunc}
           inventoryList={inventoryList}
@@ -142,7 +140,7 @@ export const InventoryEdit = memo(() => {
           onDelete={displayForm('delete')}
           tabIndex={activePopup ? -1 : 0}
         />
-      </Container>
+      </ScrollableBlock>
       <PopupEditProductForm
         activePopup={activePopup}
         buttonClick={onSubmit}

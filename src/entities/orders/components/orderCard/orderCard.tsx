@@ -5,6 +5,7 @@ import { Table } from '@shared/ui/table';
 
 import { type IOrderRecord, type IOrder } from '../../model/types/IOrder';
 import { type TableHeaders } from '@shared/ui/table/components/table';
+import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 
 interface OrderCardProps {
   children?: ReactNode;
@@ -30,12 +31,14 @@ export const OrderCard = ({ children, order }: OrderCardProps) => {
       {order && (
         <>
           {actions}
-          <Table
-            headers={tableHeaders}
-            data={order.orderRecords}
-            colTemplate={COLUMNS_WIDTHS}
-            view='grid'
-          />
+          <ScrollableBlock>
+            <Table
+              headers={tableHeaders}
+              data={order.orderRecords}
+              colTemplate={COLUMNS_WIDTHS}
+              view='grid'
+            />
+          </ScrollableBlock>
         </>
       )}
     </>

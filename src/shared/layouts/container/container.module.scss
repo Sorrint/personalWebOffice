@@ -1,7 +1,7 @@
 .component {
     max-width: 1024px;
     margin: 0 auto;
-    padding: 0 calc(var(--margin) * 6);
+    padding: calc(var(--margin) * 4) calc(var(--margin) * 6);
 }
 
 .scroll {

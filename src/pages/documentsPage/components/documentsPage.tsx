@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
 
-import { AppRibbon } from '@widgets/appRibbon';
 import { orderReducer } from '@entities/orders';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
@@ -42,10 +41,10 @@ const DocumentsPage = () => {
   return (
     <>
       <AppHeader title='Документы' renderBtn={renderBtn}>
-        <AppRibbon navLinks={navLinks} />
+        <AppHeader.Tabs navLinks={navLinks} />
       </AppHeader>
       <AsyncReduxComponent reducersList={reducers}>
-        <AppBody withoutContainer>
+        <AppBody>
           <Outlet />
         </AppBody>
       </AsyncReduxComponent>

@@ -1,0 +1,6 @@
+{
+  "include": [
+    ".prettierrc.js",
+    "stylelint.config.js",
+  ]
+}
