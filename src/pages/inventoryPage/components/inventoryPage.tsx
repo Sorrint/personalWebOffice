@@ -22,7 +22,7 @@ const InventoryPage = () => {
       <AppHeader title='Инвентаризация'>
         <AppRibbon navLinks={navLinks} />
       </AppHeader>
-      <AppBody withoutContainer>
+      <AppBody>
         <Outlet />
       </AppBody>
     </AsyncReduxComponent>
