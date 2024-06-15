@@ -31,6 +31,7 @@ export const OrderCard = ({ children, order }: OrderCardProps) => {
       {order && (
         <>
           {actions}
+          {/* <div> */}
           <ScrollableBlock>
             <Table
               headers={tableHeaders}
@@ -39,6 +40,7 @@ export const OrderCard = ({ children, order }: OrderCardProps) => {
               view='grid'
             />
           </ScrollableBlock>
+          {/* </div> */}
         </>
       )}
     </>

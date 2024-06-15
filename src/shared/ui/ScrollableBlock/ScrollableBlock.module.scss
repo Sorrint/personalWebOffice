@@ -7,6 +7,10 @@
   overflow-x: auto;
 }
 
+.grid {
+  display: grid;
+}
+
 @media (width <= 768px) {
   .component {
     width: fit-content;
@@ -17,3 +21,4 @@
     padding-right: var(--margin);
   }
 }
+
