@@ -1,3 +1,1 @@
-export { Table } from './components/table';
-export { TableBody } from './components/tableBody';
-export { TableHeader } from './components/tableHeader';
+export { type TableColumns, Table } from './table';

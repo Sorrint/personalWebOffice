@@ -4,21 +4,19 @@ import { Loader } from '@shared/ui/loaders';
 import { type IOrderingRecordDisplay } from '../../model/types/ordering';
 import { getIsLoading, getOrderingChaptersData } from '../../model/slice/OrderingSlice';
 import { OrderingHeaders } from '../../consts/orderingHeaders';
-import { Table } from '@shared/ui/table';
+import { type TableColumns, Table } from '@shared/ui/table';
 import useTableData from '../../lib/hooks/useTableData/useTableData';
-import { type TableHeaders } from '@shared/ui/table/components/table';
-
 interface OrderingListProps {
   className?: string;
   editRows?: (key: string) => ReactNode;
 }
 
-const headers: TableHeaders<Partial<IOrderingRecordDisplay>> = {
-  number: { value: OrderingHeaders.NUMBER },
-  productName: { value: OrderingHeaders.NAME, alignment: 'left' },
-  count: { value: OrderingHeaders.COUNT },
-  unit: { value: OrderingHeaders.UNIT },
-  rows: { value: OrderingHeaders.ROWS },
+const columns: TableColumns<Partial<IOrderingRecordDisplay>> = {
+  number: { header: OrderingHeaders.NUMBER },
+  productName: { header: OrderingHeaders.NAME, alignment: 'left' },
+  count: { header: OrderingHeaders.COUNT },
+  unit: { header: OrderingHeaders.UNIT },
+  rows: { header: OrderingHeaders.ROWS },
 };
 
 export const OrderingList = memo(({ className, editRows }: OrderingListProps) => {
@@ -32,13 +30,10 @@ export const OrderingList = memo(({ className, editRows }: OrderingListProps) =>
         <Loader />
       ) : (
         displayingRecords && (
-          <Table
-            className={className}
-            data={displayingRecords}
-            headers={headers}
-            colTemplate={colTemplate}
-            view='grid'
-          />
+          <Table className={className} colTemplate={colTemplate} columns={columns} view='grid'>
+            <Table.Header />
+            <Table.Body records={displayingRecords} />
+          </Table>
         )
       )}
     </>

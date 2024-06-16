@@ -4,7 +4,7 @@ import { hasComponentName } from '@shared/lib/utils';
 import { Table } from '@shared/ui/table';
 
 import { type IOrderRecord, type IOrder } from '../../model/types/IOrder';
-import { type TableHeaders } from '@shared/ui/table/components/table';
+import { type TableColumns } from '@shared/ui/table/table';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 
 interface OrderCardProps {
@@ -12,11 +12,11 @@ interface OrderCardProps {
   order?: IOrder;
 }
 
-const tableHeaders: TableHeaders<IOrderRecord> = {
-  number: { value: '№' },
-  productName: { value: 'Товары (работы, услуги)', alignment: 'left' },
-  count: { value: 'Количество' },
-  unit: { value: 'Ед.' },
+const tableColumns: TableColumns<IOrderRecord> = {
+  number: { header: '№' },
+  productName: { header: 'Товары (работы, услуги)', alignment: 'left' },
+  count: { header: 'Количество' },
+  unit: { header: 'Ед.' },
 };
 
 const COLUMNS_WIDTHS = '30px minmax(500px, 1fr) 130px 130px';
@@ -32,12 +32,10 @@ export const OrderCard = ({ children, order }: OrderCardProps) => {
         <>
           {actions}
           <ScrollableBlock>
-            <Table
-              headers={tableHeaders}
-              data={order.orderRecords}
-              colTemplate={COLUMNS_WIDTHS}
-              view='grid'
-            />
+            <Table colTemplate={COLUMNS_WIDTHS} view='grid' columns={tableColumns}>
+              <Table.Header />
+              <Table.Body records={order.orderRecords} />
+            </Table>
           </ScrollableBlock>
         </>
       )}

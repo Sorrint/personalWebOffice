@@ -1,3 +1,4 @@
+export { toReactNode } from './toReactNode/toReactNode';
 export { isEmptyObject } from './isEmptyObject/isEmptyObject';
 export { getDeclensions } from './declensions/getDeclensions';
 export { ClickOutside } from './clickOutside/clickOutside';
