@@ -4,9 +4,9 @@
 
 .body,
 .headers {
-    display: grid;
-    grid-template-columns: 1fr;
-    text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
 }
 
 .headers {
@@ -33,24 +33,23 @@
 
 .table.list {
   font-size: var(--font-size-ui);
-}
 
-.body.list,
-.headers.list {
-  row-gap: var(--grid-gap);
-}
+  th {
+    margin-bottom: var(--grid-gap);
+  }
 
-.headers.list {
-  margin-bottom: var(--grid-gap);
-}
+  tr {
+    grid-column-gap: var(--margin);
+    padding: var(--padding);
+  }
 
-.column.list {
-  align-items: center;
-}
+  tbody, thead {
+    row-gap: var(--grid-gap);
+  }
 
-.item.list {
-  grid-column-gap: var(--margin);
-  padding: var(--padding);
+  thead {
+    align-items: center;
+  }
 }
 
 .table.grid {
@@ -58,11 +57,11 @@
   font-size: var(--font-size-text);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-}
 
-.column.grid {
-  padding: calc(var(--padding) * 0.5);
-  border: var(--border);
+  th, td {
+    padding: calc(var(--padding) * 0.5);
+    border: var(--border);
+  }
 }
 
 .column.left {

@@ -1,4 +1,4 @@
-import { type TableData } from '@shared/ui/table/components/table';
+import { type TableData } from '@shared/ui/table/table';
 import { type ReactNode } from 'react';
 
 export interface IInventoryProduct {
