@@ -31,14 +31,12 @@ export const OrderCard = ({ children, order }: OrderCardProps) => {
       {order && (
         <>
           {actions}
-          {/* <div> */}
           <ScrollableBlock>
             <Table colTemplate={COLUMNS_WIDTHS} view='grid' columns={tableColumns}>
               <Table.Header />
               <Table.Body records={order.orderRecords} />
             </Table>
           </ScrollableBlock>
-          {/* </div> */}
         </>
       )}
     </>
