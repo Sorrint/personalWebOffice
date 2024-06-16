@@ -66,7 +66,7 @@ export const SearchInput = memo(
 
     return (
       <>
-        <div className={styles['search-field']}>
+        <div className={styles.field}>
           <TextField
             type={'text'}
             name={'searchText'}
@@ -78,7 +78,7 @@ export const SearchInput = memo(
             onFocus={handleFocus}
           />
           {loading && (
-            <div className={styles['search-icon']}>
+            <div className={styles.icon}>
               <Loader />
             </div>
           )}
@@ -89,7 +89,7 @@ export const SearchInput = memo(
           referenceElement={searchInputRef?.current as HTMLElement}
           key={'key'}
         >
-          <DropdownList className={styles['dropdown-products']}>{renderList?.()}</DropdownList>
+          <DropdownList className={styles.dropdown}>{renderList?.()}</DropdownList>
         </Popover>
       </>
     );

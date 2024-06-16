@@ -1,14 +1,23 @@
-.search-field {
-    display: flex;
+:root {
+  --icon-size: 20px;
 }
 
-.search-icon {
+.field {
+  position: relative;
+    overflow: hidden;
     display: flex;
-    height: 36px;
-    margin-left: 10px;
-    padding-top: 5px;
+    align-items: center;
+
 }
 
-.dropdown-products {
+.icon {
+  position: absolute;
+  top: auto;
+  right: var(--margin);
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.dropdown {
   margin: 10px 0 0 -10px;
 }
