@@ -8,7 +8,7 @@ import {
   InventoryProductsTable,
 } from '@entities/inventoryDocs';
 import { PopoverProductsList } from '@entities/products';
-import { useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
+import { useResize, useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
 import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/searchInput';
 import { Checkbox } from '@shared/ui/checkbox';
@@ -32,11 +32,13 @@ const reducers: ReducersList = {
 export const InventoryEdit = memo(() => {
   const { number } = useParams();
   const docNumber = Number(number);
-
+  const { isScreenMd } = useResize();
   const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
 
   const onCloseModal = () => {
-    searchInputRef?.current?.focus();
+    if (isScreenMd) {
+      searchInputRef?.current?.focus();
+    }
   };
 
   const { activePopup, displayForm, updateError, setActivePopup, onSubmit } = useEditProductForm(
