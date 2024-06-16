@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { type ReactNode, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { type ReactNode, memo, useCallback, useMemo, useState } from 'react';
 
 import style from './panel.module.scss';
 import { IconFont } from '../iconFont';
@@ -11,21 +11,12 @@ interface PanelProps {
   open?: boolean;
   title?: string;
 }
-export const Panel = memo(({ children, className, onChange, open, title }: PanelProps) => {
+export const Panel = memo(({ children, className, onChange, open = true, title }: PanelProps) => {
   const [isOpen, setIsOpen] = useState(open);
-
-  useEffect(() => {
-    if (isOpen !== undefined && open !== isOpen) {
-      setIsOpen(open);
-      onChange?.(isOpen);
-    }
-  }, [isOpen, onChange, open]);
 
   const onClick = useCallback(() => {
     setIsOpen(prev => !prev);
-    if (isOpen !== undefined) {
-      onChange?.(isOpen);
-    }
+    onChange?.(isOpen);
   }, [isOpen, onChange]);
 
   const showIcon = useMemo(

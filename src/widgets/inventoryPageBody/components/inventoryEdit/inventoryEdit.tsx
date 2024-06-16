@@ -131,16 +131,16 @@ export const InventoryEdit = memo(() => {
           <FormatDate date={inventoryList.choosenDate} />
           {` магазина ${inventoryList.storeName}`}
         </h1>
+        <ScrollableBlock>
+          <InventoryProductsTable
+            highlightFunc={highlightFunc}
+            inventoryList={inventoryList}
+            onClick={displayForm('update')}
+            onDelete={displayForm('delete')}
+            tabIndex={activePopup ? -1 : 0}
+          />
+        </ScrollableBlock>
       </Grid>
-      <ScrollableBlock>
-        <InventoryProductsTable
-          highlightFunc={highlightFunc}
-          inventoryList={inventoryList}
-          onClick={displayForm('update')}
-          onDelete={displayForm('delete')}
-          tabIndex={activePopup ? -1 : 0}
-        />
-      </ScrollableBlock>
       <PopupEditProductForm
         activePopup={activePopup}
         buttonClick={onSubmit}

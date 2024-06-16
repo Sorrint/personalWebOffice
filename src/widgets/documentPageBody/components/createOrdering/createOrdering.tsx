@@ -16,6 +16,7 @@ import { Panel } from '@shared/ui/panel/panel';
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import style from './createOrdering.module.scss';
 import { ScrollableBlock } from '../../../../shared/ui/ScrollableBlock';
+import { FlexColumn } from '@shared/ui/Flex';
 
 const reducers: ReducersList = {
   ordering: orderingReducer,
@@ -36,13 +37,15 @@ export const CreateOrdering = () => {
 
   return (
     <AsyncReduxComponent reducersList={reducers}>
-      <Panel title='Дополнительные параметры для расчета' open={false}>
-        <CountPalletsForm classname={style.form} onChange={setPallets} />
-      </Panel>
-      <ScrollableBlock>
-        <OrderingList editRows={(key: string) => <EditOrderingRows chapterKey={key} />} />
-      </ScrollableBlock>
-      <OrderingInfo />
+      <FlexColumn gap='16'>
+        <Panel title='Дополнительные параметры для расчета' open={true}>
+          <CountPalletsForm classname={style.form} onChange={setPallets} />
+        </Panel>
+        <ScrollableBlock>
+          <OrderingList editRows={(key: string) => <EditOrderingRows chapterKey={key} />} />
+        </ScrollableBlock>
+        <OrderingInfo />
+      </FlexColumn>
     </AsyncReduxComponent>
   );
 };
