@@ -41,7 +41,7 @@ export const EditProductCard = <T extends IStoreProduct>({
   const { watch, register, setValue, handleSubmit } = methods;
 
   const handleSet = <T extends Path<IStoreProduct>>(key: T, value: PathValue<IStoreProduct, T>) => {
-    //@ts-ignore-next-line
+    //@ts-expect-error значение гарантированно соответствует типу
     setValue(key, value);
   };
   const weight = parseWeightKg(product.name);

@@ -2,14 +2,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
     gap: 90px 30px;
-    margin-bottom: 40px;
     padding: 60px 20px 20px;
     background-color: #fff;
     border-radius: 10px;
 }
 
 .card-title {
-    margin-bottom: 40px;
     font-size: var(--font-size-text-medium);
     font-weight: 500;
 }
@@ -23,5 +21,5 @@
         grid-column: 1 / 2;
     }
 } ;
-    
+
 

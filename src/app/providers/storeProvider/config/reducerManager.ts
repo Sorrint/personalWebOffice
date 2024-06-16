@@ -1,6 +1,6 @@
 import {
+  type UnknownAction,
   combineReducers,
-  type AnyAction,
   type Reducer,
   type ReducersMapObject,
 } from '@reduxjs/toolkit';
@@ -24,11 +24,10 @@ export function createReducerManager(
     getReducerMap: () => reducers,
     getMountedReducers: () => mountedReducers,
 
-    reduce: (state: StoreSchema, action: AnyAction) => {
+    reduce: (state: StoreSchema, action: UnknownAction) => {
       if (keysToRemove.length > 0) {
         state = { ...state };
         for (const key of keysToRemove) {
-          // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
           delete state[key];
         }
         keysToRemove = [];
@@ -51,7 +50,7 @@ export function createReducerManager(
       if (!key || !reducers[key]) {
         return;
       }
-      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+
       delete reducers[key];
       keysToRemove.push(key);
       mountedReducers[key] = false;

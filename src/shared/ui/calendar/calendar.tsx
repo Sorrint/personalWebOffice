@@ -23,11 +23,11 @@ function Calendar<T extends FieldValues>(props: ICalendarProps<T>) {
     [styles.full]: full,
   });
   const ru = useAsyncLoad('date-fns/locale/ru');
-  if (!ru || !ru.default) {
+  if (!ru || !ru.ru) {
     return null;
   }
 
-  registerLocale('ru', ru.default);
+  registerLocale('ru', ru.ru);
 
   return (
     <Controller

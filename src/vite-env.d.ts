@@ -7,6 +7,8 @@ declare module '*.svg' {
 /// <reference types="vite-plugin-svgr/client" />
 /// <reference types="@shared/types/svg" />
 
+type Dictionary<T> = Record<string, T>;
+
 interface ImportMetaEnv {
   readonly VITE_SERVER_URI: string;
 }

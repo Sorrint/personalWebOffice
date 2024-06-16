@@ -3,7 +3,7 @@ import { forwardRef, memo, type ReactNode, type ChangeEvent, type ForwardedRef }
 
 import styles from './button.module.scss';
 import { IconFont } from '../iconFont';
-interface ButtonProps {
+export interface ButtonProps {
   onClick?: (...args: any[]) => void;
   buttonType?: 'submit' | 'cancel' | 'dropdown';
   children?: ReactNode;
@@ -13,12 +13,23 @@ interface ButtonProps {
   onChange?: (e: ChangeEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   full?: boolean;
+  outline?: boolean;
 }
 
 export const Button = memo(
   forwardRef(function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
-    const { onClick, buttonType, children, classname, onKeyDown, name, onChange, disabled, full } =
-      props;
+    const {
+      onClick,
+      buttonType,
+      children,
+      classname,
+      onKeyDown,
+      name,
+      onChange,
+      disabled,
+      full,
+      outline,
+    } = props;
 
     const btnClassName = classNames(
       styles.btn,
@@ -26,6 +37,7 @@ export const Button = memo(
       {
         [styles.disabled]: disabled,
         [styles.full]: full,
+        [styles.outline]: outline,
       },
       classname,
     );

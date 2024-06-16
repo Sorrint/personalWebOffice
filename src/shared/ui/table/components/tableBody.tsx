@@ -1,13 +1,18 @@
 import { type ReactNode } from 'react';
-import { type TableDataValue, type TableData, type TableHeaders, type TableViews } from './table';
+import { type TableData, type TableHeaders, type TableViews } from './table';
 import styles from './table.module.scss';
 import classNames from 'classnames';
-interface TableBodyProps<T extends ObjectRecord> {
-  headers: TableHeaders<T>;
-  records: Partial<TableData<T>>;
+interface TableBodyProps<T extends TableData> {
+  headers: Partial<TableHeaders<T>>;
+  onItemClick?: (item: T) => void;
+  records: T[];
+  tabIndex?: number;
   view: TableViews;
+  highlightFunc?: (item: T) => boolean;
 }
-const toReactNode = (value: TableDataValue): ReactNode => {
+export const toReactNode = (
+  value: string | number | ReactNode | (() => ReactNode) | undefined,
+): ReactNode => {
   if (!value) {
     return '';
   }
@@ -22,20 +27,32 @@ const toReactNode = (value: TableDataValue): ReactNode => {
 export const TableBody = <T extends ObjectRecord>({
   records,
   headers,
+  onItemClick,
+  tabIndex,
   view,
+  highlightFunc,
 }: TableBodyProps<T>) => {
-  const getColumnName = (text: string | undefined) => {
-    const alignClassName = text && text.length > 8 ? styles['column-left'] : styles.column;
-    return classNames(alignClassName, styles[view]);
-  };
-
   return (
     <>
       <tbody className={classNames(styles.body, styles[view])}>
         {records.map((item, index) => (
-          <tr key={index} className={classNames(styles.item, styles[view])}>
+          <tr
+            key={index}
+            className={classNames(styles.item, styles[view], {
+              [styles.highlight]: highlightFunc?.(item),
+            })}
+            onClick={() => onItemClick?.(item)}
+            tabIndex={tabIndex}
+          >
             {Object.keys(headers).map((headline: string) => (
-              <td className={getColumnName(item?.[headline]?.toString())} key={headline}>
+              <td
+                className={classNames(
+                  styles.column,
+                  styles[view],
+                  styles[headers[headline]?.alignment || 'center'],
+                )}
+                key={headline}
+              >
                 {toReactNode(item?.[headline])}
               </td>
             ))}

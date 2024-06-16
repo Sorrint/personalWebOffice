@@ -1,185 +1,154 @@
-import { memo, useEffect, useState, useRef, type KeyboardEvent, useCallback } from 'react';
-import { type FieldValues } from 'react-hook-form';
+import { memo, useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { useEditProductForm, PopupEditProductForm } from '@features/editProductForm';
+import { SaveInventoryToXLSX } from '@features/saveInventoryToXLSX';
 import {
   type IInventoryProduct,
-  InventoryContent,
-  useUpdateProducts,
-  useRemoveInventoryProduct,
   useLoadDocumentByNumber,
+  InventoryProductsTable,
 } from '@entities/inventoryDocs';
-import { type IDreamkasProduct, ProductList, PopupProductCard } from '@entities/products';
+import { PopoverProductsList } from '@entities/products';
+import { useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
+import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/searchInput';
-import { DropdownList } from '@shared/ui/dropdownList';
-import { useKeyPress } from '@shared/lib/hooks';
-import { PopupWithFocusTrap } from '@shared/ui/popup';
+import { Checkbox } from '@shared/ui/checkbox';
+import { Grid } from '@shared/ui/grid';
+
+import { useLoadInventoryProductsBySearch } from '../../hooks/useLoadInventoryProductsBySearch';
 
 import styles from './inventoryEdit.module.scss';
+import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
+import { editProductFormReducer } from '@features/editProductForm';
+import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 
-import { Popover } from '@shared/ui/popover';
-import { useLoadInventoryProducts } from '../../hooks/useLoadInventoryProducts';
-interface IPopupProps {
-  product: IInventoryProduct;
-  popupText: string;
-  buttonText: string;
-  method: 'Delete' | 'Update' | 'Create';
-}
+const highlightByAccount = (item: IInventoryProduct) => {
+  return !item?.isActiveAccount;
+};
+
+const reducers: ReducersList = {
+  editProductForm: editProductFormReducer,
+};
 
 export const InventoryEdit = memo(() => {
   const { number } = useParams();
-  if (!number) return null;
   const docNumber = Number(number);
-  const [popupProps, setPopupProps] = useState<IPopupProps>();
-  const [updateList, { error: updateError }] = useUpdateProducts();
-  const [removeProduct] = useRemoveInventoryProduct();
-  const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
+
+  const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
+
+  const onCloseModal = () => {
+    searchInputRef?.current?.focus();
+  };
+
+  const { activePopup, displayForm, updateError, setActivePopup, onSubmit } = useEditProductForm(
+    docNumber,
+    true,
+    onCloseModal,
+  );
+
+  const { activePopover, setActivePopover } = useSearchInputPopover(onCloseModal);
 
   // Загрузка данных
-  const { goods, isFetching, setSearch, isActiveAccount } = useLoadInventoryProducts();
+  const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
+  const { goods, isFetching, setSearch } = useLoadInventoryProductsBySearch();
 
-  // состояния popup && popover
-  const [activePopover, setActivePopover] = useState<boolean>(false);
-  const [activePopup, setActivePopup] = useState<boolean>(false);
-  const searchInput = useRef<HTMLInputElement>(null);
-  const firstElement = useRef<HTMLDivElement | null>(null);
-  const { isKeyPressed, setIsKeyPressed } = useKeyPress('Escape');
+  const [highlightFunc, setHighlightFunc] = useState<
+    ((item: IInventoryProduct) => boolean) | undefined
+  >(undefined);
 
-  useEffect(() => {
-    setIsKeyPressed(false);
-    setActivePopup(false);
-    setActivePopover(false);
-  }, [isKeyPressed]);
-
-  useEffect(() => {
-    if (goods) {
-      goods.length === 1
-        ? handleCreate(goods[0], isActiveAccount)
-        : setActivePopover(goods?.length > 0);
-    }
-  }, [goods]);
-
-  useEffect(() => {
-    !activePopup && searchInput.current?.focus();
-    !activePopover && searchInput.current?.focus();
-  }, [activePopup, activePopover]);
+  const handleCreate = useCallback(
+    (product: IInventoryProduct) => {
+      displayForm('create')(product);
+      setActivePopover(false);
+      setActivePopup(true);
+    },
+    [displayForm, setActivePopover, setActivePopup],
+  );
 
   const getGoods = async (value: string) => {
     setActivePopover(false);
     setSearch(value);
   };
 
-  const showPopup = () => {
-    setActivePopup(prevState => !prevState);
-  };
+  const popoverCondition = goods && goods?.length !== 0 && !activePopup;
 
-  const hidePopover = () => {
-    setActivePopover(false);
-  };
+  useEffect(() => {
+    if (goods) {
+      goods.length === 1 ? handleCreate(goods[0]) : setActivePopover(goods?.length > 0);
+    }
+  }, [goods, handleCreate, setActivePopover]);
 
-  const handleCreate = useCallback((product: IDreamkasProduct, isActiveAccount: boolean) => {
-    const { name, price } = product;
-    const newProduct = {
-      name,
-      price: price && price / 100,
-      quantity: 1,
-      id: undefined,
-      isActiveAccount,
-    };
-    setActivePopover(false);
-    setPopupProps({ product: newProduct, buttonText: 'Добавить', popupText: '', method: 'Create' });
-    setActivePopup(true);
+  useEffect(() => {
+    const highlightOn = localStorage.getItem('highlight') === 'true';
+    setHighlightFunc(() => (highlightOn ? highlightByAccount : undefined));
   }, []);
 
-  const handleUpdate = useCallback((product: IInventoryProduct) => {
-    setPopupProps({ product, buttonText: 'Обновить', popupText: '', method: 'Update' });
-    setActivePopup(true);
+  const handleCheckboxClick = useCallback((checked: boolean) => {
+    checked ? localStorage.setItem('highlight', 'true') : localStorage.setItem('highlight', '');
+    setHighlightFunc(() => (checked ? highlightByAccount : undefined));
   }, []);
 
-  const handleDelete = useCallback((product: IInventoryProduct) => {
-    setPopupProps({ product, buttonText: 'Удалить', popupText: 'Вы уверены?', method: 'Delete' });
-    setActivePopup(true);
-  }, []);
-
-  const onSubmit = async (data: FieldValues) => {
-    if (popupProps) {
-      const { method, product } = popupProps;
-      method === 'Delete'
-        ? await removeProduct({ id: product.id, docNumber }).unwrap()
-        : await updateList({ product: { ...data }, docNumber }).unwrap();
-    }
-
-    if (!updateError) showPopup();
-  };
-
-  const handleInputKeydown = (key: KeyboardEvent) => {
-    if (key.code === 'ArrowDown' && !activePopover) {
-      goods && setActivePopover(true);
-    }
-    if (key.code === 'ArrowDown' && activePopover && firstElement.current) {
-      key.preventDefault();
-      firstElement.current.focus();
-    }
-    if (key.code === 'ArrowUp' && activePopover) {
-      key.preventDefault();
-      setActivePopover(false);
-    }
-  };
-
-  const setFirstElement = (el: HTMLDivElement) => {
-    firstElement.current = el;
-  };
+  if (!inventoryList?.products) return 'Нет данных для отображения';
 
   if (isLoading) return 'Идет загрузка...';
 
-  return (
+  const renderList = () => (
     <>
-      <SearchInput
-        searchFunction={getGoods}
-        loading={isFetching}
-        inputRef={searchInput}
-        onKeyDown={handleInputKeydown}
-      />
-      <InventoryContent
-        onClick={handleUpdate}
-        onDelete={handleDelete}
-        tabIndex={activePopup ? -1 : 0}
-        inventoryList={inventoryList}
-      />
-      {goods && goods?.length !== 0 && searchInput.current && activePopover && (
-        <Popover
-          isOpen={activePopover}
-          onClose={hidePopover}
-          referenceElement={searchInput.current as HTMLElement}
-          key={'key'}
-        >
-          <DropdownList className={styles['dropdown-products']}>
-            <ProductList
-              products={goods}
-              selectField={false}
-              avatar={false}
-              count={false}
-              onClick={product => {
-                handleCreate(product, isActiveAccount);
-              }}
-              setFirstElement={setFirstElement}
-              parentRef={searchInput}
-              displayHeaders={false}
-            />
-          </DropdownList>
-        </Popover>
+      {popoverCondition && activePopover && (
+        <PopoverProductsList
+          products={goods}
+          onClick={handleCreate}
+          parentRef={searchInputRef}
+          setFirstElement={setFirstListElement}
+        />
       )}
-      <PopupWithFocusTrap isOpened={activePopup} onClose={showPopup}>
-        {popupProps && (
-          <PopupProductCard
-            {...popupProps}
-            buttonClick={onSubmit}
-            error={updateError}
-            isActive={isActiveAccount}
-          />
-        )}
-      </PopupWithFocusTrap>
     </>
+  );
+
+  return (
+    <AsyncReduxComponent reducersList={reducers}>
+      <Grid>
+        <SearchInput
+          searchFunction={getGoods}
+          loading={isFetching}
+          canShowPopover={popoverCondition}
+          renderList={renderList}
+          activePopover={activePopover}
+          firstListElement={firstListElement}
+          searchInputRef={searchInputRef}
+          setActivePopover={setActivePopover}
+        />
+        <div className={styles.controls}>
+          <Checkbox
+            text='Выделять поля с резервного аккаунта'
+            name='tempAcc'
+            onChange={handleCheckboxClick}
+            defaultChecked={localStorage.getItem('highlight') === 'true'}
+          />
+          <SaveInventoryToXLSX inventoryList={inventoryList} />
+        </div>
+        <h1>
+          {`Инвентаризация № ${inventoryList.documentNumber} от `}
+          <FormatDate date={inventoryList.choosenDate} />
+          {` магазина ${inventoryList.storeName}`}
+        </h1>
+        <ScrollableBlock>
+          <InventoryProductsTable
+            highlightFunc={highlightFunc}
+            inventoryList={inventoryList}
+            onClick={displayForm('update')}
+            onDelete={displayForm('delete')}
+            tabIndex={activePopup ? -1 : 0}
+          />
+        </ScrollableBlock>
+      </Grid>
+      <PopupEditProductForm
+        activePopup={activePopup}
+        buttonClick={onSubmit}
+        error={updateError}
+        setActivePopup={setActivePopup}
+        highlightFunc={highlightFunc}
+      />
+    </AsyncReduxComponent>
   );
 });
 

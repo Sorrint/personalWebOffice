@@ -20,10 +20,10 @@ export const AppLayout = ({
   return (
     <>
       {header}
-      <div className={styles.app__wrapper}>
+      <div className={styles.wrapper}>
         {sidebar}
         <div className={isSidebarOpen ? styles.backdrop : ''} onClick={() => closeSidebar?.()} />
-        <div className={styles.app__content}>{children}</div>
+        <div className={styles.content}>{children}</div>
       </div>
     </>
   );

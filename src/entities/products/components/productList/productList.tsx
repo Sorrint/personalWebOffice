@@ -1,4 +1,4 @@
-import { memo, type MutableRefObject } from 'react';
+import { type RefObject, memo } from 'react';
 
 import { type IDreamkasProduct } from '../../model/types/IDreamkasProduct';
 import { ProductListBody } from '../productsListBody/productListBody';
@@ -11,7 +11,7 @@ export interface IProductListContentProps<T> {
   avatar?: boolean;
   count?: boolean;
   onClick?: (product: T) => void;
-  parentRef?: MutableRefObject<HTMLInputElement | null>;
+  parentRef?: RefObject<HTMLInputElement> | null;
   setFirstElement?: (el: HTMLDivElement) => void;
 }
 

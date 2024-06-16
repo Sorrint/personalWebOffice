@@ -37,7 +37,8 @@
     },
     "include": [
         "src",
-        "config/jest"
+        "config/jest",
+        "eslint.config.js",
     ],
     "exclude": [],
     "references": [

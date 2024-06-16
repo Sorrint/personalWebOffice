@@ -8,10 +8,16 @@ interface IconFontProps {
   classname?: string;
   color?: keyof typeof colors;
   onClick?: () => void;
+  bold?: boolean;
 }
 
-export const IconFont = ({ iconName, classname, color, onClick }: IconFontProps) => {
-  const iconStyle = classNames(styles[iconName], color && colors[color], classname);
+export const IconFont = ({ bold, iconName, classname, color, onClick }: IconFontProps) => {
+  const iconStyle = classNames(
+    styles[iconName],
+    color && colors[color],
+    { [colors.bold]: bold },
+    classname,
+  );
 
   return <i className={iconStyle} onClick={onClick}></i>;
 };

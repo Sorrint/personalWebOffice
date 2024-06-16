@@ -13,7 +13,7 @@ const initialState = packagesAdapter.getInitialState();
 
 const packagesApi = rtkApi.injectEndpoints({
   endpoints: build => ({
-    getPackages: build.query<EntityState<IPackageWithId>, void>({
+    getPackages: build.query<EntityState<IPackageWithId, string>, void>({
       query: () => ({
         url: '/packages',
       }),

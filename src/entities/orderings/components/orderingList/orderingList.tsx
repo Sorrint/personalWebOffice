@@ -6,18 +6,19 @@ import { getIsLoading, getOrderingChaptersData } from '../../model/slice/Orderin
 import { OrderingHeaders } from '../../consts/orderingHeaders';
 import { Table } from '@shared/ui/table';
 import useTableData from '../../lib/hooks/useTableData/useTableData';
+import { type TableHeaders } from '@shared/ui/table/components/table';
 
 interface OrderingListProps {
   className?: string;
   editRows?: (key: string) => ReactNode;
 }
 
-const headers: Partial<IOrderingRecordDisplay> = {
-  number: OrderingHeaders.NUMBER,
-  productName: OrderingHeaders.NAME,
-  count: OrderingHeaders.COUNT,
-  unit: OrderingHeaders.UNIT,
-  rows: OrderingHeaders.ROWS,
+const headers: TableHeaders<Partial<IOrderingRecordDisplay>> = {
+  number: { value: OrderingHeaders.NUMBER },
+  productName: { value: OrderingHeaders.NAME, alignment: 'left' },
+  count: { value: OrderingHeaders.COUNT },
+  unit: { value: OrderingHeaders.UNIT },
+  rows: { value: OrderingHeaders.ROWS },
 };
 
 export const OrderingList = memo(({ className, editRows }: OrderingListProps) => {

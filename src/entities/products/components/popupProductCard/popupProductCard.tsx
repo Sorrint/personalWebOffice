@@ -55,7 +55,7 @@ export function PopupProductCard({
   useEffect(() => {
     submitRef.current?.focus();
     handleSubmit(buttonClick);
-  }, [isKeyPressed]);
+  }, [buttonClick, handleSubmit, isKeyPressed]);
 
   const keyPressed = (e: KeyboardEvent, name: string) => {
     if (e.key === 'Enter' && name in initData) {

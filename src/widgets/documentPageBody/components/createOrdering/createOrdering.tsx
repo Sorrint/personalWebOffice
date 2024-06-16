@@ -15,7 +15,8 @@ import { Panel } from '@shared/ui/panel/panel';
 
 import { useCreateOrderingData } from '../../hooks/useCreateOrderingData';
 import style from './createOrdering.module.scss';
-import { Container } from '@shared/layouts/container/container';
+import { ScrollableBlock } from '../../../../shared/ui/ScrollableBlock';
+import { FlexColumn } from '@shared/ui/Flex';
 
 const reducers: ReducersList = {
   ordering: orderingReducer,
@@ -26,26 +27,25 @@ export const CreateOrdering = () => {
   const orderId = queryParams.get('orderId');
   const dispatch = useAppDispatch();
 
-  if (!orderId) return <Container>{'Нет id заказа'}</Container>;
-  useCreateOrderingData(orderId);
+  useCreateOrderingData(orderId ?? '');
 
   const setPallets = (palletsObj: Record<Pallets, number>) => {
     dispatch(orderingActions.setPalletsCount(palletsObj));
   };
 
+  if (!orderId) return <>{'Нет id заказа'}</>;
+
   return (
     <AsyncReduxComponent reducersList={reducers}>
-      <Container>
-        <Panel title='Дополнительные параметры для расчета' open={false}>
+      <FlexColumn gap='16'>
+        <Panel title='Дополнительные параметры для расчета' open={true}>
           <CountPalletsForm classname={style.form} onChange={setPallets} />
         </Panel>
-      </Container>
-      <Container scrollable>
-        <OrderingList editRows={(key: string) => <EditOrderingRows chapterKey={key} />} />
-      </Container>
-      <Container>
+        <ScrollableBlock>
+          <OrderingList editRows={(key: string) => <EditOrderingRows chapterKey={key} />} />
+        </ScrollableBlock>
         <OrderingInfo />
-      </Container>
+      </FlexColumn>
     </AsyncReduxComponent>
   );
 };

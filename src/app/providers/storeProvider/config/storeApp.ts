@@ -1,5 +1,5 @@
 import storage from 'redux-persist/lib/storage';
-import { type ReducersMapObject, configureStore, type CombinedState } from '@reduxjs/toolkit';
+import { type ReducersMapObject, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { type Reducer } from 'redux';
 
@@ -7,9 +7,10 @@ import { rtkApi } from '@shared/api/rtkApi';
 
 import { type StoreWithReducerManager, type StoreSchema } from './storeSchema';
 import { createReducerManager } from './reducerManager';
+import { type PersistPartial } from 'redux-persist/es/persistReducer';
 
 export function createStore(
-  initialState: StoreSchema,
+  initialState: StoreSchema & PersistPartial,
   asyncReducers: ReducersMapObject<StoreSchema>,
 ) {
   const persistConfig = {
@@ -27,7 +28,7 @@ export function createStore(
   const reducerManager = createReducerManager(rootReducer);
   const persistedReducer = persistReducer(
     persistConfig,
-    reducerManager.reduce as Reducer<CombinedState<StoreSchema>>,
+    reducerManager.reduce as Reducer<StoreSchema>,
   );
 
   const store: StoreWithReducerManager = configureStore({

@@ -2,8 +2,7 @@ import { useParams } from 'react-router-dom';
 import { type IOrderRecord, OrderCard } from '@entities/orders';
 import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
 import { AppLink } from '@shared/ui/appLink';
-import { Container } from '@shared/layouts/container/container';
-import styles from './orderDetails.module.scss';
+import { FlexColumn } from '@shared/ui/Flex';
 
 export const OrderDetails = () => {
   const { _id } = useParams();
@@ -26,7 +25,7 @@ export const OrderDetails = () => {
 
   return (
     <>
-      <Container classname={styles.container}>
+      <FlexColumn gap='16'>
         {notAllProducts && (
           <AppLink to={`../../orders/addProducts?orderId=${_id}`}>
             Не все товары найдены в базе данных
@@ -38,12 +37,10 @@ export const OrderDetails = () => {
           <AppLink to={`../../orderings/create?orderId=${_id}`}>Создать порядовку</AppLink>
         )}
         {orderName && <div>{orderName}</div>}
-      </Container>
-      {order && transformedRecords && (
-        <Container scrollable>
+        {order && transformedRecords && (
           <OrderCard order={{ ...order, orderRecords: transformedRecords }} />
-        </Container>
-      )}
+        )}
+      </FlexColumn>
     </>
   );
 };

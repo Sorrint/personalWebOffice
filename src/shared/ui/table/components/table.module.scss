@@ -27,13 +27,8 @@
 
 .column {
     display: flex;
-    justify-content: center;
-
-    &-left {
-        display: flex;
-        align-items: center;
-        text-align: left;
-    }
+    align-items: center;
+    line-height: 24px;
 }
 
 .table.list {
@@ -55,7 +50,7 @@
 
 .item.list {
   grid-column-gap: var(--margin);
-  padding: calc(var(--padding) * 1.5);
+  padding: var(--padding);
 }
 
 .table.grid {
@@ -65,9 +60,26 @@
   box-shadow: var(--shadow);
 }
 
-.column.grid,
-.column-left.grid {
+.column.grid {
   padding: calc(var(--padding) * 0.5);
   border: var(--border);
 }
 
+.column.left {
+  justify-content: left;
+  text-align: left;
+}
+
+.column.right {
+  justify-content: right;
+  text-align: right;
+}
+
+.column.center {
+  justify-content: center;
+  text-align: center;
+}
+
+.item.highlight {
+  background-color: yellow;
+}
