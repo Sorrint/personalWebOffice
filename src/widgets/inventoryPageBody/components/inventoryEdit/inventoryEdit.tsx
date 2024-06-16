@@ -8,7 +8,7 @@ import {
   InventoryProductsTable,
 } from '@entities/inventoryDocs';
 import { PopoverProductsList } from '@entities/products';
-import { useResize, useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
+import { useInputText, useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
 import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/searchInput';
 import { Checkbox } from '@shared/ui/checkbox';
@@ -32,22 +32,25 @@ const reducers: ReducersList = {
 export const InventoryEdit = memo(() => {
   const { number } = useParams();
   const docNumber = Number(number);
-  const { isScreenMd } = useResize();
   const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
 
-  const onCloseModal = () => {
-    if (isScreenMd) {
-      searchInputRef?.current?.focus();
-    }
-  };
+  // TODO: удалить после следующей инвентаризации
+  // const onCloseModal = () => {
+  // if (isScreenMd) {
+  //   searchInputRef?.current?.focus();
+  // }
+  // };
+
+  const focusOnSearchInput = () => searchInputRef?.current?.focus();
+
+  useInputText(focusOnSearchInput);
 
   const { activePopup, displayForm, updateError, setActivePopup, onSubmit } = useEditProductForm(
     docNumber,
     true,
-    onCloseModal,
   );
 
-  const { activePopover, setActivePopover } = useSearchInputPopover(onCloseModal);
+  const { activePopover, setActivePopover } = useSearchInputPopover();
 
   // Загрузка данных
   const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
