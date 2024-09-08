@@ -1,5 +1,7 @@
 import { memo, useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+
 import { useEditProductForm, PopupEditProductForm } from '@features/editProductForm';
 import { SaveInventoryToXLSX } from '@features/saveInventoryToXLSX';
 import {
@@ -13,13 +15,13 @@ import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/searchInput';
 import { Checkbox } from '@shared/ui/checkbox';
 import { Grid } from '@shared/ui/grid';
-
-import { useLoadInventoryProductsBySearch } from '../../hooks/useLoadInventoryProductsBySearch';
-
-import styles from './inventoryEdit.module.scss';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
 import { editProductFormReducer } from '@features/editProductForm';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
+import { Button } from '@shared/ui/button';
+
+import { useLoadInventoryProductsBySearch } from '../../hooks/useLoadInventoryProductsBySearch';
+import styles from './inventoryEdit.module.scss';
 
 const highlightByAccount = (item: IInventoryProduct) => {
   return !item?.isActiveAccount;
@@ -33,13 +35,6 @@ export const InventoryEdit = memo(() => {
   const { number } = useParams();
   const docNumber = Number(number);
   const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
-
-  // TODO: удалить после следующей инвентаризации
-  // const onCloseModal = () => {
-  // if (isScreenMd) {
-  //   searchInputRef?.current?.focus();
-  // }
-  // };
 
   const focusOnSearchInput = () => searchInputRef?.current?.focus();
 
@@ -73,6 +68,11 @@ export const InventoryEdit = memo(() => {
     setActivePopover(false);
     setSearch(value);
   };
+
+  const createNewProduct = useCallback(() => {
+    displayForm('create')({ name: '', quantity: 1, price: 1, id: uuidv4() });
+    setActivePopup(true);
+  }, []);
 
   const popoverCondition = goods && goods?.length !== 0 && !activePopup;
 
@@ -129,7 +129,8 @@ export const InventoryEdit = memo(() => {
             onChange={handleCheckboxClick}
             defaultChecked={localStorage.getItem('highlight') === 'true'}
           />
-          <SaveInventoryToXLSX inventoryList={inventoryList} />
+          <SaveInventoryToXLSX inventoryList={inventoryList} classname={styles.xlsx} />
+          <Button onClick={createNewProduct}>Добавить товар</Button>
         </div>
         <h1>
           {`Инвентаризация № ${inventoryList.documentNumber} от `}
