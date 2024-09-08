@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from 'react';
 import {
   useRemoveInventoryProduct,
   useUpdateProducts,
@@ -5,7 +6,6 @@ import {
 } from '@entities/inventoryDocs';
 import { editProductFromActions } from '../../../model/slices/EditProductFormSlice';
 import { useAppDispatch, useAppSelector, useKeyPress } from '@shared/lib/hooks';
-import { useCallback, useEffect, useState } from 'react';
 import { type FieldValues } from 'react-hook-form';
 import { type FormVariants, type IFormProps } from '../../../model/types/EditProductForm';
 import { selectFormProps } from '../../../model/selectors/EditProductFormSelectors';
@@ -53,6 +53,11 @@ export const useEditProductForm = (
   );
 
   const onSubmit = async (data: FieldValues) => {
+    if (!data.name) {
+      setActivePopup(false);
+      return;
+    }
+
     if (formProps) {
       const { method } = formProps;
       method === 'delete'

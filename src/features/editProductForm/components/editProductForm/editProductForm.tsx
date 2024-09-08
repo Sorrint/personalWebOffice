@@ -1,4 +1,4 @@
-import { useEffect, type KeyboardEvent, useRef, type FocusEvent } from 'react';
+import { useEffect, type KeyboardEvent, useRef } from 'react';
 import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useForm } from 'react-hook-form';
 import { type SerializedError } from '@reduxjs/toolkit';
@@ -12,6 +12,7 @@ import styles from './editProductForm.module.scss';
 import classNames from 'classnames';
 import { useAppSelector } from '@shared/lib/hooks';
 import { selectFormProduct, selectFormProps } from '../../model/selectors/EditProductFormSelectors';
+import { TextField } from '@shared/ui/textField';
 
 export interface EditProductFormProps {
   buttonClick: (item: IInventoryProduct) => Promise<void>;
@@ -52,10 +53,6 @@ export function EditProductForm({ buttonClick, error, highlightFunc }: EditProdu
     if (modalWindow.current) modalWindow.current.focus();
   }, [modalWindow]);
 
-  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
-    e.target.select();
-  };
-
   const getButtonType = () => {
     return method === 'delete' ? 'cancel' : 'submit';
   };
@@ -67,19 +64,19 @@ export function EditProductForm({ buttonClick, error, highlightFunc }: EditProdu
   return (
     <div
       className={classNames(styles['add-product'], {
-        [styles.highlight]: highlightFunc?.(product),
+        [styles.highlight]: product && highlightFunc?.(product),
       })}
       ref={modalWindow}
     >
       <form>
         <div className={styles.card}>
-          <h2>{product.name}</h2>
+          {product.name && <h2>{product.name}</h2>}
+          {!product.name && <TextField {...register('name')} />}
           <CounterField
             label='Количество'
             {...register('quantity', { valueAsNumber: true, min: 0 })}
             classname={styles.counter}
             onKeyPress={keyPressed}
-            onFocus={handleFocus}
             min={0}
           />
           <CounterField
@@ -88,7 +85,6 @@ export function EditProductForm({ buttonClick, error, highlightFunc }: EditProdu
             min={0}
             classname={styles.counter}
             onKeyPress={keyPressed}
-            onFocus={handleFocus}
           />
           {popupText && <h3>{popupText}</h3>}
           <Button buttonType={getButtonType()} onClick={handleSubmit(buttonClick)} ref={submitRef}>
