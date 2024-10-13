@@ -1,7 +1,7 @@
 import { useAsyncLoad } from '@shared/lib/hooks';
 
 interface FormatDateProps {
-  date?: Date;
+  date?: Date | number;
 }
 export const FormatDate = ({ date }: FormatDateProps) => {
   const ru = useAsyncLoad('date-fns/locale/ru');

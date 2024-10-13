@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useLoadProductsBySearch } from '@entities/products';
 import { useAppDispatch } from '@shared/lib/hooks';
 import { tokenActions } from '@shared/lib/store';
-import { transformProducts } from '../lib/helpers/transformProducts';
+import { transformProducts } from '../helpers/transformProducts';
 
 export const useLoadInventoryProductsBySearch = () => {
   const [search, setSearch] = useState<string>('');

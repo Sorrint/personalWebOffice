@@ -6,9 +6,15 @@ export interface IOrderRecord {
   unit: string;
 }
 
-export interface IOrder {
-  _id?: string;
-  orderName: string;
+export interface ICreateOrder {
+  orderNumber: number;
+  company: string;
+  date: Date;
+  comment?: string;
+}
+
+export interface IOrder extends ICreateOrder {
+  _id: string;
   orderRecords: IOrderRecord[];
   ordering?: string;
   distribution?: string;

@@ -6,7 +6,7 @@ export { InventoryList } from './components/inventoryList/inventoryList';
 export * from './model/types';
 
 export {
-  useCreateNewDocument,
+  useCreateInventory,
   useLoadAllDocuments,
   useLoadDocumentByNumber,
   useRemoveInventoryProduct,

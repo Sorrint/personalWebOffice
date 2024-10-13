@@ -1,4 +1,3 @@
-import { type TableData } from '@shared/ui/table/table';
 import { type ReactNode } from 'react';
 
 export interface IInventoryProduct {
@@ -9,12 +8,15 @@ export interface IInventoryProduct {
   isActiveAccount?: boolean;
 }
 
-export interface IInventoryDocs {
-  _id?: string;
+export interface ICreateInventory {
   documentNumber: number;
-  storeName: string;
   choosenDate: Date;
   comment: string;
+  storeName: string;
+}
+
+export interface IInventoryDocs extends ICreateInventory {
+  _id: string;
   products: IInventoryProduct[];
 }
 
@@ -48,7 +50,7 @@ export interface IInventoryProductCardProps {
   tabIndex?: number;
 }
 
-export interface IInventoryProductDisplay extends IInventoryProduct, TableData {
+export interface IInventoryProductDisplay extends IInventoryProduct {
   priceString: string;
   number: number;
   sum: number | string;

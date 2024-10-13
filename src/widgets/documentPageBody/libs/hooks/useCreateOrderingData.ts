@@ -15,8 +15,8 @@ import { orderingActions } from '@entities/orderings';
 import { type IUnitWithId, useGetUnits } from '@entities/units';
 import { useAppDispatch } from '@shared/lib/hooks';
 
-import { groupProductsByCategory, updateOrderingChapterSummary } from '../libs/helpers/setRecords';
-import { calculateProductsWeight } from '../libs/helpers/calculateProductsWeight';
+import { groupProductsByCategory, updateOrderingChapterSummary } from '../helpers/setRecords';
+import { calculateProductsWeight } from '../helpers/calculateProductsWeight';
 
 export const useCreateOrderingData = (id: string) => {
   const dispatch = useAppDispatch();

@@ -7,14 +7,14 @@ import { ProductsPage } from '@pages/productsPage';
 import { ProfilePage } from '@pages/profilePage';
 import { AuthPage } from '@pages/authPage';
 
-import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
+import { CreateInventory, InventoriesList, InventoryEdit } from '@widgets/inventoryPageBody';
 import {
   AddOrderProducts,
-  CreateOrder,
   Distribution,
   OrderDetails,
   CreateOrdering,
   OrdersCatalog,
+  CreateOrder,
 } from '@widgets/documentPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 
@@ -54,7 +54,7 @@ export const routes: RouteObject[] = [
     path: AppRoutes.getInventoriesRoute(),
     element: <InventoryPage />,
     children: [
-      { path: AppRoutes.getInventoryCreateRoute(), element: <InventoryCreate /> },
+      { path: AppRoutes.getInventoryCreateRoute(), element: <CreateInventory /> },
       { path: AppRoutes.getInventoryDetailsRoute(':number'), element: <InventoryEdit /> },
       { index: true, element: <InventoriesList /> },
       { path: '*', element: <Navigate to={AppRoutes.getInventoriesRoute()} /> },

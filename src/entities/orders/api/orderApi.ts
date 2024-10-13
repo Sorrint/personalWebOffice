@@ -1,18 +1,30 @@
 import { rtkApi } from '@shared/api/rtkApi';
-import { type IOrder } from '../model/types/IOrder';
+import { ICreateOrder, type IOrder } from '../model/types/IOrder';
+
+const baseOrdersUri = 'documents/orders';
 
 const orderApi = rtkApi.enhanceEndpoints({ addTagTypes: ['order'] }).injectEndpoints({
   endpoints: build => ({
+    createOrder: build.mutation<IOrder, ICreateOrder>({
+      query: order => ({
+        url: `${baseOrdersUri}/create`,
+        method: 'POST',
+        body: order,
+      }),
+      invalidatesTags: ['order'],
+    }),
+
     getOrdersList: build.query<IOrder[], void>({
       query: () => ({
-        url: 'documents/orders',
+        url: `${baseOrdersUri}`,
         method: 'GET',
       }),
       providesTags: () => ['order'],
     }),
+
     saveCurrentOrder: build.mutation<IOrder, IOrder>({
       query: () => ({
-        url: 'documents/orders/create',
+        url: `${baseOrdersUri}/create`,
         method: 'POST',
       }),
       invalidatesTags: ['order'],
@@ -20,4 +32,8 @@ const orderApi = rtkApi.enhanceEndpoints({ addTagTypes: ['order'] }).injectEndpo
   }),
 });
 
-export const { useGetOrdersListQuery, useSaveCurrentOrderMutation } = orderApi;
+export const {
+  useGetOrdersListQuery: useGetOrdersList,
+  useSaveCurrentOrderMutation: useSaveCurrentOrder,
+  useCreateOrderMutation: useCreateOrder,
+} = orderApi;

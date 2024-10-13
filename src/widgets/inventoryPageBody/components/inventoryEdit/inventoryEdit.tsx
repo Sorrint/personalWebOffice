@@ -20,7 +20,7 @@ import { editProductFormReducer } from '@features/editProductForm';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 import { Button } from '@shared/ui/button';
 
-import { useLoadInventoryProductsBySearch } from '../../hooks/useLoadInventoryProductsBySearch';
+import { useLoadInventoryProductsBySearch } from '../../lib/hooks/useLoadInventoryProductsBySearch';
 import styles from './inventoryEdit.module.scss';
 
 const highlightByAccount = (item: IInventoryProduct) => {

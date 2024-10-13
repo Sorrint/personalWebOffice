@@ -6,7 +6,7 @@ import { Button } from '@shared/ui/button/button';
 import { Calendar } from '@shared/ui/calendar';
 import { TextField } from '@shared/ui/textField';
 import { useGetCounter } from '@shared/api/countersAPI';
-import { useCreateNewDocument } from '@entities/inventoryDocs';
+import { useCreateInventory } from '@entities/inventoryDocs';
 
 import styles from './inventoryCreate.module.scss';
 import { AppRoutes } from '@shared/config/router';
@@ -14,7 +14,7 @@ import { Grid } from '@shared/ui/grid';
 
 export const InventoryCreate = () => {
   const navigate = useNavigate();
-  const [createDoc] = useCreateNewDocument();
+  const [createDoc] = useCreateInventory();
   const { data } = useGetCounter('docNumber', { refetchOnMountOrArgChange: true });
   const { register, handleSubmit, control, setValue } = useForm<FieldValues>({
     mode: 'onChange',

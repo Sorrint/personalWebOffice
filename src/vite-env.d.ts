@@ -1,3 +1,4 @@
+export {};
 declare module '*.svg' {
   const content: React.FC<React.SVGProps<SVGElement>>;
   export default content;
@@ -7,21 +8,27 @@ declare module '*.svg' {
 /// <reference types="vite-plugin-svgr/client" />
 /// <reference types="@shared/types/svg" />
 
-type Dictionary<T> = Record<string, T>;
-
 interface ImportMetaEnv {
   readonly VITE_SERVER_URI: string;
 }
 
 declare const __SERVER_URI__: string;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type OptionalRecord<K extends keyof any, T> = {
-  [P in K]?: T;
-};
+declare global {
+  interface ObjectConstructor {
+    typedKeys<T>(obj: T): Array<keyof T>;
+  }
 
-type DeepPartial<T> = T extends object
-  ? {
-      [P in keyof T]?: DeepPartial<T[P]>;
-    }
-  : T;
+  type Dictionary<T> = Record<string, T>;
+
+  type DeepPartial<T> = T extends object
+    ? {
+        [P in keyof T]?: DeepPartial<T[P]>;
+      }
+    : T;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  type OptionalRecord<K extends keyof any, T> = {
+    [P in K]?: T;
+  };
+}
