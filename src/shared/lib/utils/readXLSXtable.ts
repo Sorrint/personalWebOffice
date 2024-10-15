@@ -1,4 +1,4 @@
-export type SheetData = Record<string, unknown>;
+export type SheetData = Record<string, string | number>;
 
 export const readXLSXTable = async (
   e: React.BaseSyntheticEvent,

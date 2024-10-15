@@ -11,7 +11,6 @@ import { CreateInventory, InventoriesList, InventoryEdit } from '@widgets/invent
 import {
   AddOrderProducts,
   Distribution,
-  OrderDetails,
   CreateOrdering,
   OrdersCatalog,
   CreateOrder,
@@ -22,6 +21,7 @@ import { EditPackageCategory } from '@features/editPackageCategory';
 import { EditPackageForm } from '@features/editPackageForm';
 
 import { AppRoutes } from '@shared/config/router/routesLinks';
+import { EditOrder } from '@widgets/documentPageBody/components/EditOrder/EditOrder';
 
 export const routes: RouteObject[] = [
   { index: true, element: <Navigate to={AppRoutes.getDashboardRoute()} /> },
@@ -32,7 +32,7 @@ export const routes: RouteObject[] = [
       {
         path: 'orders',
         children: [
-          { path: AppRoutes.getOrderDetailsRoute(':_id'), element: <OrderDetails /> },
+          { path: AppRoutes.getOrderDetailsRoute(':id'), element: <EditOrder /> },
           { path: AppRoutes.getOrderAddProductsRoute(), element: <AddOrderProducts /> },
           { path: AppRoutes.getOrderCreateRoute(), element: <CreateOrder /> },
           { index: true, element: <OrdersCatalog /> },

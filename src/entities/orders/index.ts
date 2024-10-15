@@ -1,3 +1,5 @@
+export { useGetOrder } from './lib/hooks/useGetOrder';
+
 export * from './api/orderApi';
 export * from './model/types/IOrder';
 

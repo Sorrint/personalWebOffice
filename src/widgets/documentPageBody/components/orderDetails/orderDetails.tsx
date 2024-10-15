@@ -12,7 +12,7 @@ export const OrderDetails = () => {
 
   if (orderLoading) return <span>Идет загрузка</span>;
   if (!order) return;
-  const { orderName, ordering } = order;
+  const { orderNumber, ordering } = order;
   const notAllProducts = order?.orderRecords.some(record => !record.product) ? true : false;
 
   const transformedRecords: IOrderRecord[] =
@@ -36,7 +36,7 @@ export const OrderDetails = () => {
         ) : (
           <AppLink to={`../../orderings/create?orderId=${_id}`}>Создать порядовку</AppLink>
         )}
-        {orderName && <div>{orderName}</div>}
+        {orderNumber && <div>{`Заказ №${orderNumber}`}</div>}
         {order && transformedRecords && (
           <OrderCard order={{ ...order, orderRecords: transformedRecords }} />
         )}

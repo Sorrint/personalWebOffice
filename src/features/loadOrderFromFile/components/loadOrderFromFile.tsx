@@ -12,7 +12,7 @@ export const LoadOrderFromFile = () => {
 
     if (order) {
       const orderName = `Заказ №${1} от ${new Date().toLocaleDateString('ru-RU')}`;
-      const newOrder = { orderName, orderRecords: [...order] };
+      const newOrder = { orderName, orderRecords: order };
       dispatch(setCurrentOrder(newOrder));
       if (localStorage.getItem('dataBase') === 'localStorage')
         localStorage.setItem('currentOrder', JSON.stringify(newOrder));

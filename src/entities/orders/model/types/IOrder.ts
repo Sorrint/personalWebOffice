@@ -6,6 +6,8 @@ export interface IOrderRecord {
   unit: string;
 }
 
+export type IOrderRecords = Record<number, IOrderRecord>;
+
 export interface ICreateOrder {
   orderNumber: number;
   company: string;
@@ -15,7 +17,7 @@ export interface ICreateOrder {
 
 export interface IOrder extends ICreateOrder {
   _id: string;
-  orderRecords: IOrderRecord[];
+  orderRecords: IOrderRecords;
   ordering?: string;
   distribution?: string;
 }
