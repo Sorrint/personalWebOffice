@@ -11,11 +11,6 @@ export const documentsOrderApi = rtkApi
           method: 'GET',
         }),
         providesTags: () => ['order'],
-
-        // transformResponse: (response: IOrderResponse) => {
-        //     const products = normalizeData(response.products);
-        //     return {...response, products: products};
-        // }
       }),
     }),
   });
