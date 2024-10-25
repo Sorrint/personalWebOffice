@@ -18,6 +18,7 @@ export interface ICreateInventory {
 export interface IInventoryDocs extends ICreateInventory {
   _id: string;
   products: IInventoryProduct[];
+  totalSum?: number;
 }
 
 export interface IdataForXLSX {

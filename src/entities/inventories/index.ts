@@ -7,8 +7,8 @@ export * from './model/types';
 
 export {
   useCreateInventory,
-  useLoadAllDocuments,
+  useLoadAllInventories,
   useLoadDocumentByNumber,
   useRemoveInventoryProduct,
   useUpdateProducts,
-} from './reducers/inventoryDocsService';
+} from './api/inventoriesApi';

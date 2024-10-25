@@ -17,6 +17,7 @@ declare const __SERVER_URI__: string;
 declare global {
   interface ObjectConstructor {
     typedKeys<T>(obj: T): Array<keyof T>;
+    typedValues<T>(obj: T): Array<T[keyof T]>;
   }
 
   type Dictionary<T> = Record<string, T>;

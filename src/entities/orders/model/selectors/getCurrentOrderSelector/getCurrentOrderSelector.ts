@@ -1,4 +1,3 @@
 import { type StoreSchema } from '@app/providers/storeProvider';
 
-export const getCurrentOrder = () => (state: StoreSchema) =>
-  state.orders?.currentOrder ?? undefined;
+export const getOrderRecords = () => (state: StoreSchema) => state.orders?.records;

@@ -18,9 +18,9 @@ export const useCreateOrderForm = () => {
     });
 
     if ('data' in order) {
-      const orderId = order.data._id;
-      if (orderId) {
-        navigate(AppRoutes.getOrderDetailsRoute(orderId));
+      const orderNumber = order.data.orderNumber;
+      if (orderNumber) {
+        navigate(AppRoutes.getOrderDetailsRoute(orderNumber?.toString()));
       }
     }
   };

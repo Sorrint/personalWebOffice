@@ -7,8 +7,8 @@ import App from '@app/App';
 import { StoreProvider } from '@app/providers/storeProvider';
 import { AuthProvider } from '@app/providers/authProvider';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-Object.typedKeys = Object.keys as any;
+Object.typedKeys = Object.keys;
+Object.typedValues = Object.values;
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <StoreProvider>

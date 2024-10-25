@@ -23,8 +23,7 @@ export interface IOrder extends ICreateOrder {
 }
 
 export interface OrderState {
-  entities: IOrder[];
-  currentOrder?: IOrder;
-  isLoading: boolean;
-  error: string | undefined;
+  records?: IOrderRecords;
+  duplicatedRecords?: IOrderRecord[];
+  error?: string | undefined;
 }

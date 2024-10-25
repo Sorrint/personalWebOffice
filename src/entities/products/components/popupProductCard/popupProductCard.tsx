@@ -3,7 +3,7 @@ import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { type FieldValues, useForm } from 'react-hook-form';
 import { type SerializedError } from '@reduxjs/toolkit';
 
-import { type IInventoryProduct } from '@entities/inventoryDocs';
+import { type IInventoryProduct } from '@entities/inventories';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 import { CounterField } from '@shared/ui/counterField/counterField';
 import { Button } from '@shared/ui/button';

@@ -1,8 +1,7 @@
-import { IOrderRecord, IOrderRecords } from '@entities/orders';
+import { IOrderRecord } from '@entities/orders';
 import { parseSheetData } from '@shared/lib/utils/parseSheetData';
 import { readXLSXTable } from '@shared/lib/utils/readXLSXtable';
 import { z } from 'zod';
-import { normalizeData } from '@shared/lib/helpers';
 
 const headersMap: Record<string, keyof IOrderRecord> = {
   '№': 'number',
@@ -19,8 +18,7 @@ const OrderSchema: z.Schema<IOrderRecord> = z.object({
 });
 
 interface GetOrderResult {
-  records?: IOrderRecords;
-  duplicatedRecords?: IOrderRecord[];
+  records?: IOrderRecord[];
   parseError?: string;
 }
 
@@ -38,10 +36,5 @@ export const getOrderFromExcel = async (
     return { parseError };
   }
 
-  const { data: records, duplicatedKeysData: duplicatedRecords } = normalizeData(
-    orderRecords,
-    'number',
-  );
-
-  return { records, duplicatedRecords };
+  return { records: orderRecords };
 };

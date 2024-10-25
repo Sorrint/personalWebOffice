@@ -1,6 +1,8 @@
 import { type FieldValues } from 'react-hook-form';
 import { ICreateInventory, type IInventoryDocs } from '../model/types';
 import { rtkApi } from '@shared/api/rtkApi';
+import { transformInventoriesList } from '@widgets/inventoryPageBody/lib/helpers/transformInventoriesList';
+import { AppLinkItem } from '@shared/ui/AppLinksList';
 
 const baseInventoryUri = 'inventory-list';
 
@@ -13,8 +15,9 @@ const inventoryDocsApi = rtkApi
         invalidatesTags: ['inventoryContent'],
       }),
 
-      loadAllDocuments: build.query<IInventoryDocs[], Record<string, unknown>>({
+      loadAllInventories: build.query<AppLinkItem[], Record<string, unknown>>({
         query: () => ({ url: `${baseInventoryUri}`, method: 'GET' }),
+        transformResponse: transformInventoriesList,
         providesTags: () => ['inventoryContent'],
       }),
 
@@ -48,7 +51,7 @@ const inventoryDocsApi = rtkApi
 
 export const {
   useCreateNewDocumentMutation: useCreateInventory,
-  useLoadAllDocumentsQuery: useLoadAllDocuments,
+  useLoadAllInventoriesQuery: useLoadAllInventories,
   useLoadDocumentByNumberQuery: useLoadDocumentByNumber,
   useRemoveInventoryProductMutation: useRemoveInventoryProduct,
   useUpdateProductsMutation: useUpdateProducts,

@@ -6,7 +6,7 @@ import { Button } from '@shared/ui/button/button';
 import { Calendar } from '@shared/ui/calendar';
 import { TextField } from '@shared/ui/textField';
 import { useGetCounter } from '@shared/api/countersAPI';
-import { useCreateInventory } from '@entities/inventoryDocs';
+import { useCreateInventory } from '@entities/inventories';
 
 import styles from './inventoryCreate.module.scss';
 import { AppRoutes } from '@shared/config/router';

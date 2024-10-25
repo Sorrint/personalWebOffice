@@ -9,9 +9,8 @@ export const normalizeData = <T, K extends keyof T>(data: T[], key: K): Normaliz
   const duplicatedKeysData: T[] = [];
   data.forEach(element => {
     const keyValue = element[key];
-
     if (typeof keyValue === 'string' || typeof keyValue === 'number') {
-      obj[keyValue] ? (obj[keyValue] = element) : duplicatedKeysData.push(element);
+      obj[keyValue] ? duplicatedKeysData.push(element) : (obj[keyValue] = element);
     } else {
       throw new Error(`Key "${String(key)}" must be of type string or number`);
     }

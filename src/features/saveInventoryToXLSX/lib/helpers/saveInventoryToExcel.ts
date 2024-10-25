@@ -1,4 +1,4 @@
-import { type IInventoryDocs } from '@entities/inventoryDocs';
+import { type IInventoryDocs } from '@entities/inventories';
 import { pageSetup } from '../../consts/pageSetup';
 import { tableColumns } from '../../consts/tableColumns';
 

@@ -1,4 +1,4 @@
-import { useCreateInventory } from '@entities/inventoryDocs';
+import { useCreateInventory } from '@entities/inventories';
 import { CreateDocumentValues } from '@features/CreateDocumentForm';
 import { useGetCounter } from '@shared/api/countersAPI';
 

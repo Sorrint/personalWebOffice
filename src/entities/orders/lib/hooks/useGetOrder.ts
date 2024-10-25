@@ -1,11 +1,11 @@
-import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
 import { useParams } from 'react-router-dom';
+import { useGetOrderById } from '@entities/orders/api/orderApi';
 
 export const useGetOrder = () => {
-  const { id } = useParams();
-  if (!id) return { order: null, orderLoading: false };
+  const { orderNumber } = useParams();
+  if (!orderNumber) return { order: null, orderLoading: false };
 
-  const { data: order, isLoading: orderLoading } = useGetOrderByIdQuery(id);
+  const { data: order, isLoading: orderLoading } = useGetOrderById(orderNumber);
 
   return { order, orderLoading };
 };

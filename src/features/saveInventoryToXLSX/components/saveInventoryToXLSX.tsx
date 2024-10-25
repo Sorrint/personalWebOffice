@@ -1,4 +1,4 @@
-import { type IInventoryDocs } from '@entities/inventoryDocs';
+import { type IInventoryDocs } from '@entities/inventories';
 import { Button } from '@shared/ui/button';
 import { saveInventoryToExcel } from '../lib/helpers/saveInventoryToExcel';
 

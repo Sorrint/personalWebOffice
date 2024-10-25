@@ -5,14 +5,14 @@ import { AppLink } from '@shared/ui/appLink';
 import { FlexColumn } from '@shared/ui/Flex';
 
 export const OrderDetails = () => {
-  const { _id } = useParams();
-  if (!_id) return 'Нет id';
+  const { orderNumber } = useParams();
+  if (!orderNumber) return 'Нет id';
 
-  const { data: order, isLoading: orderLoading } = useGetOrderByIdQuery(_id);
+  const { data: order, isLoading: orderLoading } = useGetOrderByIdQuery(orderNumber);
 
   if (orderLoading) return <span>Идет загрузка</span>;
   if (!order) return;
-  const { orderNumber, ordering } = order;
+  const { ordering } = order;
   const notAllProducts = order?.orderRecords.some(record => !record.product) ? true : false;
 
   const transformedRecords: IOrderRecord[] =
@@ -26,16 +26,16 @@ export const OrderDetails = () => {
   return (
     <>
       <FlexColumn gap='16'>
-        {notAllProducts && (
+        {/* {notAllProducts && (
           <AppLink to={`../../orders/addProducts?orderId=${_id}`}>
             Не все товары найдены в базе данных
           </AppLink>
-        )}
-        {order?.ordering ? (
+        )} */}
+        {/* {order?.ordering ? (
           <AppLink to={`../../orderings/${ordering}`}>Перейти к порядовке</AppLink>
         ) : (
           <AppLink to={`../../orderings/create?orderId=${_id}`}>Создать порядовку</AppLink>
-        )}
+        )} */}
         {orderNumber && <div>{`Заказ №${orderNumber}`}</div>}
         {order && transformedRecords && (
           <OrderCard order={{ ...order, orderRecords: transformedRecords }} />

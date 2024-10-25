@@ -1,21 +1,23 @@
-import { useAppDispatch } from '@shared/lib/hooks';
-import { orderActions } from '@entities/orders';
-
+import { useParams } from 'react-router-dom';
 import { getOrderFromExcel } from '../api/mappers/getOrderFromExcel';
+import { useAddOrderRecords } from '@entities/orders';
+// import { useUpdateOrderRecordMutation } from '@widgets/documentPageBody';
 
 export const LoadOrderFromFile = () => {
-  const dispatch = useAppDispatch();
-  const { setCurrentOrder } = orderActions;
+  const { orderNumber } = useParams();
+  const [addOrderRecords] = useAddOrderRecords();
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const order = await getOrderFromExcel(e);
 
     if (order) {
-      const orderName = `Заказ №${1} от ${new Date().toLocaleDateString('ru-RU')}`;
-      const newOrder = { orderName, orderRecords: order };
-      dispatch(setCurrentOrder(newOrder));
-      if (localStorage.getItem('dataBase') === 'localStorage')
-        localStorage.setItem('currentOrder', JSON.stringify(newOrder));
+      const { parseError: error, records } = order;
+      if (error) {
+        console.log(error);
+      }
+      records &&
+        orderNumber &&
+        addOrderRecords({ orderNumber: Number(orderNumber), orderRecords: records });
     }
   };
 

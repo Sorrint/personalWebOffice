@@ -8,10 +8,10 @@ import {
   type IInventoryProduct,
   useLoadDocumentByNumber,
   InventoryProductsTable,
-} from '@entities/inventoryDocs';
+} from '@entities/inventories';
 import { PopoverProductsList } from '@entities/products';
 import { useInputText, useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
-import { FormatDate } from '@shared/ui/formatDate/FormatDate';
+// import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/searchInput';
 import { Checkbox } from '@shared/ui/checkbox';
 import { Grid } from '@shared/ui/grid';
@@ -134,7 +134,7 @@ export const InventoryEdit = memo(() => {
         </div>
         <h1>
           {`Инвентаризация № ${inventoryList.documentNumber} от `}
-          <FormatDate date={inventoryList.choosenDate} />
+          {/* <FormatDate date={inventoryList.choosenDate} /> */}
           {` магазина ${inventoryList.storeName}`}
         </h1>
         <ScrollableBlock>

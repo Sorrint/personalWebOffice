@@ -3,7 +3,7 @@ import {
   useRemoveInventoryProduct,
   useUpdateProducts,
   type IInventoryProduct,
-} from '@entities/inventoryDocs';
+} from '@entities/inventories';
 import { editProductFromActions } from '../../../model/slices/EditProductFormSlice';
 import { useAppDispatch, useAppSelector, useKeyPress } from '@shared/lib/hooks';
 import { type FieldValues } from 'react-hook-form';

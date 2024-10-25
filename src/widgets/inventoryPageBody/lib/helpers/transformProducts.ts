@@ -1,5 +1,5 @@
 import { type IDreamkasProduct } from './../../../../entities/products/model/types/IDreamkasProduct';
-import { type IInventoryProduct } from '@entities/inventoryDocs';
+import { type IInventoryProduct } from '@entities/inventories';
 
 export const transformProducts = (
   products?: IDreamkasProduct[],
