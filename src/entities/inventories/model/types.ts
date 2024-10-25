@@ -52,6 +52,7 @@ export interface IInventoryProductCardProps {
 }
 
 export interface IInventoryProductDisplay extends IInventoryProduct {
+  highlight?: boolean | (() => void);
   priceString: string;
   number: number;
   sum: number | string;
