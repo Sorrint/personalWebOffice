@@ -1,6 +1,6 @@
 export { CreateOrder } from './components/CreateOrder/CreateOrder';
-export { CreateOrdering } from './components/createOrdering/createOrdering';
-export { AddOrderProducts } from './components/addOrderProducts/addOrderProducts';
-export { OrderDetails } from './components/orderDetails/orderDetails';
-export { Distribution } from './components/distributionContent/distribution';
+export { CreateOrdering } from './components/CreateOrdering/CreateOrdering';
+export { AddOrderProducts } from './components/AddOrderProducts/AddOrderProducts';
+export { OrderDetails } from './components/OrderDetails/OrderDetails';
+export { Distribution } from './components/DistributionContent/Distribution';
 export * from '../documentPageBody/api/documentsOrderApi';

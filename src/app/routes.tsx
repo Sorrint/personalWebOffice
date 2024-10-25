@@ -13,6 +13,7 @@ import {
   Distribution,
   CreateOrdering,
   CreateOrder,
+  OrderDetails,
 } from '@widgets/documentPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 
@@ -20,7 +21,6 @@ import { EditPackageCategory } from '@features/editPackageCategory';
 import { EditPackageForm } from '@features/editPackageForm';
 
 import { AppRoutes } from '@shared/config/router/routesLinks';
-import { EditOrder } from '@widgets/documentPageBody/components/EditOrder/EditOrder';
 import { OrdersList } from '@entities/orders';
 
 export const routes: RouteObject[] = [
@@ -32,7 +32,7 @@ export const routes: RouteObject[] = [
       {
         path: 'orders',
         children: [
-          { path: AppRoutes.getOrderDetailsRoute(':orderNumber'), element: <EditOrder /> },
+          { path: AppRoutes.getOrderDetailsRoute(':orderNumber'), element: <OrderDetails /> },
           { path: AppRoutes.getOrderAddProductsRoute(), element: <AddOrderProducts /> },
           { path: AppRoutes.getOrderCreateRoute(), element: <CreateOrder /> },
           { index: true, element: <OrdersList /> },

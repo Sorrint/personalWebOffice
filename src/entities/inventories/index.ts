@@ -1,5 +1,5 @@
-export { InventoryProductsTable } from './components/inventoryProductsTable2/inventoryProductsTable';
-export { InventoryList } from './components/InventoryList/inventoryList';
+export { InventoryProductsTable } from './components/InventoryProducts/InventoryProducts';
+export { InventoryList } from './components/InventoriesList/InventoriesList';
 
 export * from './model/types';
 export * from './api/inventoriesApi';
