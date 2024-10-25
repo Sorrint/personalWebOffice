@@ -14,7 +14,7 @@ import {
   CreateOrdering,
   CreateOrder,
   OrderDetails,
-} from '@widgets/documentPageBody';
+} from '@widgets/documentsPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 
 import { EditPackageCategory } from '@features/editPackageCategory';
