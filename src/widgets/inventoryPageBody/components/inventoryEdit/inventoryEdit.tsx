@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useEditProductForm, PopupEditProductForm } from '@features/editProductForm';
-import { SaveInventoryToXLSX } from '@features/saveInventoryToXLSX';
+import { SaveInventoryToXLSX } from '@features/SaveInventoryToXLSX';
 import {
   type IInventoryProduct,
   useLoadDocumentByNumber,
