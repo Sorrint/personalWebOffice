@@ -9,10 +9,11 @@ import {
   getPalletsText,
   getShipmentDayText,
   getSleepsheetsText,
-} from '../../lib/helpers';
+} from '../../lib/helpers/getSummaryText';
 import { getOrderingSummary, initSummary } from '../../model/slice/OrderingSlice';
 import { type IOrderingSummaryData } from '../../model/types/ordering';
 import styles from './orderingInfo.module.scss';
+
 interface OrderingInfoProps {
   className?: string;
 }

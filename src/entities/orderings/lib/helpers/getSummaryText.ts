@@ -1,7 +1,7 @@
-import { type Pallets, PalletsText } from '../../../consts/palletsConsts';
-import { type IOrderingWeights, type ICountOfPallets } from '../../../model/types/ordering';
-import { CorrugatedSheets } from '../../../consts/corrugatedSheetsConsts';
-import { type ICorrugatedSheetsCount } from '../../../model/types/ordering';
+import { type Pallets, PalletsText } from '../../consts/palletsConsts';
+import { type IOrderingWeights, type ICountOfPallets } from '../../model/types/ordering';
+import { CorrugatedSheets } from '../../consts/corrugatedSheetsConsts';
+import { type ICorrugatedSheetsCount } from '../../model/types/ordering';
 
 export const getPalletsText = (palletsObj?: ICountOfPallets) => {
   return (

@@ -10,7 +10,11 @@ import {
   type ICorrugatedSheetsCount,
 } from './../types/ordering';
 import { type Pallets, PalletsWeight, CorrugatedSheetsWeight } from '../../consts/palletsConsts';
-import { getRowsCount, getSlipSheetsCount, getSlipSheetsWeight } from '../../lib/helpers';
+import {
+  getRowsCount,
+  getSlipSheetsCount,
+  getSlipSheetsWeight,
+} from '../../lib/helpers/getOrderingsTexts';
 
 export const initSummary: IOrderingSummaryData = {
   corrugatedSheetsCount: { T21: 0, T99_2: 0 },
