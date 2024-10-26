@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 import { type CorrugatedSheets } from '../../consts/corrugatedSheetsConsts';
 import { type Pallets } from '../../consts/palletsConsts';
+import { IBaseOrder } from '@shared/types/baseOrder';
 
 export type ICountOfPallets = Record<Pallets, number>;
 
@@ -53,3 +54,5 @@ export interface IOrderingRecordDisplay
   rows: string | (() => ReactNode);
   productName: string | (() => ReactNode);
 }
+
+export interface IOrdering extends IBaseOrder {}

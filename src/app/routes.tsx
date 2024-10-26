@@ -10,7 +10,6 @@ import { AuthPage } from '@pages/authPage';
 import { CreateInventory, InventoriesList, InventoryEdit } from '@widgets/inventoryPageBody';
 import {
   AddOrderProducts,
-  Distribution,
   CreateOrdering,
   CreateOrder,
   OrderDetails,
@@ -22,6 +21,8 @@ import { EditPackageForm } from '@features/editPackageForm';
 
 import { AppRoutes } from '@shared/config/router/routesLinks';
 import { OrdersList } from '@entities/orders';
+import { OrderingsList } from '@entities/orderings';
+import { DistributionsList } from '@entities/distributions';
 
 export const routes: RouteObject[] = [
   { index: true, element: <Navigate to={AppRoutes.getDashboardRoute()} /> },
@@ -42,10 +43,10 @@ export const routes: RouteObject[] = [
         path: AppRoutes.getOrderingsRoute(),
         children: [
           { path: AppRoutes.getOrderingsCreateRoute(), element: <CreateOrdering /> },
-          { index: true, element: <CreateOrdering /> },
+          { index: true, element: <OrderingsList /> },
         ],
       },
-      { path: AppRoutes.getDistributionsRoute(), element: <Distribution /> },
+      { path: AppRoutes.getDistributionsRoute(), element: <DistributionsList /> },
       { index: true, element: <Navigate to={AppRoutes.getOrdersRoute()} /> },
       { path: '*', element: <Navigate to={AppRoutes.getOrdersRoute()} /> },
     ],

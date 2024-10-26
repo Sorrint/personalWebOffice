@@ -1,33 +1,32 @@
 import { rtkApi } from '@shared/api/rtkApi';
-// import { IOrderRecord, type IOrder } from '../model/types/IOrder';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformOrderingsList } from '../lib/helpers/transformOrderingsList';
-import { IOrder } from '@entities/orders';
+import { IOrdering } from '../model/types/ordering';
 
-const baseOrdersUri = 'documents/orderings';
+const baseOrderingsUri = 'documents/orderings';
 
-const orderApi = rtkApi
-  .enhanceEndpoints({ addTagTypes: ['order', 'orderRecords'] })
-  .injectEndpoints({
-    endpoints: build => ({
-      getOrdersList: build.query<AppLinkItem[], void>({
-        query: () => ({
-          url: `${baseOrdersUri}`,
-          method: 'GET',
-        }),
-        transformResponse: transformOrderingsList,
-        providesTags: () => ['order'],
+const orderingsApi = rtkApi.enhanceEndpoints({ addTagTypes: ['orderings'] }).injectEndpoints({
+  endpoints: build => ({
+    getOrderingsList: build.query<AppLinkItem[], void>({
+      query: () => ({
+        url: `${baseOrderingsUri}`,
+        method: 'GET',
       }),
-
-      getOrderById: build.query<IOrder, string>({
-        query: id => ({
-          url: `documents/orders/${id}`,
-          method: 'GET',
-        }),
-        providesTags: () => ['order'],
-      }),
+      transformResponse: transformOrderingsList,
+      providesTags: () => ['orderings'],
     }),
-  });
 
-export const { useGetOrdersListQuery: useGetOrdersList, useGetOrderByIdQuery: useGetOrderById } =
-  orderApi;
+    getOrderingById: build.query<IOrdering, string>({
+      query: id => ({
+        url: `documents/orderings/${id}`,
+        method: 'GET',
+      }),
+      providesTags: () => ['orderings'],
+    }),
+  }),
+});
+
+export const {
+  useGetOrderingsListQuery: useGetOrderingsList,
+  useGetOrderingByIdQuery: useGetOrderById,
+} = orderingsApi;
