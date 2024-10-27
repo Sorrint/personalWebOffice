@@ -4,7 +4,7 @@ import { EditProductCard } from '@features/editProductCard';
 // import { type IStoreProduct } from '@entities/products';
 
 // import { useUpdateOrderRecords } from '../../api/documentsOrderApi';
-import styles from './addOrderProducts.module.scss';
+import styles from './AddOrderProducts.module.scss';
 import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
 
 export const AddOrderProducts = () => {

@@ -14,7 +14,7 @@ import { useAppDispatch } from '@shared/lib/hooks';
 import { Panel } from '@shared/ui/panel/panel';
 
 import { useCreateOrderingData } from '../../libs/hooks/useCreateOrderingData';
-import style from './createOrdering.module.scss';
+import style from './CreateOrdering.module.scss';
 import { ScrollableBlock } from '../../../../shared/ui/ScrollableBlock';
 import { FlexColumn } from '@shared/ui/Flex';
 
