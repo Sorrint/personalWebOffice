@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { useGetOrdersList } from '@entities/orders/api/orderApi';
 import { AppLinksList } from '@shared/ui/AppLinksList';
 
-export const OrdersList = () => {
+export const OrdersList = memo(() => {
   const { data: ordersLinks } = useGetOrdersList();
 
   return (
@@ -9,4 +10,4 @@ export const OrdersList = () => {
       {ordersLinks ? <AppLinksList list={ordersLinks} listTitle='Список заказов' /> : 'Нет заказов'}
     </>
   );
-};
+});

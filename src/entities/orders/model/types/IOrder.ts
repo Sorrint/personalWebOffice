@@ -27,3 +27,9 @@ export interface OrderState {
   duplicatedRecords?: IOrderRecord[];
   error?: string | undefined;
 }
+
+export interface IOrderFillingErrors {
+  numberDuplicates: { number: number; count: number }[];
+  productsDuplicates: { productName: string; numbers: number[] }[];
+  productsNotFound: number[];
+}

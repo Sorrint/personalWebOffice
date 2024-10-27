@@ -1,7 +1,3 @@
-import { useParams } from 'react-router-dom';
-
-import { useGetOrderRecords } from '@entities/orders/api/orderApi';
-
 import { type TableColumns } from '@shared/ui/table/table';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 import { Table } from '@shared/ui/table';
@@ -18,10 +14,11 @@ const tableColumns: TableColumns<IOrderRecord> = {
 
 const COLUMNS_WIDTHS = '30px minmax(500px, 1fr) 130px 130px';
 
-export const OrderCard = memo(() => {
-  const { orderNumber } = useParams();
-  const { data: orderRecords } = useGetOrderRecords(Number(orderNumber), { skip: !orderNumber });
+interface OrderCardProps {
+  orderRecords?: IOrderRecord[];
+}
 
+export const OrderCard = memo(({ orderRecords }: OrderCardProps) => {
   if (!orderRecords) {
     return null;
   }

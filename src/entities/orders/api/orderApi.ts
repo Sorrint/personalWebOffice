@@ -1,5 +1,10 @@
 import { rtkApi } from '@shared/api/rtkApi';
-import { ICreateOrder, IOrderRecord, type IOrder } from '../model/types/IOrder';
+import {
+  ICreateOrder,
+  IOrderFillingErrors,
+  IOrderRecord,
+  type IOrder,
+} from '../model/types/IOrder';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformOrdersList } from '../lib/helpers/transformOrdersList';
 
@@ -51,7 +56,7 @@ const orderApi = rtkApi
 
       getOrderById: build.query<IOrder, string>({
         query: id => ({
-          url: `documents/orders/${id}`,
+          url: `${baseOrdersUri}/${id}`,
           method: 'GET',
         }),
         providesTags: () => ['order'],
@@ -59,10 +64,17 @@ const orderApi = rtkApi
 
       getOrderRecords: build.query<IOrderRecord[], number>({
         query: orderNumber => ({
-          url: `documents/orders/orderRecords/${orderNumber}`,
+          url: `${baseOrdersUri}/orderRecords/${orderNumber}`,
           method: 'GET',
         }),
         providesTags: () => ['orderRecords'],
+      }),
+
+      getOrderFillingErrors: build.query<IOrderFillingErrors, number>({
+        query: orderNumber => ({
+          url: `${baseOrdersUri}/fillingErrors/${orderNumber}`,
+          method: 'GET',
+        }),
       }),
     }),
   });
@@ -74,4 +86,5 @@ export const {
   useAddOrderRecordsMutation: useAddOrderRecords,
   useGetOrderByIdQuery: useGetOrderById,
   useGetOrderRecordsQuery: useGetOrderRecords,
+  useGetOrderFillingErrorsQuery: useGetOrderFillingErrors,
 } = orderApi;
