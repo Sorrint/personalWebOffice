@@ -22,7 +22,7 @@ export const useLoadInventoryProductsBySearch = () => {
     data: goods,
     isFetching,
     refetch,
-  } = useLoadProductsBySearch({ limit: 1000, q: search }, { pollingInterval: 0 });
+  } = useLoadProductsBySearch({ limit: 1000, q: search }, { pollingInterval: 0, skip: !search });
 
   useEffect(() => {
     if (!isFetching && goods && goods.length === 0 && !requestCompleted) {
