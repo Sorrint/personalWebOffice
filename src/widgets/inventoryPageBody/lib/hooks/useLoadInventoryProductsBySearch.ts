@@ -30,7 +30,7 @@ export const useLoadInventoryProductsBySearch = () => {
       if (tempToken) {
         dispatch(setToken(tempToken));
         setIsActiveAccount(false);
-        refetch();
+        search && refetch();
         setRequestCompleted(true);
       }
     }

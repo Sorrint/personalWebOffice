@@ -64,6 +64,12 @@ export const InventoryEdit = memo(() => {
     [displayForm, setActivePopover, setActivePopup],
   );
 
+  useEffect(() => {
+    if (!activePopup && searchInputRef) {
+      searchInputRef.current?.select();
+    }
+  }, [activePopup]);
+
   const getGoods = async (value: string) => {
     setActivePopover(false);
     setSearch(value);

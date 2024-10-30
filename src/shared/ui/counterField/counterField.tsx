@@ -20,6 +20,7 @@ interface ICounterFieldsProps<T extends FieldValues> {
   name: Path<T>;
   min?: number | string;
   max?: number | string;
+  selectOnFocus?: boolean;
   onClick?: (e: MouseEvent) => void;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   classname?: string;
@@ -38,12 +39,13 @@ export const CounterField = memo(
     const {
       label,
       name,
+      selectOnFocus,
       onChange,
       onClick,
+      onFocus,
       classname,
       onKeyPress,
       tabIndex,
-      onFocus,
       min,
       max,
       autofocus,
@@ -51,6 +53,12 @@ export const CounterField = memo(
     } = props;
     const inputClass = classNames(style.component, classname);
     const inputRef = useRef<HTMLInputElement | null>();
+
+    useEffect(() => {
+      if (selectOnFocus && inputRef) {
+        inputRef.current?.select();
+      }
+    }, []);
 
     const decrement = () => {
       if (inputRef.current) {
