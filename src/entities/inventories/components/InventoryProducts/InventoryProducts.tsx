@@ -26,7 +26,7 @@ const tableColumns: TableColumns<Partial<IInventoryProductDisplay>> = {
 };
 
 const COLUMNS_WIDTHS =
-  '30px minmax(422px, 1fr) minmax(50px, 70px) minmax(80px, 100px) minmax(80px, 100px) 30px';
+  '30px minmax(300px, 1fr) minmax(50px, 70px) minmax(80px, 100px) minmax(80px, 100px) 30px';
 
 export const InventoryProductsTable = memo(
   ({ inventoryList, tabIndex, onClick, onDelete, highlightFunc }: InventoryProductsTableProps) => {

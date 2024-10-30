@@ -56,6 +56,7 @@ export const CounterField = memo(
 
     useEffect(() => {
       if (selectOnFocus && inputRef) {
+        inputRef.current?.focus();
         inputRef.current?.select();
       }
     }, []);
