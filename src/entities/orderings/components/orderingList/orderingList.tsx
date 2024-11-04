@@ -1,14 +1,14 @@
 import { type ReactNode, memo } from 'react';
-import { useAppSelector } from '@shared/lib/hooks';
 import { Loader } from '@shared/ui/loaders';
-import { type IOrderingRecordDisplay } from '../../model/types/ordering';
-import { getIsLoading, getOrderingChaptersData } from '../../model/slice/OrderingSlice';
+import { IOrderingChapter, type IOrderingRecordDisplay } from '../../model/types/ordering';
 import { OrderingHeaders } from '../../consts/orderingHeaders';
 import { type TableColumns, Table } from '@shared/ui/table';
 import useTableData from '../../lib/hooks/useTableData/useTableData';
 interface OrderingListProps {
   className?: string;
-  editRows?: (key: string) => ReactNode;
+  records: IOrderingChapter[];
+  editRows?: (key: string | null) => ReactNode;
+  isLoading?: boolean;
 }
 
 const columns: TableColumns<Partial<IOrderingRecordDisplay>> = {
@@ -19,25 +19,29 @@ const columns: TableColumns<Partial<IOrderingRecordDisplay>> = {
   rows: { header: OrderingHeaders.ROWS },
 };
 
-export const OrderingList = memo(({ className, editRows }: OrderingListProps) => {
-  const records = useAppSelector(getOrderingChaptersData);
-  const isLoading = useAppSelector(getIsLoading);
-  const displayingRecords = useTableData({ records, editRows });
-  const colTemplate = '40px minmax(360px, 1fr) 80px 80px 180px';
-  return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        displayingRecords && (
-          <Table className={className} colTemplate={colTemplate} columns={columns} view='grid'>
-            <Table.Header />
-            <Table.Body records={displayingRecords} />
-          </Table>
-        )
-      )}
-    </>
-  );
-});
+export const OrderingList = memo(
+  ({ className, editRows, records, isLoading }: OrderingListProps) => {
+    const displayingRecords = useTableData({ records, editRows });
+    const colTemplate = '40px minmax(360px, 1fr) 80px 80px 180px';
+
+    if (!records) {
+      return null;
+    }
+    return (
+      <>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          displayingRecords && (
+            <Table className={className} colTemplate={colTemplate} columns={columns} view='grid'>
+              <Table.Header />
+              <Table.Body records={displayingRecords} />
+            </Table>
+          )
+        )}
+      </>
+    );
+  },
+);
 
 OrderingList.displayName = 'OrderingList';

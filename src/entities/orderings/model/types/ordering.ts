@@ -32,14 +32,13 @@ export interface IOrderingSummaryData {
 }
 
 export interface IOrderingChapter {
+  id: string;
   records: IOrderingRecord[];
-  summary: {
-    countOfPackages: number;
-    totalCount: number;
-    categoryName: string;
-    text: string;
-    rowsCount: number;
-  };
+  countOfPackages: number | null;
+  productsCount: number;
+  packageCategory: string | null;
+  rowsCount: number | null;
+  text?: string;
 }
 
 export interface IOrdering {

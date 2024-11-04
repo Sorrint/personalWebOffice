@@ -12,7 +12,7 @@ export const OrderFillingErrors = memo(({ fillingErrors }: OrderFillingErrorsPro
   const numberDuplicatesText = fillingErrors?.numberDuplicates
     .map(
       ({ count, number }) =>
-        `${count} (${number} ${getDeclensions(number, ['раз', 'раза', 'раз'])})`,
+        `№${number} (${count} ${getDeclensions(count, ['раз', 'раза', 'раз'])})`,
     )
     .join(', ');
 

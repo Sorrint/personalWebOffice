@@ -1,3 +1,4 @@
+export { OrderingDetails } from './components/OrderingDetails/OrderingDetails';
 export { CreateOrder } from './components/CreateOrder/CreateOrder';
 export { CreateOrdering } from './components/CreateOrdering/CreateOrdering';
 export { AddOrderProducts } from './components/AddOrderProducts/AddOrderProducts';

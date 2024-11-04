@@ -1,3 +1,5 @@
+export * from './api/orderingsApi';
+
 export { OrderingsList } from './components/OrderingsList/OrderingsList';
 export { type IOrdering, type IOrderingChapter } from './model/types/ordering';
 export { OrderingList } from './components/orderingList/orderingList';

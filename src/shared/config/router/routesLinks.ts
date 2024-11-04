@@ -9,6 +9,7 @@ export const AppRoutes = {
   getOrderCreateRoute: () => `${BaseURL}/documents/orders/create`,
   getOrderAddProductsRoute: () => `${BaseURL}/documents/orders/addProducts`,
   getOrderingsRoute: () => `${BaseURL}/documents/orderings`,
+  getOrderingDetailsRoute: (id: string) => `${BaseURL}/documents/orderings/${id}`,
   getOrderingsCreateRoute: () => `${BaseURL}/documents/orderings/create`,
   getDistributionsRoute: () => `${BaseURL}/documents/distributions`,
   // Inventories Page

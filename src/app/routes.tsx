@@ -13,6 +13,7 @@ import {
   CreateOrdering,
   CreateOrder,
   OrderDetails,
+  OrderingDetails,
 } from '@widgets/documentsPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 
@@ -43,6 +44,7 @@ export const routes: RouteObject[] = [
         path: AppRoutes.getOrderingsRoute(),
         children: [
           { path: AppRoutes.getOrderingsCreateRoute(), element: <CreateOrdering /> },
+          { path: AppRoutes.getOrderingDetailsRoute(':orderNumber'), element: <OrderingDetails /> },
           { index: true, element: <OrderingsList /> },
         ],
       },

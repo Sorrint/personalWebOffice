@@ -29,6 +29,9 @@ export const OrderingInfo = memo(({ className }: OrderingInfoProps) => {
     }
   }, [orderingSummary]);
 
+  if (!summary) {
+    return null;
+  }
   return (
     <div className={classNames(styles.summary, className)}>
       <p>{getPalletsText(summary.palletsCount)}</p>

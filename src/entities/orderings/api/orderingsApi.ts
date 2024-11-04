@@ -1,7 +1,7 @@
 import { rtkApi } from '@shared/api/rtkApi';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformOrderingsList } from '../lib/helpers/transformOrderingsList';
-import { IOrdering } from '../model/types/ordering';
+import { IOrdering, IOrderingChapter } from '../model/types/ordering';
 
 const baseOrderingsUri = 'documents/orderings';
 
@@ -16,9 +16,17 @@ const orderingsApi = rtkApi.enhanceEndpoints({ addTagTypes: ['orderings'] }).inj
       providesTags: () => ['orderings'],
     }),
 
+    getOrderingDetails: build.query<IOrderingChapter[], number>({
+      query: orderNumber => ({
+        url: `documents/orderingDetails/${orderNumber}`,
+        method: 'GET',
+      }),
+      providesTags: () => ['orderings'],
+    }),
+
     getOrderingById: build.query<IOrdering, string>({
       query: id => ({
-        url: `documents/orderings/${id}`,
+        url: `${baseOrderingsUri}/${id}`,
         method: 'GET',
       }),
       providesTags: () => ['orderings'],
@@ -29,4 +37,5 @@ const orderingsApi = rtkApi.enhanceEndpoints({ addTagTypes: ['orderings'] }).inj
 export const {
   useGetOrderingsListQuery: useGetOrderingsList,
   useGetOrderingByIdQuery: useGetOrderById,
+  useGetOrderingDetailsQuery: useGetOrderingDetails,
 } = orderingsApi;
