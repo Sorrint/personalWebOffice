@@ -10,7 +10,6 @@ import { AuthPage } from '@pages/authPage';
 import { CreateInventory, InventoriesList, InventoryEdit } from '@widgets/inventoryPageBody';
 import {
   AddOrderProducts,
-  CreateOrdering,
   CreateOrder,
   OrderDetails,
   OrderingDetails,
@@ -43,7 +42,6 @@ export const routes: RouteObject[] = [
       {
         path: AppRoutes.getOrderingsRoute(),
         children: [
-          { path: AppRoutes.getOrderingsCreateRoute(), element: <CreateOrdering /> },
           { path: AppRoutes.getOrderingDetailsRoute(':orderNumber'), element: <OrderingDetails /> },
           { index: true, element: <OrderingsList /> },
         ],

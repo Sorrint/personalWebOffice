@@ -23,15 +23,12 @@ const reducers: ReducersList = {
 };
 
 export const OrderingDetails = () => {
-  // const [queryParams] = useSearchParams();
   const { orderNumber } = useParams();
   const dispatch = useAppDispatch();
-  // useCreateOrderingData(orderId ?? '');
   const { data: orderingRecords } = useGetOrderingDetails(Number(orderNumber), {
     skip: !orderNumber,
   });
 
-  console.log(orderingRecords);
   const setPallets = (palletsObj: Record<Pallets, number>) => {
     dispatch(orderingActions.setPalletsCount(palletsObj));
   };
