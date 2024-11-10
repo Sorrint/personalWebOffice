@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import {
   getOrderingChaptersData,
   getOrderingSummary,
-  useGetOrderingDetails,
+  useGetOrderingRecords,
 } from '@entities/orderings';
 import { useAppSelector } from '@shared/lib/hooks';
 
@@ -17,7 +17,7 @@ interface SaveOrderingToXLSXProps {
 export const SaveOrderingToXLSX = ({ classname }: SaveOrderingToXLSXProps) => {
   const { orderNumber } = useParams();
 
-  const { data: orderingRecords } = useGetOrderingDetails(Number(orderNumber), {
+  const { data: orderingRecords } = useGetOrderingRecords(Number(orderNumber), {
     skip: !orderNumber,
   });
   // const orderingData = useAppSelector(getOrderingChaptersData);

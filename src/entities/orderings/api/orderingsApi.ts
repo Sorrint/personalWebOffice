@@ -16,7 +16,7 @@ const orderingsApi = rtkApi.enhanceEndpoints({ addTagTypes: ['orderings'] }).inj
       providesTags: () => ['orderings'],
     }),
 
-    getOrderingDetails: build.query<IOrderingChapter[], number>({
+    getOrderingRecords: build.query<IOrderingChapter[], number>({
       query: orderNumber => ({
         url: `documents/orderingDetails/${orderNumber}`,
         method: 'GET',
@@ -37,5 +37,5 @@ const orderingsApi = rtkApi.enhanceEndpoints({ addTagTypes: ['orderings'] }).inj
 export const {
   useGetOrderingsListQuery: useGetOrderingsList,
   useGetOrderingByIdQuery: useGetOrderById,
-  useGetOrderingDetailsQuery: useGetOrderingDetails,
+  useGetOrderingRecordsQuery: useGetOrderingRecords,
 } = orderingsApi;

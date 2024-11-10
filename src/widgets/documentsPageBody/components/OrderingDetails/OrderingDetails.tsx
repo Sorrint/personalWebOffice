@@ -5,18 +5,16 @@ import { EditOrderingRows } from '@features/editOrdreringRows';
 import {
   OrderingInfo,
   OrderingList,
-  type Pallets,
   orderingReducer,
-  orderingActions,
-  useGetOrderingDetails,
+  useGetOrderingRecords,
 } from '@entities/orderings';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
-import { useAppDispatch } from '@shared/lib/hooks';
 import { Panel } from '@shared/ui/panel/panel';
 
 import style from './OrderingDetails.module.scss';
 import { ScrollableBlock } from '../../../../shared/ui/ScrollableBlock';
 import { FlexColumn } from '@shared/ui/Flex';
+import { Pallet, useGetOrderPackages, useUpdateOrderPackages } from '@entities/orders';
 
 const reducers: ReducersList = {
   ordering: orderingReducer,
@@ -24,13 +22,16 @@ const reducers: ReducersList = {
 
 export const OrderingDetails = () => {
   const { orderNumber } = useParams();
-  const dispatch = useAppDispatch();
-  const { data: orderingRecords } = useGetOrderingDetails(Number(orderNumber), {
+  const { data: orderingRecords } = useGetOrderingRecords(Number(orderNumber), {
+    skip: !orderNumber,
+  });
+  const { data: pallets } = useGetOrderPackages(Number(orderNumber), {
     skip: !orderNumber,
   });
 
-  const setPallets = (palletsObj: Record<Pallets, number>) => {
-    dispatch(orderingActions.setPalletsCount(palletsObj));
+  const [updateOrderPackages] = useUpdateOrderPackages();
+  const setPallets = (pallets: Pallet[]) => {
+    updateOrderPackages({ orderNumber: Number(orderNumber), pallets });
   };
 
   if (!orderNumber) return <>{'Нет id заказа'}</>;
@@ -39,9 +40,18 @@ export const OrderingDetails = () => {
   return (
     <AsyncReduxComponent reducersList={reducers}>
       <FlexColumn gap='16'>
-        <Panel title='Дополнительные параметры для расчета' open={true}>
-          <CountPalletsForm onChange={setPallets} classname={style['pallets-form']} />
-        </Panel>
+        {pallets && (
+          <Panel title='Дополнительные параметры для расчета' open={true}>
+            (
+            <CountPalletsForm
+              onChange={setPallets}
+              classname={style['pallets-form']}
+              orderNumber={orderNumber}
+              pallets={pallets}
+            />
+            )
+          </Panel>
+        )}
         <ScrollableBlock>
           <OrderingList
             records={orderingRecords}
