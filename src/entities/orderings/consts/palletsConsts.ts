@@ -24,3 +24,14 @@ export const CorrugatedSheetsWeight: Record<keyof ICorrugatedSheetsCount, number
   T21: 2000,
   T99_2: 1500,
 };
+
+/*
+ settings: {
+    pallets: {
+      pallet125: {
+        material: ...
+      }
+    }
+
+ }
+*/

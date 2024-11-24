@@ -20,9 +20,10 @@ export const AppRoutes = {
   getProductsRoute: () => `${BaseURL}/products`,
   getProductsCategoriesRoute: () => `${BaseURL}/products/categories`,
   //Packages Page
-  getPackagesRoute: () => `${BaseURL}/packages`,
-  getPackageCreateRoute: () => `${BaseURL}/packages/create`,
-  getPackagesCategoryCreateRoute: () => `${BaseURL}/packages/categories/create`,
+  getPackagePageRoute: () => `${BaseURL}/package`,
+  getPackagesRoute: () => `${BaseURL}/package/packages/`,
+  getPackageCreateRoute: () => `${BaseURL}/package/packages/create`,
+  getPackagesCategoryCreateRoute: () => `${BaseURL}/package/category/create`,
   //User, auth Pages
   getProfileRoute: () => `${BaseURL}/profile`,
   getLoginRoute: () => `${BaseURL}/login`,

@@ -71,12 +71,12 @@ export const routes: RouteObject[] = [
     ],
   },
   {
-    path: AppRoutes.getPackagesRoute(),
+    path: AppRoutes.getPackagePageRoute(),
     element: <PackagesPage />,
     children: [
       { path: AppRoutes.getPackagesRoute(), element: <EditPackageForm /> },
-      { path: 'category/create', element: <EditPackageCategory /> },
-      { index: true, element: <Navigate to={AppRoutes.getPackageCreateRoute()} /> },
+      { path: AppRoutes.getPackagesCategoryCreateRoute(), element: <EditPackageCategory /> },
+      { index: true, element: <Navigate to={AppRoutes.getPackagesRoute()} /> },
       { path: '*', element: <Navigate to={AppRoutes.getPackageCreateRoute()} /> },
     ],
   },

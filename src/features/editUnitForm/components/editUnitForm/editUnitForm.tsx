@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 
 import { UnitSelect, type IUnit, useCreateNewUnit } from '@entities/units';
 import { renderRHFTextField } from '@shared/ui/reactHookFormFields';
-import { EditPropertyField } from '@shared/ui/editPropertyField';
+import { PropertyField } from '@shared/ui/PropertyField';
 import { Button } from '@shared/ui/button';
 
 import styles from './editUnitForm.module.scss';
@@ -26,21 +26,21 @@ export const EditUnitForm = ({ unit }: EditPackageFormProps) => {
     <>
       <UnitSelect />
       <div className={styles['unit-card']}>
-        <EditPropertyField
+        <PropertyField
           propertyName='Тип единицы измерения'
           renderEditField={() =>
             renderRHFTextField<IUnit>({ fieldName: 'type', register, textFieldType: 'text' })
           }
           className='unitProperty'
         />
-        <EditPropertyField
+        <PropertyField
           propertyName='Базовое значения (в 1000)'
           renderEditField={() =>
             renderRHFTextField<IUnit>({ fieldName: 'base', register, textFieldType: 'number' })
           }
           className='unitProperty'
         />
-        <EditPropertyField
+        <PropertyField
           propertyName='Описание'
           renderEditField={() =>
             renderRHFTextField<IUnit>({ fieldName: 'description', register, textFieldType: 'text' })
