@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { memo } from 'react';
 
 import { useGetPackages } from '../../api/packagesApi';

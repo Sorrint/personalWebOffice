@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { memo, useEffect } from 'react';
 import style from './editOrderingRows.module.scss';
 import { HPopover } from '@shared/ui/popover';
