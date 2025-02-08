@@ -1,5 +1,5 @@
 export interface IPackage {
-  _id?: string;
+  _id: string;
   category?: string;
   volume?: number;
   weight?: number;

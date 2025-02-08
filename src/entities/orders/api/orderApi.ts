@@ -3,10 +3,12 @@ import {
   ICreateOrder,
   IOrderFillingErrors,
   IOrderRecord,
+  IOrderRecordsParams,
   type IOrder,
 } from '../model/types/IOrder';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformOrdersList } from '../lib/helpers/transformOrdersList';
+import { buildQueryString } from '@shared/lib/utils/buildQueryString';
 
 const baseOrdersUri = 'documents/orders';
 
@@ -62,9 +64,9 @@ const orderApi = rtkApi
         providesTags: () => ['order'],
       }),
 
-      getOrderRecords: build.query<IOrderRecord[], number>({
-        query: orderNumber => ({
-          url: `${baseOrdersUri}/orderRecords/${orderNumber}`,
+      getOrderRecords: build.query<IOrderRecord[], IOrderRecordsParams>({
+        query: ({ orderNumber, ...filter }) => ({
+          url: `${baseOrdersUri}/orderRecords/${orderNumber}${buildQueryString(filter)}`,
           method: 'GET',
         }),
         providesTags: () => ['orderRecords'],

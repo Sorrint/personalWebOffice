@@ -16,17 +16,17 @@ export const OrderDetails = () => {
     },
   );
   const { data: orderRecords, isLoading: orderRecordsLoading } = useGetOrderRecords(
-    Number(orderNumber),
+    { orderNumber: Number(orderNumber) },
     { skip: !orderNumber },
   );
 
-  if (orderRecordsLoading || fillingErrorsLoading) {
+  if (orderRecordsLoading || fillingErrorsLoading || !orderNumber) {
     return null;
   }
 
   return (
     <FlexColumn gap='16'>
-      {orderNumber && <div>{`Заказ №${orderNumber}`}</div>}
+      <div>{`Заказ №${orderNumber}`}</div>
       <OrderFillingErrors fillingErrors={fillingErrors} />
       <OrderCard orderRecords={orderRecords} />
     </FlexColumn>

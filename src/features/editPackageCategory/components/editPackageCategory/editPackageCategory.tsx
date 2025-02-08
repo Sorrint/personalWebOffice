@@ -33,9 +33,6 @@ export const EditPackageCategory = memo(({ packageCategory }: EditPackageCategor
         <PropertyField propertyName='Наименование категории'>
           <TextField {...register('name')} className={styles.input} />
         </PropertyField>
-        <PropertyField propertyName='Количество товара'>
-          <TextField {...register('countOfPackages')} className={styles.input} />
-        </PropertyField>
         <Button classname='packageSubmit' onClick={handleSubmit(editPackage)}>
           Добавить упаковку
         </Button>

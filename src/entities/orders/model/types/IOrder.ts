@@ -33,3 +33,8 @@ export interface IOrderFillingErrors {
   productsDuplicates: { productName: string; numbers: number[] }[];
   productsNotFound: number[];
 }
+
+export interface IOrderRecordsParams {
+  orderNumber: number;
+  excludeFilledProducts?: boolean;
+}

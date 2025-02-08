@@ -1,21 +1,24 @@
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { EditProductCard } from '@features/editProductCard';
 // import { type IStoreProduct } from '@entities/products';
 
-// import { useUpdateOrderRecords } from '../../api/documentsOrderApi';
 import styles from './AddOrderProducts.module.scss';
-import { useGetOrderByIdQuery } from '@features/getOrderProductsWeight';
+import { useGetOrderRecords } from '@entities/orders';
+import { useUpdateOrderRecords } from '@widgets/documentsPageBody/api/documentsOrderApi';
 
 export const AddOrderProducts = () => {
-  const [queryParams] = useSearchParams();
-  const orderId = queryParams.get('orderId');
+  const { orderNumber } = useParams();
 
-  const { data: order, isLoading } = useGetOrderByIdQuery(orderId ?? '');
+  const { data: productsWithoutId, isLoading: orderRecordsLoading } = useGetOrderRecords(
+    { orderNumber: Number(orderNumber), excludeFilledProducts: true },
+    { skip: !orderNumber },
+  );
+
   // const [updateRecord] = useUpdateOrderRecords();
 
-  if (isLoading) return <div>Идет загрузка</div>;
-  const productsWithoutId = order?.orderRecords.filter(record => !record.product) || [];
+  if (orderRecordsLoading) return <div>Идет загрузка</div>;
+  console.log(productsWithoutId);
 
   // const handleSubmit = (createdProduct: IStoreProduct, recordNumber: number) => {
   //   updateRecord({
@@ -24,14 +27,14 @@ export const AddOrderProducts = () => {
   //   });
   //   return;
   // };
-  if (!orderId) return 'Нет id заказа';
+  if (!orderNumber) return 'Нет номера заказа';
 
   return (
     <div className={styles['cards-list']}>
       Список товаров
       {productsWithoutId?.map(product => (
         <EditProductCard
-          product={{ ...product, name: product.productName, unit: product.unit?._id }}
+          product={{ ...product, name: product.productName }}
           key={product.productName}
           // onSubmit={createdProduct => handleSubmit(createdProduct, product.number)}
         />

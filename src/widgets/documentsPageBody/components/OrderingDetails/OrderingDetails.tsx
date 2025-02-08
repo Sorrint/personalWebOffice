@@ -42,14 +42,12 @@ export const OrderingDetails = () => {
       <FlexColumn gap='16'>
         {pallets && (
           <Panel title='Дополнительные параметры для расчета' open={true}>
-            (
             <CountPalletsForm
               onChange={setPallets}
               classname={style['pallets-form']}
               orderNumber={orderNumber}
               pallets={pallets}
             />
-            )
           </Panel>
         )}
         <ScrollableBlock>

@@ -1,41 +1,52 @@
 import { rtkApi } from '@shared/api/rtkApi';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformOrderingsList } from '../lib/helpers/transformOrderingsList';
-import { IOrdering, IOrderingChapter } from '../model/types/ordering';
+import { IOrdering, IOrderingChapter, IOrderingSummaryData } from '../model/types/ordering';
 
 const baseOrderingsUri = 'documents/orderings';
 
-const orderingsApi = rtkApi.enhanceEndpoints({ addTagTypes: ['orderings'] }).injectEndpoints({
-  endpoints: build => ({
-    getOrderingsList: build.query<AppLinkItem[], void>({
-      query: () => ({
-        url: `${baseOrderingsUri}`,
-        method: 'GET',
+const orderingsApi = rtkApi
+  .enhanceEndpoints({ addTagTypes: ['orderings', 'orderPackages'] })
+  .injectEndpoints({
+    endpoints: build => ({
+      getOrderingsList: build.query<AppLinkItem[], void>({
+        query: () => ({
+          url: `orderings`,
+          method: 'GET',
+        }),
+        transformResponse: transformOrderingsList,
+        providesTags: () => ['orderings'],
       }),
-      transformResponse: transformOrderingsList,
-      providesTags: () => ['orderings'],
-    }),
 
-    getOrderingRecords: build.query<IOrderingChapter[], number>({
-      query: orderNumber => ({
-        url: `documents/orderingDetails/${orderNumber}`,
-        method: 'GET',
+      getOrderingRecords: build.query<IOrderingChapter[], number>({
+        query: orderNumber => ({
+          url: `/orderings/details/${orderNumber}`,
+          method: 'GET',
+        }),
+        providesTags: () => ['orderings'],
       }),
-      providesTags: () => ['orderings'],
-    }),
 
-    getOrderingById: build.query<IOrdering, string>({
-      query: id => ({
-        url: `${baseOrderingsUri}/${id}`,
-        method: 'GET',
+      getOrderingPackageDetails: build.query<IOrderingSummaryData, number>({
+        query: orderNumber => ({
+          url: `orderPackages/info/${orderNumber}`,
+          method: 'GET',
+        }),
+        providesTags: () => ['orderPackages'],
       }),
-      providesTags: () => ['orderings'],
+
+      getOrderingById: build.query<IOrdering, string>({
+        query: id => ({
+          url: `${baseOrderingsUri}/${id}`,
+          method: 'GET',
+        }),
+        providesTags: () => ['orderings'],
+      }),
     }),
-  }),
-});
+  });
 
 export const {
   useGetOrderingsListQuery: useGetOrderingsList,
   useGetOrderingByIdQuery: useGetOrderById,
   useGetOrderingRecordsQuery: useGetOrderingRecords,
+  useGetOrderingPackageDetailsQuery: useGetOrderingPackageDetails,
 } = orderingsApi;

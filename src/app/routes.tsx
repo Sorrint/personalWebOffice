@@ -17,12 +17,13 @@ import {
 import ProductsCategories from '@widgets/productsPageBody';
 
 import { EditPackageCategory } from '@features/editPackageCategory';
-import { EditPackageForm } from '@features/editPackageForm';
+// import { EditPackageForm } from '@features/editPackageForm';
 
 import { AppRoutes } from '@shared/config/router/routesLinks';
 import { OrdersList } from '@entities/orders';
 import { OrderingsList } from '@entities/orderings';
 import { DistributionsList } from '@entities/distributions';
+import { Packages } from '@widgets/packagesPageBody';
 
 export const routes: RouteObject[] = [
   { index: true, element: <Navigate to={AppRoutes.getDashboardRoute()} /> },
@@ -34,7 +35,10 @@ export const routes: RouteObject[] = [
         path: 'orders',
         children: [
           { path: AppRoutes.getOrderDetailsRoute(':orderNumber'), element: <OrderDetails /> },
-          { path: AppRoutes.getOrderAddProductsRoute(), element: <AddOrderProducts /> },
+          {
+            path: AppRoutes.getOrderAddProductsRoute(':orderNumber'),
+            element: <AddOrderProducts />,
+          },
           { path: AppRoutes.getOrderCreateRoute(), element: <CreateOrder /> },
           { index: true, element: <OrdersList /> },
         ],
@@ -74,7 +78,7 @@ export const routes: RouteObject[] = [
     path: AppRoutes.getPackagePageRoute(),
     element: <PackagesPage />,
     children: [
-      { path: AppRoutes.getPackagesRoute(), element: <EditPackageForm /> },
+      { path: AppRoutes.getPackagesRoute(), element: <Packages /> },
       { path: AppRoutes.getPackagesCategoryCreateRoute(), element: <EditPackageCategory /> },
       { index: true, element: <Navigate to={AppRoutes.getPackagesRoute()} /> },
       { path: '*', element: <Navigate to={AppRoutes.getPackageCreateRoute()} /> },
