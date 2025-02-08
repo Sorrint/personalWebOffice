@@ -12,7 +12,6 @@ export const renderRHFTextField = <T extends FieldValues>(props: renderTextField
   return (
     <TextField
       {...register(fieldName, { valueAsNumber: textFieldType === 'number' })}
-      full
       className={`editCard__cell editItem__${fieldName}`}
       type={textFieldType}
     />

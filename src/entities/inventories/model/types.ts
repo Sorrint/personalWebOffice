@@ -1,0 +1,60 @@
+import { type ReactNode } from 'react';
+
+export interface IInventoryProduct {
+  name: string;
+  price: number | null;
+  quantity: number;
+  id?: string;
+  isActiveAccount?: boolean;
+}
+
+export interface ICreateInventory {
+  documentNumber: number;
+  choosenDate: Date;
+  comment: string;
+  storeName: string;
+}
+
+export interface IInventoryDocs extends ICreateInventory {
+  _id: string;
+  products: IInventoryProduct[];
+  totalSum?: number;
+}
+
+export interface IdataForXLSX {
+  '№ п/п'?: number;
+  Наименование: string;
+  Количество?: number;
+  Цена?: number;
+  Сумма: number;
+}
+
+export interface IInventoryContent {
+  onClick?: (product: IInventoryProduct) => void;
+  onDelete?: (product: IInventoryProduct) => void;
+  index?: number;
+}
+
+export interface IInventoryProductListBodyProps {
+  products: IInventoryProduct[];
+  itemNumber: number;
+  onClick?: (product: IInventoryProduct) => void;
+  onDelete?: (product: IInventoryProduct) => void;
+  tabIndex?: number;
+}
+
+export interface IInventoryProductCardProps {
+  product: IInventoryProduct;
+  itemNumber: number;
+  onClick?: (product: IInventoryProduct) => void;
+  onDelete?: (product: IInventoryProduct) => void;
+  tabIndex?: number;
+}
+
+export interface IInventoryProductDisplay extends IInventoryProduct {
+  highlight?: boolean | (() => void);
+  priceString: string;
+  number: number;
+  sum: number | string;
+  delete: () => ReactNode;
+}

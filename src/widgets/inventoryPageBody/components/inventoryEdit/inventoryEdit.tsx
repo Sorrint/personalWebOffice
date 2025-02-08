@@ -8,10 +8,10 @@ import {
   type IInventoryProduct,
   useLoadDocumentByNumber,
   InventoryProductsTable,
-} from '@entities/inventoryDocs';
+} from '@entities/inventories';
 import { PopoverProductsList } from '@entities/products';
 import { useInputText, useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
-import { FormatDate } from '@shared/ui/formatDate/FormatDate';
+// import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/searchInput';
 import { Checkbox } from '@shared/ui/checkbox';
 import { Grid } from '@shared/ui/grid';
@@ -20,7 +20,7 @@ import { editProductFormReducer } from '@features/editProductForm';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 import { Button } from '@shared/ui/button';
 
-import { useLoadInventoryProductsBySearch } from '../../hooks/useLoadInventoryProductsBySearch';
+import { useLoadInventoryProductsBySearch } from '../../lib/hooks/useLoadInventoryProductsBySearch';
 import styles from './inventoryEdit.module.scss';
 
 const highlightByAccount = (item: IInventoryProduct) => {
@@ -63,6 +63,12 @@ export const InventoryEdit = memo(() => {
     },
     [displayForm, setActivePopover, setActivePopup],
   );
+
+  useEffect(() => {
+    if (!activePopup && searchInputRef) {
+      searchInputRef.current?.select();
+    }
+  }, [activePopup]);
 
   const getGoods = async (value: string) => {
     setActivePopover(false);
@@ -134,7 +140,7 @@ export const InventoryEdit = memo(() => {
         </div>
         <h1>
           {`Инвентаризация № ${inventoryList.documentNumber} от `}
-          <FormatDate date={inventoryList.choosenDate} />
+          {/* <FormatDate date={inventoryList.choosenDate} /> */}
           {` магазина ${inventoryList.storeName}`}
         </h1>
         <ScrollableBlock>

@@ -1,12 +1,12 @@
 import { type Borders, type Worksheet } from 'exceljs';
 import {
-  getCorrugatesSheetsText,
-  getGrossweightText,
-  getPalletsText,
-  getShipmentDayText,
-  getSleepsheetsText,
   type IOrderingChapter,
   type IOrdering,
+  getPalletsText,
+  getCorrugatesSheetsText,
+  getSleepsheetsText,
+  getGrossweightText,
+  getShipmentDayText,
   getCountInRowsText,
 } from '@entities/orderings';
 import { getDeclensions } from '@shared/lib/helpers';

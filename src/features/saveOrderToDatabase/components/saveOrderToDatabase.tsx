@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useSaveCurrentOrderMutation, type IOrder } from '@entities/orders';
+import { useSaveCurrentOrder, type IOrder } from '@entities/orders';
 
 import { Button } from '@shared/ui/button/button';
 
@@ -8,7 +8,7 @@ interface SaveOrderCardProps {
 }
 
 export const SaveOrderToDatabase = memo(({ order }: SaveOrderCardProps) => {
-  const [saveCurrentOrder] = useSaveCurrentOrderMutation();
+  const [saveCurrentOrder] = useSaveCurrentOrder();
   const handleClick = (order: IOrder) => {
     saveCurrentOrder(order);
   };

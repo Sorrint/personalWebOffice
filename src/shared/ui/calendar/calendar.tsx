@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
-import { type FieldValues, Controller, type Control, type Path } from 'react-hook-form';
+import { type FieldValues, Controller, type Path, type Control } from 'react-hook-form';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './calendar.module.scss';
@@ -59,3 +59,5 @@ function Calendar<T extends FieldValues>(props: ICalendarProps<T>) {
 }
 
 export default Calendar;
+
+export type TypedCalendarComponent = typeof Calendar;

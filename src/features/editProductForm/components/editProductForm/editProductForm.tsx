@@ -3,7 +3,7 @@ import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useForm } from 'react-hook-form';
 import { type SerializedError } from '@reduxjs/toolkit';
 
-import { type IInventoryProduct } from '@entities/inventoryDocs';
+import { type IInventoryProduct } from '@entities/inventories';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 import { CounterField } from '@shared/ui/counterField/counterField';
 import { Button } from '@shared/ui/button';
@@ -37,6 +37,7 @@ export function EditProductForm({ buttonClick, error, highlightFunc }: EditProdu
   const modalWindow = useRef<HTMLInputElement>(null);
   const { isKeyPressed } = useKeyPress('Enter');
   const submitRef = useRef<HTMLButtonElement>(null);
+  // const quantityRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     submitRef.current?.focus();
@@ -73,6 +74,7 @@ export function EditProductForm({ buttonClick, error, highlightFunc }: EditProdu
           {product.name && <h2>{product.name}</h2>}
           {!product.name && <TextField {...register('name')} />}
           <CounterField
+            selectOnFocus
             label='Количество'
             {...register('quantity', { valueAsNumber: true, min: 0 })}
             classname={styles.counter}

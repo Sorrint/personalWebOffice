@@ -1,23 +1,40 @@
-import { transformProductName } from '../../lib/helpers/transformProductName/transformProductName';
+import { IOrderRecord } from '@entities/orders';
 import { parseSheetData } from '@shared/lib/utils/parseSheetData';
 import { readXLSXTable } from '@shared/lib/utils/readXLSXtable';
-import { replaceObjectKeys } from '@shared/lib/utils/replaceObjectKeys';
+import { z } from 'zod';
 
-const headersOrderObject = {
+const headersMap: Record<string, keyof IOrderRecord> = {
   '№': 'number',
   'Товары (работы, услуги)': 'productName',
   'Кол-во': 'count',
   'Ед.': 'unit',
 };
 
-export const getOrderFromExcel = async (e: React.BaseSyntheticEvent) => {
+const OrderSchema: z.Schema<IOrderRecord> = z.object({
+  number: z.number(),
+  productName: z.string(),
+  count: z.number(),
+  unit: z.string(),
+});
+
+interface GetOrderResult {
+  records?: IOrderRecord[];
+  parseError?: string;
+}
+
+export const getOrderFromExcel = async (
+  e: React.BaseSyntheticEvent,
+): Promise<GetOrderResult | null> => {
   const data = await readXLSXTable(e, 'TDSheet');
   if (typeof data === 'string') return null;
-  const parse = parseSheetData(data, '№');
-  if (typeof parse === 'string') return null;
-  const result = parse.tableBody
-    .map(item => replaceObjectKeys(headersOrderObject, item))
-    .filter(item => item.productName)
-    .map(item => ({ ...item, productName: transformProductName(item.productName) }));
-  return result;
+
+  const parsedData = parseSheetData({ data, startItem: '№', headersMap, schema: OrderSchema });
+
+  const { data: orderRecords, parseError } = parsedData;
+
+  if (parseError) {
+    return { parseError };
+  }
+
+  return { records: orderRecords };
 };

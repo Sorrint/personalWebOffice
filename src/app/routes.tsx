@@ -7,21 +7,23 @@ import { ProductsPage } from '@pages/productsPage';
 import { ProfilePage } from '@pages/profilePage';
 import { AuthPage } from '@pages/authPage';
 
-import { InventoriesList, InventoryCreate, InventoryEdit } from '@widgets/inventoryPageBody';
+import { CreateInventory, InventoriesList, InventoryEdit } from '@widgets/inventoryPageBody';
 import {
   AddOrderProducts,
   CreateOrder,
-  Distribution,
   OrderDetails,
-  CreateOrdering,
-  OrdersCatalog,
-} from '@widgets/documentPageBody';
+  OrderingDetails,
+} from '@widgets/documentsPageBody';
 import ProductsCategories from '@widgets/productsPageBody';
 
 import { EditPackageCategory } from '@features/editPackageCategory';
-import { EditPackageForm } from '@features/editPackageForm';
+// import { EditPackageForm } from '@features/editPackageForm';
 
 import { AppRoutes } from '@shared/config/router/routesLinks';
+import { OrdersList } from '@entities/orders';
+import { OrderingsList } from '@entities/orderings';
+import { DistributionsList } from '@entities/distributions';
+import { Packages } from '@widgets/packagesPageBody';
 
 export const routes: RouteObject[] = [
   { index: true, element: <Navigate to={AppRoutes.getDashboardRoute()} /> },
@@ -32,20 +34,23 @@ export const routes: RouteObject[] = [
       {
         path: 'orders',
         children: [
-          { path: AppRoutes.getOrderDetailsRoute(':_id'), element: <OrderDetails /> },
-          { path: AppRoutes.getOrderAddProductsRoute(), element: <AddOrderProducts /> },
+          { path: AppRoutes.getOrderDetailsRoute(':orderNumber'), element: <OrderDetails /> },
+          {
+            path: AppRoutes.getOrderAddProductsRoute(':orderNumber'),
+            element: <AddOrderProducts />,
+          },
           { path: AppRoutes.getOrderCreateRoute(), element: <CreateOrder /> },
-          { index: true, element: <OrdersCatalog /> },
+          { index: true, element: <OrdersList /> },
         ],
       },
       {
         path: AppRoutes.getOrderingsRoute(),
         children: [
-          { path: AppRoutes.getOrderingsCreateRoute(), element: <CreateOrdering /> },
-          { index: true, element: <CreateOrdering /> },
+          { path: AppRoutes.getOrderingDetailsRoute(':orderNumber'), element: <OrderingDetails /> },
+          { index: true, element: <OrderingsList /> },
         ],
       },
-      { path: AppRoutes.getDistributionsRoute(), element: <Distribution /> },
+      { path: AppRoutes.getDistributionsRoute(), element: <DistributionsList /> },
       { index: true, element: <Navigate to={AppRoutes.getOrdersRoute()} /> },
       { path: '*', element: <Navigate to={AppRoutes.getOrdersRoute()} /> },
     ],
@@ -54,7 +59,7 @@ export const routes: RouteObject[] = [
     path: AppRoutes.getInventoriesRoute(),
     element: <InventoryPage />,
     children: [
-      { path: AppRoutes.getInventoryCreateRoute(), element: <InventoryCreate /> },
+      { path: AppRoutes.getInventoryCreateRoute(), element: <CreateInventory /> },
       { path: AppRoutes.getInventoryDetailsRoute(':number'), element: <InventoryEdit /> },
       { index: true, element: <InventoriesList /> },
       { path: '*', element: <Navigate to={AppRoutes.getInventoriesRoute()} /> },
@@ -70,12 +75,12 @@ export const routes: RouteObject[] = [
     ],
   },
   {
-    path: AppRoutes.getPackagesRoute(),
+    path: AppRoutes.getPackagePageRoute(),
     element: <PackagesPage />,
     children: [
-      { path: AppRoutes.getPackagesRoute(), element: <EditPackageForm /> },
-      { path: 'category/create', element: <EditPackageCategory /> },
-      { index: true, element: <Navigate to={AppRoutes.getPackageCreateRoute()} /> },
+      { path: AppRoutes.getPackagesRoute(), element: <Packages /> },
+      { path: AppRoutes.getPackagesCategoryCreateRoute(), element: <EditPackageCategory /> },
+      { index: true, element: <Navigate to={AppRoutes.getPackagesRoute()} /> },
       { path: '*', element: <Navigate to={AppRoutes.getPackageCreateRoute()} /> },
     ],
   },

@@ -12,7 +12,7 @@ const reducers: ReducersList = {
 const InventoryPage = () => {
   const navLinks: INavLinkObject = {
     order: {
-      path: '/office/inventory-lists/documents',
+      path: '/office/inventories/',
       title: 'Список документов',
     },
   };

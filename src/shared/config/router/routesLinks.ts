@@ -7,10 +7,11 @@ export const AppRoutes = {
   getOrdersRoute: () => `${BaseURL}/documents/orders`,
   getOrderDetailsRoute: (id: string) => `${BaseURL}/documents/orders/${id}`,
   getOrderCreateRoute: () => `${BaseURL}/documents/orders/create`,
-  getOrderAddProductsRoute: () => `${BaseURL}/documents/orders/addProducts`,
+  getOrderAddProductsRoute: (id: string) => `${BaseURL}/documents/orders/addProducts/${id}`,
   getOrderingsRoute: () => `${BaseURL}/documents/orderings`,
+  getOrderingDetailsRoute: (id: string) => `${BaseURL}/documents/orderings/${id}`,
   getOrderingsCreateRoute: () => `${BaseURL}/documents/orderings/create`,
-  getDistributionsRoute: () => `${BaseURL}/documents/distibutions`,
+  getDistributionsRoute: () => `${BaseURL}/documents/distributions`,
   // Inventories Page
   getInventoriesRoute: () => `${BaseURL}/inventories`,
   getInventoryCreateRoute: () => `${BaseURL}/inventories/create`,
@@ -19,9 +20,10 @@ export const AppRoutes = {
   getProductsRoute: () => `${BaseURL}/products`,
   getProductsCategoriesRoute: () => `${BaseURL}/products/categories`,
   //Packages Page
-  getPackagesRoute: () => `${BaseURL}/packages`,
-  getPackageCreateRoute: () => `${BaseURL}/packages/create`,
-  getPackagesCategoryCreateRoute: () => `${BaseURL}/packages/categories/create`,
+  getPackagePageRoute: () => `${BaseURL}/package`,
+  getPackagesRoute: () => `${BaseURL}/package/packages/`,
+  getPackageCreateRoute: () => `${BaseURL}/package/packages/create`,
+  getPackagesCategoryCreateRoute: () => `${BaseURL}/package/category/create`,
   //User, auth Pages
   getProfileRoute: () => `${BaseURL}/profile`,
   getLoginRoute: () => `${BaseURL}/login`,

@@ -6,17 +6,35 @@ export interface IOrderRecord {
   unit: string;
 }
 
-export interface IOrder {
-  _id?: string;
-  orderName: string;
-  orderRecords: IOrderRecord[];
+export type IOrderRecords = Record<number, IOrderRecord>;
+
+export interface ICreateOrder {
+  orderNumber: number;
+  company: string;
+  date: Date;
+  comment?: string;
+}
+
+export interface IOrder extends ICreateOrder {
+  _id: string;
+  orderRecords: IOrderRecords;
   ordering?: string;
   distribution?: string;
 }
 
 export interface OrderState {
-  entities: IOrder[];
-  currentOrder?: IOrder;
-  isLoading: boolean;
-  error: string | undefined;
+  records?: IOrderRecords;
+  duplicatedRecords?: IOrderRecord[];
+  error?: string | undefined;
+}
+
+export interface IOrderFillingErrors {
+  numberDuplicates: { number: number; count: number }[];
+  productsDuplicates: { productName: string; numbers: number[] }[];
+  productsNotFound: number[];
+}
+
+export interface IOrderRecordsParams {
+  orderNumber: number;
+  excludeFilledProducts?: boolean;
 }

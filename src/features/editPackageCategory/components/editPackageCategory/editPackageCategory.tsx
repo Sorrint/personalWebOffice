@@ -1,20 +1,20 @@
 import { memo, useCallback } from 'react';
-import { type PathValue, useForm, type Path } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
-import { type IPackageCategory, PackageSelect } from '@entities/packages';
-import { EditPropertyField } from '@shared/ui/editPropertyField/editPropertyField';
-import { renderRHFTextField } from '@shared/ui/reactHookFormFields';
+import { type IPackageCategory } from '@entities/packages';
+import { PropertyField } from '@shared/ui/PropertyField/PropertyField';
 import { Button } from '@shared/ui/button';
 
 import { useCreatePackageCategory } from '../../api/editPackageCategoryApi';
 import styles from './editPackageCategory.module.scss';
+import { TextField } from '@shared/ui/textField';
 
 interface EditPackageCategoryProps {
   packageCategory?: IPackageCategory;
 }
 
 export const EditPackageCategory = memo(({ packageCategory }: EditPackageCategoryProps) => {
-  const { register, handleSubmit, watch, setValue } = useForm<IPackageCategory>({
+  const { register, handleSubmit } = useForm<IPackageCategory>({
     defaultValues: packageCategory,
   });
 
@@ -27,52 +27,12 @@ export const EditPackageCategory = memo(({ packageCategory }: EditPackageCategor
     [createPackageCategory],
   );
 
-  const handleSet = useCallback(
-    <T extends Path<IPackageCategory>>(key: T, value: PathValue<IPackageCategory, T>) => {
-      //@ts-expect-error значение гарантированно соответствует типу
-      setValue(key, value);
-    },
-    [setValue],
-  );
-
-  const currentPackage = watch('packageId');
-
   return (
     <>
       <div className={styles.card}>
-        <EditPropertyField
-          propertyName='Наименование категории'
-          renderEditField={() =>
-            renderRHFTextField<IPackageCategory>({
-              fieldName: 'name',
-              register,
-              textFieldType: 'text',
-            })
-          }
-          className='packageProperty'
-        />
-        <EditPropertyField
-          propertyName='Упаковка'
-          renderEditField={() => (
-            <PackageSelect
-              onChange={value => handleSet('packageId', value)}
-              id={currentPackage}
-              content='name'
-            />
-          )}
-          className='packageProperty'
-        />
-        <EditPropertyField
-          propertyName='Количество товара'
-          renderEditField={() =>
-            renderRHFTextField<IPackageCategory>({
-              fieldName: 'countOfPackages',
-              register,
-              textFieldType: 'number',
-            })
-          }
-          className='packageProperty'
-        />
+        <PropertyField propertyName='Наименование категории'>
+          <TextField {...register('name')} className={styles.input} />
+        </PropertyField>
         <Button classname='packageSubmit' onClick={handleSubmit(editPackage)}>
           Добавить упаковку
         </Button>

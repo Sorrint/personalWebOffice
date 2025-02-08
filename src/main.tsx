@@ -7,6 +7,9 @@ import App from '@app/App';
 import { StoreProvider } from '@app/providers/storeProvider';
 import { AuthProvider } from '@app/providers/authProvider';
 
+Object.typedKeys = Object.keys;
+Object.typedValues = Object.values;
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <StoreProvider>
     <BrowserRouter>

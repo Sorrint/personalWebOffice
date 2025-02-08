@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 import { type IPackage, PackageSelect, useCreateNewPackage } from '@entities/packages';
-import { EditPropertyField } from '@shared/ui/editPropertyField/editPropertyField';
+import { PropertyField } from '@shared/ui/PropertyField/PropertyField';
 import { renderRHFTextField } from '@shared/ui/reactHookFormFields';
 import { Button } from '@shared/ui/button';
 import styles from './editPackageForm.module.scss';
@@ -25,35 +25,35 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
     <>
       <PackageSelect />
       <div className={styles.card}>
-        <EditPropertyField
+        <PropertyField
           propertyName='Наименование'
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'name', register, textFieldType: 'text' })
           }
           className='packageProperty'
         />
-        <EditPropertyField
+        <PropertyField
           propertyName='Категория'
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'category', register, textFieldType: 'text' })
           }
           className='packageProperty'
         />
-        <EditPropertyField
+        <PropertyField
           propertyName='Объем'
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'volume', register, textFieldType: 'number' })
           }
           className='packageProperty'
         />
-        <EditPropertyField
+        <PropertyField
           propertyName='Вес (в граммах)'
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'weight', register, textFieldType: 'number' })
           }
           className='packageProperty'
         />
-        <EditPropertyField
+        <PropertyField
           propertyName='Цвет'
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'color', register, textFieldType: 'text' })

@@ -7,9 +7,9 @@ interface AppRibbonProps {
 }
 
 export const HeaderTabs = ({ navLinks }: AppRibbonProps) => {
-  const tabs = Object.keys(navLinks).map(link => ({
-    contentTab: navLinks[link].title,
-    to: navLinks[link].path,
+  const tabs = Object.typedValues(navLinks).map(({ path, title }) => ({
+    contentTab: title,
+    to: path,
   }));
   return (
     <div className={styles.ribbon}>

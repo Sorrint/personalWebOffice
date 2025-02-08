@@ -56,7 +56,7 @@ const PopoverProductsList = <T extends PopoverProduct>({
           }}
         >
           <div className={styles.title}>{product.name}</div>
-          <div className={styles.price}>{product.price ? product.price / 100 : 0},00 ₽</div>
+          <div className={styles.price}>{product.price?.toFixed(2)}₽</div>
         </div>
       ))}
     </div>

@@ -35,8 +35,8 @@ export const AsyncReduxComponent = (props: AsyncReduxComponentProps) => {
 
       return () => {
         if (removeAfterUnmount) {
-          Object.keys(reducersList).forEach(name => {
-            store.reducerManager?.remove(name as StoreSchemaKey);
+          Object.typedKeys(reducersList).forEach(name => {
+            store.reducerManager?.remove(name);
             dispatch({ type: `@@REMOVE ${name} reducer` });
           });
         }

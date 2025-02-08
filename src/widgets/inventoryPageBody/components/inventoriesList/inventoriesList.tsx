@@ -1,11 +1,12 @@
-import { type IInventoryDocs, InventoryList, useLoadAllDocuments } from '@entities/inventoryDocs';
+import { InventoryList, useLoadAllInventories } from '@entities/inventories';
+import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { Grid } from '@shared/ui/grid';
 import { LinkButton } from '@shared/ui/linkButton/linkButton';
 
 export const InventoriesList = () => {
-  const { data: documents, isLoading } = useLoadAllDocuments({});
+  const { data: documents, isLoading } = useLoadAllInventories({});
 
-  const renderDocuments = (list: IInventoryDocs[] | undefined) =>
+  const renderDocuments = (list: AppLinkItem[] | undefined) =>
     list ? <InventoryList documents={list} /> : <h2>Документов нет</h2>;
 
   return (
