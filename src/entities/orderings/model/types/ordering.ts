@@ -55,3 +55,14 @@ export interface IOrderingRecordDisplay
 }
 
 export interface IOrdering extends IBaseOrder {}
+
+export interface IPackageSummaryInfo {
+  name: string;
+  count: number;
+}
+export interface IOrderingSummary {
+  pallets: IPackageSummaryInfo[];
+  rowSeparator: IPackageSummaryInfo;
+  corrugatedSheets?: IPackageSummaryInfo[];
+  grossWeight: number;
+}

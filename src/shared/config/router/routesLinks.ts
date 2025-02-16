@@ -1,6 +1,6 @@
 export const BaseURL = '/office';
 
-export const AppRoutes = {
+export const AppRoutes: Record<string, (...args: any[]) => string> = {
   getDashboardRoute: () => `${BaseURL}/dashboard`,
   //Documents Page
   getDocumentsRoute: () => `${BaseURL}/documents`,
