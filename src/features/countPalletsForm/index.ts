@@ -1,1 +1,1 @@
-export { CountPalletsForm } from './components/countPalletsForm';
+export { CountPalletsForm } from './components/CountPalletsForm/CountPalletsForm';

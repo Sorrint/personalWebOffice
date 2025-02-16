@@ -1,6 +1,6 @@
 import { rtkApi } from '@shared/api/rtkApi';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
-import { transformDitributionsList } from '../lib/helpers/transformDitributionsList';
+import { transformDistributionsList } from '../lib/helpers/transformDitributionsList';
 import { IDistribution } from '../model/types/distribution';
 
 const baseDistributionsUri = 'documents/distributions';
@@ -9,18 +9,18 @@ const distributionsApi = rtkApi
   .enhanceEndpoints({ addTagTypes: ['distributions'] })
   .injectEndpoints({
     endpoints: build => ({
-      getDitributionsList: build.query<AppLinkItem[], void>({
+      getDistributionsList: build.query<AppLinkItem[], void>({
         query: () => ({
           url: `${baseDistributionsUri}`,
           method: 'GET',
         }),
-        transformResponse: transformDitributionsList,
+        transformResponse: transformDistributionsList,
         providesTags: () => ['distributions'],
       }),
 
       getDistributionById: build.query<IDistribution, string>({
         query: id => ({
-          url: `documents/Ditributions/${id}`,
+          url: `documents/Distributions/${id}`,
           method: 'GET',
         }),
         providesTags: () => ['distributions'],
@@ -29,6 +29,6 @@ const distributionsApi = rtkApi
   });
 
 export const {
-  useGetDitributionsListQuery: useGetDitributionsList,
+  useGetDistributionsListQuery: useGetDistributionsList,
   useGetDistributionByIdQuery: useGetDistributionById,
 } = distributionsApi;

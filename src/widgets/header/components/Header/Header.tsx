@@ -5,7 +5,7 @@ import { AuthContext } from '@shared/lib/context/authContext';
 import { useLogout } from '@features/logout';
 import { Popover } from '@shared/ui/popover';
 
-import styles from './header.module.scss';
+import styles from './Header.module.scss';
 import { AppLink } from '@shared/ui/appLink';
 
 interface HeaderProps {

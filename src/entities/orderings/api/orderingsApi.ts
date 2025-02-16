@@ -1,9 +1,9 @@
 import { rtkApi } from '@shared/api/rtkApi';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformOrderingsList } from '../lib/helpers/transformOrderingsList';
-import { IOrdering, IOrderingChapter, IOrderingSummary } from '../model/types/ordering';
+import { IOrderingChapter, IOrderingSummary } from '../model/types/ordering';
 
-const baseOrderingsUri = 'documents/orderings';
+const baseOrderingsUri = '/orderings/';
 
 const orderingsApi = rtkApi
   .enhanceEndpoints({ addTagTypes: ['orderings', 'orderPackages'] })
@@ -11,7 +11,7 @@ const orderingsApi = rtkApi
     endpoints: build => ({
       getOrderingsList: build.query<AppLinkItem[], void>({
         query: () => ({
-          url: `orderings`,
+          url: baseOrderingsUri,
           method: 'GET',
         }),
         transformResponse: transformOrderingsList,
@@ -20,7 +20,7 @@ const orderingsApi = rtkApi
 
       getOrderingRecords: build.query<IOrderingChapter[], number>({
         query: orderNumber => ({
-          url: `/orderings/${orderNumber}/details`,
+          url: `${baseOrderingsUri}${orderNumber}/details`,
           method: 'GET',
         }),
         providesTags: () => ['orderings'],
@@ -28,15 +28,7 @@ const orderingsApi = rtkApi
 
       getOrderingSummary: build.query<IOrderingSummary, number>({
         query: orderNumber => ({
-          url: `/orderings/${orderNumber}/summary`,
-          method: 'GET',
-        }),
-        providesTags: () => ['orderings'],
-      }),
-
-      getOrderingById: build.query<IOrdering, string>({
-        query: id => ({
-          url: `${baseOrderingsUri}/${id}`,
+          url: `${baseOrderingsUri}${orderNumber}/summary`,
           method: 'GET',
         }),
         providesTags: () => ['orderings'],
@@ -46,7 +38,6 @@ const orderingsApi = rtkApi
 
 export const {
   useGetOrderingsListQuery: useGetOrderingsList,
-  useGetOrderingByIdQuery: useGetOrderById,
   useGetOrderingRecordsQuery: useGetOrderingRecords,
   useGetOrderingSummaryQuery: useGetOrderingSummary,
 } = orderingsApi;

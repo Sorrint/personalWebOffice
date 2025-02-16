@@ -4,11 +4,6 @@ import style from './editOrderingRows.module.scss';
 import { HPopover } from '@shared/ui/popover';
 import { IconFont } from '@shared/ui/iconFont';
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks';
-import {
-  type IOrderingChapter,
-  getOrderingChaptersData,
-  orderingActions,
-} from '@entities/orderings';
 import classNames from 'classnames';
 import { CounterField } from '@shared/ui/counterField';
 import { useForm } from 'react-hook-form';

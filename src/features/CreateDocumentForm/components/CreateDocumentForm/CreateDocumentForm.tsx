@@ -9,7 +9,7 @@ import styles from './CreateDocumentForm.module.scss';
 
 const defaultValues: DefaultValues<FormValues> = {
   company: '',
-  choosenDate: new Date(),
+  chosenDate: new Date(),
   comment: '',
 };
 
@@ -42,7 +42,7 @@ export const CreateDocumentForm = ({ onSubmit, initialValues }: CreateDocumentFo
             label='Дата документа'
             wrapperName='calendar__wrapper'
             control={control}
-            name={'choosenDate'}
+            name={'chosenDate'}
             full
           />
         </Suspense>

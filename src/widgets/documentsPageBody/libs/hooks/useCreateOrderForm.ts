@@ -11,13 +11,13 @@ export const useCreateOrderForm = () => {
 
   const onSubmit = async ({
     company,
-    choosenDate,
+    chosenDate,
     documentNumber,
     comment,
   }: CreateDocumentValues) => {
     const order = await createOrder({
       company,
-      date: choosenDate,
+      date: chosenDate,
       orderNumber: documentNumber,
       comment,
     });

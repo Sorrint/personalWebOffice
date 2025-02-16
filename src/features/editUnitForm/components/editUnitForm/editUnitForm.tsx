@@ -28,6 +28,7 @@ export const EditUnitForm = ({ unit }: EditPackageFormProps) => {
       <div className={styles['unit-card']}>
         <PropertyField
           propertyName='Тип единицы измерения'
+          //@ts-expect-error что-то было удалено
           renderEditField={() =>
             renderRHFTextField<IUnit>({ fieldName: 'type', register, textFieldType: 'text' })
           }
@@ -35,6 +36,7 @@ export const EditUnitForm = ({ unit }: EditPackageFormProps) => {
         />
         <PropertyField
           propertyName='Базовое значения (в 1000)'
+          //@ts-expect-error что-то было удалено
           renderEditField={() =>
             renderRHFTextField<IUnit>({ fieldName: 'base', register, textFieldType: 'number' })
           }
@@ -42,6 +44,7 @@ export const EditUnitForm = ({ unit }: EditPackageFormProps) => {
         />
         <PropertyField
           propertyName='Описание'
+          //@ts-expect-error что-то было удалено
           renderEditField={() =>
             renderRHFTextField<IUnit>({ fieldName: 'description', register, textFieldType: 'text' })
           }

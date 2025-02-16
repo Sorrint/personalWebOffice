@@ -4,7 +4,7 @@ import { Pallet, UpdateOrderPackagesDTO } from '../model/types/OrderPackages';
 const baseOrderPackagesUri = '/orders';
 
 const orderPackagesApi = rtkApi
-  .enhanceEndpoints({ addTagTypes: ['orderPackages'] })
+  .enhanceEndpoints({ addTagTypes: ['orderPackages', 'orderings'] })
   .injectEndpoints({
     endpoints: build => ({
       getOrderPackages: build.query<Pallet[], number>({
@@ -21,6 +21,7 @@ const orderPackagesApi = rtkApi
           method: 'PATCH',
           body: { pallets },
         }),
+        invalidatesTags: ['orderings', 'orderPackages'],
       }),
     }),
   });
