@@ -1,26 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import classNames from 'classnames';
 
-import {
-  getOrderingChaptersData,
-  getOrderingSummary,
-  useGetOrderingRecords,
-} from '@entities/orderings';
-import { useAppSelector } from '@shared/lib/hooks';
+// import {
+// getOrderingChaptersData,
+// getOrderingSummary,
+// useGetOrderingRecords,
+// } from '@entities/orderings';
 
-import { saveOrderingToExcel } from '../lib/helpers/';
+// import { saveOrderingToExcel } from '../lib/helpers/';
 import style from './saveOrderingToXLSX.module.scss';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 interface SaveOrderingToXLSXProps {
   classname?: string;
 }
 export const SaveOrderingToXLSX = ({ classname }: SaveOrderingToXLSXProps) => {
-  const { orderNumber } = useParams();
+  // const { orderNumber } = useParams();
 
-  const { data: orderingRecords } = useGetOrderingRecords(Number(orderNumber), {
-    skip: !orderNumber,
-  });
+  // const { data: orderingRecords } = useGetOrderingRecords(Number(orderNumber), {
+  //   skip: !orderNumber,
+  // });
   // const orderingData = useAppSelector(getOrderingChaptersData);
   // const summaryData = useAppSelector(getOrderingSummary);
 

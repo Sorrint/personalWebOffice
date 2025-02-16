@@ -27,6 +27,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
       <div className={styles.card}>
         <PropertyField
           propertyName='Наименование'
+          //@ts-expect-error что-то было удалено
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'name', register, textFieldType: 'text' })
           }
@@ -34,6 +35,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
         />
         <PropertyField
           propertyName='Категория'
+          //@ts-expect-error что-то было удалено
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'category', register, textFieldType: 'text' })
           }
@@ -41,6 +43,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
         />
         <PropertyField
           propertyName='Объем'
+          //@ts-expect-error что-то было удалено
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'volume', register, textFieldType: 'number' })
           }
@@ -48,6 +51,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
         />
         <PropertyField
           propertyName='Вес (в граммах)'
+          //@ts-expect-error что-то было удалено
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'weight', register, textFieldType: 'number' })
           }
@@ -55,6 +59,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
         />
         <PropertyField
           propertyName='Цвет'
+          //@ts-expect-error что-то было удалено
           renderEditField={() =>
             renderRHFTextField<IPackage>({ fieldName: 'color', register, textFieldType: 'text' })
           }

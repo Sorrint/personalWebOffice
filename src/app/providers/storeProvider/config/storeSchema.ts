@@ -4,7 +4,6 @@ import { type EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
 import { type SidebarState } from '@widgets/sideBar';
 import { type OrderState } from '@entities/orders';
 import { type rtkApi } from '@shared/api/rtkApi';
-import { type IOrderingSlice } from '@entities/orderings';
 import { type TokenState } from '@shared/lib/store';
 import { type PersistPartial } from 'redux-persist/es/persistReducer';
 import { type EditProductFormState } from '@features/editProductForm';
@@ -15,7 +14,6 @@ export interface StoreSchema {
   orders: OrderState | undefined;
   counter: string | undefined;
   sidebar: SidebarState | undefined;
-  ordering: IOrderingSlice | undefined;
   tokens: TokenState | undefined;
   editProductForm: EditProductFormState | undefined;
 }

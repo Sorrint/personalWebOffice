@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { type FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@shared/ui/button/button';
@@ -11,18 +11,18 @@ import { useCreateInventory } from '@entities/inventories';
 import styles from './inventoryCreate.module.scss';
 import { AppRoutes } from '@shared/config/router';
 import { Grid } from '@shared/ui/grid';
+import { FormValues } from '../model/types/types';
 
 export const InventoryCreate = () => {
   const navigate = useNavigate();
   const [createDoc] = useCreateInventory();
   const { data } = useGetCounter('docNumber', { refetchOnMountOrArgChange: true });
-  const { register, handleSubmit, control, setValue } = useForm<FieldValues>({
+  const { register, handleSubmit, control, setValue } = useForm<FormValues>({
     mode: 'onChange',
     defaultValues: {
-      documentNumber: '',
       storeName: 'Сатурн',
       comment: '',
-      choosenDate: Date.now(),
+      company: '',
     },
   });
   useEffect(() => {
@@ -31,9 +31,13 @@ export const InventoryCreate = () => {
     }
   }, [data, setValue]);
 
-  const onSubmit = async <T extends FieldValues>(data: T) => {
-    const transformData = { ...data };
-    const doc = await createDoc(transformData);
+  const onSubmit = async ({ chosenDate, comment, company, documentNumber }: FormValues) => {
+    const doc = await createDoc({
+      comment,
+      choosenDate: chosenDate,
+      documentNumber,
+      storeName: company,
+    });
 
     if ('data' in doc) {
       const number = doc.data.documentNumber.toString();

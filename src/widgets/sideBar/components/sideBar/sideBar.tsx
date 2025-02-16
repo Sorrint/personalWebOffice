@@ -50,11 +50,7 @@ export const SideBar = memo(() => {
           ))}
         </nav>
         <Button onClick={changeCollapsed} classname={styles.button}>
-          {collapsed ? (
-            <IconFont iconName='icon-chevron-right' />
-          ) : (
-            <IconFont iconName='icon-chevron-left' />
-          )}
+          <IconFont iconName={collapsed ? 'icon-chevron-right' : 'icon-chevron-left'} />
         </Button>
       </div>
     </AsyncReduxComponent>

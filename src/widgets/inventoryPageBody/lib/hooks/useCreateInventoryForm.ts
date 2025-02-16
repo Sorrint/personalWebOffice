@@ -12,7 +12,7 @@ export const useCreateInventoryForm = () => {
 
   const onSubmit = async (data: CreateDocumentValues) => {
     const doc = await createDoc({
-      choosenDate: data.choosenDate,
+      choosenDate: data.chosenDate,
       comment: data.comment,
       documentNumber: data.documentNumber,
       storeName: data.company,

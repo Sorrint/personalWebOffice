@@ -1,11 +1,11 @@
 import { TextField } from '@shared/ui/textField';
-import styles from './countPalletsForm.module.scss';
 import classNames from 'classnames';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { IconFont } from '@shared/ui/iconFont';
 import { Button } from '@shared/ui/button';
 import { useResize } from '@shared/lib/hooks';
 import { Pallet } from '@entities/orders';
+import styles from './CountPalletsForm.module.scss';
 
 type OrderRecord = Record<'pallets', Pallet[]>;
 
