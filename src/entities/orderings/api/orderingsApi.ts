@@ -1,7 +1,7 @@
 import { rtkApi } from '@shared/api/rtkApi';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformOrderingsList } from '../lib/helpers/transformOrderingsList';
-import { IOrdering, IOrderingChapter, IOrderingSummaryData } from '../model/types/ordering';
+import { IOrdering, IOrderingChapter, IOrderingSummary } from '../model/types/ordering';
 
 const baseOrderingsUri = 'documents/orderings';
 
@@ -20,18 +20,18 @@ const orderingsApi = rtkApi
 
       getOrderingRecords: build.query<IOrderingChapter[], number>({
         query: orderNumber => ({
-          url: `/orderings/details/${orderNumber}`,
+          url: `/orderings/${orderNumber}/details`,
           method: 'GET',
         }),
         providesTags: () => ['orderings'],
       }),
 
-      getOrderingPackageDetails: build.query<IOrderingSummaryData, number>({
+      getOrderingSummary: build.query<IOrderingSummary, number>({
         query: orderNumber => ({
-          url: `orderPackages/info/${orderNumber}`,
+          url: `/orderings/${orderNumber}/summary`,
           method: 'GET',
         }),
-        providesTags: () => ['orderPackages'],
+        providesTags: () => ['orderings'],
       }),
 
       getOrderingById: build.query<IOrdering, string>({
@@ -48,5 +48,5 @@ export const {
   useGetOrderingsListQuery: useGetOrderingsList,
   useGetOrderingByIdQuery: useGetOrderById,
   useGetOrderingRecordsQuery: useGetOrderingRecords,
-  useGetOrderingPackageDetailsQuery: useGetOrderingPackageDetails,
+  useGetOrderingSummaryQuery: useGetOrderingSummary,
 } = orderingsApi;

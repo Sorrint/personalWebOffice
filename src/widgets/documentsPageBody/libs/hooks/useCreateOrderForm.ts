@@ -9,12 +9,17 @@ export const useCreateOrderForm = () => {
   const [createOrder] = useCreateOrder();
   const { data: orderNumber } = useGetCounter('orderNumber', { refetchOnMountOrArgChange: true });
 
-  const onSubmit = async (data: CreateDocumentValues) => {
+  const onSubmit = async ({
+    company,
+    choosenDate,
+    documentNumber,
+    comment,
+  }: CreateDocumentValues) => {
     const order = await createOrder({
-      company: data.company,
-      date: data.choosenDate,
-      orderNumber: data.documentNumber,
-      comment: data.comment,
+      company,
+      date: choosenDate,
+      orderNumber: documentNumber,
+      comment,
     });
 
     if ('data' in order) {
