@@ -1,11 +1,5 @@
 import { type ReactNode } from 'react';
-import { type CorrugatedSheets } from '../../consts/corrugatedSheetsConsts';
-import { type Pallets } from '../../consts/palletsConsts';
-import { IBaseOrder } from '@shared/types/baseOrder';
 
-export type ICountOfPallets = Record<Pallets, number>;
-
-export type ICorrugatedSheetsCount = Record<keyof typeof CorrugatedSheets, number>;
 export interface IOrderingRecord {
   number: number;
   productName: string;
@@ -22,28 +16,14 @@ export interface IOrderingWeights {
   corrugatedSheetsWeight: number;
 }
 
-export interface IOrderingSummaryData {
-  rowsCount: number;
-  palletsCount: ICountOfPallets;
-  corrugatedSheetsCount: Partial<ICorrugatedSheetsCount>;
-  slipSheetsCount: number;
-  weights: IOrderingWeights;
-  shipmentDay?: string;
-}
-
 export interface IOrderingChapter {
   id: string;
   records: IOrderingRecord[];
-  countOfPackages: number | null;
+  countOfPackages?: number;
   productsCount: number;
-  packageCategory: string | null;
-  rowsCount: number | null;
+  packageCategory?: string;
+  rowsCount?: number;
   text?: string;
-}
-
-export interface IOrdering {
-  summaryData: IOrderingSummaryData;
-  chaptersData: Record<string, IOrderingChapter>;
 }
 
 export interface IOrderingRecordDisplay
@@ -53,8 +33,6 @@ export interface IOrderingRecordDisplay
   rows: string | (() => ReactNode);
   productName: string | (() => ReactNode);
 }
-
-export interface IOrdering extends IBaseOrder {}
 
 export interface IPackageSummaryInfo {
   name: string;

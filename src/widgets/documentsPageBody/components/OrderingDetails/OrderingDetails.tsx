@@ -1,17 +1,17 @@
+import { memo } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { CountPalletsForm } from '@features/countPalletsForm';
 import { EditOrderingRows } from '@features/editOrderingRows';
 import { OrderingInfo, OrderingList, useGetOrderingRecords } from '@entities/orderings';
-import { Panel } from '@shared/ui/panel/panel';
-
-import style from './OrderingDetails.module.scss';
-import { ScrollableBlock } from '../../../../shared/ui/ScrollableBlock';
-import { FlexColumn } from '@shared/ui/Flex';
 import { Pallet, useGetOrderPackages, useUpdateOrderPackages } from '@entities/orders';
+import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
+import { Panel } from '@shared/ui/panel/panel';
+import { FlexColumn } from '@shared/ui/Flex';
+import style from './OrderingDetails.module.scss';
 
-export const OrderingDetails = () => {
+export const OrderingDetails = memo(() => {
   const { orderNumber } = useParams();
+
   const { data: orderingRecords } = useGetOrderingRecords(Number(orderNumber), {
     skip: !orderNumber,
   });
@@ -20,6 +20,7 @@ export const OrderingDetails = () => {
   });
 
   const [updateOrderPackages] = useUpdateOrderPackages();
+
   const setPallets = (pallets: Pallet[]) => {
     updateOrderPackages({ orderNumber: Number(orderNumber), pallets });
   };
@@ -42,10 +43,10 @@ export const OrderingDetails = () => {
       <ScrollableBlock>
         <OrderingList
           records={orderingRecords}
-          editRows={(key: string | null) => <EditOrderingRows chapterKey={key} />}
+          editRows={(key: string) => <EditOrderingRows chapterKey={key} />}
         />
       </ScrollableBlock>
       <OrderingInfo />
     </FlexColumn>
   );
-};
+});
