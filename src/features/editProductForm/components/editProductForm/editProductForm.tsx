@@ -1,7 +1,7 @@
 import { useEffect, type KeyboardEvent, useRef } from 'react';
-import { type FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { useForm } from 'react-hook-form';
 import { type SerializedError } from '@reduxjs/toolkit';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 import { type IInventoryProduct } from '@entities/inventories';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';

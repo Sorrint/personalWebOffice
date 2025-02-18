@@ -2,7 +2,7 @@ import { type ReactNode } from 'react';
 import { getDeclensions } from '@shared/lib/helpers';
 import { type IOrderingRecordDisplay, type IOrderingChapter } from '../../../model/types/ordering';
 import { ChapterSummary } from '../../../components/orderingList/chapterSummary/chapterSummary';
-import { getCountInRowsText } from '../../helpers/getOrderingsTexts';
+import { getCountInRowsText } from '../../helpers/getOrderingTexts';
 
 const getSummaryRecord = (
   summary: Omit<IOrderingChapter, 'records' | 'packageCategory'>,

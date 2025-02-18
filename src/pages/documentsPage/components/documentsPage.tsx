@@ -1,18 +1,12 @@
 import { Outlet } from 'react-router-dom';
 
-import { orderReducer } from '@entities/orders';
-import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
 import { type INavLinkObject } from '@shared/types/navLinkTypes';
 import { AppBody, AppHeader } from '@shared/layouts';
 import { Dropdown, type DropdownItem } from '@shared/ui/dropdown';
 import { SaveOrderingToXLSX } from '@features/saveOrderingToXLSX';
-import style from './documentsPage.module.scss';
 import { AppLink } from '@shared/ui/appLink';
 import { AppRoutes } from '@shared/config/router';
-
-const reducers: ReducersList = {
-  orders: orderReducer,
-};
+import style from './documentsPage.module.scss';
 
 const navLinks: INavLinkObject = {
   order: {
@@ -44,11 +38,9 @@ const DocumentsPage = () => {
       <AppHeader title='Документы' renderBtn={renderBtn}>
         <AppHeader.Tabs navLinks={navLinks} />
       </AppHeader>
-      <AsyncReduxComponent reducersList={reducers}>
-        <AppBody>
-          <Outlet />
-        </AppBody>
-      </AsyncReduxComponent>
+      <AppBody>
+        <Outlet />
+      </AppBody>
     </>
   );
 };

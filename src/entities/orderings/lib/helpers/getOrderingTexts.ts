@@ -31,3 +31,7 @@ export const getRowSeparatorText = ({ name, count }: IPackageSummaryInfo) => {
 export const getShipmentDayText = (date?: string) => {
   return `Отгрузка ориентировочно: ${date ?? ''}`;
 };
+
+export const getCountInRowsText = (text?: string, countOfPackages?: number) => {
+  return (!!countOfPackages && `В ряду ${countOfPackages} шт.`) || text;
+};
