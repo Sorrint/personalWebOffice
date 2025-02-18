@@ -8,6 +8,6 @@
 
 // export const getSlipSheetsWeight = (count: number) => count * SLIPSHEETWEIGHT;
 
-// export const getCountInRowsText = (summary: IOrderingChapter['summary']) => {
-//   return summary.text ? summary.text : `В ряду ${summary.countOfPackages} шт.`;
-// };
+export const getCountInRowsText = (text?: string, countOfPackages?: number) => {
+  return (!!countOfPackages && `В ряду ${countOfPackages} шт.`) || text;
+};

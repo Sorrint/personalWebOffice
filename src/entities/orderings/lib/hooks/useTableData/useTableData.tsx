@@ -2,15 +2,14 @@ import { type ReactNode } from 'react';
 import { getDeclensions } from '@shared/lib/helpers';
 import { type IOrderingRecordDisplay, type IOrderingChapter } from '../../../model/types/ordering';
 import { ChapterSummary } from '../../../components/orderingList/chapterSummary/chapterSummary';
-
-// type Summary = IOrderingChapter['summary'];
+import { getCountInRowsText } from '../../helpers/getOrderingsTexts';
 
 const getSummaryRecord = (
   summary: Omit<IOrderingChapter, 'records' | 'packageCategory'>,
   editRowsFunc?: () => ReactNode,
 ): Partial<IOrderingRecordDisplay> => {
   const { productsCount, rowsCount, countOfPackages, text } = summary;
-  const chapterText = (!!countOfPackages && `В ряду ${countOfPackages} шт.`) || text;
+  const chapterText = getCountInRowsText(text, countOfPackages);
 
   const summaryRecord: Partial<IOrderingRecordDisplay> = {
     count: () => <ChapterSummary value={productsCount} />,
@@ -34,7 +33,7 @@ const getSummaryRecord = (
 
 interface UseTableDataProps {
   records?: IOrderingChapter[];
-  editRows?: (key: string | null) => ReactNode;
+  editRows?: (key: string) => ReactNode;
 }
 
 const useTableData = ({ records, editRows }: UseTableDataProps) => {
@@ -47,7 +46,7 @@ const useTableData = ({ records, editRows }: UseTableDataProps) => {
       { records: products, packageCategory, ...summary }: IOrderingChapter,
     ) => {
       products.map(record => acc.push(record));
-      const editRowsFunc = () => editRows?.(packageCategory);
+      const editRowsFunc = () => editRows?.(packageCategory || summary.id);
       const summaryRecord = getSummaryRecord(summary, editRowsFunc);
       acc.push(summaryRecord);
       return acc;

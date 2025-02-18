@@ -15,9 +15,9 @@ export const getPalletsText = (pallets: IPackageSummaryInfo[]) => {
   );
 };
 
-export const getCorrugatesSheetsText = (sheets: IPackageSummaryInfo[]) => `Гофролист:
+export const getCorrugatesSheetsText = (sheets?: IPackageSummaryInfo[]) => `Гофролист:
 ${sheets
-  .map(({ count, name }) => (!count ? '' : `${count} шт ${name}`))
+  ?.map(({ count, name }) => (!count ? '' : `${count} шт ${name}`))
   .filter(Boolean)
   .join(', ')}`;
 

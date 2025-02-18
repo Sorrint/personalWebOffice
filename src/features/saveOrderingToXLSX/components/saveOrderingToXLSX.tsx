@@ -6,26 +6,27 @@ import classNames from 'classnames';
 // useGetOrderingRecords,
 // } from '@entities/orderings';
 
-// import { saveOrderingToExcel } from '../lib/helpers/';
+import { saveOrderingToExcel } from '../lib/helpers/saveOrderingToExcel';
 import style from './saveOrderingToXLSX.module.scss';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useGetOrderingRecords, useGetOrderingSummary } from '@entities/orderings';
 
 interface SaveOrderingToXLSXProps {
   classname?: string;
 }
 export const SaveOrderingToXLSX = ({ classname }: SaveOrderingToXLSXProps) => {
-  // const { orderNumber } = useParams();
+  const { orderNumber } = useParams();
 
-  // const { data: orderingRecords } = useGetOrderingRecords(Number(orderNumber), {
-  //   skip: !orderNumber,
-  // });
-  // const orderingData = useAppSelector(getOrderingChaptersData);
-  // const summaryData = useAppSelector(getOrderingSummary);
+  const { data: orderingRecords } = useGetOrderingRecords(Number(orderNumber), {
+    skip: !orderNumber,
+  });
+
+  const { data: summary } = useGetOrderingSummary(Number(orderNumber), { skip: !orderNumber });
 
   const saveToXLSX = () => {
-    // if (orderingData && summaryData) {
-    //   saveOrderingToExcel({ chaptersData: orderingData, summaryData }, 'Порядовка Demo');
-    // }
+    if (orderingRecords && summary) {
+      saveOrderingToExcel({ chaptersData: orderingRecords, summary }, 'Порядовка Demo');
+    }
   };
 
   return (
