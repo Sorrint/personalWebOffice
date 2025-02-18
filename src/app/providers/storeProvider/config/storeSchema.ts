@@ -1,8 +1,11 @@
-import { type ReducersMapObject, type Reducer, type UnknownAction } from '@reduxjs/toolkit';
-import { type EnhancedStore } from '@reduxjs/toolkit/dist/configureStore';
+import {
+  type ReducersMapObject,
+  type Reducer,
+  type UnknownAction,
+  EnhancedStore,
+} from '@reduxjs/toolkit';
 
 import { type SidebarState } from '@widgets/sideBar';
-import { type OrderState } from '@entities/orders';
 import { type rtkApi } from '@shared/api/rtkApi';
 import { type TokenState } from '@shared/lib/store';
 import { type PersistPartial } from 'redux-persist/es/persistReducer';
@@ -11,7 +14,6 @@ import { type EditProductFormState } from '@features/editProductForm';
 export interface StoreSchema {
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
-  orders: OrderState | undefined;
   counter: string | undefined;
   sidebar: SidebarState | undefined;
   tokens: TokenState | undefined;

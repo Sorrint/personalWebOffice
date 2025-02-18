@@ -1,5 +1,5 @@
 import { selectAllPackageCategories } from '@entities/packages';
-import style from './orderingCategories.module.scss';
+import style from './OrderingCategories.module.scss';
 import { useAppSelector } from '@shared/lib/hooks';
 
 export const OrderingCategories = () => {

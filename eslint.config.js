@@ -4,6 +4,7 @@ import eslintReact from 'eslint-plugin-react'
 import eslintReactHooks from 'eslint-plugin-react-hooks'
 import eslintPrettier from 'eslint-plugin-prettier'
 import eslintConfigPrettier from 'eslint-config-prettier'
+import eslintImport from 'eslint-plugin-import'
 // import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsEslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
@@ -11,17 +12,25 @@ import stylistic from '@stylistic/eslint-plugin'
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default tsEslint.config(
   {
+    settings: {
+    "import/resolver": {
+      "typescript": true,
+      "node": true,
+      },
+    },
     plugins: {
       '@stylistic': stylistic,
       '@typescript-eslint': tsEslint.plugin,
       'react-hooks': eslintReactHooks,
       react: eslintReact,
       prettier: eslintPrettier,
+      'import': eslintImport
     }
   },
   {
     ignores: ['node_modules', 'dist', 'eslint.config.js', '.storybook', 'config']
   },
+  // eslintImport.flatConfig.recommended,
   js.configs.recommended,
   ...tsEslint.configs.recommended,
   eslintConfigPrettier,
@@ -42,7 +51,9 @@ export default tsEslint.config(
     rules: {
       ...eslintPrettier.configs.recommended.rules,
       ...eslintConfigPrettier.rules,
-       "@typescript-eslint/no-explicit-any": ["error", {ignoreRestArgs: true}]
+       "@typescript-eslint/no-explicit-any": ["error", {ignoreRestArgs: true}],
+       "@typescript-eslint/no-unnecessary-type-constraint": "error",
+       "import/no-unresolved": ['error', { commonjs: true, amd: true }],
     }
   },
 )
