@@ -15,9 +15,9 @@ export const getPalletsText = (pallets: IPackageSummaryInfo[]) => {
   );
 };
 
-export const getCorrugatesSheetsText = (sheets: IPackageSummaryInfo[]) => `Гофролист:
+export const getCorrugatesSheetsText = (sheets?: IPackageSummaryInfo[]) => `Гофролист:
 ${sheets
-  .map(({ count, name }) => (!count ? '' : `${count} шт ${name}`))
+  ?.map(({ count, name }) => (!count ? '' : `${count} шт ${name}`))
   .filter(Boolean)
   .join(', ')}`;
 
@@ -30,4 +30,8 @@ export const getRowSeparatorText = ({ name, count }: IPackageSummaryInfo) => {
 
 export const getShipmentDayText = (date?: string) => {
   return `Отгрузка ориентировочно: ${date ?? ''}`;
+};
+
+export const getCountInRowsText = (text?: string, countOfPackages?: number) => {
+  return (!!countOfPackages && `В ряду ${countOfPackages} шт.`) || text;
 };

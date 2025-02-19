@@ -22,12 +22,6 @@ export interface IOrder extends ICreateOrder {
   distribution?: string;
 }
 
-export interface OrderState {
-  records?: IOrderRecords;
-  duplicatedRecords?: IOrderRecord[];
-  error?: string | undefined;
-}
-
 export interface IOrderFillingErrors {
   numberDuplicates: { number: number; count: number }[];
   productsDuplicates: { productName: string; numbers: number[] }[];

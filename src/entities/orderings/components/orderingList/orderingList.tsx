@@ -1,13 +1,14 @@
 import { type ReactNode, memo } from 'react';
 import { Loader } from '@shared/ui/loaders';
+import { type TableColumns, Table } from '@shared/ui/table';
 import { IOrderingChapter, type IOrderingRecordDisplay } from '../../model/types/ordering';
 import { OrderingHeaders } from '../../consts/orderingHeaders';
-import { type TableColumns, Table } from '@shared/ui/table';
 import useTableData from '../../lib/hooks/useTableData/useTableData';
+
 interface OrderingListProps {
   className?: string;
   records: IOrderingChapter[];
-  editRows?: (key: string | null) => ReactNode;
+  editRows?: (key: string) => ReactNode;
   isLoading?: boolean;
 }
 

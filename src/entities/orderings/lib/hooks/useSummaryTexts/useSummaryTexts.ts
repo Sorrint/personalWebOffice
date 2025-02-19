@@ -5,7 +5,7 @@ import {
   getGrossweightText,
   getPalletsText,
   getRowSeparatorText,
-} from '../../helpers/getSummaryText';
+} from '../../helpers/getOrderingTexts';
 
 export default (summary?: IOrderingSummary) =>
   useMemo(
