@@ -1,28 +1,38 @@
 image: node:20-alpine
 
 stages:
-  - buildProd
   - build
   - test
+  - deploy
+
+variables:
+  BUILD_PATH: ./dist
+  NODE_CACHE_PATH: node_modules/
+  PACKAGE_LOCK_HASH: "$(md5sum package-lock.json | cut -d ' ' -f1)"
+  DEPLOY_PATH: $DEPLOY_PATH
+  SERVER_USER: $DEPLOY_USER
+  SERVER_IP: $DEPLOY_IP
 
 cache:
-  key: '$CI_PIPELINE_ID'
+  key: ${PACKAGE_LOCK_HASH}
   paths:
-    - node_modules/
-  policy: pull
+    - ${NODE_CACHE_PATH}
+  policy: pull-push
 
 build:
-  cache:
-    key: '$CI_PIPELINE_ID'
-    paths:
-      - node_modules/
-    policy: push
   stage: build
+  before_script:
+    - echo "VITE_SERVER_URI=$SERVER_URI" > .env.production
   script:
-    - npm install
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - $BUILD_PATH
   allow_failure: false
   only:
     - merge_requests
+    - "production"
 
 eslint:
   stage: test
@@ -31,6 +41,7 @@ eslint:
   allow_failure: false
   only:
     - merge_requests
+    - "production"
 
 stylelint:
   stage: test
@@ -39,3 +50,19 @@ stylelint:
   allow_failure: false
   only:
     - merge_requests
+    - "production"
+
+deploy:
+  stage: deploy
+  before_script:
+    - apk add --no-cache rsync openssh
+    - mkdir -p ~/.ssh
+    - echo "$DEPLOY_SSH_KEY" >> ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H ${SERVER_IP} >> ~/.ssh/known_hosts
+  script:
+    - rsync -avz -e "ssh" ${BUILD_PATH}/ ${SERVER_USER}@${SERVER_IP}:"${DEPLOY_PATH}"
+  after_script:
+    - rm -f ~/.ssh/id_rsa
+  rules:
+    - if: $CI_COMMIT_BRANCH == "production"
