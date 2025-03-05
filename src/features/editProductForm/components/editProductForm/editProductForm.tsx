@@ -80,6 +80,7 @@ export function EditProductForm({ buttonClick, error, highlightFunc }: EditProdu
             classname={styles.counter}
             onKeyPress={keyPressed}
             min={0}
+            setValue={setValue}
           />
           <CounterField
             label='Цена, ₽'
@@ -87,6 +88,7 @@ export function EditProductForm({ buttonClick, error, highlightFunc }: EditProdu
             min={0}
             classname={styles.counter}
             onKeyPress={keyPressed}
+            setValue={setValue}
           />
           {popupText && <h3>{popupText}</h3>}
           <Button buttonType={getButtonType()} onClick={handleSubmit(buttonClick)} ref={submitRef}>
