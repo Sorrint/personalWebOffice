@@ -1,5 +1,11 @@
 image: node:20-alpine
 
+.only_merge_requests_and_branches: &only_merge_requests_and_branches
+  only:
+    - merge_requests
+    - "production"
+    - "development"
+
 stages:
   - build
   - test
@@ -30,27 +36,21 @@ build:
     paths:
       - $BUILD_PATH
   allow_failure: false
-  only:
-    - merge_requests
-    - "production"
+  <<: *only_merge_requests_and_branches
 
 eslint:
   stage: test
   script:
     - npm run lint:code
   allow_failure: false
-  only:
-    - merge_requests
-    - "production"
+  <<: *only_merge_requests_and_branches
 
 stylelint:
   stage: test
   script:
     - npm run lint:style
   allow_failure: false
-  only:
-    - merge_requests
-    - "production"
+  <<: *only_merge_requests_and_branches
 
 deploy:
   stage: deploy
