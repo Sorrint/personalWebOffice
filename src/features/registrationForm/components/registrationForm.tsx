@@ -15,11 +15,11 @@ import { AppLink } from '@shared/ui/appLink';
 import { AppRoutes } from '@shared/config/router';
 
 interface RegistrationFormProps {
-  classname?: string;
+  className?: string;
   onSuccess?: () => void;
 }
 
-export const RegistrationForm = memo(({ classname, onSuccess }: RegistrationFormProps) => {
+export const RegistrationForm = memo(({ className, onSuccess }: RegistrationFormProps) => {
   const {
     register,
     handleSubmit,
@@ -46,7 +46,7 @@ export const RegistrationForm = memo(({ classname, onSuccess }: RegistrationForm
     }
   };
 
-  const formStyle = classNames(styles.register, classname);
+  const formStyle = classNames(styles.register, className);
 
   return (
     <div className={formStyle}>
@@ -57,13 +57,13 @@ export const RegistrationForm = memo(({ classname, onSuccess }: RegistrationForm
       <div className={styles.field}>
         <TextField label='Имя пользователя' variant='standard' {...register('name')} />
         <div className={styles.empty}>
-          <ErrorField classname={styles.error}>{nameError}</ErrorField>
+          <ErrorField className={styles.error}>{nameError}</ErrorField>
         </div>
       </div>
       <div className={styles.field}>
         <TextField label='Введите email' variant='standard' {...register('email')} />
         <div className={styles.empty}>
-          <ErrorField classname={styles.error}>{emailError}</ErrorField>
+          <ErrorField className={styles.error}>{emailError}</ErrorField>
         </div>
       </div>
       <div className={styles.field}>
@@ -74,11 +74,11 @@ export const RegistrationForm = memo(({ classname, onSuccess }: RegistrationForm
           {...register('password')}
         />
         <div className={styles.empty}>
-          <ErrorField classname={styles.error}>{passwordError}</ErrorField>
+          <ErrorField className={styles.error}>{passwordError}</ErrorField>
         </div>
       </div>
 
-      <Button disabled={!isValid} onClick={handleSubmit(onSubmit)} classname={styles.submit}>
+      <Button disabled={!isValid} onClick={handleSubmit(onSubmit)} className={styles.submit}>
         Зарегистрироваться
       </Button>
     </div>

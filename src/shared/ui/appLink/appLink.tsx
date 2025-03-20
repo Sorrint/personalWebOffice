@@ -4,13 +4,13 @@ import styles from './appLink.module.scss';
 import classNames from 'classnames';
 
 interface AppLinkProps {
-  classname?: string;
+  className?: string;
   to: string;
   children?: ReactNode;
   variant?: 'panel';
 }
-export const AppLink = ({ classname, to, children, variant }: AppLinkProps) => {
-  const linkStyles = classNames(styles.component, { [styles.panel]: variant }, classname);
+export const AppLink = ({ className, to, children, variant }: AppLinkProps) => {
+  const linkStyles = classNames(styles.component, { [styles.panel]: variant }, className);
 
   return (
     <NavLink className={linkStyles} to={to}>

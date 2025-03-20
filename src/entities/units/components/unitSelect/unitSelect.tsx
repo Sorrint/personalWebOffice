@@ -7,7 +7,7 @@ import { type UnitTypes } from '../../model/unitTypes';
 import { selectAllUnits } from '../../api/unitsApi';
 
 interface UnitSelectProps {
-  classname?: string;
+  className?: string;
   id?: string;
   onChange?: (id: string) => void;
   type?: UnitTypes;

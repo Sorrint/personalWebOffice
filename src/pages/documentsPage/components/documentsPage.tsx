@@ -25,7 +25,7 @@ const navLinks: INavLinkObject = {
 
 const DocumentsPage = () => {
   const items: DropdownItem[] = [
-    { _id: 1, content: <SaveOrderingToXLSX classname={style['list-item']} /> },
+    { _id: 1, content: <SaveOrderingToXLSX className={style['list-item']} /> },
     { _id: 2, content: <AppLink to={AppRoutes.getOrderCreateRoute()}>Создать заказ</AppLink> },
   ];
 

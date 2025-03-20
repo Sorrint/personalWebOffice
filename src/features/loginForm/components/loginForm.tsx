@@ -15,11 +15,11 @@ import { AppRoutes } from '@shared/config/router';
 import { AppLink } from '@shared/ui/appLink';
 
 interface LoginFormProps {
-  classname?: string;
+  className?: string;
   onSuccess?: () => void;
 }
 
-export const LoginForm = memo(({ classname, onSuccess }: LoginFormProps) => {
+export const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const {
     register,
     handleSubmit,
@@ -44,7 +44,7 @@ export const LoginForm = memo(({ classname, onSuccess }: LoginFormProps) => {
     }
   };
 
-  const formStyle = classNames(styles.login, classname);
+  const formStyle = classNames(styles.login, className);
 
   return (
     <div className={formStyle}>
@@ -56,7 +56,7 @@ export const LoginForm = memo(({ classname, onSuccess }: LoginFormProps) => {
       <div className={styles.field}>
         <TextField label='Введите email' variant='standard' {...register('email')} />
         <div className={styles.empty}>
-          <ErrorField classname={styles.error}>{emailError}</ErrorField>
+          <ErrorField className={styles.error}>{emailError}</ErrorField>
         </div>
       </div>
       <div className={styles.field}>
@@ -67,11 +67,11 @@ export const LoginForm = memo(({ classname, onSuccess }: LoginFormProps) => {
           {...register('password')}
         />
         <div className={styles.empty}>
-          <ErrorField classname={styles.error}>{passwordError}</ErrorField>
+          <ErrorField className={styles.error}>{passwordError}</ErrorField>
         </div>
       </div>
 
-      <Button disabled={!isValid} onClick={handleSubmit(onSubmit)} classname={styles.submit}>
+      <Button disabled={!isValid} onClick={handleSubmit(onSubmit)} className={styles.submit}>
         Войти
       </Button>
     </div>

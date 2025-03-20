@@ -7,7 +7,7 @@ export interface ButtonProps {
   onClick?: (...args: any[]) => void;
   buttonType?: 'submit' | 'cancel' | 'dropdown';
   children?: ReactNode;
-  classname?: string;
+  className?: string;
   onKeyDown?: (...args: any[]) => void;
   name?: string;
   onChange?: (e: ChangeEvent<HTMLButtonElement>) => void;
@@ -22,7 +22,7 @@ export const Button = memo(
       onClick,
       buttonType,
       children,
-      classname,
+      className,
       onKeyDown,
       name,
       onChange,
@@ -39,7 +39,7 @@ export const Button = memo(
         [styles.full]: full,
         [styles.outline]: outline,
       },
-      classname,
+      className,
     );
 
     return (

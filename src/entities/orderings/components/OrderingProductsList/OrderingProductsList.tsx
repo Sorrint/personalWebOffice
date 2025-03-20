@@ -1,14 +1,12 @@
-import { type ReactNode, memo } from 'react';
+import { memo } from 'react';
 import { Loader } from '@shared/ui/loaders';
 import { type TableColumns, Table } from '@shared/ui/table';
-import { IOrderingChapter, type IOrderingRecordDisplay } from '../../model/types/ordering';
+import { type IOrderingRecordDisplay } from '../../model/types/ordering';
 import { OrderingHeaders } from '../../consts/orderingHeaders';
-import useTableData from '../../lib/hooks/useTableData/useTableData';
+import useTableData, { UseTableDataProps } from '../../lib/hooks/useTableData/useTableData';
 
-interface OrderingListProps {
+interface OrderingProductsListProps extends UseTableDataProps {
   className?: string;
-  records: IOrderingChapter[];
-  editRows?: (key: string) => ReactNode;
   isLoading?: boolean;
 }
 
@@ -20,8 +18,8 @@ const columns: TableColumns<Partial<IOrderingRecordDisplay>> = {
   rows: { header: OrderingHeaders.ROWS },
 };
 
-export const OrderingList = memo(
-  ({ className, editRows, records, isLoading }: OrderingListProps) => {
+export const OrderingProductsList = memo(
+  ({ className, editRows, records, isLoading }: OrderingProductsListProps) => {
     const displayingRecords = useTableData({ records, editRows });
     const colTemplate = '40px minmax(360px, 1fr) 80px 80px 180px';
 
@@ -45,4 +43,4 @@ export const OrderingList = memo(
   },
 );
 
-OrderingList.displayName = 'OrderingList';
+OrderingProductsList.displayName = 'OrderingProductsList';

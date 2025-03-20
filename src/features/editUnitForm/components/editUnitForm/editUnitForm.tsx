@@ -50,7 +50,7 @@ export const EditUnitForm = ({ unit }: EditPackageFormProps) => {
           }
           className='unitProperty'
         />
-        <Button classname='unitSubmit' onClick={handleSubmit(editUnit)}>
+        <Button className='unitSubmit' onClick={handleSubmit(editUnit)}>
           Добавить единицу измерения
         </Button>
       </div>

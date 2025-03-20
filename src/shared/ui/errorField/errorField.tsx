@@ -3,13 +3,13 @@ import styles from './errorField.module.scss';
 import classNames from 'classnames';
 
 interface ErrorFieldProps {
-  classname?: string;
+  className?: string;
   children: string | ReactNode;
 }
-export const ErrorField = memo(({ children, classname }: ErrorFieldProps) => {
+export const ErrorField = memo(({ children, className }: ErrorFieldProps) => {
   if (!children) return null;
 
-  const errorStyle = classNames(styles.error, classname);
+  const errorStyle = classNames(styles.error, className);
   return <small className={errorStyle}>{children}</small>;
 });
 

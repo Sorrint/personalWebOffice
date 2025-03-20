@@ -7,5 +7,5 @@ interface AppBodyProps {
 }
 
 export const AppBody = ({ children }: AppBodyProps) => {
-  return <Container classname={style.component}>{children}</Container>;
+  return <Container className={style.component}>{children}</Container>;
 };

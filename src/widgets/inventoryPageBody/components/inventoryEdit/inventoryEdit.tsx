@@ -135,7 +135,7 @@ export const InventoryEdit = memo(() => {
             onChange={handleCheckboxClick}
             defaultChecked={localStorage.getItem('highlight') === 'true'}
           />
-          <SaveInventoryToXLSX inventoryList={inventoryList} classname={styles.xlsx} />
+          <SaveInventoryToXLSX inventoryList={inventoryList} className={styles.xlsx} />
           <Button onClick={createNewProduct}>Добавить товар</Button>
         </div>
         <h1>

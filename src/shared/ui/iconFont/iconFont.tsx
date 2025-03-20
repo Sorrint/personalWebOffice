@@ -5,18 +5,18 @@ export type IconName = keyof typeof styles;
 
 interface IconFontProps {
   iconName: IconName;
-  classname?: string;
+  className?: string;
   color?: keyof typeof colors;
   onClick?: () => void;
   bold?: boolean;
 }
 
-export const IconFont = ({ bold, iconName, classname, color, onClick }: IconFontProps) => {
+export const IconFont = ({ bold, iconName, className, color, onClick }: IconFontProps) => {
   const iconStyle = classNames(
     styles[iconName],
     color && colors[color],
     { [colors.bold]: bold },
-    classname,
+    className,
   );
 
   return <i className={iconStyle} onClick={onClick}></i>;

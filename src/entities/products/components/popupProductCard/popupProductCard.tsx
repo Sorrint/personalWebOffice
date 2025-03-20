@@ -86,7 +86,7 @@ export function PopupProductCard({
           <CounterField
             label='Количество'
             {...register('quantity', { valueAsNumber: true, min: 0 })}
-            classname={styles.counter}
+            className={styles.counter}
             onKeyPress={keyPressed}
             onFocus={handleFocus}
             min={0}
@@ -95,7 +95,7 @@ export function PopupProductCard({
             label='Цена, ₽'
             {...register('price', { valueAsNumber: true, min: 0 })}
             min={0}
-            classname={styles.counter}
+            className={styles.counter}
             onKeyPress={keyPressed}
             onFocus={handleFocus}
           />

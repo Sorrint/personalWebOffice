@@ -2,7 +2,7 @@ import { PopupWithFocusTrap } from '@shared/ui/popup';
 import { EditProductForm, type EditProductFormProps } from '../editProductForm/editProductForm';
 
 interface PopupEditProductFormProps extends EditProductFormProps {
-  classname?: string;
+  className?: string;
   activePopup?: boolean;
   setActivePopup?: (value: boolean) => void;
 }

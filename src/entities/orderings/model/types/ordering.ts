@@ -32,6 +32,7 @@ export interface IOrderingRecordDisplay
   number: number | string | (() => ReactNode);
   rows: string | (() => ReactNode);
   productName: string | (() => ReactNode);
+  editRows?: () => ReactNode;
 }
 
 export interface IPackageSummaryInfo {

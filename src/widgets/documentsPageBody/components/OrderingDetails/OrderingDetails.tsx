@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { CountPalletsForm } from '@features/countPalletsForm';
 import { EditOrderingRows } from '@features/editOrderingRows';
-import { OrderingInfo, OrderingList, useGetOrderingRecords } from '@entities/orderings';
+import { OrderingInfo, OrderingProductsList, useGetOrderingRecords } from '@entities/orderings';
 import { Pallet, useGetOrderPackages, useUpdateOrderPackages } from '@entities/orders';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 import { Panel } from '@shared/ui/panel/panel';
@@ -34,16 +34,18 @@ export const OrderingDetails = memo(() => {
         <Panel title='Дополнительные параметры для расчета' open={true}>
           <CountPalletsForm
             onChange={setPallets}
-            classname={style['pallets-form']}
+            className={style['pallets-form']}
             orderNumber={orderNumber}
             pallets={pallets}
           />
         </Panel>
       )}
       <ScrollableBlock>
-        <OrderingList
+        <OrderingProductsList
           records={orderingRecords}
-          editRows={(key: string) => <EditOrderingRows chapterKey={key} />}
+          editRows={(data: { category: string | null; rowsCount?: number }) => (
+            <EditOrderingRows {...data} />
+          )}
         />
       </ScrollableBlock>
       <OrderingInfo />

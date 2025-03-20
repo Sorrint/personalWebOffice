@@ -3,7 +3,7 @@ import { memo } from 'react';
 
 import { useGetPackages } from '../../api/packagesApi';
 interface PackageSelectProps {
-  classname?: string;
+  className?: string;
   id?: string;
   onChange?: (id: string) => void;
   content?: 'category' | 'name';

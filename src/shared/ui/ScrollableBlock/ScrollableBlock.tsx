@@ -4,16 +4,16 @@ import classNames from 'classnames';
 import style from './ScrollableBlock.module.scss';
 
 interface ScrollableBlockProps {
-  classname?: string;
+  className?: string;
   scrollable?: boolean;
   children: ReactNode;
 }
 
-export const ScrollableBlock = memo(({ classname, children }: ScrollableBlockProps) => {
+export const ScrollableBlock = memo(({ className, children }: ScrollableBlockProps) => {
   return (
     <div className={style.grid}>
       <div className={style.scroll}>
-        <div className={classNames(style.component, classname)}>{children}</div>
+        <div className={classNames(style.component, className)}>{children}</div>
       </div>
     </div>
   );

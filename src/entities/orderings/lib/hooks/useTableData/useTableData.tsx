@@ -1,39 +1,38 @@
-import { type ReactNode } from 'react';
 import { getDeclensions } from '@shared/lib/helpers';
 import { type IOrderingRecordDisplay, type IOrderingChapter } from '../../../model/types/ordering';
-import { ChapterSummary } from '../../../components/orderingList/chapterSummary/chapterSummary';
+import { ChapterSummary } from '../../../components/OrderingProductsList/ChapterSummary/ChapterSummary';
 import { getCountInRowsText } from '../../helpers/getOrderingTexts';
+import { EditRows } from '@entities/orderings/model/types/editRows';
+
+type EditRowsArg = Parameters<typeof getSummaryRecord>[1];
 
 const getSummaryRecord = (
-  summary: Omit<IOrderingChapter, 'records' | 'packageCategory'>,
-  editRowsFunc?: () => ReactNode,
+  summary: Omit<IOrderingChapter, 'records'>,
+  editRows?: EditRows,
 ): Partial<IOrderingRecordDisplay> => {
-  const { productsCount, rowsCount, countOfPackages, text } = summary;
+  const { productsCount, rowsCount, countOfPackages, text, packageCategory, id } = summary;
   const chapterText = getCountInRowsText(text, countOfPackages);
 
   const summaryRecord: Partial<IOrderingRecordDisplay> = {
-    count: () => <ChapterSummary value={productsCount} />,
-    productName: () => <ChapterSummary value={chapterText} />,
+    count: () => <ChapterSummary children={productsCount} />,
+    productName: () => <ChapterSummary children={chapterText} />,
     rows: () => (
-      <ChapterSummary
-        value={
-          countOfPackages && rowsCount
-            ? `${rowsCount} ${getDeclensions(Number(rowsCount), ['ряд', 'ряда', 'рядов'])} = ${
-                rowsCount * countOfPackages
-              }`
-            : ''
-        }
-        editRows={editRowsFunc}
-        variant='edit-rows'
-      />
+      <ChapterSummary>
+        {countOfPackages && rowsCount
+          ? `${rowsCount} ${getDeclensions(Number(rowsCount), ['ряд', 'ряда', 'рядов'])} = ${
+              rowsCount * countOfPackages
+            }`
+          : ''}
+        {editRows?.({ category: packageCategory || id, rowsCount })}
+      </ChapterSummary>
     ),
   };
   return summaryRecord;
 };
 
-interface UseTableDataProps {
+export interface UseTableDataProps {
   records?: IOrderingChapter[];
-  editRows?: (key: string) => ReactNode;
+  editRows?: EditRowsArg;
 }
 
 const useTableData = ({ records, editRows }: UseTableDataProps) => {
@@ -43,12 +42,10 @@ const useTableData = ({ records, editRows }: UseTableDataProps) => {
   return records.reduce(
     (
       acc: Partial<IOrderingRecordDisplay>[],
-      { records: products, packageCategory, ...summary }: IOrderingChapter,
+      { records: products, ...summary }: IOrderingChapter,
     ) => {
       products.map(record => acc.push(record));
-      const editRowsFunc = () => editRows?.(packageCategory || summary.id);
-      const summaryRecord = getSummaryRecord(summary, editRowsFunc);
-      acc.push(summaryRecord);
+      acc.push(getSummaryRecord(summary, editRows));
       return acc;
     },
     [],

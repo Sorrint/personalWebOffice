@@ -20,7 +20,7 @@ export const Dropdown = ({ title, options }: DropdownProps) => {
     <Menu as={'div'} className={style.component}>
       {({ open }) => (
         <>
-          <Menu.Button as={Button} buttonType='dropdown' classname={style.btn}>
+          <Menu.Button as={Button} buttonType='dropdown' className={style.btn}>
             {title}
           </Menu.Button>
           <Transition

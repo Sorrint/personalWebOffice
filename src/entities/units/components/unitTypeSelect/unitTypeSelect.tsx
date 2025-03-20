@@ -2,7 +2,7 @@ import { UnitTypes } from '../../model/unitTypes';
 import { SelectListBox } from '@shared/ui/selectListBox';
 
 interface UnitTypeSelectProps {
-  classname?: string;
+  className?: string;
   type?: UnitTypes;
   onChange?: (type: UnitTypes) => void;
 }

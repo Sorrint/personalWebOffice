@@ -4,12 +4,12 @@ import classNames from 'classnames';
 import style from './container.module.scss';
 
 interface ContainerProps {
-  classname?: string;
+  className?: string;
   children: ReactNode;
 }
 
-export const Container = memo(({ classname, children }: ContainerProps) => (
-  <div className={classNames(style.component, classname)}>{children}</div>
+export const Container = memo(({ className, children }: ContainerProps) => (
+  <div className={classNames(style.component, className)}>{children}</div>
 ));
 
 Container.displayName = 'Container';

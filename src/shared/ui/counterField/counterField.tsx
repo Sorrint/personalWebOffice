@@ -23,7 +23,7 @@ interface ICounterFieldsProps<T extends FieldValues> {
   selectOnFocus?: boolean;
   onClick?: (e: MouseEvent) => void;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  classname?: string;
+  className?: string;
   onKeyPress?: (e: KeyboardEvent, name: Path<T>) => void;
   tabIndex?: number;
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
@@ -43,7 +43,7 @@ export const CounterField = memo(
       onChange,
       onClick,
       onFocus,
-      classname,
+      className,
       onKeyPress,
       tabIndex,
       min,
@@ -51,7 +51,7 @@ export const CounterField = memo(
       autofocus,
       setValue,
     } = props;
-    const inputClass = classNames(style.component, classname);
+    const inputClass = classNames(style.component, className);
     const inputRef = useRef<HTMLInputElement | null>();
 
     useEffect(() => {
@@ -84,7 +84,7 @@ export const CounterField = memo(
       <div className={inputClass}>
         {label && <label htmlFor={name}>{label}</label>}
         <div className={style.counter}>
-          <IconFont iconName='icon-minus' classname={style.icon} onClick={decrement} />
+          <IconFont iconName='icon-minus' className={style.icon} onClick={decrement} />
           <input
             autoFocus={autofocus ?? false}
             id={name}
@@ -112,7 +112,7 @@ export const CounterField = memo(
             tabIndex={tabIndex}
             onFocus={onFocus}
           />
-          <IconFont iconName='icon-plus' classname={style.icon} onClick={increment} />
+          <IconFont iconName='icon-plus' className={style.icon} onClick={increment} />
         </div>
       </div>
     );

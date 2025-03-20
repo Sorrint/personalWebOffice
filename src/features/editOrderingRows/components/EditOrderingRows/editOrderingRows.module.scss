@@ -1,6 +1,8 @@
 .edit-rows {
   cursor: pointer;
-  grid-area: icon;
+  display: flex;
+  align-items: center;
+  height: 100%;
   color: var(--accent-color);
 
   &:hover {
@@ -41,3 +43,4 @@
   justify-content: space-around;
   margin-top: calc(var(--margin) * 1.5);
 }
+

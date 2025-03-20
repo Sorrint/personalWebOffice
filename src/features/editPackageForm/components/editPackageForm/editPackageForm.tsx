@@ -65,7 +65,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
           }
           className='packageProperty'
         />
-        <Button classname='packageSubmit' onClick={handleSubmit(editPackage)}>
+        <Button className='packageSubmit' onClick={handleSubmit(editPackage)}>
           Добавить упаковку
         </Button>
       </div>

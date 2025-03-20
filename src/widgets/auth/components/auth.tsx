@@ -17,9 +17,9 @@ export const Auth = () => {
   return (
     <>
       {isLoginPage ? (
-        <LoginForm classname={styles.form} onSuccess={refetch} />
+        <LoginForm className={styles.form} onSuccess={refetch} />
       ) : (
-        <RegistrationForm classname={styles.form} onSuccess={refetch} />
+        <RegistrationForm className={styles.form} onSuccess={refetch} />
       )}
     </>
   );

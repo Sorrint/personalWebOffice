@@ -1,73 +1,89 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { memo, useEffect } from 'react';
-import style from './editOrderingRows.module.scss';
+import { memo, useCallback } from 'react';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import { CounterField } from '@shared/ui/counterField';
 import { HPopover } from '@shared/ui/popover';
 import { IconFont } from '@shared/ui/iconFont';
-import { useAppDispatch, useAppSelector } from '@shared/lib/hooks';
-import classNames from 'classnames';
-import { CounterField } from '@shared/ui/counterField';
-import { useForm } from 'react-hook-form';
+import { useResetOrderingRows, useUpdateOrderingRows } from '../../api/editOrderingRowsApi';
+import style from './editOrderingRows.module.scss';
 
 interface EditOrderingRowsProps {
-  classname?: string;
-  chapterKey: string | null;
+  className?: string;
+  category: string | null;
+  rowsCount?: number;
 }
 
-export const EditOrderingRows = memo(({ chapterKey, classname }: EditOrderingRowsProps) => {
-  // const dispatch = useAppDispatch();
-  // const chapters = useAppSelector(getOrderingChaptersData);
+export const EditOrderingRows = memo(({ category, rowsCount }: EditOrderingRowsProps) => {
+  const { orderNumber } = useParams();
 
-  // const { register, handleSubmit, setValue, watch } = useForm<IOrderingChapter['summary']>({
-  //   defaultValues: {
-  //     rowsCount: chapters?.[chapterKey]?.summary.rowsCount ?? 0,
-  //   },
-  //   mode: 'onChange',
-  // });
+  const [updateOrderingRows] = useUpdateOrderingRows();
+  const [ressetOrderingRows] = useResetOrderingRows();
 
-  // useEffect(() => {
-  //   const subscription = watch((value, { name, type }) => console.log(value, name, type));
-  //   return () => subscription.unsubscribe();
-  // }, [watch]);
+  const { register, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      rowsCount,
+    },
+    mode: 'onChange',
+  });
 
-  // const editRows = (key: Partial<IOrderingChapter['summary']>, close?: () => void) => {
-  //   dispatch(orderingActions.setChapterSummary({ [chapterKey]: key }));
-  //   close?.();
-  // };
+  const editRows = useCallback(
+    async (currentRowsCount?: number, close?: () => void) => {
+      if (currentRowsCount && category && orderNumber) {
+        await updateOrderingRows({
+          category,
+          orderNumber: Number(orderNumber),
+          rowsCount: currentRowsCount,
+        });
+      }
+      close?.();
+    },
+    [category, orderNumber],
+  );
 
-  // const setToStartValue = () => {
-  //   if (chapters?.[chapterKey]?.summary.rowsCount) {
-  //     setValue('rowsCount', chapters?.[chapterKey]?.summary.rowsCount);
-  //   }
-  // };
+  const setToStartValue = useCallback(async (close?: () => void) => {
+    if (category && orderNumber) {
+      await ressetOrderingRows({
+        category,
+        orderNumber: Number(orderNumber),
+      });
+    }
+    close?.();
+  }, []);
 
   return (
-    <></>
-    // <HPopover
-    //   button={
-    //     <IconFont iconName={'icon-plus'} classname={classNames(style['edit-rows'], classname)} />
-    //   }
-    //   placementPanel='right'
-    //   offsetY={10}
-    //   renderChildren={({ close }) => (
-    //     <form onSubmit={handleSubmit(data => editRows(data, close))} className={style.form}>
-    //       <CounterField
-    //         min={0}
-    //         autofocus
-    //         {...register('rowsCount', { valueAsNumber: true })}
-    //         setValue={setValue}
-    //       ></CounterField>
-    //       <div className={style.actions}>
-    //         <IconFont
-    //           iconName={'icon-check'}
-    //           classname={style.check}
-    //           onClick={handleSubmit(data => editRows(data, close))}
-    //         />
-    //         <IconFont iconName={'icon-close'} classname={style.close} onClick={() => close()} />
-    //         <IconFont iconName={'icon-cached'} classname={style.cached} onClick={setToStartValue} />
-    //       </div>
-    //     </form>
-    //   )}
-    // />
+    <HPopover
+      as={'div'}
+      button={<IconFont iconName={'icon-plus'} />}
+      buttonClassName={style['edit-rows']}
+      placementPanel='right'
+      offsetY={10}
+      renderChildren={({ close }) => (
+        <form
+          onSubmit={handleSubmit(data => editRows(data.rowsCount, close))}
+          className={style.form}
+        >
+          <CounterField
+            min={0}
+            autofocus
+            {...register('rowsCount', { valueAsNumber: true })}
+            setValue={setValue}
+          ></CounterField>
+          <div className={style.actions}>
+            <IconFont
+              iconName={'icon-check'}
+              className={style.check}
+              onClick={handleSubmit(data => editRows(data.rowsCount, close))}
+            />
+            <IconFont iconName={'icon-close'} className={style.close} onClick={() => close()} />
+            <IconFont
+              iconName={'icon-cached'}
+              className={style.cached}
+              onClick={() => setToStartValue(close)}
+            />
+          </div>
+        </form>
+      )}
+    />
   );
 });
 

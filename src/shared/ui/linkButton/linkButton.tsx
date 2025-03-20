@@ -9,8 +9,8 @@ interface LinkButtonProps extends ButtonProps {
 }
 export const LinkButton = ({ href, children, ...buttonProps }: LinkButtonProps) => {
   return (
-    <Button {...buttonProps} classname={styles.btn}>
-      <AppLink to={href} classname={styles.link} />
+    <Button {...buttonProps} className={styles.btn}>
+      <AppLink to={href} className={styles.link} />
       {children}
     </Button>
   );

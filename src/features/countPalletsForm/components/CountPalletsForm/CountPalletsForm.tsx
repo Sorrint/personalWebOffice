@@ -10,13 +10,13 @@ import styles from './CountPalletsForm.module.scss';
 type OrderRecord = Record<'pallets', Pallet[]>;
 
 interface CountPalletsFormProps {
-  classname?: string;
+  className?: string;
   orderNumber: string;
   pallets: Pallet[];
   onChange?(data: Pallet[]): void;
 }
 
-export const CountPalletsForm = ({ classname, pallets, onChange }: CountPalletsFormProps) => {
+export const CountPalletsForm = ({ className, pallets, onChange }: CountPalletsFormProps) => {
   const { isScreenMd } = useResize();
 
   const { register, control, handleSubmit } = useForm<OrderRecord>({
@@ -33,7 +33,7 @@ export const CountPalletsForm = ({ classname, pallets, onChange }: CountPalletsF
   };
 
   return (
-    <form className={classNames(styles.component, classname)}>
+    <form className={classNames(styles.component, className)}>
       {fields.map(({ name, _id }, index) => (
         <label className={styles.label} key={_id}>
           {!isScreenMd && <span className={styles.span}>{name}</span>}
@@ -44,7 +44,7 @@ export const CountPalletsForm = ({ classname, pallets, onChange }: CountPalletsF
           />
         </label>
       ))}
-      <Button classname={styles.button} onClick={handleSubmit(onSubmit)}>
+      <Button className={styles.button} onClick={handleSubmit(onSubmit)}>
         <IconFont iconName='icon-check' />
       </Button>
     </form>

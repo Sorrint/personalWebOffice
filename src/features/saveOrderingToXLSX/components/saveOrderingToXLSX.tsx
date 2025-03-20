@@ -12,9 +12,9 @@ import { useParams } from 'react-router-dom';
 import { useGetOrderingRecords, useGetOrderingSummary } from '@entities/orderings';
 
 interface SaveOrderingToXLSXProps {
-  classname?: string;
+  className?: string;
 }
-export const SaveOrderingToXLSX = ({ classname }: SaveOrderingToXLSXProps) => {
+export const SaveOrderingToXLSX = ({ className }: SaveOrderingToXLSXProps) => {
   const { orderNumber } = useParams();
 
   const { data: orderingRecords } = useGetOrderingRecords(Number(orderNumber), {
@@ -30,7 +30,7 @@ export const SaveOrderingToXLSX = ({ classname }: SaveOrderingToXLSXProps) => {
   };
 
   return (
-    <button className={classNames(style['create-xlsx'], classname)} onClick={saveToXLSX}>
+    <button className={classNames(style['create-xlsx'], className)} onClick={saveToXLSX}>
       Скачать в XLSX
     </button>
   );

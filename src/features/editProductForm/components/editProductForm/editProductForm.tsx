@@ -77,7 +77,7 @@ export function EditProductForm({ buttonClick, error, highlightFunc }: EditProdu
             selectOnFocus
             label='Количество'
             {...register('quantity', { valueAsNumber: true, min: 0 })}
-            classname={styles.counter}
+            className={styles.counter}
             onKeyPress={keyPressed}
             min={0}
             setValue={setValue}
@@ -86,7 +86,7 @@ export function EditProductForm({ buttonClick, error, highlightFunc }: EditProdu
             label='Цена, ₽'
             {...register('price', { valueAsNumber: true, min: 0 })}
             min={0}
-            classname={styles.counter}
+            className={styles.counter}
             onKeyPress={keyPressed}
             setValue={setValue}
           />

@@ -49,7 +49,7 @@ export const SideBar = memo(() => {
             </ul>
           ))}
         </nav>
-        <Button onClick={changeCollapsed} classname={styles.button}>
+        <Button onClick={changeCollapsed} className={styles.button}>
           <IconFont iconName={collapsed ? 'icon-chevron-right' : 'icon-chevron-left'} />
         </Button>
       </div>

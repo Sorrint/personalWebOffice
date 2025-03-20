@@ -22,7 +22,7 @@ export const MenuItem = memo(({ item, collapsed }: MenuLinkProps) => {
   return (
     <li className={classNames(styles.item, { [styles.collapsed]: collapsed })} id={item.id}>
       <NavLink className={({ isActive }) => getClassName(isActive)} to={item.path} key={item.id}>
-        {item.image && <IconFont iconName={item.image} classname={styles.icon} />}
+        {item.image && <IconFont iconName={item.image} className={styles.icon} />}
         <span className={styles.text}>{item.text}</span>
         {collapsed && <div className={styles.tooltip}>{item.text}</div>}
       </NavLink>

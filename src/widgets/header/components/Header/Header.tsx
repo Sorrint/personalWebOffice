@@ -26,11 +26,11 @@ export const Header = memo(({ sidebarButton }: HeaderProps) => {
     <div className={styles.header}>
       <div className={styles['logo-group']}>
         {sidebarButton}
-        <IconFont iconName='icon-feather' classname={styles.logo} />
+        <IconFont iconName='icon-feather' className={styles.logo} />
         <span className={styles['logo-text']}>Кабинет</span>
       </div>
       <div className={styles['profile-group']}>
-        <IconFont iconName='icon-profile' classname={styles.icon} />
+        <IconFont iconName='icon-profile' className={styles.icon} />
         <div ref={refEl} onClick={setPopover} className={styles.mail}>
           {name}
         </div>
@@ -44,7 +44,7 @@ export const Header = memo(({ sidebarButton }: HeaderProps) => {
           key={'profile'}
         >
           <div className={styles.menu} onClick={() => setIsOpen(false)}>
-            <AppLink to={'/office/profile'} classname={styles['menu-item']}>
+            <AppLink to={'/office/profile'} className={styles['menu-item']}>
               Профиль
             </AppLink>
             <div onClick={logout} className={styles['menu-item']}>

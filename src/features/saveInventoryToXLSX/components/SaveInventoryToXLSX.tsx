@@ -4,15 +4,15 @@ import { saveInventoryToExcel } from '../lib/helpers/saveInventoryToExcel';
 
 interface SaveInventoryToXLSXProps {
   inventoryList?: IInventoryDocs;
-  classname?: string;
+  className?: string;
 }
-export const SaveInventoryToXLSX = ({ classname, inventoryList }: SaveInventoryToXLSXProps) => {
+export const SaveInventoryToXLSX = ({ className, inventoryList }: SaveInventoryToXLSXProps) => {
   const handleClick = () => {
     inventoryList && saveInventoryToExcel(inventoryList);
   };
 
   return (
-    <Button buttonType='submit' classname={classname} onClick={handleClick} outline>
+    <Button buttonType='submit' className={className} onClick={handleClick} outline>
       Скачать в XLSX
     </Button>
   );

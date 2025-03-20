@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { useParams } from 'react-router-dom';
 import { useGetOrderingSummary } from '../../api/orderingsApi';
 import useSummaryTexts from '../../lib/hooks/useSummaryTexts/useSummaryTexts';
-import styles from './orderingInfo.module.scss';
+import styles from './OrderingInfo.module.scss';
 
 interface OrderingInfoProps {
   className?: string;

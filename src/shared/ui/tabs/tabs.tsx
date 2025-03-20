@@ -11,17 +11,17 @@ interface CustomTab {
 }
 
 interface TabsProps {
-  classname?: string;
+  className?: string;
   list: CustomTab[];
 }
 
-export const Tabs = ({ list, classname }: TabsProps) => {
+export const Tabs = ({ list, className }: TabsProps) => {
   const getMenuItemClass = ({ isActive }: { isActive: boolean }): string =>
     classNames(styles['content-button'], {
       [styles.active]: isActive,
     });
 
-  const tabListClass = classNames(styles['tabs-list'], classname);
+  const tabListClass = classNames(styles['tabs-list'], className);
 
   return (
     <Tab.Group>

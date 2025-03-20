@@ -76,7 +76,7 @@ export const TextField = memo(
           <button className={styles['password-button']} type='button' onClick={toggleShowPassword}>
             <IconFont
               iconName={showPassword ? 'icon-eye-open' : 'icon-eye-slashed'}
-              classname={styles['eye-icon']}
+              className={styles['eye-icon']}
             />
           </button>
         )}

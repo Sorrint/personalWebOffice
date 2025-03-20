@@ -1,18 +1,24 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useState, ElementType } from 'react';
 import { Popover as HPopover } from '@headlessui/react';
 import { usePopper } from 'react-popper';
 import { type Placement } from '@popperjs/core';
 
 interface PopoverProps {
   button: ReactNode;
+  buttonClassName: string;
+  className?: string;
   renderChildren: (props: { close: () => void }) => ReactNode;
   placementPanel?: Placement;
   offsetX?: number;
   offsetY?: number;
+  as?: ElementType;
 }
 
 export const Popover = ({
+  as = 'div',
   button,
+  buttonClassName,
+  className,
   renderChildren,
   placementPanel,
   offsetX,
@@ -34,8 +40,8 @@ export const Popover = ({
   });
 
   return (
-    <HPopover>
-      <HPopover.Button as='div' ref={setReferenceElement}>
+    <HPopover className={className}>
+      <HPopover.Button as={as} ref={setReferenceElement} className={buttonClassName}>
         {button}
       </HPopover.Button>
       <HPopover.Panel ref={setPopperElement} style={styles.popper} {...attributes.popper}>
