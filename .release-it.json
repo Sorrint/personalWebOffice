@@ -1,0 +1,28 @@
+{
+  "$schema": "https://unpkg.com/release-it@18/schema/release-it.json",
+  "git": {
+    "commitMessage": "chore: release v${version}"
+  },
+  "gitlab": {
+    "release": true,
+    "releaseName": "Релиз ${version}"
+  },
+  "plugins": {
+  "@release-it/conventional-changelog": {
+    "preset": {
+      "name": "conventionalcommits",
+      "types": [
+        {
+          "type": "feat",
+          "section": "Функционал"
+        },
+        {
+          "type": "fix",
+          "section": "Исправление багов"
+        }
+      ]
+    },
+    "infile": "CHANGELOG.md"
+  }
+}
+}
