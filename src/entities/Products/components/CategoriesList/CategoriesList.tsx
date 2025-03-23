@@ -1,5 +1,3 @@
-import { type FC } from 'react';
-
 import CategoryCard from '../CategoryCard/CategoryCard';
 import { type IProductCategory } from '../../model/types/IDreamkasProduct';
 
@@ -7,7 +5,7 @@ interface ICategoriesListProps {
   categories: IProductCategory[];
 }
 
-export const CategoriesList: FC<ICategoriesListProps> = ({ categories }) => {
+export const CategoriesList = ({ categories }: ICategoriesListProps) => {
   return (
     <>
       {categories.map(item => (

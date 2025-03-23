@@ -1,4 +1,4 @@
-import { useCallback, useEffect, type FC, type ReactNode } from 'react';
+import { useCallback, useEffect, type ReactNode } from 'react';
 
 function isClickedOutside(clickedElement: Element, targetElement: Element) {
   let clickedEl: Node | null = clickedElement;
@@ -20,7 +20,7 @@ interface ClickOutsideProps {
   reference: HTMLElement | undefined;
 }
 
-export const ClickOutside: FC<ClickOutsideProps> = ({ children, reference, onClickOutside }) => {
+export const ClickOutside = ({ children, reference, onClickOutside }: ClickOutsideProps) => {
   const handleOutsideClick = useCallback(
     (event: MouseEvent) => {
       if (!reference) {

@@ -1,4 +1,4 @@
-import { type FC, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 import { handleListKeydownEvent } from '@shared/lib/utils';
 
@@ -10,12 +10,12 @@ interface IProductListBodyProps extends IProductListContentProps<IDreamkasProduc
   products: IDreamkasProduct[];
 }
 
-export const ProductListBody: FC<IProductListBodyProps> = ({
+export const ProductListBody = ({
   products,
   parentRef,
   setFirstElement,
   ...rest
-}) => {
+}: IProductListBodyProps) => {
   const listRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const addProductToRefList = (productRef: HTMLDivElement) => {

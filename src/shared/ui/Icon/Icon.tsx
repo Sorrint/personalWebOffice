@@ -1,5 +1,7 @@
+import { type SVGComponent } from '@shared/types/svg';
+
 interface IconProps {
-  Icon: React.FC<React.SVGProps<SVGElement>>;
+  Icon: SVGComponent;
   width?: number;
   height?: number;
   className?: string;

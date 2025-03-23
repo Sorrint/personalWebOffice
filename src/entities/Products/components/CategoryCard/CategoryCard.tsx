@@ -1,5 +1,3 @@
-import { type FC } from 'react';
-
 import { type IProductCategory } from '../../model/types/IDreamkasProduct';
 
 import './CategoryStyles.scss';
@@ -7,7 +5,7 @@ import './CategoryStyles.scss';
 interface ICategoryCardProps {
   category: IProductCategory;
 }
-export const CategoryCard: FC<ICategoryCardProps> = ({ category }) => {
+export const CategoryCard = ({ category }: ICategoryCardProps) => {
   const { name, productCount } = category;
   return (
     <div className='category-card'>

@@ -33,7 +33,7 @@ export function createReducerManager(
         keysToRemove = [];
       }
 
-      return combinedReducer(state, action);
+      return combinedReducer(state as ReturnType<typeof combinedReducer>, action);
     },
 
     add: (key: StoreSchemaKey, reducer: Reducer) => {
