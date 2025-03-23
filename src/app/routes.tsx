@@ -1,29 +1,29 @@
 import { Navigate, type RouteObject } from 'react-router-dom';
 
-import { DocumentsPage } from '@pages/documentsPage';
-import { InventoryPage } from '@pages/inventoryPage';
-import { PackagesPage } from '@pages/packagesPage';
-import { ProductsPage } from '@pages/productsPage';
-import { ProfilePage } from '@pages/profilePage';
-import { AuthPage } from '@pages/authPage';
+import { DocumentsPage } from '@pages/DocumentsPage';
+import { InventoryPage } from '@pages/InventoryPage';
+import { PackagesPage } from '@pages/PackagesPage';
+import { ProductsPage } from '@pages/ProductsPage';
+import { ProfilePage } from '@pages/ProfilePage';
+import { AuthPage } from '@pages/AuthPage';
 
-import { CreateInventory, InventoriesList, InventoryEdit } from '@widgets/inventoryPageBody';
+import { CreateInventory, InventoriesList, InventoryEdit } from '@widgets/InventoryPageBody';
 import {
   AddOrderProducts,
   CreateOrder,
   OrderDetails,
   OrderingDetails,
-} from '@widgets/documentsPageBody';
-import ProductsCategories from '@widgets/productsPageBody';
+} from '@widgets/DocumentsPageBody';
+import ProductsCategories from '@widgets/ProductsPageBody';
 
-import { EditPackageCategory } from '@features/editPackageCategory';
+import { EditPackageCategory } from '@features/EditPackageCategory';
 // import { EditPackageForm } from '@features/editPackageForm';
 
 import { AppRoutes } from '@shared/config/router/routesLinks';
-import { OrdersList } from '@entities/orders';
-import { OrderingsList } from '@entities/orderings';
-import { DistributionsList } from '@entities/distributions';
-import { Packages } from '@widgets/packagesPageBody';
+import { OrdersList } from '@entities/Orders';
+import { OrderingsList } from '@entities/Orderings';
+import { DistributionsList } from '@entities/Distributions';
+import { Packages } from '@widgets/PackagesPageBody';
 
 export const routes: RouteObject[] = [
   { index: true, element: <Navigate to={AppRoutes.getDashboardRoute()} /> },

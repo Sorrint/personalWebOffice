@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AppRoutes } from '@shared/config/router';
-import { useGetCurrenUserQuery } from '@widgets/auth';
+import { useGetCurrenUserQuery } from '@widgets/Auth';
 import { AuthContext } from '@shared/lib/context/AuthContext';
 
 interface ErrorProviderProps {

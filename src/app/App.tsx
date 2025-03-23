@@ -1,9 +1,9 @@
 import { useRoutes } from 'react-router-dom';
 import { Suspense, useContext } from 'react';
 
-import { SideBar, SidebarControlButton, sidebarActions } from '@widgets/sideBar';
-import { isHiddenSidebar } from '@widgets/sideBar';
-import { Header } from '@widgets/header';
+import { SideBar, SidebarControlButton, sidebarActions } from '@widgets/SideBar';
+import { isHiddenSidebar } from '@widgets/SideBar';
+import { Header } from '@widgets/Header';
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks';
 import { AuthContext } from '@shared/lib/context/AuthContext';
 import { AppLayout } from '@shared/layouts';
