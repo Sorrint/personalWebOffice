@@ -1,4 +1,4 @@
-import { type IconName } from '@shared/ui/iconFont';
+import { type IconName } from '@shared/ui/IconFont';
 
 export interface IMenuItem {
   id?: string;

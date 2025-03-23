@@ -1,12 +1,12 @@
 import { type ReactNode, memo, useContext, useRef, useState } from 'react';
 
-import { IconFont } from '@shared/ui/iconFont';
-import { AuthContext } from '@shared/lib/context/authContext';
+import { IconFont } from '@shared/ui/IconFont';
+import { AuthContext } from '@shared/lib/context/AuthContext';
 import { useLogout } from '@features/logout';
-import { Popover } from '@shared/ui/popover';
+import { Popover } from '@shared/ui/Popover';
 
 import styles from './Header.module.scss';
-import { AppLink } from '@shared/ui/appLink';
+import { AppLink } from '@shared/ui/AppLink';
 
 interface HeaderProps {
   sidebarButton?: ReactNode;

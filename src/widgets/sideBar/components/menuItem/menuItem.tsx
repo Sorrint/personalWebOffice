@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { IconFont } from '@shared/ui/iconFont';
+import { IconFont } from '@shared/ui/IconFont';
 
 import { type IMenuItem } from '../../model/types/menuItemsTypes';
 import styles from './menuItem.module.scss';

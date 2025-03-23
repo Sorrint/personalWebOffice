@@ -5,7 +5,7 @@ import '@app/styles/style.scss';
 import { BrowserRouter } from 'react-router-dom';
 import App from '@app/App';
 import { StoreProvider } from '@app/providers/storeProvider';
-import { AuthProvider } from '@app/providers/authProvider';
+import { AuthProvider } from '@app/providers/AuthProvider';
 
 Object.typedKeys = Object.keys;
 Object.typedValues = Object.values;

@@ -1,6 +1,5 @@
 import { IOrderRecord } from '@entities/orders';
-import { parseSheetData } from '@shared/lib/utils/parseSheetData';
-import { readXLSXTable } from '@shared/lib/utils/readXLSXtable';
+import { parseSheetData, readXLSXTable } from '@shared/lib/utils';
 import { z } from 'zod';
 
 const headersMap: Record<string, keyof IOrderRecord> = {

@@ -1,10 +1,10 @@
 import { DefaultValues, SubmitHandler, useForm } from 'react-hook-form';
-import { TextField } from '@shared/ui/textField';
-import { Calendar } from '@shared/ui/calendar';
-import { Button } from '@shared/ui/button';
+import { TextField } from '@shared/ui/TextField';
+import { Calendar } from '@shared/ui/Calendar';
+import { Button } from '@shared/ui/Button';
 import { Suspense, useEffect } from 'react';
 import { FormValues } from '../../model/types/types';
-import { Grid } from '@shared/ui/grid';
+import { Grid } from '@shared/ui/Grid';
 import styles from './CreateDocumentForm.module.scss';
 
 const defaultValues: DefaultValues<FormValues> = {

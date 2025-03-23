@@ -5,7 +5,7 @@ import { EditOrderingRows } from '@features/editOrderingRows';
 import { OrderingInfo, OrderingProductsList, useGetOrderingRecords } from '@entities/orderings';
 import { Pallet, useGetOrderPackages, useUpdateOrderPackages } from '@entities/orders';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
-import { Panel } from '@shared/ui/panel/panel';
+import { Panel } from '@shared/ui/Panel';
 import { FlexColumn } from '@shared/ui/Flex';
 import style from './OrderingDetails.module.scss';
 

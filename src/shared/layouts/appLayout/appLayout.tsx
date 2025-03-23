@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-import styles from './appLayout.module.scss';
+import styles from './AppLayout.module.scss';
 
 interface LayoutProps {
   header: ReactNode;

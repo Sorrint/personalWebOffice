@@ -1,1 +1,1 @@
-export { PackagesPageAsync as PackagesPage } from './components/packagesPage.async';
+export { PackagesPageAsync as PackagesPage } from './components/PackagesPage.async';

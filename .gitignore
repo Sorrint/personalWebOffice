@@ -29,3 +29,5 @@ reports
 .env.development
 .env.production
 .editorconfig
+
+.cursor/

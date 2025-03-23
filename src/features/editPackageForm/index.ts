@@ -1,1 +1,1 @@
-export { EditPackageForm } from './components/editPackageForm/editPackageForm';
+export { EditPackageForm } from './components/EditPackageForm/EditPackageForm';

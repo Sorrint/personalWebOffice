@@ -1,4 +1,4 @@
-import { TableColumns } from '@shared/ui/table';
+import { TableColumns } from '@shared/ui/Table';
 import { createContext } from 'react';
 
 export interface TableContextProps<T> {

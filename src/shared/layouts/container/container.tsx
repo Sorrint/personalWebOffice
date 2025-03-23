@@ -1,7 +1,7 @@
 import { type ReactNode, memo } from 'react';
 import classNames from 'classnames';
 
-import style from './container.module.scss';
+import style from './Container.module.scss';
 
 interface ContainerProps {
   className?: string;

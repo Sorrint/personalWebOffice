@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import { Container } from '../container/container';
-import style from './appBody.module.scss';
+import style from './AppBody.module.scss';
 interface AppBodyProps {
   children: ReactNode;
   withoutContainer?: boolean;

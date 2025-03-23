@@ -1,5 +1,5 @@
 import { type IInventoryDocs } from '@entities/inventories';
-import { Button } from '@shared/ui/button';
+import { Button } from '@shared/ui/Button';
 import { saveInventoryToExcel } from '../lib/helpers/saveInventoryToExcel';
 
 interface SaveInventoryToXLSXProps {

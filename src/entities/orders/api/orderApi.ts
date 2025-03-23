@@ -8,7 +8,7 @@ import {
 } from '../model/types/IOrder';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformOrdersList } from '../lib/helpers/transformOrdersList';
-import { buildQueryString } from '@shared/lib/utils/buildQueryString';
+import { buildQueryString } from '@shared/lib/utils';
 
 const baseOrdersUri = 'documents/orders';
 

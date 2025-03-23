@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { type TableColumns, Table } from '@shared/ui/table';
+import { type TableColumns, Table } from '@shared/ui/Table';
 import {
   type IInventoryProductDisplay,
   type IInventoryProduct,

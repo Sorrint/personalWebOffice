@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { Grid } from '../grid';
-import { AppLink } from '../appLink/appLink';
+import { Grid } from '@shared/ui/Grid';
+import { AppLink } from '@shared/ui/AppLink';
 
 export interface AppLinkItem {
   title: string;

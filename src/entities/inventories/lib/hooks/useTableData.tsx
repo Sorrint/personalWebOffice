@@ -1,6 +1,6 @@
 import { type SyntheticEvent } from 'react';
 import { type IInventoryProductDisplay, type IInventoryProduct } from '../../model/types';
-import { IconFont } from '@shared/ui/iconFont';
+import { IconFont } from '@shared/ui/IconFont';
 
 interface UseTableDataProps {
   records?: IInventoryProduct[];

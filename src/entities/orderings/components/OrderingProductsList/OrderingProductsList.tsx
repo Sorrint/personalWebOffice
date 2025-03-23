@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { Loader } from '@shared/ui/loaders';
-import { type TableColumns, Table } from '@shared/ui/table';
+import { Loader } from '@shared/ui/Loaders';
+import { type TableColumns, Table } from '@shared/ui/Table';
 import { type IOrderingRecordDisplay } from '../../model/types/ordering';
 import { OrderingHeaders } from '../../consts/orderingHeaders';
 import useTableData, { UseTableDataProps } from '../../lib/hooks/useTableData/useTableData';

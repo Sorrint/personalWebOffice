@@ -1,1 +1,1 @@
-export { AuthPageAsync as AuthPage } from './components/authPage.async';
+export { AuthPageAsync as AuthPage } from './components/AuthPage.async';

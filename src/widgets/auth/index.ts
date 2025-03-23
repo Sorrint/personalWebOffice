@@ -1,2 +1,2 @@
-export { Auth } from './components/auth';
+export { Auth } from './components/Auth';
 export * from './api/authApi';

@@ -1,1 +1,1 @@
-export { InventoryPageAsync as InventoryPage } from './components/inventoryPage.async';
+export { InventoryPageAsync as InventoryPage } from './components/InventoryPage.async';

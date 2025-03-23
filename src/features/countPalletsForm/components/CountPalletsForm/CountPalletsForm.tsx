@@ -1,8 +1,8 @@
-import { TextField } from '@shared/ui/textField';
+import { TextField } from '@shared/ui/TextField';
 import classNames from 'classnames';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { IconFont } from '@shared/ui/iconFont';
-import { Button } from '@shared/ui/button';
+import { IconFont } from '@shared/ui/IconFont';
+import { Button } from '@shared/ui/Button';
 import { useResize } from '@shared/lib/hooks';
 import { Pallet } from '@entities/orders';
 import styles from './CountPalletsForm.module.scss';

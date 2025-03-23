@@ -1,1 +1,1 @@
-export { SaveOrderingToXLSX } from './components/saveOrderingToXLSX';
+export { SaveOrderingToXLSX } from './components/SaveOrderingToXLSX';

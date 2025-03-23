@@ -1,3 +1,3 @@
-import ProductsCategories from './components/productsCategories/productsCategories';
+import ProductsCategories from './components/ProductsCategories/ProductsCategories';
 
 export default ProductsCategories;

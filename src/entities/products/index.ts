@@ -1,14 +1,14 @@
-export { default as PopoverProductsList } from './components/popoverProductsList/popoverProductsList';
+export { default as PopoverProductsList } from './components/PopoverProductsList/PopoverProductsList';
 
-export { EditProductProperty } from './components/editProductProperty/editProductProperty';
+export { EditProductProperty } from './components/EditProductProperty/EditProductProperty';
 
-export { PopupProductCard } from './components/popupProductCard/popupProductCard';
+export { PopupProductCard } from './components/PopupProductCard/PopupProductCard';
 export { type IUnitOption } from './model/types/IStoreProduct';
 export { type ProductsState } from './model/types/productsState';
 export { type IDreamkasProduct } from './model/types/IDreamkasProduct';
-export { ProductCard } from './components/productCard/productCard';
-export { CategoryCard } from './components/categoryCard/categoryCard';
-export { CategoriesList } from './components/categoriesList/categoriesList';
-export { ProductList } from './components/productList/productList';
+export { ProductCard } from './components/ProductCard/ProductCard';
+export { CategoryCard } from './components/CategoryCard/CategoryCard';
+export { CategoriesList } from './components/CategoriesList/CategoriesList';
+export { ProductList } from './components/ProductList/ProductList';
 export * from './model/productsService';
 export * from './model/types/IStoreProduct';

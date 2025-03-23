@@ -1,6 +1,6 @@
-import { Tabs } from '@shared/ui/tabs';
+import { Tabs } from '@shared/ui/Tabs';
 import { INavLinkObject } from '@shared/types/navLinkTypes';
-import styles from './headerTabs.module.scss';
+import styles from './HeaderTabs.module.scss';
 
 interface AppRibbonProps {
   navLinks: INavLinkObject;

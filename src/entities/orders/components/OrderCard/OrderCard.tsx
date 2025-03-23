@@ -1,6 +1,6 @@
-import { type TableColumns } from '@shared/ui/table/table';
+import { type TableColumns } from '@shared/ui/Table';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
-import { Table } from '@shared/ui/table';
+import { Table } from '@shared/ui/Table';
 
 import { type IOrderRecord } from '../../model/types/IOrder';
 import { memo } from 'react';

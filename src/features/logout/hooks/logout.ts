@@ -2,7 +2,7 @@ import { rtkApi } from '@shared/api/rtkApi';
 import { useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../api/logoutApi';
 import { useContext } from 'react';
-import { AuthContext } from '@shared/lib/context/authContext';
+import { AuthContext } from '@shared/lib/context/AuthContext';
 
 export const useLogout = () => {
   const { refetch } = useContext(AuthContext);

@@ -1,1 +1,1 @@
-export { ProfilePageBody } from './components/profilePageBody';
+export { ProfilePageBody } from './components/ProfilePageBody';

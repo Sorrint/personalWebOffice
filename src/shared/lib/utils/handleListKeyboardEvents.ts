@@ -2,7 +2,7 @@ import { type MutableRefObject, type KeyboardEvent } from 'react';
 
 // функция для перемещения по списку с помощью клавиатуры, а также выбора элемента, находящегося в фокусе.
 
-const handleListKeydownEvent =
+export const handleListKeydownEvent =
   (refsArray: Array<HTMLElement | null>, parentRef?: MutableRefObject<HTMLElement | null>) =>
   (event: KeyboardEvent, onSubmit: (...args: any[]) => void) => {
     const currentFocusIndex = refsArray.indexOf(event.target as HTMLElement);
@@ -19,5 +19,3 @@ const handleListKeydownEvent =
       onSubmit();
     }
   };
-
-export default handleListKeydownEvent;

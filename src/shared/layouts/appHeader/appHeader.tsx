@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import styles from './appHeader.module.scss';
+import styles from './AppHeader.module.scss';
 import { Container } from '../container/container';
 import { HeaderTabs } from './components/HeaderTabs/HeaderTabs';
 

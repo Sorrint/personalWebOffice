@@ -5,7 +5,7 @@ import { SideBar, SidebarControlButton, sidebarActions } from '@widgets/sideBar'
 import { isHiddenSidebar } from '@widgets/sideBar';
 import { Header } from '@widgets/header';
 import { useAppDispatch, useAppSelector } from '@shared/lib/hooks';
-import { AuthContext } from '@shared/lib/context/authContext';
+import { AuthContext } from '@shared/lib/context/AuthContext';
 import { AppLayout } from '@shared/layouts';
 
 import { routes } from './routes';

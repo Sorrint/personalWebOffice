@@ -1,11 +1,11 @@
 import { memo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import { CounterField } from '@shared/ui/counterField';
-import { HPopover } from '@shared/ui/popover';
-import { IconFont } from '@shared/ui/iconFont';
+import { CounterField } from '@shared/ui/CounterField';
+import { HPopover } from '@shared/ui/Popover';
+import { IconFont } from '@shared/ui/IconFont';
 import { useResetOrderingRows, useUpdateOrderingRows } from '../../api/editOrderingRowsApi';
-import style from './editOrderingRows.module.scss';
+import style from './EditOrderingRows.module.scss';
 
 interface EditOrderingRowsProps {
   className?: string;

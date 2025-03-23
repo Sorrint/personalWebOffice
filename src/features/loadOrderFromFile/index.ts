@@ -1,1 +1,1 @@
-export { LoadOrderFromFile } from './components/loadOrderFromFile';
+export { LoadOrderFromFile } from './components/LoadOrderFromFile';

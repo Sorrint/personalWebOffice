@@ -1,1 +1,1 @@
-export { ProductsPageAsync as ProductsPage } from './components/productsPage.async';
+export { ProductsPageAsync as ProductsPage } from './components/ProductsPage.async';
