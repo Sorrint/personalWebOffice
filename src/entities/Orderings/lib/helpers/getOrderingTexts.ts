@@ -24,14 +24,18 @@ ${sheets
 export const getGrossweightText = (grossWeight: number) =>
   `Вес брутто ориентировочно: ${grossWeight > 0 ? grossWeight + ' кг' : ''}`;
 
-export const getRowSeparatorText = ({ name, count }: IPackageSummaryInfo) => {
-  return `${name} ${count > 0 ? count + ' шт' : ''}`;
-};
+export const getRowSeparatorText = ({ name, count }: IPackageSummaryInfo) =>
+  `${name} ${count > 0 ? count + ' шт' : ''}`;
 
-export const getShipmentDayText = (date?: string) => {
-  return `Отгрузка ориентировочно: ${date ?? ''}`;
-};
+export const getShipmentDayText = (date?: string) => `Отгрузка ориентировочно: ${date ?? ''}`;
 
-export const getCountInRowsText = (text?: string, countOfPackages?: number) => {
-  return (!!countOfPackages && `В ряду ${countOfPackages} шт.`) || text;
-};
+export const getCountInRowsText = (text?: string, countOfPackages?: number) =>
+  (!!countOfPackages && `В ряду ${countOfPackages} шт.`) || text;
+
+export const getRowsCountText = (rowsCount?: number, countOfPackages?: number) =>
+  [
+    rowsCount && `${rowsCount} ${getDeclensions(Number(rowsCount), ['ряд', 'ряда', 'рядов'])}`,
+    countOfPackages && rowsCount && `${rowsCount * countOfPackages}`,
+  ]
+    .filter(Boolean)
+    .join(' = ');
