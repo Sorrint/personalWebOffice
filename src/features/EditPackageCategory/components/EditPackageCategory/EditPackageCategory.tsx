@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { type IPackageCategory } from '@entities/Packages';
+import { type PackageCategory } from '@entities/Packages';
 import { PropertyField } from '@shared/ui/PropertyField/PropertyField';
 import { Button } from '@shared/ui/Button';
 
@@ -10,18 +10,18 @@ import styles from './EditPackageCategory.module.scss';
 import { TextField } from '@shared/ui/TextField';
 
 interface EditPackageCategoryProps {
-  packageCategory?: IPackageCategory;
+  packageCategory?: PackageCategory;
 }
 
 export const EditPackageCategory = memo(({ packageCategory }: EditPackageCategoryProps) => {
-  const { register, handleSubmit } = useForm<IPackageCategory>({
+  const { register, handleSubmit } = useForm<PackageCategory>({
     defaultValues: packageCategory,
   });
 
   const [createPackageCategory] = useCreatePackageCategory();
 
   const editPackage = useCallback(
-    (data: IPackageCategory) => {
+    (data: PackageCategory) => {
       createPackageCategory(data);
     },
     [createPackageCategory],

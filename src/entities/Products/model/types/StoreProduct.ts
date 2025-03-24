@@ -1,3 +1,5 @@
+import { type ProductStock } from './DreamkasProduct';
+
 enum UnitTypes {
   COUNTABLE = 'COUNTABLE',
   SCALABLE = 'SCALABLE',
@@ -12,14 +14,14 @@ export interface extraData {
   weightUnit?: string;
 }
 
-export interface IUnitOption {
+export interface UnitOption {
   content: string;
   _id: string;
   type: ProductType;
   base: number;
 }
 
-export interface IStoreProduct {
+export interface StoreProduct {
   _id?: string;
   name: string;
   type?: UnitTypes;
@@ -31,10 +33,15 @@ export interface IStoreProduct {
   };
   isMarked?: null | boolean;
   price?: null | number;
-  stock?: null | IProductStock[];
+  stock?: null | ProductStock[];
   tax?: string;
   unit?: string;
   extraData?: extraData;
 }
 
-export type IProductStock = [number, string, string, string, string];
+export type StoreProductStock = [number, string, string, string, string];
+
+export interface CheckStoreProduct {
+  productsExists: unknown[];
+  productsNotExists: unknown[];
+}

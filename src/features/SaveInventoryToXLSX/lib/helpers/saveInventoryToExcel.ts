@@ -1,8 +1,8 @@
-import { type IInventoryDocs } from '@entities/Inventories';
+import { type InventoryDocs } from '@entities/Inventories';
 import { pageSetup } from '../../consts/pageSetup';
 import { tableColumns } from '../../consts/tableColumns';
 
-export const saveInventoryToExcel = async (data: IInventoryDocs): Promise<void> => {
+export const saveInventoryToExcel = async (data: InventoryDocs): Promise<void> => {
   const ExcelJS = await import('exceljs');
   const workbook = new ExcelJS.Workbook();
   const sheet = workbook.addWorksheet('Инвентаризация', pageSetup);

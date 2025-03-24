@@ -2,7 +2,7 @@
 import { useParams } from 'react-router-dom';
 
 import { EditProductCard } from '@features/EditProductCard';
-// import { type IStoreProduct } from '@entities/Products';
+// import { type StoreProduct } from '@entities/Products';
 
 import styles from './AddOrderProducts.module.scss';
 import { useGetOrderRecords } from '@entities/Orders';
@@ -21,7 +21,7 @@ export const AddOrderProducts = () => {
   if (orderRecordsLoading) return <div>Идет загрузка</div>;
   console.log(productsWithoutId);
 
-  // const handleSubmit = (createdProduct: IStoreProduct, recordNumber: number) => {
+  // const handleSubmit = (createdProduct: StoreProduct, recordNumber: number) => {
   //   updateRecord({
   //     record: { number: recordNumber, product: createdProduct._id, unit: createdProduct.unit },
   //     id: orderId ?? '',

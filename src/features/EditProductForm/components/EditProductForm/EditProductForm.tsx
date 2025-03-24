@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { type SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
-import { type IInventoryProduct } from '@entities/Inventories';
+import { type InventoryProduct } from '@entities/Inventories';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 import { CounterField } from '@shared/ui/CounterField';
 import { Button } from '@shared/ui/Button';
@@ -15,22 +15,22 @@ import { useAppSelector } from '@shared/lib/hooks';
 import { selectFormProduct, selectFormProps } from '../../model/selectors/EditProductFormSelectors';
 
 export interface EditProductFormProps {
-  buttonClick: (item: IInventoryProduct) => Promise<void>;
+  buttonClick: (item: InventoryProduct) => Promise<void>;
   error: FetchBaseQueryError | SerializedError | undefined;
-  highlightFunc?: (item: IInventoryProduct) => boolean;
+  highlightFunc?: (item: InventoryProduct) => boolean;
 }
 
 export function EditProductForm({ buttonClick, error, highlightFunc }: EditProductFormProps) {
   const product = useAppSelector(selectFormProduct);
   const { buttonText, method, popupText } = useAppSelector(selectFormProps);
-  const initData: Partial<IInventoryProduct> = {
+  const initData: Partial<InventoryProduct> = {
     id: product?.id,
     price: product?.price,
     quantity: product?.quantity,
     name: product?.name,
     isActiveAccount: product?.isActiveAccount ?? true,
   };
-  const { register, handleSubmit, setValue } = useForm<IInventoryProduct>({
+  const { register, handleSubmit, setValue } = useForm<InventoryProduct>({
     defaultValues: initData,
     mode: 'onChange',
   });

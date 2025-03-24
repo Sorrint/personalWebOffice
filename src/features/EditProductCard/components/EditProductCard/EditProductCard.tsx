@@ -2,8 +2,8 @@ import { type Path, type PathValue } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
 import {
-  type IStoreProduct,
-  type extraData,
+  type StoreProduct,
+  type StoreProductExtraData,
   EditProductProperty,
   useCreateProduct,
 } from '@entities/Products';
@@ -15,23 +15,23 @@ import { Button } from '@shared/ui/Button';
 import { parseWeightKg } from '../../lib/helpers/parseWeightKg/parseWeightKg';
 import styles from './EditProductCard.module.scss';
 
-interface EditProductCardProps<T extends IStoreProduct> {
+interface EditProductCardProps<T extends StoreProduct> {
   product: T;
-  onSubmit?: (product: IStoreProduct) => void;
+  onSubmit?: (product: StoreProduct) => void;
 }
 
-const extraDataDefault: extraData = {
+const extraDataDefault: StoreProductExtraData = {
   weight: 0,
 };
 
-export const EditProductCard = <T extends IStoreProduct>({
+export const EditProductCard = <T extends StoreProduct>({
   product,
   onSubmit,
 }: EditProductCardProps<T>) => {
   const [createProduct] = useCreateProduct();
   const { data: units } = useGetUnits();
   const { name } = product;
-  const methods = useForm<IStoreProduct>({
+  const methods = useForm<StoreProduct>({
     defaultValues: product,
     mode: 'onChange',
   });
@@ -40,7 +40,7 @@ export const EditProductCard = <T extends IStoreProduct>({
 
   const { watch, register, setValue, handleSubmit } = methods;
 
-  const handleSet = <T extends Path<IStoreProduct>>(key: T, value: PathValue<IStoreProduct, T>) => {
+  const handleSet = <T extends Path<StoreProduct>>(key: T, value: PathValue<StoreProduct, T>) => {
     //@ts-expect-error значение гарантированно соответствует типу
     setValue(key, value);
   };
@@ -56,7 +56,7 @@ export const EditProductCard = <T extends IStoreProduct>({
   const type = watch('type');
   const weightUnit = watch('extraData.weightUnit');
 
-  const handleCreate = async (product: IStoreProduct) => {
+  const handleCreate = async (product: StoreProduct) => {
     const createdProduct = await createProduct({ ...product, tax: 'NDS_NO_TAX' });
     if ('data' in createdProduct) {
       onSubmit?.(createdProduct.data);

@@ -1,15 +1,15 @@
-import { IOrderRecord } from '@entities/Orders';
+import { OrderRecord } from '@entities/Orders';
 import { parseSheetData, readXLSXTable } from '@shared/lib/utils';
 import { z } from 'zod';
 
-const headersMap: Record<string, keyof IOrderRecord> = {
+const headersMap: Record<string, keyof OrderRecord> = {
   '№': 'number',
   'Товары (работы, услуги)': 'productName',
   'Кол-во': 'count',
   'Ед.': 'unit',
 };
 
-const OrderSchema: z.Schema<IOrderRecord> = z.object({
+const OrderSchema: z.Schema<OrderRecord> = z.object({
   number: z.number(),
   productName: z.string(),
   count: z.number(),
@@ -17,7 +17,7 @@ const OrderSchema: z.Schema<IOrderRecord> = z.object({
 });
 
 interface GetOrderResult {
-  records?: IOrderRecord[];
+  records?: OrderRecord[];
   parseError?: string;
 }
 

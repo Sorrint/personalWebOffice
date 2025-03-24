@@ -3,7 +3,7 @@ export enum UnitTypes {
   SCALABLE = 'SCALABLE',
   WEIGHTABLE = 'WEIGHTABLE',
 }
-export interface IUnit {
+export interface Unit {
   _id: string;
   type: UnitTypes[];
   base: number;

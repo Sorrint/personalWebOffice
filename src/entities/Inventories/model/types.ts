@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-export interface IInventoryProduct {
+export interface InventoryProduct {
   name: string;
   price: number | null;
   quantity: number;
@@ -8,50 +8,20 @@ export interface IInventoryProduct {
   isActiveAccount?: boolean;
 }
 
-export interface ICreateInventory {
+export interface CreateInventory {
   documentNumber: number;
   choosenDate: Date;
   comment: string;
   storeName: string;
 }
 
-export interface IInventoryDocs extends ICreateInventory {
+export interface InventoryDocs extends CreateInventory {
   _id: string;
-  products: IInventoryProduct[];
+  products: InventoryProduct[];
   totalSum?: number;
 }
 
-export interface IdataForXLSX {
-  '№ п/п'?: number;
-  Наименование: string;
-  Количество?: number;
-  Цена?: number;
-  Сумма: number;
-}
-
-export interface IInventoryContent {
-  onClick?: (product: IInventoryProduct) => void;
-  onDelete?: (product: IInventoryProduct) => void;
-  index?: number;
-}
-
-export interface IInventoryProductListBodyProps {
-  products: IInventoryProduct[];
-  itemNumber: number;
-  onClick?: (product: IInventoryProduct) => void;
-  onDelete?: (product: IInventoryProduct) => void;
-  tabIndex?: number;
-}
-
-export interface IInventoryProductCardProps {
-  product: IInventoryProduct;
-  itemNumber: number;
-  onClick?: (product: IInventoryProduct) => void;
-  onDelete?: (product: IInventoryProduct) => void;
-  tabIndex?: number;
-}
-
-export interface IInventoryProductDisplay extends IInventoryProduct {
+export interface InventoryProductDisplay extends InventoryProduct {
   highlight?: boolean | (() => void);
   priceString: string;
   number: number;

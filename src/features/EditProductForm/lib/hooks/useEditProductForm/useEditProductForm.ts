@@ -2,15 +2,15 @@ import { useCallback, useEffect, useState } from 'react';
 import {
   useRemoveInventoryProduct,
   useUpdateProducts,
-  type IInventoryProduct,
+  type InventoryProduct,
 } from '@entities/Inventories';
 import { editProductFromActions } from '../../../model/slices/EditProductFormSlice';
 import { useAppDispatch, useAppSelector, useKeyPress } from '@shared/lib/hooks';
 import { type FieldValues } from 'react-hook-form';
-import { type FormVariants, type IFormProps } from '../../../model/types/EditProductForm';
+import { type FormVariants, type FormProps } from '../../../model/types/EditProductForm';
 import { selectFormProps } from '../../../model/selectors/EditProductFormSelectors';
 
-const formVariantsProps: Record<FormVariants, Omit<IFormProps, 'product'>> = {
+const formVariantsProps: Record<FormVariants, Omit<FormProps, 'product'>> = {
   delete: { buttonText: 'Удалить', popupText: 'Вы уверены?', method: 'delete' },
   update: { buttonText: 'Обновить', popupText: '', method: 'update' },
   create: { buttonText: 'Добавить', popupText: '', method: 'create' },
@@ -38,7 +38,7 @@ export const useEditProductForm = (
   }, [activePopup, isKeyPressed, onCloseModal]);
 
   const displayForm = useCallback(
-    (variant: FormVariants) => (product: IInventoryProduct) => {
+    (variant: FormVariants) => (product: InventoryProduct) => {
       const formProduct = isCreate(variant) ? { ...product, id: undefined } : product;
       dispatch(
         editProductFromActions.setForm({

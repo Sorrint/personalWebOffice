@@ -1,21 +1,21 @@
 import {
-  type IDreamkasProduct,
-  type IProductCategory,
-  type IProductQueryTrace,
-} from './types/IDreamkasProduct';
+  type DreamkasProduct,
+  type ProductCategory,
+  type ProductQueryTrace,
+} from './types/DreamkasProduct';
 
-export interface ISearchParams {
+export interface SearchParams {
   limit: number;
   q: string;
 }
 
-export interface ISearchResult {
-  categories: IProductCategory[];
-  products: IDreamkasProduct[];
-  _queryTrace: IProductQueryTrace[];
+export interface SearchResult {
+  categories: ProductCategory[];
+  products: DreamkasProduct[];
+  _queryTrace: ProductQueryTrace[];
 }
 
-export interface IProductListParams {
+export interface ProductListParams {
   limit?: number;
   offset?: number;
 }

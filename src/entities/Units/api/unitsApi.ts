@@ -1,27 +1,27 @@
 import { rtkApi } from '@shared/api/rtkApi';
-import type { IUnit } from '../model/unitTypes';
+import type { Unit } from '../model/unitTypes';
 import { type EntityState, createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 import { type RootState } from '@shared/lib/store/types';
 
-export interface IUnitWithId extends IUnit {
+export interface UnitWithId extends Unit {
   _id: string;
 }
 
-const unitsAdapter = createEntityAdapter({ selectId: (unit: IUnitWithId) => unit._id });
+const unitsAdapter = createEntityAdapter({ selectId: (unit: UnitWithId) => unit._id });
 
 const initialState = unitsAdapter.getInitialState();
 
 const unitsApi = rtkApi.injectEndpoints({
   endpoints: build => ({
-    getUnits: build.query<EntityState<IUnitWithId, string>, void>({
+    getUnits: build.query<EntityState<UnitWithId, string>, void>({
       query: () => ({
         url: '/units',
       }),
-      transformResponse: (response: IUnitWithId[]) => {
+      transformResponse: (response: UnitWithId[]) => {
         return unitsAdapter.setAll(initialState, response);
       },
     }),
-    createUnit: build.mutation<IUnit, IUnit>({
+    createUnit: build.mutation<Unit, Unit>({
       query: tare => ({
         url: '/units/create',
         method: 'POST',

@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Loader } from '@shared/ui/Loaders';
 import { type TableColumns, Table } from '@shared/ui/Table';
-import { type IOrderingRecordDisplay } from '../../model/types/ordering';
+import { type OrderingRecordDisplay } from '../../model/types/ordering';
 import { OrderingHeaders } from '../../consts/orderingHeaders';
 import useTableData, { UseTableDataProps } from '../../lib/hooks/useTableData/useTableData';
 
@@ -10,7 +10,7 @@ interface OrderingProductsListProps extends UseTableDataProps {
   isLoading?: boolean;
 }
 
-const columns: TableColumns<Partial<IOrderingRecordDisplay>> = {
+const columns: TableColumns<Partial<OrderingRecordDisplay>> = {
   number: { header: OrderingHeaders.NUMBER },
   productName: { header: OrderingHeaders.NAME, alignment: 'left' },
   count: { header: OrderingHeaders.COUNT },
@@ -20,7 +20,10 @@ const columns: TableColumns<Partial<IOrderingRecordDisplay>> = {
 
 export const OrderingProductsList = memo(
   ({ className, editRows, records, isLoading }: OrderingProductsListProps) => {
-    const displayingRecords = useTableData({ records, editRows });
+    const displayingRecords = useTableData({
+      records,
+      editRows,
+    });
     const colTemplate = '40px minmax(360px, 1fr) 80px 80px 180px';
 
     if (!records) {

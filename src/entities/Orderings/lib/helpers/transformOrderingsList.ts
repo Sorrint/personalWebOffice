@@ -1,8 +1,8 @@
-import { IOrder } from '@entities/Orders/model/types/IOrder';
+import { type Order } from '@entities/Orders';
 import { transformDate } from '@shared/lib/helpers';
-import { AppLinkItem } from '@shared/ui/AppLinksList';
+import { type AppLinkItem } from '@shared/ui/AppLinksList';
 
-export const transformOrderingsList = (list: IOrder[]): AppLinkItem[] =>
+export const transformOrderingsList = (list: Order[]): AppLinkItem[] =>
   list.map(({ _id: id, date, orderNumber, comment }) => {
     const numberString = `Порядовка к заказу № ${orderNumber}`;
     const dateString = date && ` от ${transformDate(date)}.`;

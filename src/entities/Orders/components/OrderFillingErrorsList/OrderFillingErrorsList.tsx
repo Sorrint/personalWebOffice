@@ -1,12 +1,12 @@
-import { IOrderFillingErrors } from '@entities/Orders/model/types/IOrder';
+import { type OrderFillingErrors } from '../../model/types/Order';
 import { getDeclensions } from '@shared/lib/helpers';
 import { memo } from 'react';
 
 interface OrderFillingErrorsProps {
-  fillingErrors?: IOrderFillingErrors;
+  fillingErrors?: OrderFillingErrors;
 }
 
-export const OrderFillingErrors = memo(({ fillingErrors }: OrderFillingErrorsProps) => {
+export const OrderFillingErrorsList = memo(({ fillingErrors }: OrderFillingErrorsProps) => {
   const notFoundProductsText = fillingErrors?.productsNotFound.join(', ');
 
   const numberDuplicatesText = fillingErrors?.numberDuplicates

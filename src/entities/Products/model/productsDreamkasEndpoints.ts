@@ -1,21 +1,21 @@
-import { type IProductListParams, type ISearchParams, type ISearchResult } from './service';
+import { type ProductListParams, type SearchParams, type SearchResult } from './service';
 
 const baseDreamkasProductsUri = 'dreamkas/products';
 export const productsDreamkasEndpoints = {
   loadProducts: {
-    query: (params: IProductListParams) => ({
+    query: (params: ProductListParams) => ({
       url: params.limit
         ? `${baseDreamkasProductsUri}?limit=${params.limit}&offset=${params.offset ?? 0}`
         : `${baseDreamkasProductsUri}/`,
     }),
   },
   loadProductBySearch: {
-    query: (params: ISearchParams) => ({
+    query: (params: SearchParams) => ({
       url: params.q
         ? `${baseDreamkasProductsUri}/search?q=${encodeURI(params.q)}&limit=${params.limit}`
         : baseDreamkasProductsUri,
     }),
-    transformResponse: (response: ISearchResult) => {
+    transformResponse: (response: SearchResult) => {
       return response.products;
     },
     keepUnusedDataFor: 5,

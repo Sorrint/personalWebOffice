@@ -1,8 +1,8 @@
 import { transformDate } from '@shared/lib/helpers';
-import { IBaseOrder } from '@shared/types/baseOrder';
-import { AppLinkItem } from '@shared/ui/AppLinksList';
+import { type BaseOrder } from '@shared/types/baseOrder';
+import { type AppLinkItem } from '@shared/ui/AppLinksList';
 
-export const transformDistributionsList = (list: IBaseOrder[]): AppLinkItem[] =>
+export const transformDistributionsList = (list: BaseOrder[]): AppLinkItem[] =>
   list.map(({ _id: id, date, orderNumber, comment }) => {
     const numberString = `Распаллетовка к заказу № ${orderNumber}`;
     const dateString = date && ` от ${transformDate(date)}.`;

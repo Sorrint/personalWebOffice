@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { UnitSelect, type IUnit, useCreateNewUnit } from '@entities/Units';
+import { UnitSelect, type Unit, useCreateNewUnit } from '@entities/Units';
 import { RenderRHFTextField } from '@shared/ui/ReactHookFormFields';
 import { PropertyField } from '@shared/ui/PropertyField';
 import { Button } from '@shared/ui/Button';
@@ -8,17 +8,17 @@ import { Button } from '@shared/ui/Button';
 import style from './EditUnitForm.module.scss';
 
 interface EditPackageFormProps {
-  unit?: IUnit;
+  unit?: Unit;
 }
 
 export const EditUnitForm = ({ unit }: EditPackageFormProps) => {
-  const { register, handleSubmit } = useForm<IUnit>({
+  const { register, handleSubmit } = useForm<Unit>({
     defaultValues: unit,
   });
 
   const [createUnit] = useCreateNewUnit();
 
-  const editUnit = (data: IUnit) => {
+  const editUnit = (data: Unit) => {
     createUnit(data);
   };
 
@@ -30,7 +30,7 @@ export const EditUnitForm = ({ unit }: EditPackageFormProps) => {
           propertyName='Тип единицы измерения'
           //@ts-expect-error что-то было удалено
           renderEditField={() =>
-            RenderRHFTextField<IUnit>({ fieldName: 'type', register, textFieldType: 'text' })
+            RenderRHFTextField<Unit>({ fieldName: 'type', register, textFieldType: 'text' })
           }
           className='unitProperty'
         />
@@ -38,7 +38,7 @@ export const EditUnitForm = ({ unit }: EditPackageFormProps) => {
           propertyName='Базовое значения (в 1000)'
           //@ts-expect-error что-то было удалено
           renderEditField={() =>
-            RenderRHFTextField<IUnit>({ fieldName: 'base', register, textFieldType: 'number' })
+            RenderRHFTextField<Unit>({ fieldName: 'base', register, textFieldType: 'number' })
           }
           className='unitProperty'
         />
@@ -46,7 +46,7 @@ export const EditUnitForm = ({ unit }: EditPackageFormProps) => {
           propertyName='Описание'
           //@ts-expect-error что-то было удалено
           renderEditField={() =>
-            RenderRHFTextField<IUnit>({ fieldName: 'description', register, textFieldType: 'text' })
+            RenderRHFTextField<Unit>({ fieldName: 'description', register, textFieldType: 'text' })
           }
           className='unitProperty'
         />

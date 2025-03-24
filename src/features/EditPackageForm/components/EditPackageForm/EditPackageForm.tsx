@@ -1,23 +1,23 @@
 import { useForm } from 'react-hook-form';
 
-import { type IPackage, PackageSelect, useCreateNewPackage } from '@entities/Packages';
+import { type Package, PackageSelect, useCreateNewPackage } from '@entities/Packages';
 import { PropertyField } from '@shared/ui/PropertyField/PropertyField';
 import { RenderRHFTextField } from '@shared/ui/ReactHookFormFields';
 import { Button } from '@shared/ui/Button';
 import style from './EditPackageForm.module.scss';
 
 interface EditPackageFormProps {
-  packageBox?: IPackage;
+  packageBox?: Package;
 }
 
 export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
-  const { register, handleSubmit } = useForm<IPackage>({
+  const { register, handleSubmit } = useForm<Package>({
     defaultValues: packageBox,
   });
 
   const [createPackage] = useCreateNewPackage();
 
-  const editPackage = (data: IPackage) => {
+  const editPackage = (data: Package) => {
     createPackage(data);
   };
 
@@ -29,7 +29,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
           propertyName='Наименование'
           //@ts-expect-error что-то было удалено
           renderEditField={() =>
-            RenderRHFTextField<IPackage>({ fieldName: 'name', register, textFieldType: 'text' })
+            RenderRHFTextField<Package>({ fieldName: 'name', register, textFieldType: 'text' })
           }
           className='packageProperty'
         />
@@ -37,7 +37,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
           propertyName='Категория'
           //@ts-expect-error что-то было удалено
           renderEditField={() =>
-            RenderRHFTextField<IPackage>({ fieldName: 'category', register, textFieldType: 'text' })
+            RenderRHFTextField<Package>({ fieldName: 'category', register, textFieldType: 'text' })
           }
           className='packageProperty'
         />
@@ -45,7 +45,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
           propertyName='Объем'
           //@ts-expect-error что-то было удалено
           renderEditField={() =>
-            RenderRHFTextField<IPackage>({ fieldName: 'volume', register, textFieldType: 'number' })
+            RenderRHFTextField<Package>({ fieldName: 'volume', register, textFieldType: 'number' })
           }
           className='packageProperty'
         />
@@ -53,7 +53,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
           propertyName='Вес (в граммах)'
           //@ts-expect-error что-то было удалено
           renderEditField={() =>
-            RenderRHFTextField<IPackage>({ fieldName: 'weight', register, textFieldType: 'number' })
+            RenderRHFTextField<Package>({ fieldName: 'weight', register, textFieldType: 'number' })
           }
           className='packageProperty'
         />
@@ -61,7 +61,7 @@ export const EditPackageForm = ({ packageBox }: EditPackageFormProps) => {
           propertyName='Цвет'
           //@ts-expect-error что-то было удалено
           renderEditField={() =>
-            RenderRHFTextField<IPackage>({ fieldName: 'color', register, textFieldType: 'text' })
+            RenderRHFTextField<Package>({ fieldName: 'color', register, textFieldType: 'text' })
           }
           className='packageProperty'
         />

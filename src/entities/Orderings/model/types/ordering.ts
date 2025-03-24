@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-export interface IOrderingRecord {
+export interface OrderingRecord {
   number: number;
   productName: string;
   product?: string;
@@ -8,17 +8,9 @@ export interface IOrderingRecord {
   count: number;
 }
 
-export interface IOrderingWeights {
-  packagesWeight: number;
-  productsWeight: number;
-  slipSheetsWeight: number;
-  palletsWeight: number;
-  corrugatedSheetsWeight: number;
-}
-
-export interface IOrderingChapter {
+export interface OrderingChapter {
   id: string;
-  records: IOrderingRecord[];
+  records: OrderingRecord[];
   countOfPackages?: number;
   productsCount: number;
   packageCategory?: string;
@@ -26,8 +18,8 @@ export interface IOrderingChapter {
   text?: string;
 }
 
-export interface IOrderingRecordDisplay
-  extends Omit<IOrderingRecord, 'count' | 'number' | 'productName'> {
+export interface OrderingRecordDisplay
+  extends Omit<OrderingRecord, 'count' | 'number' | 'productName'> {
   count: number | string | (() => ReactNode);
   number: number | string | (() => ReactNode);
   rows: string | (() => ReactNode);
@@ -35,13 +27,13 @@ export interface IOrderingRecordDisplay
   editRows?: () => ReactNode;
 }
 
-export interface IPackageSummaryInfo {
+export interface PackageSummaryInfo {
   name: string;
   count: number;
 }
-export interface IOrderingSummary {
-  pallets: IPackageSummaryInfo[];
-  rowSeparator: IPackageSummaryInfo;
-  corrugatedSheets?: IPackageSummaryInfo[];
+export interface OrderingSummary {
+  pallets: PackageSummaryInfo[];
+  rowSeparator: PackageSummaryInfo;
+  corrugatedSheets?: PackageSummaryInfo[];
   grossWeight: number;
 }

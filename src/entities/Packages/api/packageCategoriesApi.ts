@@ -3,21 +3,21 @@ import { type EntityState, createEntityAdapter, createSelector } from '@reduxjs/
 import { rtkApi } from '@shared/api/rtkApi';
 import { type RootState } from '@shared/lib/store/types';
 
-import { type IPackageCategoryResponse } from './../model/packageCategoryType';
+import { type PackageCategoryResponse } from './../model/packageCategoryType';
 
 const packageCategoriesAdapter = createEntityAdapter({
-  selectId: (unit: IPackageCategoryResponse) => unit._id,
+  selectId: (unit: PackageCategoryResponse) => unit._id,
 });
 
 const initialState = packageCategoriesAdapter.getInitialState();
 
 const packageCategoryApi = rtkApi.injectEndpoints({
   endpoints: build => ({
-    getPackageCategories: build.query<EntityState<IPackageCategoryResponse, string>, void>({
+    getPackageCategories: build.query<EntityState<PackageCategoryResponse, string>, void>({
       query: () => ({
         url: '/package-categories',
       }),
-      transformResponse: (response: IPackageCategoryResponse[]) => {
+      transformResponse: (response: PackageCategoryResponse[]) => {
         return packageCategoriesAdapter.setAll(initialState, response);
       },
     }),

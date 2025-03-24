@@ -1,16 +1,11 @@
-import { type IStoreProduct } from '@entities/Products';
-import { type IOrderRecord, type IOrder } from '@entities/Orders';
-import { type IStoreProductWithId } from './products';
-import { type IUnit } from '@entities/Units';
+import { type StoreProduct } from '@entities/Products';
+import { type OrderRecord, type Order } from '@entities/Orders';
+import { type Unit } from '@entities/Units';
 
-export interface IOrderRecordResponse extends Omit<IOrderRecord, 'unit' | 'product'> {
-  product: IStoreProduct;
-  unit?: IUnit;
+export interface OrderRecordResponse extends Omit<OrderRecord, 'unit' | 'product'> {
+  product: StoreProduct;
+  unit?: Unit;
 }
-export interface IOrderResponse extends Omit<IOrder, 'orderRecords'> {
-  orderRecords: IOrderRecordResponse[];
-}
-
-export interface INormalizedResponse extends IOrder {
-  products: Record<string, IStoreProductWithId>;
+export interface OrderResponse extends Omit<Order, 'orderRecords'> {
+  orderRecords: OrderRecordResponse[];
 }

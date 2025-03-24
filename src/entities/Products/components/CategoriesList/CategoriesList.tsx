@@ -1,11 +1,11 @@
 import CategoryCard from '../CategoryCard/CategoryCard';
-import { type IProductCategory } from '../../model/types/IDreamkasProduct';
+import { type ProductCategory } from '../../model/types/DreamkasProduct';
 
-interface ICategoriesListProps {
-  categories: IProductCategory[];
+interface CategoriesListProps {
+  categories: ProductCategory[];
 }
 
-export const CategoriesList = ({ categories }: ICategoriesListProps) => {
+export const CategoriesList = ({ categories }: CategoriesListProps) => {
   return (
     <>
       {categories.map(item => (

@@ -2,12 +2,12 @@ import { useRef, useEffect } from 'react';
 
 import { handleListKeydownEvent } from '@shared/lib/utils';
 
-import { type IProductListContentProps } from '../ProductList/ProductList';
-import { type IDreamkasProduct } from '../../model/types/IDreamkasProduct';
+import { type ProductListContentProps } from '../ProductList/ProductList';
+import { type DreamkasProduct } from '../../model/types/DreamkasProduct';
 import { ProductCard } from '../ProductCard/ProductCard';
 
-interface IProductListBodyProps extends IProductListContentProps<IDreamkasProduct> {
-  products: IDreamkasProduct[];
+interface ProductListBodyProps extends ProductListContentProps<DreamkasProduct> {
+  products: DreamkasProduct[];
 }
 
 export const ProductListBody = ({
@@ -15,7 +15,7 @@ export const ProductListBody = ({
   parentRef,
   setFirstElement,
   ...rest
-}: IProductListBodyProps) => {
+}: ProductListBodyProps) => {
   const listRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const addProductToRefList = (productRef: HTMLDivElement) => {

@@ -1,10 +1,10 @@
-import { type INavLinkObject } from '@shared/types/navLinkTypes';
+import { type NavLinkObject } from '@shared/types/navLinkTypes';
 import { Tabs } from '@shared/ui/Tabs';
 
 import styles from './AppRibbon.module.scss';
 
 interface AppRibbonProps {
-  navLinks: INavLinkObject;
+  navLinks: NavLinkObject;
 }
 
 export const AppRibbon = ({ navLinks }: AppRibbonProps) => {

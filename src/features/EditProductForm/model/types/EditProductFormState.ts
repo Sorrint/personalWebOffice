@@ -1,7 +1,7 @@
-import { type IInventoryProduct } from '@entities/Inventories';
-import { type IFormProps } from './EditProductForm';
+import { type InventoryProduct } from '@entities/Inventories';
+import { type FormProps } from './EditProductForm';
 
 export interface EditProductFormState {
-  product: IInventoryProduct | null;
-  formProps: IFormProps;
+  product: InventoryProduct | null;
+  formProps: FormProps;
 }

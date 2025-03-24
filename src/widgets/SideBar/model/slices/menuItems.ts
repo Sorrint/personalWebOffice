@@ -1,5 +1,5 @@
 import { AppRoutes } from '@shared/config/router';
-import { type IMenuItems } from '../types/menuItemsTypes';
+import { type MenuItems } from '../types/menuItemsTypes';
 
 const {
   getClienstRoute,
@@ -18,7 +18,7 @@ const {
   getSupportRoute,
 } = AppRoutes;
 
-const menuItemsTop: IMenuItems = {
+const menuItemsTop: MenuItems = {
   section: 'main',
   items: [
     {
@@ -86,7 +86,7 @@ const menuItemsTop: IMenuItems = {
   ],
 };
 
-const menuItemsSpecial: IMenuItems = {
+const menuItemsSpecial: MenuItems = {
   section: 'special',
   items: [
     {
@@ -98,7 +98,7 @@ const menuItemsSpecial: IMenuItems = {
   ],
 };
 
-const menuItemsGrow: IMenuItems = {
+const menuItemsGrow: MenuItems = {
   section: 'grow',
   items: [
     {
@@ -111,7 +111,7 @@ const menuItemsGrow: IMenuItems = {
   grow: true,
 };
 
-const menuItemsBottom: IMenuItems = {
+const menuItemsBottom: MenuItems = {
   section: 'bottom',
   items: [
     {

@@ -1,29 +1,29 @@
 import { type SyntheticEvent } from 'react';
-import { type IInventoryProductDisplay, type IInventoryProduct } from '../../model/types';
+import { type InventoryProductDisplay, type InventoryProduct } from '../../model/types';
 import { IconFont } from '@shared/ui/IconFont';
 
 interface UseTableDataProps {
-  records?: IInventoryProduct[];
-  onDelete?: (product: IInventoryProduct) => void;
-  highlightFunc?: (item: IInventoryProduct) => boolean;
+  records?: InventoryProduct[];
+  onDelete?: (product: InventoryProduct) => void;
+  highlightFunc?: (item: InventoryProduct) => boolean;
 }
 
 const useTableData = ({
   records,
   onDelete,
   highlightFunc,
-}: UseTableDataProps): IInventoryProductDisplay[] => {
+}: UseTableDataProps): InventoryProductDisplay[] => {
   if (!records) {
     return [];
   }
 
-  const handleDelete = (e: SyntheticEvent, product: IInventoryProduct) => {
+  const handleDelete = (e: SyntheticEvent, product: InventoryProduct) => {
     e.stopPropagation();
     if (onDelete) onDelete(product);
   };
 
-  const tableData = records.reduce((acc: IInventoryProductDisplay[], record, index) => {
-    const data: IInventoryProductDisplay = {
+  const tableData = records.reduce((acc: InventoryProductDisplay[], record, index) => {
+    const data: InventoryProductDisplay = {
       ...record,
       priceString: `${record.price?.toFixed(2)} ₽`,
       number: index + 1,

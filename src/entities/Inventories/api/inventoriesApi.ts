@@ -1,5 +1,5 @@
 import { type FieldValues } from 'react-hook-form';
-import { ICreateInventory, type IInventoryDocs } from '../model/types';
+import { type CreateInventory, type InventoryDocs } from '../model/types';
 import { rtkApi } from '@shared/api/rtkApi';
 import { transformInventoriesList } from '@widgets/InventoryPageBody/lib/helpers/transformInventoriesList';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
@@ -10,7 +10,7 @@ const inventoryDocsApi = rtkApi
   .enhanceEndpoints({ addTagTypes: ['inventoryContent'] })
   .injectEndpoints({
     endpoints: build => ({
-      createNewDocument: build.mutation<IInventoryDocs, ICreateInventory>({
+      createNewDocument: build.mutation<InventoryDocs, CreateInventory>({
         query: document => ({ url: `${baseInventoryUri}/create`, method: 'POST', body: document }),
         invalidatesTags: ['inventoryContent'],
       }),
@@ -21,7 +21,7 @@ const inventoryDocsApi = rtkApi
         providesTags: () => ['inventoryContent'],
       }),
 
-      updateProducts: build.mutation<IInventoryDocs, { product: FieldValues; docNumber: number }>({
+      updateProducts: build.mutation<InventoryDocs, { product: FieldValues; docNumber: number }>({
         query: ({ product, docNumber }) => ({
           url: `${baseInventoryUri}/addProduct/${docNumber}`,
           method: 'PATCH',
@@ -30,13 +30,13 @@ const inventoryDocsApi = rtkApi
         invalidatesTags: ['inventoryContent'],
       }),
 
-      loadDocumentByNumber: build.query<IInventoryDocs, string | undefined>({
+      loadDocumentByNumber: build.query<InventoryDocs, string | undefined>({
         query: docNumber => ({ url: `${baseInventoryUri}/${docNumber}`, method: 'GET' }),
         providesTags: () => ['inventoryContent'],
       }),
 
       removeInventoryProduct: build.mutation<
-        IInventoryDocs,
+        InventoryDocs,
         { id: string | undefined; docNumber: number }
       >({
         query: ({ id, docNumber }) => ({

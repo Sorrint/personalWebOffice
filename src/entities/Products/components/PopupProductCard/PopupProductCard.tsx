@@ -3,7 +3,7 @@ import { type FieldValues, useForm } from 'react-hook-form';
 import { type SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
-import { type IInventoryProduct } from '@entities/Inventories';
+import { type InventoryProduct } from '@entities/Inventories';
 import { useKeyPress } from '@shared/lib/hooks/useKeyPress/useKeyPress';
 import { CounterField } from '@shared/ui/CounterField';
 import { Button } from '@shared/ui/Button';
@@ -12,7 +12,7 @@ import styles from './PopupProductCard.module.scss';
 import classNames from 'classnames';
 
 interface PopupProductCardProps {
-  product: IInventoryProduct;
+  product: InventoryProduct;
   buttonClick: (data: FieldValues) => Promise<void>;
   buttonText: string;
   error: FetchBaseQueryError | SerializedError | undefined;

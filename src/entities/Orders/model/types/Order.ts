@@ -1,4 +1,4 @@
-export interface IOrderRecord {
+export interface OrderRecord {
   number: number;
   productName: string;
   product?: string;
@@ -6,29 +6,29 @@ export interface IOrderRecord {
   unit: string;
 }
 
-export type IOrderRecords = Record<number, IOrderRecord>;
+export type OrderRecords = Record<number, OrderRecord>;
 
-export interface ICreateOrder {
+export interface CreateOrder {
   orderNumber: number;
   company: string;
   date: Date;
   comment?: string;
 }
 
-export interface IOrder extends ICreateOrder {
+export interface Order extends CreateOrder {
   _id: string;
-  orderRecords: IOrderRecords;
+  orderRecords: OrderRecords;
   ordering?: string;
   distribution?: string;
 }
 
-export interface IOrderFillingErrors {
+export interface OrderFillingErrors {
   numberDuplicates: { number: number; count: number }[];
   productsDuplicates: { productName: string; numbers: number[] }[];
   productsNotFound: number[];
 }
 
-export interface IOrderRecordsParams {
+export interface OrderRecordsParams {
   orderNumber: number;
   excludeFilledProducts?: boolean;
 }

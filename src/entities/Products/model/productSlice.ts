@@ -1,6 +1,6 @@
 // import { createAction, createSlice } from '@reduxjs/toolkit';
 // import { type AppDispatch, type PersistState } from '@shared/lib/store/types';
-// import { type createProductDto } from './DTO/createProductDTO';
+// import { type CreateProductDto } from './DTO/createProductDTO';
 // import { transformProductName } from '../lib/helpers/transformProductName';
 // import { type ProductsState } from './types/productsState';
 
@@ -32,7 +32,7 @@
 //     state.products.entities.find((item) => item.name === name);
 
 // export const addProduct =
-//     (payload: createProductDto) => async (dispatch: AppDispatch, getState: () => PersistState) => {
+//     (payload: CreateProductDto) => async (dispatch: AppDispatch, getState: () => PersistState) => {
 //         dispatch(createProductRequested());
 //         try {
 //             const name = transformProductName(payload.name);

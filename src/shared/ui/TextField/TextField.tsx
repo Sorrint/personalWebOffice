@@ -5,11 +5,11 @@ import classNames from 'classnames';
 import styles from './TextField.module.scss';
 import { IconFont } from '../IconFont';
 
-export type ITextFieldType = 'text' | 'number' | 'password' | 'email' | 'tel';
-export interface ITextFieldsProps<T extends FieldValues> {
+export type TextFieldType = 'text' | 'number' | 'password' | 'email' | 'tel';
+export interface TextFieldsProps<T extends FieldValues> {
   label?: string;
   name: Path<T>;
-  type?: ITextFieldType;
+  type?: TextFieldType;
   autoComplete?: string;
   variant?: 'standard' | 'outline';
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -20,7 +20,7 @@ export interface ITextFieldsProps<T extends FieldValues> {
 
 export const TextField = memo(
   forwardRef(function TextField<T extends FieldValues>(
-    props: ITextFieldsProps<T>,
+    props: TextFieldsProps<T>,
     ref: ForwardedRef<HTMLInputElement | null>,
   ) {
     const {

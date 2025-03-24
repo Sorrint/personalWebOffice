@@ -4,7 +4,7 @@ import { type FieldValues, type Path } from 'react-hook-form';
 import styles from './RadioButton.module.scss';
 import classNames from 'classnames';
 
-interface IRadioButtonProps<T extends FieldValues> {
+interface RadioButtonProps<T extends FieldValues> {
   label: string;
   name: Path<T>;
   value?: string;
@@ -15,7 +15,7 @@ interface IRadioButtonProps<T extends FieldValues> {
 }
 
 export const RadioButton = forwardRef(function RadioButton<T extends FieldValues>(
-  props: IRadioButtonProps<T>,
+  props: RadioButtonProps<T>,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   const { label, name, value, onChange, inputClass, onKeyDown, disabled = false } = props;

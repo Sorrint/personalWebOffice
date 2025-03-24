@@ -1,3 +1,3 @@
-import { IBaseOrder } from '@shared/types/baseOrder';
+import { type BaseOrder } from '@shared/types/baseOrder';
 
-export interface IDistribution extends IBaseOrder {}
+export interface Distribution extends BaseOrder {}

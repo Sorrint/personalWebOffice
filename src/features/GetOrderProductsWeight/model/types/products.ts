@@ -1,5 +1,5 @@
-import { type IStoreProduct } from '@entities/Products';
+import { type StoreProduct } from '@entities/Products';
 
-export interface IStoreProductWithId extends IStoreProduct {
+export interface StoreProductWithId extends StoreProduct {
   _id: string;
 }

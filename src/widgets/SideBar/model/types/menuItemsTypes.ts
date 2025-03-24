@@ -1,6 +1,6 @@
 import { type IconName } from '@shared/ui/IconFont';
 
-export interface IMenuItem {
+export interface MenuItem {
   id?: string;
   text: string;
   image?: IconName;
@@ -9,8 +9,8 @@ export interface IMenuItem {
   authOnly?: boolean;
 }
 
-export interface IMenuItems {
+export interface MenuItems {
   section: string;
-  items: IMenuItem[];
+  items: MenuItem[];
   grow?: boolean;
 }

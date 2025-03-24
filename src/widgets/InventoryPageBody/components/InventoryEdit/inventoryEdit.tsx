@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useEditProductForm, PopupEditProductForm } from '@features/EditProductForm';
 import { SaveInventoryToXLSX } from '@features/SaveInventoryToXLSX';
 import {
-  type IInventoryProduct,
+  type InventoryProduct,
   useLoadDocumentByNumber,
   InventoryProductsTable,
 } from '@entities/Inventories';
@@ -23,7 +23,7 @@ import { Button } from '@shared/ui/Button';
 import { useLoadInventoryProductsBySearch } from '../../lib/hooks/useLoadInventoryProductsBySearch';
 import styles from './InventoryEdit.module.scss';
 
-const highlightByAccount = (item: IInventoryProduct) => {
+const highlightByAccount = (item: InventoryProduct) => {
   return !item?.isActiveAccount;
 };
 
@@ -52,11 +52,11 @@ export const InventoryEdit = memo(() => {
   const { goods, isFetching, setSearch } = useLoadInventoryProductsBySearch();
 
   const [highlightFunc, setHighlightFunc] = useState<
-    ((item: IInventoryProduct) => boolean) | undefined
+    ((item: InventoryProduct) => boolean) | undefined
   >(undefined);
 
   const handleCreate = useCallback(
-    (product: IInventoryProduct) => {
+    (product: InventoryProduct) => {
       displayForm('create')(product);
       setActivePopover(false);
       setActivePopup(true);

@@ -1,10 +1,10 @@
-import { type IDreamkasProduct } from '@entities/Products/model/types/IDreamkasProduct';
-import { type IInventoryProduct } from '@entities/Inventories';
+import { type DreamkasProduct } from '@entities/Products/model/types/DreamkasProduct';
+import { type InventoryProduct } from '@entities/Inventories';
 
 export const transformProducts = (
-  products?: IDreamkasProduct[],
+  products?: DreamkasProduct[],
   isActiveAccount?: boolean,
-): IInventoryProduct[] => {
+): InventoryProduct[] => {
   const inventoryProducts = products?.map(product => {
     const { name, price, id } = product;
     return {

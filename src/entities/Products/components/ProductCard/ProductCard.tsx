@@ -1,14 +1,14 @@
 import { type KeyboardEvent } from 'react';
 
-import { type IDreamkasProduct, type IProductStock } from '../../model/types/IDreamkasProduct';
+import { type DreamkasProduct, type ProductStock } from '../../model/types/DreamkasProduct';
 
 import styles from './ProductCard.module.scss';
-import { type IProductListContentProps } from '../ProductList/ProductList';
+import { type ProductListContentProps } from '../ProductList/ProductList';
 
-interface IProductCardProps extends IProductListContentProps<IDreamkasProduct> {
-  product: IDreamkasProduct;
+interface ProductCardProps extends ProductListContentProps<DreamkasProduct> {
+  product: DreamkasProduct;
   addProductRef?: (productRef: HTMLDivElement) => void;
-  onCardKeyDown?: (event: KeyboardEvent, onSubmit: (product: IDreamkasProduct) => void) => void;
+  onCardKeyDown?: (event: KeyboardEvent, onSubmit: (product: DreamkasProduct) => void) => void;
 }
 
 export const ProductCard = ({
@@ -19,11 +19,11 @@ export const ProductCard = ({
   onClick,
   addProductRef,
   onCardKeyDown,
-}: IProductCardProps) => {
+}: ProductCardProps) => {
   const { name, price, stock, type } = product;
-  const getProductRest = (stock: IProductStock[] | null) => {
+  const getProductRest = (stock: ProductStock[] | null) => {
     if (stock) {
-      const value = stock.reduce((result: number, item: IProductStock) => {
+      const value = stock.reduce((result: number, item: ProductStock) => {
         result += Number(item[1]) / 1000;
         return result;
       }, 0);
@@ -43,7 +43,7 @@ export const ProductCard = ({
     }
   };
 
-  const handleClick = (product: IDreamkasProduct) => {
+  const handleClick = (product: DreamkasProduct) => {
     if (onClick) onClick(product);
   };
 

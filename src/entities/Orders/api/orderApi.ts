@@ -1,11 +1,11 @@
 import { rtkApi } from '@shared/api/rtkApi';
 import {
-  ICreateOrder,
-  IOrderFillingErrors,
-  IOrderRecord,
-  IOrderRecordsParams,
-  type IOrder,
-} from '../model/types/IOrder';
+  type CreateOrder,
+  type OrderFillingErrors,
+  type OrderRecord,
+  type OrderRecordsParams,
+  type Order,
+} from '../model/types/Order';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformOrdersList } from '../lib/helpers/transformOrdersList';
 import { buildQueryString } from '@shared/lib/utils';
@@ -14,14 +14,14 @@ const baseOrdersUri = 'documents/orders';
 
 interface AddOrderRecords {
   orderNumber: number;
-  orderRecords: IOrderRecord[];
+  orderRecords: OrderRecord[];
 }
 
 const orderApi = rtkApi
   .enhanceEndpoints({ addTagTypes: ['order', 'orderRecords'] })
   .injectEndpoints({
     endpoints: build => ({
-      createOrder: build.mutation<IOrder, ICreateOrder>({
+      createOrder: build.mutation<Order, CreateOrder>({
         query: order => ({
           url: `${baseOrdersUri}/create`,
           method: 'POST',
@@ -39,7 +39,7 @@ const orderApi = rtkApi
         providesTags: () => ['order'],
       }),
 
-      saveCurrentOrder: build.mutation<IOrder, IOrder>({
+      saveCurrentOrder: build.mutation<Order, Order>({
         query: () => ({
           url: `${baseOrdersUri}/create`,
           method: 'POST',
@@ -47,7 +47,7 @@ const orderApi = rtkApi
         invalidatesTags: ['order'],
       }),
 
-      addOrderRecords: build.mutation<IOrder, AddOrderRecords>({
+      addOrderRecords: build.mutation<Order, AddOrderRecords>({
         query: orderRecords => ({
           url: `${baseOrdersUri}/addRecords`,
           method: 'POST',
@@ -56,7 +56,7 @@ const orderApi = rtkApi
         invalidatesTags: ['orderRecords'],
       }),
 
-      getOrderById: build.query<IOrder, string>({
+      getOrderById: build.query<Order, string>({
         query: id => ({
           url: `${baseOrdersUri}/${id}`,
           method: 'GET',
@@ -64,7 +64,7 @@ const orderApi = rtkApi
         providesTags: () => ['order'],
       }),
 
-      getOrderRecords: build.query<IOrderRecord[], IOrderRecordsParams>({
+      getOrderRecords: build.query<OrderRecord[], OrderRecordsParams>({
         query: ({ orderNumber, ...filter }) => ({
           url: `${baseOrdersUri}/orderRecords/${orderNumber}${buildQueryString(filter)}`,
           method: 'GET',
@@ -72,7 +72,7 @@ const orderApi = rtkApi
         providesTags: () => ['orderRecords'],
       }),
 
-      getOrderFillingErrors: build.query<IOrderFillingErrors, number>({
+      getOrderFillingErrors: build.query<OrderFillingErrors, number>({
         query: orderNumber => ({
           url: `${baseOrdersUri}/fillingErrors/${orderNumber}`,
           method: 'GET',

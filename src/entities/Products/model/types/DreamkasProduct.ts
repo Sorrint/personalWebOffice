@@ -1,4 +1,4 @@
-export interface IDreamkasProduct {
+export interface DreamkasProduct {
   id: string;
   name: string;
   department: {
@@ -16,7 +16,7 @@ export interface IDreamkasProduct {
   postfix: null;
   price: null | number;
   prices: null | number[];
-  stock: null | IProductStock[];
+  stock: null | ProductStock[];
   syncStatuses: null;
   tax: string;
   type: string;
@@ -24,16 +24,16 @@ export interface IDreamkasProduct {
   quantity: number;
 }
 
-export interface IProductCategory {
+export interface ProductCategory {
   id: number;
   name: string;
   productCount: number;
 }
 
-export interface IProductQueryTrace {
+export interface ProductQueryTrace {
   event: string;
   duration?: string;
   t: string;
 }
 
-export type IProductStock = [number, string, string, string, string];
+export type ProductStock = [number, string, string, string, string];

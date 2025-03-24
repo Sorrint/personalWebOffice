@@ -1,7 +1,7 @@
-import { IPackageSummaryInfo } from '../../model/types/ordering';
+import { type PackageSummaryInfo } from '../../model/types/ordering';
 import { getDeclensions } from '@shared/lib/helpers';
 
-export const getPalletsText = (pallets: IPackageSummaryInfo[]) => {
+export const getPalletsText = (pallets: PackageSummaryInfo[]) => {
   return (
     'Паллеты: ' +
     pallets
@@ -15,7 +15,7 @@ export const getPalletsText = (pallets: IPackageSummaryInfo[]) => {
   );
 };
 
-export const getCorrugatesSheetsText = (sheets?: IPackageSummaryInfo[]) => `Гофролист:
+export const getCorrugatesSheetsText = (sheets?: PackageSummaryInfo[]) => `Гофролист:
 ${sheets
   ?.map(({ count, name }) => (!count ? '' : `${count} шт ${name}`))
   .filter(Boolean)
@@ -24,7 +24,7 @@ ${sheets
 export const getGrossweightText = (grossWeight: number) =>
   `Вес брутто ориентировочно: ${grossWeight > 0 ? grossWeight + ' кг' : ''}`;
 
-export const getRowSeparatorText = ({ name, count }: IPackageSummaryInfo) =>
+export const getRowSeparatorText = ({ name, count }: PackageSummaryInfo) =>
   `${name} ${count > 0 ? count + ' шт' : ''}`;
 
 export const getShipmentDayText = (date?: string) => `Отгрузка ориентировочно: ${date ?? ''}`;

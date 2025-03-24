@@ -1,11 +1,11 @@
-import { type IProductCategory } from '../../model/types/IDreamkasProduct';
+import { type ProductCategory } from '../../model/types/DreamkasProduct';
 
 import './CategoryStyles.scss';
 
-interface ICategoryCardProps {
-  category: IProductCategory;
+interface CategoryCardProps {
+  category: ProductCategory;
 }
-export const CategoryCard = ({ category }: ICategoryCardProps) => {
+export const CategoryCard = ({ category }: CategoryCardProps) => {
   const { name, productCount } = category;
   return (
     <div className='category-card'>

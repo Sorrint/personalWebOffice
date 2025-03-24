@@ -1,15 +1,15 @@
 import { memo } from 'react';
-import { useSaveCurrentOrder, type IOrder } from '@entities/Orders';
+import { useSaveCurrentOrder, type Order } from '@entities/Orders';
 
 import { Button } from '@shared/ui/Button';
 
 interface SaveOrderCardProps {
-  order: IOrder;
+  order: Order;
 }
 
 export const SaveOrderToDatabase = memo(({ order }: SaveOrderCardProps) => {
   const [saveCurrentOrder] = useSaveCurrentOrder();
-  const handleClick = (order: IOrder) => {
+  const handleClick = (order: Order) => {
     saveCurrentOrder(order);
   };
   return (

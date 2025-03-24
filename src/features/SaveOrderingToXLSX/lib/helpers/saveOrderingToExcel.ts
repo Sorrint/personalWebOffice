@@ -1,7 +1,7 @@
 import { type Borders, type Worksheet } from 'exceljs';
 import {
-  type IOrderingChapter,
-  type IOrderingSummary,
+  type OrderingChapter,
+  type OrderingSummary,
   getPalletsText,
   getCorrugatesSheetsText,
   getRowSeparatorText,
@@ -14,9 +14,9 @@ import { headerRowBorder, rowCellsStyle } from '../../consts/tableBorders';
 import { pageSetup } from '../../consts/pageSetup';
 import { tableColumns } from '../../consts/tableColumns';
 
-type IOrderingData = {
-  chaptersData: IOrderingChapter[];
-  summary: IOrderingSummary;
+type OrderingData = {
+  chaptersData: OrderingChapter[];
+  summary: OrderingSummary;
 };
 
 type HorizontalAlignments =
@@ -28,7 +28,7 @@ type HorizontalAlignments =
   | 'centerContinuous'
   | 'distributed';
 
-export const saveOrderingToExcel = async (data: IOrderingData, name: string): Promise<void> => {
+export const saveOrderingToExcel = async (data: OrderingData, name: string): Promise<void> => {
   const ExcelJS = await import('exceljs');
   const workbook = new ExcelJS.Workbook();
   const sheet = workbook.addWorksheet('Порядовка', pageSetup);
@@ -113,7 +113,7 @@ function addHeaderRow(sheet: Worksheet) {
 
 function addSummary(
   sheet: Worksheet,
-  { grossWeight, pallets, rowSeparator, corrugatedSheets }: IOrderingSummary,
+  { grossWeight, pallets, rowSeparator, corrugatedSheets }: OrderingSummary,
 ) {
   const summaryRows = sheet.addRows([
     { number: getPalletsText(pallets) },
@@ -129,7 +129,7 @@ function addSummary(
   });
 }
 
-function addProductRows(sheet: Worksheet, data: IOrderingChapter[]) {
+function addProductRows(sheet: Worksheet, data: OrderingChapter[]) {
   const cellRowBorder: Partial<Borders> = { top: { style: 'thin' }, bottom: { style: 'thin' } };
 
   data.map(item => {

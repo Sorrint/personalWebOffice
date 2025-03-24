@@ -1,5 +1,5 @@
-import { type ISearchParams, type ISearchResult } from './service';
-import { type IStoreProduct } from './types/IStoreProduct';
+import { type SearchParams, type SearchResult } from './service';
+import { type StoreProduct } from './types/StoreProduct';
 const baseStoreUri = 'products';
 
 export const productsStoreEndpoints = {
@@ -7,24 +7,24 @@ export const productsStoreEndpoints = {
     query: () => ({ url: `${baseStoreUri}/` }),
   },
   loadProductBySearch: {
-    query: (params: ISearchParams) => ({
+    query: (params: SearchParams) => ({
       url: params.q
         ? `${baseStoreUri}/search?q=${encodeURI(params.q)}&limit=${params.limit}`
         : baseStoreUri,
     }),
-    transformResponse: (response: ISearchResult) => {
+    transformResponse: (response: SearchResult) => {
       return response.products;
     },
   },
   checkOrderProducts: {
-    query: (orderProducts: IStoreProduct[]) => ({
+    query: (orderProducts: StoreProduct[]) => ({
       url: `${baseStoreUri}/checkOrderProducts`,
       method: 'POST',
       body: orderProducts,
     }),
   },
   createProduct: {
-    query: (product: IStoreProduct) => ({
+    query: (product: StoreProduct) => ({
       url: `${baseStoreUri}/createProduct`,
       method: 'POST',
       body: product,

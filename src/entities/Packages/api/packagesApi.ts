@@ -1,13 +1,9 @@
 import { rtkApi } from '@shared/api/rtkApi';
-import type { IPackage } from '../model/packagesTypes';
+import { type Package } from '../model/packagesTypes';
 // import { type EntityState, createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 // import { type RootState } from '@shared/lib/store/types';
 import { transformPackagesList } from '../lib/helpers/transformPackagesList';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
-
-export interface IPackageWithId extends IPackage {
-  _id: string;
-}
 
 // const packagesAdapter = createEntityAdapter({ selectId: (unit: IPackageWithId) => unit._id });
 
@@ -22,7 +18,7 @@ const packagesApi = rtkApi.injectEndpoints({
       transformResponse: transformPackagesList,
     }),
 
-    createPackage: build.mutation<IPackage, IPackage>({
+    createPackage: build.mutation<Package, Package>({
       query: tare => ({
         url: '/packages/create',
         method: 'POST',

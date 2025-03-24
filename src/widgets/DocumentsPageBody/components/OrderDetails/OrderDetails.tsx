@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import {
   OrderCard,
-  OrderFillingErrors,
+  OrderFillingErrorsList,
   useGetOrderFillingErrors,
   useGetOrderRecords,
 } from '@entities/Orders';
@@ -27,7 +27,7 @@ export const OrderDetails = () => {
   return (
     <FlexColumn gap='16'>
       <div>{`Заказ №${orderNumber}`}</div>
-      <OrderFillingErrors fillingErrors={fillingErrors} />
+      <OrderFillingErrorsList fillingErrors={fillingErrors} />
       <OrderCard orderRecords={orderRecords} />
     </FlexColumn>
   );

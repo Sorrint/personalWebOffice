@@ -66,7 +66,7 @@ export const ProfilePageBody = () => {
               value='localStorage'
             />
             <RadioButton
-              label='База данных Dreamkass (требуется токен)'
+              label='База данных Dreamkas (требуется токен)'
               {...register('dataBase')}
               value='dreamkasStorage'
               disabled={!dreamToken}

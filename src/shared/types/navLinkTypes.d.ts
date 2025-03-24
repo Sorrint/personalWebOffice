@@ -1,6 +1,6 @@
-export interface INavLink {
+export interface NavLink {
   path: string;
   title: string;
 }
 
-export type INavLinkObject = Record<string, INavLink>;
+export type NavLinkObject = Record<string, NavLink>;

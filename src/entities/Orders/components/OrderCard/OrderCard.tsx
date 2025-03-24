@@ -2,10 +2,10 @@ import { type TableColumns } from '@shared/ui/Table';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 import { Table } from '@shared/ui/Table';
 
-import { type IOrderRecord } from '../../model/types/IOrder';
+import { type OrderRecord } from '../../model/types/Order';
 import { memo } from 'react';
 
-const tableColumns: TableColumns<IOrderRecord> = {
+const tableColumns: TableColumns<OrderRecord> = {
   number: { header: '№' },
   productName: { header: 'Товары (работы, услуги)', alignment: 'left' },
   count: { header: 'Количество' },
@@ -15,7 +15,7 @@ const tableColumns: TableColumns<IOrderRecord> = {
 const COLUMNS_WIDTHS = '30px minmax(500px, 1fr) 130px 130px';
 
 interface OrderCardProps {
-  orderRecords?: IOrderRecord[];
+  orderRecords?: OrderRecord[];
 }
 
 export const OrderCard = memo(({ orderRecords }: OrderCardProps) => {

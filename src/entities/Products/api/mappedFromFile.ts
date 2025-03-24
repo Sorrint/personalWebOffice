@@ -1,8 +1,8 @@
-import { type IDbHeaders, dbHeaders } from '../model/dataBase';
+import { type DbHeaders, dbHeaders } from '../model/dataBase';
 export type FileDB = Record<string, string>;
 
 export function transformHeaders(headersRow: FileDB) {
-  const modifiedHeaders = dbHeaders.reduce((result: IDbHeaders[], header) => {
+  const modifiedHeaders = dbHeaders.reduce((result: DbHeaders[], header) => {
     const letter = Object.keys(headersRow).find(key =>
       headersRow[key] === header.text ? { ...header, letter: key } : '',
     );
@@ -12,7 +12,7 @@ export function transformHeaders(headersRow: FileDB) {
   return modifiedHeaders;
 }
 
-export function transformGoods(dataBase: FileDB[], headers: IDbHeaders[]) {
+export function transformGoods(dataBase: FileDB[], headers: DbHeaders[]) {
   const modifiedGoods = dataBase.reduce((goods: FileDB[], item) => {
     const result: FileDB = {};
     Object.keys(item).forEach(key => {

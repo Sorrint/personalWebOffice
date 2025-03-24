@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { IOrderingSummary } from '../../../model/types/ordering';
+import { type OrderingSummary } from '../../../model/types/ordering';
 import {
   getCorrugatesSheetsText,
   getGrossweightText,
@@ -7,7 +7,7 @@ import {
   getRowSeparatorText,
 } from '../../helpers/getOrderingTexts';
 
-export default (summary?: IOrderingSummary) =>
+export default (summary?: OrderingSummary) =>
   useMemo(
     () => [
       summary?.pallets && getPalletsText(summary.pallets),

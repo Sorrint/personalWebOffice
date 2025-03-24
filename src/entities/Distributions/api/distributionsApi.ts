@@ -1,7 +1,7 @@
 import { rtkApi } from '@shared/api/rtkApi';
 import { AppLinkItem } from '@shared/ui/AppLinksList';
 import { transformDistributionsList } from '../lib/helpers/transformDitributionsList';
-import { IDistribution } from '../model/types/distribution';
+import { type Distribution } from '../model/types/distribution';
 
 const baseDistributionsUri = 'documents/distributions';
 
@@ -18,7 +18,7 @@ const distributionsApi = rtkApi
         providesTags: () => ['distributions'],
       }),
 
-      getDistributionById: build.query<IDistribution, string>({
+      getDistributionById: build.query<Distribution, string>({
         query: id => ({
           url: `documents/Distributions/${id}`,
           method: 'GET',

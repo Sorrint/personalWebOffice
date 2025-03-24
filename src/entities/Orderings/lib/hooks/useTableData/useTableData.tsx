@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { type IOrderingRecordDisplay, type IOrderingChapter } from '../../../model/types/ordering';
+import { type OrderingRecordDisplay, type OrderingChapter } from '../../../model/types/ordering';
 import { ChapterSummary } from '../../../components/OrderingProductsList/ChapterSummary/ChapterSummary';
 import { getCountInRowsText, getRowsCountText } from '../../helpers/getOrderingTexts';
 import { EditRows } from '../../../model/types/editRows';
@@ -7,9 +7,9 @@ import { EditRows } from '../../../model/types/editRows';
 type EditRowsArg = Parameters<typeof getSummaryRecord>[1];
 
 const getSummaryRecord = (
-  summary: Omit<IOrderingChapter, 'records'>,
+  summary: Omit<OrderingChapter, 'records'>,
   editRows?: EditRows,
-): Partial<IOrderingRecordDisplay> => {
+): Partial<OrderingRecordDisplay> => {
   const { productsCount, rowsCount, countOfPackages, text, packageCategory } = summary;
 
   const chapterText = getCountInRowsText(text, countOfPackages);
@@ -28,12 +28,11 @@ const getSummaryRecord = (
 };
 
 export interface UseTableDataProps {
-  records?: IOrderingChapter[];
+  records?: OrderingChapter[];
   editRows?: EditRowsArg;
-  children: (data: Partial<IOrderingRecordDisplay>[]) => React.ReactNode;
 }
 
-const useTableData = ({ records, editRows, children }: UseTableDataProps) => {
+const useTableData = ({ records, editRows }: UseTableDataProps) => {
   if (!records) {
     return null;
   }
@@ -42,8 +41,8 @@ const useTableData = ({ records, editRows, children }: UseTableDataProps) => {
     () =>
       records.reduce(
         (
-          acc: Partial<IOrderingRecordDisplay>[],
-          { records: products, ...summary }: IOrderingChapter,
+          acc: Partial<OrderingRecordDisplay>[],
+          { records: products, ...summary }: OrderingChapter,
         ) => {
           products.map(record => acc.push(record));
           acc.push(getSummaryRecord(summary, editRows));
@@ -54,7 +53,7 @@ const useTableData = ({ records, editRows, children }: UseTableDataProps) => {
     [records, editRows],
   );
 
-  return children(data);
+  return data;
 };
 
 export default useTableData;

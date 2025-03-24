@@ -1,12 +1,12 @@
 import { type ForwardedRef, forwardRef, useState } from 'react';
 import { type FieldValues, type Path, useForm } from 'react-hook-form';
 
-interface IInlineTextArea<T extends FieldValues> {
+interface InlineTextArea<T extends FieldValues> {
   name: Path<T>;
 }
 
 export const InlineTextArea = forwardRef(function InlineTextArea<T extends FieldValues>(
-  props: IInlineTextArea<T>,
+  props: InlineTextArea<T>,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   const [isEditing, setIsEditing] = useState(false);

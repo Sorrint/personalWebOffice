@@ -1,9 +1,9 @@
 import { AppRoutes } from '@shared/config/router';
 import { AppBody, AppHeader } from '@shared/layouts';
-import { INavLinkObject } from '@shared/types/navLinkTypes';
+import { NavLinkObject } from '@shared/types/navLinkTypes';
 import { Outlet } from 'react-router-dom';
 
-const navLinks: INavLinkObject = {
+const navLinks: NavLinkObject = {
   packages: {
     path: AppRoutes.getPackagesRoute(),
     title: 'Упаковка',

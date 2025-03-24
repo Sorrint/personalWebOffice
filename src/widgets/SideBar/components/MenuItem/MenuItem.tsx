@@ -1,13 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { IconFont } from '@shared/ui/IconFont';
-
-import { type IMenuItem } from '../../model/types/menuItemsTypes';
+import { type MenuItem as MenuItemType } from '../../model/types/menuItemsTypes';
 import styles from './MenuItem.module.scss';
 import classNames from 'classnames';
 import { memo } from 'react';
 
 interface MenuLinkProps {
-  item: IMenuItem;
+  item: MenuItemType;
   collapsed: boolean;
 }
 

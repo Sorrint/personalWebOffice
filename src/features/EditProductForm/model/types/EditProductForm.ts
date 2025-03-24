@@ -1,6 +1,6 @@
 export type FormVariants = 'delete' | 'update' | 'create';
 
-export type IFormProps = {
+export type FormProps = {
   popupText: string;
   buttonText: string;
   method: FormVariants;

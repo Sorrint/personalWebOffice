@@ -1,12 +1,12 @@
 import { type RefObject, memo } from 'react';
 
-import { type IDreamkasProduct } from '../../model/types/IDreamkasProduct';
+import { type DreamkasProduct } from '../../model/types/DreamkasProduct';
 import { ProductListBody } from '../ProductsListBody/ProductsListBody';
 import { ProductListHeader } from '../ProductsListHeader/ProductsListHeader';
 
 import './ProductList.module.scss';
 
-export interface IProductListContentProps<T> {
+export interface ProductListContentProps<T> {
   selectField?: boolean;
   avatar?: boolean;
   count?: boolean;
@@ -15,8 +15,8 @@ export interface IProductListContentProps<T> {
   setFirstElement?: (el: HTMLDivElement) => void;
 }
 
-interface ProductListProps extends IProductListContentProps<IDreamkasProduct> {
-  products: IDreamkasProduct[];
+interface ProductListProps extends ProductListContentProps<DreamkasProduct> {
+  products: DreamkasProduct[];
   displayHeaders?: boolean;
 }
 

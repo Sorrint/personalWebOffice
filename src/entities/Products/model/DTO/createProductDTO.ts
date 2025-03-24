@@ -27,13 +27,13 @@ export interface stock {
   date: Date;
 }
 
-export interface extraData {
+export interface ProductExtraData {
   collection: string;
   volume: number;
   weight: number;
 }
 
-export interface createProductDto {
+export interface CreateProductDto {
   name: string;
   type: productType;
   tax: productTax;
@@ -42,5 +42,5 @@ export interface createProductDto {
   price?: number;
   department?: departmentData;
   stock?: stock;
-  extra?: extraData;
+  extra?: ProductExtraData;
 }

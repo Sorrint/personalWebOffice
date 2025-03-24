@@ -1,10 +1,10 @@
-export interface IDbHeaders {
+export interface DbHeaders {
   id: string;
   text: string;
   letter?: string;
 }
 
-export const dbHeaders: IDbHeaders[] = [
+export const dbHeaders: DbHeaders[] = [
   { id: 'name', text: 'Продукция' },
   { id: 'value', text: 'вес нетто' },
   { id: 'category', text: 'Тара' },

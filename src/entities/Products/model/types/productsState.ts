@@ -1,7 +1,7 @@
-import { type IStoreProduct } from './IStoreProduct';
+import { type StoreProduct } from './StoreProduct';
 
 export interface ProductsState {
-  entities: IStoreProduct[];
+  entities: StoreProduct[];
   isLoading: boolean;
   error: string;
 }
