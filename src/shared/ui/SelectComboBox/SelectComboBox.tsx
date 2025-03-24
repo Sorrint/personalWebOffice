@@ -1,7 +1,8 @@
 import { useState, type ForwardedRef, forwardRef } from 'react';
-import { Combobox } from '@headlessui/react';
-import styles from './selectComboBox.stories';
 import { type FieldValues, type Path } from 'react-hook-form';
+import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from '@headlessui/react';
+import styles from './SelectComboBox.module.scss';
+
 const people = [
   'Durward Reynolds',
   'Kenton Towne',
@@ -34,14 +35,14 @@ export const SelectComboBox = forwardRef(function SelectComboBox<T extends Field
 
   return (
     <Combobox as='div' value={selectedPerson} onChange={onChange} ref={ref}>
-      <Combobox.Input onChange={event => setQuery(event.target.value)} />
-      <Combobox.Options as='div' className={styles.options}>
+      <ComboboxInput onChange={event => setQuery(event.target.value)} />
+      <ComboboxOptions as='div' className={styles.options}>
         {filteredPeople.map(person => (
-          <Combobox.Option key={person} value={person}>
+          <ComboboxOption key={person} value={person}>
             {person}
-          </Combobox.Option>
+          </ComboboxOption>
         ))}
-      </Combobox.Options>
+      </ComboboxOptions>
     </Combobox>
   );
 });

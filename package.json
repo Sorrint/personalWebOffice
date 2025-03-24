@@ -18,7 +18,7 @@
         "lint:style:fix": "stylelint \"src/{**/*,*}.scss\" --fix"
     },
     "dependencies": {
-        "@headlessui/react": "^1.7.15",
+        "@headlessui/react": "^2.1",
         "@hookform/resolvers": "^3.3.2",
         "@popperjs/core": "^2.11.6",
         "@reduxjs/toolkit": "^2.2.1",
