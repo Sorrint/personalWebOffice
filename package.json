@@ -15,7 +15,8 @@
         "lint:code": "eslint \"./src/**/*.{ts,tsx}\"",
         "lint:code:fix": "eslint \"**/*.{ts,tsx}\" --fix",
         "lint:style": "stylelint \"src/{**/*,*}.scss\"",
-        "lint:style:fix": "stylelint \"src/{**/*,*}.scss\" --fix"
+        "lint:style:fix": "stylelint \"src/{**/*,*}.scss\" --fix",
+        "test:types": "tsc --project ./tsconfig.json"
     },
     "dependencies": {
         "@headlessui/react": "^2.1",
@@ -29,6 +30,7 @@
         "esbuild": "^0.25.0",
         "exceljs": "^4.4.0",
         "file-saver": "^2.0.5",
+        "idb": "^8.0.3",
         "react": "^18.2.0",
         "react-contenteditable": "^3.3.7",
         "react-datepicker": "^6.3.0",

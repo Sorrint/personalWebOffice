@@ -15,10 +15,10 @@ type Story = StoryObj<typeof SelectListBox>;
 export const Normal: Story = {};
 Normal.args = {
   options: [
-    { _id: '1', content: '1, 1,5 кг' },
-    { _id: '2', content: '2,5 3 кг низ' },
-    { _id: '3', content: '3, 5 кг выс' },
-    { _id: '4', content: '4,5 кг кан' },
+    { id: '1', content: '1, 1,5 кг' },
+    { id: '2', content: '2,5 3 кг низ' },
+    { id: '3', content: '3, 5 кг выс' },
+    { id: '4', content: '4,5 кг кан' },
   ],
   value: '2,5 3 кг низ',
   defaultValue: 'Кнопка',

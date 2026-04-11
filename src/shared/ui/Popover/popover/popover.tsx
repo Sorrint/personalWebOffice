@@ -25,7 +25,7 @@ export const Popover = ({
   offsetY,
 }: PopoverProps) => {
   const [referenceElement, setReferenceElement] = useState<HTMLButtonElement | null>(null);
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
 
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: placementPanel,

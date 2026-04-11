@@ -19,6 +19,7 @@ export const UnitSelect = (props: UnitSelectProps) => {
   const currentUnits = units?.filter(unit => type && unit.type.includes(type));
   const options: ListBoxItem[] = currentUnits?.map(unit => ({
     ...unit,
+    id: unit._id,
     content: unit.description,
   }));
   const onChangeHandler = useCallback(

@@ -7,7 +7,7 @@ enum UnitTypes {
 }
 export type ProductType = 'SCALABLE' | 'COUNTABLE';
 
-export interface extraData {
+export interface StoreProductExtraData {
   package?: string;
   packageCategory?: string;
   weight?: number;
@@ -36,7 +36,7 @@ export interface StoreProduct {
   stock?: null | ProductStock[];
   tax?: string;
   unit?: string;
-  extraData?: extraData;
+  extraData?: StoreProductExtraData;
 }
 
 export type StoreProductStock = [number, string, string, string, string];

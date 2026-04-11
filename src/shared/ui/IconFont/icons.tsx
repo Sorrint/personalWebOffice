@@ -3,7 +3,7 @@ import { IconFont } from './IconFont';
 import style from './icons.module.scss';
 
 export const Icons = () => {
-  const getIconNameWithoutPrefix = (name: string) => name.replace('icon-', '');
+  const getIconNameWithoutPrefix = (name: string | number) => String(name).replace('icon-', '');
   return (
     <div className={style.container}>
       {Object.typedKeys(icons).map(iconName => (

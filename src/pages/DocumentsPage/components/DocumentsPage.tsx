@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { type INavLinkObject } from '@shared/types/navLinkTypes';
+import { type NavLinkObject } from '@shared/types/navLinkTypes';
 import { AppBody, AppHeader } from '@shared/layouts';
 import { Dropdown, type DropdownItem } from '@shared/ui/Dropdown';
 import { SaveOrderingToXLSX } from '@features/SaveOrderingToXLSX';
@@ -8,7 +8,7 @@ import { AppLink } from '@shared/ui/AppLink';
 import { AppRoutes } from '@shared/config/router';
 import style from './DocumentsPage.module.scss';
 
-const navLinks: INavLinkObject = {
+const navLinks: NavLinkObject = {
   order: {
     path: '/office/documents/orders',
     title: 'Заказы',

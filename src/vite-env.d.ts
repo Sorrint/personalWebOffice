@@ -8,9 +8,8 @@ interface ImportMetaEnv {
   readonly VITE_SERVER_URI: string;
 }
 
-declare const __SERVER_URI__: string;
-
 declare global {
+  const __SERVER_URI__: string;
   interface ObjectConstructor {
     typedKeys<T>(obj: T): Array<keyof T>;
     typedValues<T>(obj: T): Array<T[keyof T]>;

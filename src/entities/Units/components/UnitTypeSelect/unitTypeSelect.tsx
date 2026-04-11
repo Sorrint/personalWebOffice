@@ -10,15 +10,15 @@ export const UnitTypeSelect = (props: UnitTypeSelectProps) => {
   const { onChange, type } = props;
 
   const options = [
-    { _id: '1', content: 'штучный', value: UnitTypes.COUNTABLE },
-    { _id: '2', content: 'мерный', value: UnitTypes.SCALABLE },
-    { _id: '3', content: 'весовой', value: UnitTypes.WEIGHTABLE },
+    { id: '1', content: 'штучный', value: UnitTypes.COUNTABLE },
+    { id: '2', content: 'мерный', value: UnitTypes.SCALABLE },
+    { id: '3', content: 'весовой', value: UnitTypes.WEIGHTABLE },
   ];
 
   const currentType = options.find(option => option.value === type);
 
   const handleChange = (id: string) => {
-    const selected = options.find(option => option._id === id);
+    const selected = options.find(option => option.id === id);
     if (selected) {
       onChange?.(selected?.value);
     }
@@ -27,7 +27,7 @@ export const UnitTypeSelect = (props: UnitTypeSelectProps) => {
   return (
     <SelectListBox
       options={options}
-      value={currentType?._id ?? ''}
+      value={currentType?.id ?? ''}
       onChange={handleChange}
       defaultValue='Выберите тип товара'
     />
