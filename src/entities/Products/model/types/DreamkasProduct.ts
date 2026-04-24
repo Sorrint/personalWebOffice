@@ -22,6 +22,7 @@ export interface DreamkasProduct {
   type: string;
   unit: string;
   quantity: number;
+  barcodes: string[];
 }
 
 export interface ProductCategory {

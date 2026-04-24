@@ -11,3 +11,4 @@ export { CategoriesList } from './components/CategoriesList/CategoriesList';
 export { ProductList } from './components/ProductList/ProductList';
 export * from './model/productsService';
 export * from './model/types/StoreProduct';
+export * from './lib/productsCache';

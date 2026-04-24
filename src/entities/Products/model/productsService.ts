@@ -4,6 +4,7 @@ import { rtkApi } from '@shared/api/rtkApi';
 import { productsDreamkasEndpoints } from './productsDreamkasEndpoints';
 import { productsStoreEndpoints } from './productsStoreEndpoints';
 import { type CheckStoreProduct, type StoreProduct } from './types/StoreProduct';
+import { loadAllProductsCached } from './queries/loadAllProductsCached';
 
 const dataBase = localStorage.getItem('dataBase');
 const productEndpoints =
@@ -11,13 +12,17 @@ const productEndpoints =
 
 const productsAPI = rtkApi.enhanceEndpoints({ addTagTypes: ['products'] }).injectEndpoints({
   endpoints: build => ({
+    loadAllProductsCached: loadAllProductsCached(build.query),
+
     loadProducts: build.query<DreamkasProduct[], ProductListParams | Record<string, unknown>>({
       ...productEndpoints.loadProducts,
       providesTags: ['products'],
     }),
+
     loadProductBySearch: build.query<DreamkasProduct[], SearchParams>(
       productsDreamkasEndpoints.loadProductBySearch,
     ),
+
     loadCategoriesBySearch: build.query<ProductCategory[], SearchParams>({
       query: params => ({
         url: `/dreamkas/products/search?q=${encodeURI(params.q)}&limit=${params.limit}`,
@@ -26,6 +31,7 @@ const productsAPI = rtkApi.enhanceEndpoints({ addTagTypes: ['products'] }).injec
         return response.categories;
       },
     }),
+
     loadProductsCategories: build.query<ProductCategory[], SearchParams>({
       query: () => ({
         url: '/dreamkas/products/categories',
@@ -34,9 +40,11 @@ const productsAPI = rtkApi.enhanceEndpoints({ addTagTypes: ['products'] }).injec
         return response.categories;
       },
     }),
+
     checkOrderProducts: build.mutation<CheckStoreProduct, StoreProduct[]>(
       productsStoreEndpoints.checkOrderProducts,
     ),
+
     createProduct: build.mutation<StoreProduct, StoreProduct>({
       ...productsStoreEndpoints.createProduct,
       invalidatesTags: ['products'],
@@ -44,6 +52,7 @@ const productsAPI = rtkApi.enhanceEndpoints({ addTagTypes: ['products'] }).injec
   }),
 });
 
+export const useLoadAllProductsCached = productsAPI.useLoadAllProductsCachedQuery;
 export const useLoadProducts = productsAPI.useLoadProductsQuery;
 export const useLoadProductsBySearch = productsAPI.useLoadProductBySearchQuery;
 export const useLoadCategoriesBySearch = productsAPI.useLoadCategoriesBySearchQuery;

@@ -1,6 +1,6 @@
 import { type ProductListParams, type SearchParams, type SearchResult } from './service';
 
-const baseDreamkasProductsUri = 'dreamkas/products';
+export const baseDreamkasProductsUri = 'dreamkas/products';
 export const productsDreamkasEndpoints = {
   loadProducts: {
     query: (params: ProductListParams) => ({
