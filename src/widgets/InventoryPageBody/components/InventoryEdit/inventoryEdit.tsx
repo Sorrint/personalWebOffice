@@ -9,7 +9,7 @@ import {
   useLoadDocumentByNumber,
   InventoryProductsTable,
 } from '@entities/Inventories';
-import { PopoverProductsList } from '@entities/Products';
+import { PopoverProductsList, useLoadAllProductsCached } from '@entities/Products';
 import { useInputText, useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
 // import { FormatDate } from '@shared/ui/formatDate/FormatDate';
 import { SearchInput } from '@shared/ui/SearchInput';
@@ -20,6 +20,7 @@ import { editProductFormReducer } from '@features/EditProductForm';
 import { ScrollableBlock } from '@shared/ui/ScrollableBlock';
 import { Button } from '@shared/ui/Button';
 
+import { useSearchProductsFromCache } from '../../lib/hooks/useSearchProductsFromCache';
 import { useLoadInventoryProductsBySearch } from '../../lib/hooks/useLoadInventoryProductsBySearch';
 import styles from './InventoryEdit.module.scss';
 
@@ -49,11 +50,34 @@ export const InventoryEdit = memo(() => {
 
   // Загрузка данных
   const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
-  const { goods, isFetching, setSearch } = useLoadInventoryProductsBySearch();
+  useLoadAllProductsCached();
+
+  const [serverSearch, setServerSearch] = useState<string>('');
+  const [useCache, setUseCache] = useState(
+    () => localStorage.getItem('feature_productsCache') !== 'false',
+  );
+
+  const handleCacheToggle = useCallback((checked: boolean) => {
+    localStorage.setItem('feature_productsCache', String(checked));
+    setUseCache(checked);
+  }, []);
+
+  const {
+    goods: cacheGoods,
+    isFetching: cacheFetching,
+    search: searchFromCache,
+  } = useSearchProductsFromCache();
+  const { goods: serverGoods, isFetching: serverFetching } = useLoadInventoryProductsBySearch(
+    serverSearch,
+    useCache,
+  );
+
+  const goods = useCache ? cacheGoods : serverGoods;
+  const isFetching = useCache ? cacheFetching : serverFetching;
 
   const [highlightFunc, setHighlightFunc] = useState<
     ((item: InventoryProduct) => boolean) | undefined
-  >(undefined);
+  >(() => (localStorage.getItem('highlight') === 'true' ? highlightByAccount : undefined));
 
   const handleCreate = useCallback(
     (product: InventoryProduct) => {
@@ -70,37 +94,43 @@ export const InventoryEdit = memo(() => {
     }
   }, [activePopup]);
 
-  const getGoods = async (value: string) => {
-    setActivePopover(false);
-    setSearch(value);
-  };
+  const getGoods = useCallback(
+    async (value: string) => {
+      setActivePopover(false);
+      if (useCache) {
+        const results = await searchFromCache(value);
+        if (results.length === 1) handleCreate(results[0]);
+        else setActivePopover(results.length > 0);
+      } else {
+        setServerSearch(value);
+      }
+    },
+    [useCache, searchFromCache, handleCreate, setActivePopover],
+  );
 
   const createNewProduct = useCallback(() => {
     displayForm('create')({ name: '', quantity: 1, price: 1, id: uuidv4() });
     setActivePopup(true);
-  }, []);
+  }, [displayForm, setActivePopup]);
 
   const popoverCondition = goods && goods?.length !== 0 && !activePopup;
 
   useEffect(() => {
-    if (goods) {
-      goods.length === 1 ? handleCreate(goods[0]) : setActivePopover(goods?.length > 0);
+    if (!useCache && serverGoods) {
+      serverGoods.length === 1
+        ? handleCreate(serverGoods[0])
+        : setActivePopover(serverGoods.length > 0);
     }
-  }, [goods, handleCreate, setActivePopover]);
-
-  useEffect(() => {
-    const highlightOn = localStorage.getItem('highlight') === 'true';
-    setHighlightFunc(() => (highlightOn ? highlightByAccount : undefined));
-  }, []);
+  }, [serverGoods, useCache, handleCreate, setActivePopover]);
 
   const handleCheckboxClick = useCallback((checked: boolean) => {
     checked ? localStorage.setItem('highlight', 'true') : localStorage.setItem('highlight', '');
     setHighlightFunc(() => (checked ? highlightByAccount : undefined));
   }, []);
 
-  if (!inventoryList?.products) return 'Нет данных для отображения';
-
   if (isLoading) return 'Идет загрузка...';
+
+  if (!inventoryList?.products) return 'Нет данных для отображения';
 
   const renderList = () => (
     <>
@@ -134,6 +164,13 @@ export const InventoryEdit = memo(() => {
             name='tempAcc'
             onChange={handleCheckboxClick}
             defaultChecked={localStorage.getItem('highlight') === 'true'}
+          />
+          <Checkbox
+            text='Поиск из кеша'
+            name='useCache'
+            onChange={handleCacheToggle}
+            defaultChecked={useCache}
+            className={styles.cacheCheckbox}
           />
           <SaveInventoryToXLSX inventoryList={inventoryList} className={styles.xlsx} />
           <Button onClick={createNewProduct}>Добавить товар</Button>

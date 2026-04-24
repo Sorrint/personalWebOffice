@@ -4,8 +4,7 @@ import { useAppDispatch } from '@shared/lib/hooks';
 import { tokenActions } from '@shared/lib/store';
 import { transformProducts } from '../helpers/transformProducts';
 
-export const useLoadInventoryProductsBySearch = () => {
-  const [search, setSearch] = useState<string>('');
+export const useLoadInventoryProductsBySearch = (search: string, skip = false) => {
   const [isActiveAccount, setIsActiveAccount] = useState(true);
   const [requestCompleted, setRequestCompleted] = useState(false);
 
@@ -22,7 +21,10 @@ export const useLoadInventoryProductsBySearch = () => {
     data: goods,
     isFetching,
     refetch,
-  } = useLoadProductsBySearch({ limit: 1000, q: search }, { pollingInterval: 0, skip: !search });
+  } = useLoadProductsBySearch(
+    { limit: 1000, q: search },
+    { pollingInterval: 0, skip: skip || !search },
+  );
 
   useEffect(() => {
     if (!isFetching && goods && goods.length === 0 && !requestCompleted) {
@@ -38,5 +40,5 @@ export const useLoadInventoryProductsBySearch = () => {
 
   const result = useMemo(() => transformProducts(goods, isActiveAccount), [goods, isActiveAccount]);
 
-  return { goods: result, isFetching, setSearch, isActiveAccount };
+  return { goods: result, isFetching, isActiveAccount };
 };
