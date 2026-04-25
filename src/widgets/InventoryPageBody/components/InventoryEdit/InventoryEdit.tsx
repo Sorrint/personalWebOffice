@@ -1,4 +1,4 @@
-import { memo, useEffect, useState, useCallback } from 'react';
+import { memo, useEffect, useState, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,9 +10,8 @@ import {
   InventoryProductsTable,
 } from '@entities/Inventories';
 import { PopoverProductsList, useLoadAllProductsCached } from '@entities/Products';
-import { useInputText, useSearchInput, useSearchInputPopover } from '@shared/lib/hooks';
 // import { FormatDate } from '@shared/ui/formatDate/FormatDate';
-import { SearchInput } from '@shared/ui/SearchInput';
+import { SearchInput, type SearchInputHandle } from '@shared/ui/SearchInput';
 import { Checkbox } from '@shared/ui/Checkbox';
 import { Grid } from '@shared/ui/Grid';
 import { AsyncReduxComponent, type ReducersList } from '@shared/lib/components';
@@ -35,20 +34,17 @@ const reducers: ReducersList = {
 export const InventoryEdit = memo(() => {
   const { number } = useParams();
   const docNumber = Number(number);
-  const { searchInputRef, setFirstListElement, firstListElement } = useSearchInput();
 
-  const focusOnSearchInput = () => searchInputRef?.current?.focus();
-
-  useInputText(focusOnSearchInput);
+  const searchRef = useRef<SearchInputHandle>(null);
 
   const { activePopup, displayForm, updateError, setActivePopup, onSubmit } = useEditProductForm(
     docNumber,
     true,
+    () => searchRef.current?.select(),
   );
 
-  const { activePopover, setActivePopover } = useSearchInputPopover();
+  const [popoverOpen, setPopoverOpen] = useState(false);
 
-  // Загрузка данных
   const { data: inventoryList, isLoading } = useLoadDocumentByNumber(number);
   useLoadAllProductsCached();
 
@@ -82,30 +78,24 @@ export const InventoryEdit = memo(() => {
   const handleCreate = useCallback(
     (product: InventoryProduct) => {
       displayForm('create')(product);
-      setActivePopover(false);
+      setPopoverOpen(false);
       setActivePopup(true);
     },
-    [displayForm, setActivePopover, setActivePopup],
+    [displayForm, setActivePopup],
   );
-
-  useEffect(() => {
-    if (!activePopup && searchInputRef) {
-      searchInputRef.current?.select();
-    }
-  }, [activePopup]);
 
   const getGoods = useCallback(
     async (value: string) => {
-      setActivePopover(false);
+      setPopoverOpen(false);
       if (useCache) {
         const results = await searchFromCache(value);
         if (results.length === 1) handleCreate(results[0]);
-        else setActivePopover(results.length > 0);
+        else setPopoverOpen(results.length > 0);
       } else {
         setServerSearch(value);
       }
     },
-    [useCache, searchFromCache, handleCreate, setActivePopover],
+    [useCache, searchFromCache, handleCreate],
   );
 
   const createNewProduct = useCallback(() => {
@@ -113,15 +103,13 @@ export const InventoryEdit = memo(() => {
     setActivePopup(true);
   }, [displayForm, setActivePopup]);
 
-  const popoverCondition = goods && goods?.length !== 0 && !activePopup;
-
   useEffect(() => {
     if (!useCache && serverGoods) {
       serverGoods.length === 1
         ? handleCreate(serverGoods[0])
-        : setActivePopover(serverGoods.length > 0);
+        : setPopoverOpen(serverGoods.length > 0);
     }
-  }, [serverGoods, useCache, handleCreate, setActivePopover]);
+  }, [serverGoods, useCache, handleCreate]);
 
   const handleCheckboxClick = useCallback((checked: boolean) => {
     checked ? localStorage.setItem('highlight', 'true') : localStorage.setItem('highlight', '');
@@ -132,32 +120,23 @@ export const InventoryEdit = memo(() => {
 
   if (!inventoryList?.products) return 'Нет данных для отображения';
 
-  const renderList = () => (
-    <>
-      {popoverCondition && activePopover && (
-        <PopoverProductsList
-          products={goods}
-          onClick={handleCreate}
-          parentRef={searchInputRef}
-          setFirstElement={setFirstListElement}
-        />
-      )}
-    </>
-  );
+  const showPopover = popoverOpen && !activePopup && Boolean(goods?.length);
 
   return (
     <AsyncReduxComponent reducersList={reducers}>
       <Grid>
         <SearchInput
-          searchFunction={getGoods}
+          ref={searchRef}
+          onSearch={getGoods}
           loading={isFetching}
-          canShowPopover={popoverCondition}
-          renderList={renderList}
-          activePopover={activePopover}
-          firstListElement={firstListElement}
-          searchInputRef={searchInputRef}
-          setActivePopover={setActivePopover}
-        />
+          autoFocusOnTyping
+          popoverOpen={showPopover}
+          onPopoverClose={() => setPopoverOpen(false)}
+        >
+          {showPopover && goods ? (
+            <PopoverProductsList products={goods} onClick={handleCreate} />
+          ) : null}
+        </SearchInput>
         <div className={styles.controls}>
           <Checkbox
             text='Выделять поля с резервного аккаунта'

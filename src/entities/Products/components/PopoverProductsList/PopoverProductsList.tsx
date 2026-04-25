@@ -1,4 +1,4 @@
-import { type RefObject, useEffect, useRef, type KeyboardEvent } from 'react';
+import { useRef, type KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import styles from './PopoverProductsList.module.scss';
 import { handleListKeydownEvent } from '@shared/lib/utils';
@@ -14,15 +14,11 @@ interface PopoverProductsListProps<T extends PopoverProduct> {
   className?: string;
   products: T[];
   onClick?: (product: T) => void;
-  parentRef?: RefObject<HTMLInputElement> | null;
-  setFirstElement?: (el: HTMLDivElement) => void;
 }
 const PopoverProductsList = <T extends PopoverProduct>({
   products,
   className,
   onClick,
-  parentRef,
-  setFirstElement,
 }: PopoverProductsListProps<T>) => {
   const listRefs = useRef<Array<HTMLDivElement | null>>([]);
 
@@ -30,11 +26,7 @@ const PopoverProductsList = <T extends PopoverProduct>({
     listRefs.current?.push(productRef);
   };
 
-  useEffect(() => {
-    listRefs.current[0] && setFirstElement && setFirstElement(listRefs.current[0]);
-  }, [setFirstElement]);
-
-  const handleListRefsActions = handleListKeydownEvent(listRefs.current, parentRef ?? undefined);
+  const handleListRefsActions = handleListKeydownEvent(listRefs.current);
 
   return (
     <div className={classNames(className)}>

@@ -18,5 +18,10 @@
 }
 
 .dropdown {
-  margin: 10px 0 0 -10px;
+  overflow: hidden;
+  overflow-y: auto;
+  max-height: 30vh;
+  margin-top: calc(var(--margin) * 0.5);
+  background-color: var(--ui-bg-color);
+  border: var(--table-border);
 }

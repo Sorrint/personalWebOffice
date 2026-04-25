@@ -1,7 +1,6 @@
 .input-group {
     position: relative;
     width: 100%;
-    padding: 5px 10px;
     background-color: #FFF;
 }
 
@@ -10,6 +9,7 @@
 }
 
 .input {
+    padding: calc(var(--padding) * 0.5) var(--padding);
     width: 100%;
     font-size: var(--font-family-main);
 }

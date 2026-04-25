@@ -18,7 +18,7 @@ const ProductsCategories = () => {
   if (productsLoading) return <h1>Идет загрузка</h1>;
   return (
     <>
-      <SearchInput searchFunction={getProducts} />
+      <SearchInput onSearch={getProducts} />
       {search ? <SearchCategoriesList search={search} /> : <AllCategoriesList />}
       {products && (
         <ProductList
