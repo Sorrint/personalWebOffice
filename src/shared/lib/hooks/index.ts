@@ -6,7 +6,5 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export { useKeyPress } from './useKeyPress/useKeyPress';
 export { useTableColumns } from './useTableColumns/useTableColumns';
-export { useSearchInput, useSearchInputPopover } from './useSearchInput/useSearchInput';
 export { useResize } from './useResize/useResize';
 export { useAsyncLoad } from './useAsyncLoad/useAsyncLoad';
-export { useInputText } from './useInputText/useInputText';

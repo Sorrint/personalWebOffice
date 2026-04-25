@@ -16,7 +16,8 @@
         "lint:code:fix": "eslint \"**/*.{ts,tsx}\" --fix",
         "lint:style": "stylelint \"src/{**/*,*}.scss\"",
         "lint:style:fix": "stylelint \"src/{**/*,*}.scss\" --fix",
-        "test:types": "tsc --project ./tsconfig.json"
+        "test:types": "tsc --project ./tsconfig.json",
+        "icons:update": "node scripts/update-icons.mjs"
     },
     "dependencies": {
         "@headlessui/react": "^2.1",

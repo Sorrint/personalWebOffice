@@ -3,11 +3,9 @@
   font-weight: normal;
   font-style: normal;
   font-display: block;
-  src: url('fonts/office.eot?ifbt7q');
-  src: url('fonts/office.eot?ifbt7q#iefix') format('embedded-opentype'),
-    url('fonts/office.ttf?ifbt7q') format('truetype'),
-    url('fonts/office.woff?ifbt7q') format('woff'),
-    url('fonts/office.svg?ifbt7q#office') format('svg');
+  src: url('fonts/office.woff2') format('woff2'),
+    url('fonts/office.woff') format('woff'),
+    url('fonts/office.ttf') format('truetype');
 }
 
 i {
@@ -50,36 +48,16 @@ i {
   content: '\e905';
 }
 
-.icon-plus-rectangle::before {
-  content: '\e908';
-}
-
-.icon-arrow-up::before {
-  content: '\e918';
-}
-
-.icon-arrow-down::before {
-  content: '\e919';
-}
-
-.icon-check::before {
-  content: '\e91a';
-}
-
-.icon-chevron-right::before {
-  content: '\e917';
-}
-
-.icon-chevron-left::before {
-  content: '\e91b';
-}
-
 .icon-contact::before {
   content: '\e906';
 }
 
 .icon-feather::before {
   content: '\e907';
+}
+
+.icon-plus-rectangle::before {
+  content: '\e908';
 }
 
 .icon-eye-slashed::before {
@@ -100,10 +78,6 @@ i {
 
 .icon-clients::before {
   content: '\e90d';
-}
-
-.icon-documents::before {
-  content: '\e91c';
 }
 
 .icon-integrations::before {
@@ -142,6 +116,30 @@ i {
   content: '\e916';
 }
 
+.icon-chevron-right::before {
+  content: '\e917';
+}
+
+.icon-arrow-up::before {
+  content: '\e918';
+}
+
+.icon-arrow-down::before {
+  content: '\e919';
+}
+
+.icon-check::before {
+  content: '\e91a';
+}
+
+.icon-chevron-left::before {
+  content: '\e91b';
+}
+
+.icon-documents::before {
+  content: '\e91c';
+}
+
 .icon-reports::before {
   content: '\e91d';
 }
@@ -160,4 +158,8 @@ i {
 
 .icon-support::before {
   content: '\e921';
+}
+
+.icon-barcode::before {
+  content: '\f382';
 }
